@@ -1,0 +1,33 @@
+{
+  "date": "2026-02-26",
+  "trends": [
+    {
+      "keyword": "claude ai",
+      "score": 59,
+      "velocity": "steady",
+      "volume": "high",
+      "buildability": "medium",
+      "category": "ai-tools",
+      "_raw": {
+        "velocity_score": 38.1,
+        "volume_score": 82,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0
+      }
+    },
+    {
+      "keyword": "openclaw",
+      "score": 47,
+      "velocity": "steady",
+      "volume": "high",
+      "buildability": "medium",
+      "category": "ai-tools",
+      "_raw": {
+        "velocity_score": 32.3,
+        "volume_score": 100,
+        "buildability_score": 50.0,
+        "freshness_score": 10.0
+      }
+    }
+  ]
+}
