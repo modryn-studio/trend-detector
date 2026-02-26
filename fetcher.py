@@ -49,7 +49,7 @@ def fetch_rising_trends(category: str, timeframe: str = "today 1-m") -> list[dic
     for i in range(0, len(seeds), 2):
         batch = seeds[i : i + 2]
         try:
-            pytrends.build_payload(batch, timeframe=timeframe, geo="")
+            pytrends.build_payload(batch, timeframe=timeframe, geo="US")
             related = pytrends.related_queries()
             for seed in batch:
                 rising_df = related.get(seed, {}).get("rising")
@@ -76,7 +76,7 @@ def fetch_rising_trends(category: str, timeframe: str = "today 1-m") -> list[dic
     for i in range(0, len(kw_list), 5):
         batch = kw_list[i : i + 5]
         try:
-            pytrends.build_payload(batch, timeframe=timeframe, geo="")
+            pytrends.build_payload(batch, timeframe=timeframe, geo="US")
             iot = pytrends.interest_over_time()
             if iot.empty:
                 continue

@@ -47,12 +47,12 @@ def run(category: str) -> Path | None:
     existing: list[dict] = []
     if out_path.exists():
         with open(out_path) as f:
-            existing = json.load(f)
+            existing = json.load(f).get("trends", [])
 
     combined = sorted(existing + scored, key=lambda t: t["score"], reverse=True)
 
     with open(out_path, "w") as f:
-        json.dump(combined, f, indent=2)
+        json.dump({"date": str(date.today()), "trends": combined}, f, indent=2)
 
     print(f"[pipeline] {len(scored)} trends written → {out_path}")
     return out_path
