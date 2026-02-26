@@ -76,8 +76,36 @@ def main() -> None:
     if args.all:
         for category in CATEGORY_SEEDS:
             run(category)
+        _print_summary()
     else:
         run(args.category)
+
+
+def _print_summary() -> None:
+    """Print a per-category breakdown so you can read signal quality at a glance
+    without opening the JSON. Run time is ~2s after the pipeline finishes."""
+    out_path = DATA_DIR / f"trends_{date.today().isoformat()}.json"
+    if not out_path.exists():
+        print("[pipeline] No output to summarise.")
+        return
+
+    with open(out_path) as f:
+        data = json.load(f)
+
+    trends = data.get("trends", [])
+    by_category: dict[str, list[dict]] = {}
+    for t in trends:
+        by_category.setdefault(t["category"], []).append(t)
+
+    print(f"\n[pipeline] Summary — {date.today().isoformat()}")
+    for cat in CATEGORY_SEEDS:
+        cat_trends = by_category.get(cat, [])
+        if not cat_trends:
+            print(f"  {cat:<20} 0 trends")
+        else:
+            avg_score = sum(t["score"] for t in cat_trends) / len(cat_trends)
+            top = cat_trends[0]["keyword"]
+            print(f"  {cat:<20} {len(cat_trends)} trends  avg={avg_score:.0f}  top='{top}'")
 
 
 if __name__ == "__main__":
