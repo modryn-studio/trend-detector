@@ -1,0 +1,18 @@
+# Environment
+.env
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data output — intentionally NOT ignored.
+# Every trends_YYYY-MM-DD.json stays in git.
+# The history is the Phase 2 demo story.
+
+# OS
+.DS_Store
+Thumbs.db
