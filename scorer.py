@@ -14,7 +14,12 @@ is driving or dragging a trend's composite score.
 
 from typing import Literal
 
-# --- Buildability heuristics ------------------------------------------------
+# --- Brand noise (product names, not buildable opportunities) --------
+BRAND_NOISE = {
+    "claude", "chatgpt", "gemini", "openai", "copilot", 
+    "midjourney", "perplexity", "grok", "openclaw",
+    "notion", "figma", "github", "slack", "zapier",
+}
 # Keywords that suggest a concrete, tool-shaped problem a dev can ship in 48h.
 # Update these as you observe which trends produce useful tools vs dead ends.
 
@@ -138,11 +143,15 @@ def _freshness_score(series: list[float]) -> float:
 def score_trend(trend: dict) -> dict | None:
     """
     Score a single raw trend dict from fetcher.py.
-    Returns None if recent interest is below the floor (noise, not signal).
+    Returns None if it's brand noise, below interest floor, or not buildable.
     Returns the canonical output record (matching the schema in context.md).
-    _raw sub-scores are included to make weight tuning observable — remove
-    them once the weights feel stable.
     """
+    kw_lower = trend["keyword"].lower()
+    
+    # Skip known product brands — they're not buildable opportunities
+    if any(brand in kw_lower for brand in BRAND_NOISE):
+        return None
+    
     series = trend["interest_series"]
 
     # Skip low-interest keywords — they're noise, not trends worth building on.

@@ -16,8 +16,8 @@ from pytrends_modern.request import TrendReq
 # specific enough to stay on-topic. Expand as you observe noise vs signal.
 CATEGORY_SEEDS: dict[str, list[str]] = {
     "productivity":    ["productivity app", "task manager", "automation tool", "workflow software"],
-    "ai-tools":        ["AI tool", "ChatGPT alternative", "AI assistant", "LLM tool"],
-    "developer-tools": ["developer tool", "coding assistant", "GitHub Copilot", "API tool"],
+    "ai-tools":        ["AI workflow automation", "AI prompt tool", "AI data extraction", "LLM API wrapper", "AI writing assistant"],
+    "developer-tools": ["developer tool", "coding assistant", "API tool", "command line tool"],
     "finance":         ["personal finance app", "budgeting tool", "investing app", "fintech tool"],
     "health":          ["health app", "fitness tracker", "mental health app", "nutrition tracker"],
     "creator-tools":   ["content creation tool", "video editor app", "newsletter tool", "social media tool"],
