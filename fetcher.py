@@ -66,6 +66,22 @@ def fetch_rising_trends(category: str, timeframe: str = "today 1-m") -> list[dic
         print(f"[fetcher] No rising keywords found for '{category}'. Returning empty.")
         return []
 
+    # Drop garbage before hitting the Trends API:
+    # - Headlines and test questions come through as rising queries (too long)
+    # - Fill-in-the-blank patterns ("______") are quiz content, not search trends
+    # - Anything with sentence punctuation is a headline, not a keyword
+    def _is_usable(kw: str) -> bool:
+        if len(kw) > 60:
+            return False
+        if "__" in kw or kw.endswith(".") or kw.endswith("?"):
+            return False
+        return True
+
+    rising_keywords = {kw for kw in rising_keywords if _is_usable(kw)}
+    if not rising_keywords:
+        print(f"[fetcher] All keywords filtered as garbage for '{category}'. Returning empty.")
+        return []
+
     print(f"[fetcher] Found {len(rising_keywords)} rising keywords for '{category}'")
 
     # Cap at 10 trends to keep runtime reasonable for a daily cron

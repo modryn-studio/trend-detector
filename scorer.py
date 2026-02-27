@@ -20,6 +20,16 @@ BRAND_NOISE = {
     "midjourney", "perplexity", "grok", "openclaw",
     "notion", "figma", "github", "slack", "zapier",
 }
+
+# --- Generic noise (too broad to build on) ----------------------------
+# Terms with high search volume but zero specificity — no problem statement,
+# no audience, nothing to ship. Expand as you observe more noise in output.
+GENERIC_NOISE = {
+    "artificial intelligence", "machine learning", "ai", "technology",
+    "health tips", "fitness tips", "health", "fitness", "wellness",
+    "productivity", "how to be productive", "personal finance",
+    "make money online", "work from home",
+}
 # Keywords that suggest a concrete, tool-shaped problem a dev can ship in 48h.
 # Update these as you observe which trends produce useful tools vs dead ends.
 
@@ -150,6 +160,10 @@ def score_trend(trend: dict) -> dict | None:
     
     # Skip known product brands — they're not buildable opportunities
     if any(brand in kw_lower for brand in BRAND_NOISE):
+        return None
+
+    # Skip generic terms — too broad to have a problem statement worth building on
+    if kw_lower in GENERIC_NOISE:
         return None
     
     series = trend["interest_series"]

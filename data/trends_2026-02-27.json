@@ -1,0 +1,61 @@
+{
+  "date": "2026-02-27",
+  "trends": [
+    {
+      "keyword": "what is a task manager",
+      "score": 59,
+      "velocity": "declining",
+      "volume": "high",
+      "buildability": "high",
+      "category": "productivity",
+      "_raw": {
+        "velocity_score": 23.0,
+        "volume_score": 100,
+        "buildability_score": 80.0,
+        "freshness_score": 65.0
+      }
+    },
+    {
+      "keyword": "best productivity planners",
+      "score": 57,
+      "velocity": "declining",
+      "volume": "high",
+      "buildability": "high",
+      "category": "productivity",
+      "_raw": {
+        "velocity_score": 19.0,
+        "volume_score": 100,
+        "buildability_score": 80.0,
+        "freshness_score": 65.0
+      }
+    },
+    {
+      "keyword": "how to use signal app",
+      "score": 57,
+      "velocity": "declining",
+      "volume": "high",
+      "buildability": "high",
+      "category": "productivity",
+      "_raw": {
+        "velocity_score": 19.4,
+        "volume_score": 96,
+        "buildability_score": 80.0,
+        "freshness_score": 65.0
+      }
+    },
+    {
+      "keyword": "what is quantum ai",
+      "score": 49,
+      "velocity": "steady",
+      "volume": "high",
+      "buildability": "medium",
+      "category": "ai-tools",
+      "_raw": {
+        "velocity_score": 38.0,
+        "volume_score": 100,
+        "buildability_score": 50.0,
+        "freshness_score": 10.0
+      }
+    }
+  ]
+}
