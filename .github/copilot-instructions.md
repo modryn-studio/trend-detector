@@ -135,6 +135,28 @@ def safe_request(fn, *args, sleep=5, **kwargs):
 - Early returns for error handling
 - Never add complexity before Phase 2 requires it
 
+## Seed Design — Informational vs Tool-Shaped Queries
+
+This is the most important tuning lever in the pipeline. The seeds control what kinds of rising queries surface, and not all rising queries are equal.
+
+**Informational queries** — high volume, no product behind them:
+- `what is a task manager`, `how to use signal app`, `best productivity planners`
+- These are orientation queries. The person is still learning, not frustrated.
+- A rising informational query means a topic is getting popular — it does NOT mean there's a gap to build into.
+
+**Tool-shaped queries** — specific friction, rising, buildable:
+- `too many browser tabs`, `can't keep track of tasks`, `waterproof fitness tracker`
+- These are complaint or solution-seeking queries. The person has a specific problem.
+- A rising tool-shaped query means people are actively looking for something that might not exist yet.
+
+**The rule:** if a rising query sounds like something you'd type when annoyed, it's a build signal. If it sounds like something you'd type in a homework assignment, it's noise.
+
+**How to enforce this in seeds:** phrase seeds as specific frictions, not category names.
+- Bad: `productivity app`, `task manager` → surfaces "what is X", "how to use X"
+- Good: `too many browser tabs`, `overwhelmed at work` → surfaces complaint-adjacent queries
+
+**What to do when output is mostly informational:** tighten 3–4 seeds toward more specific pain-point phrasing and re-run manually before waiting on the scheduler.
+
 ## Cross-Repo Slash Commands
 These work from this repo via GitHub MCP:
 - `/tool` — register or update Trend Detector on modrynstudio.com (opens PR on modryn-studio-v2)

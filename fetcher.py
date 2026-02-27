@@ -12,15 +12,17 @@ aggressively, so we sleep between requests and cap batch sizes.
 import time
 from pytrends_modern.request import TrendReq
 
-# Seed keywords per category — broad enough to surface related rising queries,
-# specific enough to stay on-topic. Expand as you observe noise vs signal.
+# Seed keywords per category — phrase these as specific frictions, not category names.
+# Pain-point phrasing surfaces rising queries from people with a problem.
+# Category-level phrasing ("productivity app", "task manager") surfaces informational
+# queries ("what is X", "how to use X") — those have no buildable product behind them.
 CATEGORY_SEEDS: dict[str, list[str]] = {
-    "productivity":    ["productivity app", "task manager", "automation tool", "workflow software"],
-    "ai-tools":        ["AI workflow automation", "AI prompt tool", "AI data extraction", "LLM API wrapper", "AI writing assistant"],
-    "developer-tools": ["developer tool", "coding assistant", "API tool", "command line tool"],
-    "finance":         ["personal finance app", "budgeting tool", "investing app", "fintech tool"],
-    "health":          ["health app", "fitness tracker", "mental health app", "nutrition tracker"],
-    "creator-tools":   ["content creation tool", "video editor app", "newsletter tool", "social media tool"],
+    "productivity":    ["too many browser tabs", "can't keep track of tasks", "overwhelmed at work", "project falling through cracks"],
+    "ai-tools":        ["AI workflow automation", "AI prompt tool", "AI data extraction", "LLM API wrapper"],
+    "developer-tools": ["API keeps breaking", "command line tool", "local dev environment setup", "developer productivity tool"],
+    "finance":         ["personal finance app", "budgeting spreadsheet not working", "track spending automatically", "fintech tool"],
+    "health":          ["sleep tracker app", "waterproof fitness tracker", "mental health check in app", "nutrition logging app"],
+    "creator-tools":   ["repurpose content automatically", "newsletter tool", "short form video scheduler", "social media content tool"],
 }
 
 
