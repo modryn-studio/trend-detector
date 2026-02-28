@@ -10,6 +10,7 @@ aggressively, so we sleep between requests and cap batch sizes.
 """
 
 import time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeout
 from pytrends_modern.request import TrendReq
 
 # Seed keywords per category — phrase these as specific frictions, not category names.
@@ -27,7 +28,18 @@ CATEGORY_SEEDS: dict[str, list[str]] = {
 
 
 def _make_client() -> TrendReq:
-    return TrendReq(hl="en-US", tz=0, timeout=(10, 25), retries=2, backoff_factor=0.5)
+    # retries=1 + tight read timeout so a stalled request fails fast
+    # rather than hanging the process until the OS task scheduler kills it
+    return TrendReq(hl="en-US", tz=0, timeout=(10, 15), retries=1, backoff_factor=0.3)
+
+
+def _call(fn, *args, timeout: int = 30, **kwargs):
+    """Run fn(*args, **kwargs) with a hard wall-clock timeout.
+    Raises FuturesTimeout if it doesn't return in time — caught upstream.
+    """
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        future = pool.submit(fn, *args, **kwargs)
+        return future.result(timeout=timeout)
 
 
 def fetch_rising_trends(category: str, timeframe: str = "today 1-m") -> list[dict]:
@@ -51,14 +63,16 @@ def fetch_rising_trends(category: str, timeframe: str = "today 1-m") -> list[dic
     for i in range(0, len(seeds), 2):
         batch = seeds[i : i + 2]
         try:
-            pytrends.build_payload(batch, timeframe=timeframe, geo="US")
-            related = pytrends.related_queries()
+            _call(pytrends.build_payload, batch, timeframe=timeframe, geo="US")
+            related = _call(pytrends.related_queries)
             for seed in batch:
                 rising_df = related.get(seed, {}).get("rising")
                 if rising_df is not None and not rising_df.empty:
                     # top 5 rising queries per seed keeps the list focused
                     for query in rising_df["query"].head(5).tolist():
                         rising_keywords.add(query)
+        except FuturesTimeout:
+            print(f"[fetcher] Timeout: related_queries stalled for {batch} — skipping")
         except Exception as e:
             print(f"[fetcher] Warning: related_queries failed for {batch}: {e}")
 
@@ -94,8 +108,8 @@ def fetch_rising_trends(category: str, timeframe: str = "today 1-m") -> list[dic
     for i in range(0, len(kw_list), 5):
         batch = kw_list[i : i + 5]
         try:
-            pytrends.build_payload(batch, timeframe=timeframe, geo="US")
-            iot = pytrends.interest_over_time()
+            _call(pytrends.build_payload, batch, timeframe=timeframe, geo="US")
+            iot = _call(pytrends.interest_over_time)
             if iot.empty:
                 continue
             iot = iot.drop(columns=["isPartial"], errors="ignore")
@@ -108,6 +122,8 @@ def fetch_rising_trends(category: str, timeframe: str = "today 1-m") -> list[dic
                             "interest_series": iot[kw].tolist(),
                         }
                     )
+        except FuturesTimeout:
+            print(f"[fetcher] Timeout: interest_over_time stalled for {batch} — skipping")
         except Exception as e:
             print(f"[fetcher] Warning: interest_over_time failed for {batch}: {e}")
 

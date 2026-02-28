@@ -75,7 +75,11 @@ def main() -> None:
 
     if args.all:
         for category in CATEGORY_SEEDS:
-            run(category)
+            try:
+                run(category)
+            except Exception as e:
+                # Isolate per-category failures — one bad category won't kill the others
+                print(f"[pipeline] Error in '{category}': {e}")
         _print_summary()
     else:
         run(args.category)
