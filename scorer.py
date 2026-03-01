@@ -67,9 +67,13 @@ PERSON_FIRST_NAMES = {
     "kyle", "brad", "dave", "david", "rob", "robert", "tim", "timothy",
     "jake", "jacob", "josh", "joshua", "sean", "drew", "derek", "aaron",
     "justin", "travis", "tyler", "zach", "zachary", "wade", "rick", "richard",
-    "ken", "neil", "carl", "pat", "patrick", "ed", "edward", "jim",
+    "ken", "kenneth", "neil", "carl", "pat", "patrick", "ed", "edward", "jim",
     "gary", "larry", "donald", "elon", "lebron", "kobe", "shaq",
     "trump", "biden", "barack", "bernie", "kamala", "hillary", "nancy",
+    "tony", "anthony", "nick", "nicholas", "andrew", "ray", "russell",
+    "ty", "chad", "greg", "gregory", "keith", "roger", "phil", "phillip",
+    "doug", "douglas", "terry", "jerry", "randy", "johnny", "bobby",
+    "jimmy", "tommy", "danny", "freddy", "charlie", "frank", "hank",
 }
 
 
@@ -232,6 +236,8 @@ def score_trend(trend: dict, series: list[float] | None = None) -> dict:
         "volume":       vol_label,
         "buildability": build_label,
         "category":     trend["category"],
+        "source":       trend.get("source", "trendspy"),
+        "source_count": trend.get("source_count", 1),
         "_raw": {
             "growth_score":       growth,
             "volume_score":       vol_score,

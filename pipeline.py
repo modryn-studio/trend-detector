@@ -1,12 +1,17 @@
 """
 pipeline.py — entry point
 
-Fetches currently trending topics from Google, filters noise, scores
-what's left, optionally enriches top results with time-series data,
-and writes the daily JSON.
+3-layer trend pipeline:
+  Source 1: trendspy       — Google's internal trending API (2-3 calls)
+  Source 2: Google RSS     — public feed, stdlib XML parse (1 call)
+  Source 3: Gmail ingest   — (coming soon)
 
-  python pipeline.py              # run with defaults
-  python pipeline.py --top 20     # score top 20 after filtering
+Usage:
+  python pipeline.py              # trendspy only (default, backward compat)
+  python pipeline.py --rss        # RSS only
+  python pipeline.py --trendspy   # trendspy only (explicit)
+  python pipeline.py --all        # all sources + cross-reference
+  python pipeline.py --top 20     # keep top 20 after scoring
   python pipeline.py --no-series  # skip time-series enrichment (faster)
 """
 
@@ -15,24 +20,92 @@ import json
 from datetime import date
 from pathlib import Path
 
-from fetcher import fetch_trending, fetch_time_series, TOPIC_MAP
+from fetcher import fetch_trending, fetch_time_series
+from rss_fetcher import fetch_rss
 from scorer import is_buildable, score_trend
 
 DATA_DIR = Path(__file__).parent / "data"
 
 
-def run(top_n: int = 15, skip_series: bool = False) -> Path | None:
-    today = date.today().isoformat()
-    print(f"[pipeline] date={today}")
+def _normalize_rss(rss_trends: list[dict]) -> list[dict]:
+    """Convert RSS items into the same shape trendspy returns so they
+    flow through the same filter → score path."""
+    normalized = []
+    for t in rss_trends:
+        normalized.append({
+            "keyword":        t["keyword"],
+            "category":       "unknown",       # RSS has no category IDs
+            "volume":         t["approx_traffic"],
+            "growth_pct":     0,               # RSS has no growth data
+            "trend_keywords": [],
+            "source":         "rss",
+            "related_news":   t.get("related_news", []),
+        })
+    return normalized
 
-    # --- Stage 1: Discover (1 API call) ---
-    print("[pipeline] Fetching trending topics...")
-    raw = fetch_trending()
-    print(f"[pipeline] {len(raw)} trends in tracked categories")
+
+def _collect(sources: list[str]) -> list[dict]:
+    """Fetch from requested sources and return a unified list."""
+    all_trends: list[dict] = []
+
+    if "trendspy" in sources:
+        print("[pipeline] Fetching from trendspy...")
+        ts = fetch_trending()
+        # Tag source for cross-reference (issue #5)
+        for t in ts:
+            t.setdefault("source", "trendspy")
+        print(f"[pipeline]   trendspy: {len(ts)} trends in tracked categories")
+        all_trends.extend(ts)
+
+    if "rss" in sources:
+        print("[pipeline] Fetching from RSS...")
+        rss = fetch_rss()
+        rss_norm = _normalize_rss(rss)
+        print(f"[pipeline]   rss: {len(rss_norm)} trends")
+        all_trends.extend(rss_norm)
+
+    return all_trends
+
+
+def _dedup(trends: list[dict]) -> list[dict]:
+    """When running multiple sources, deduplicate by keyword.
+    Keep the version with the most data (trendspy > rss)."""
+    seen: dict[str, dict] = {}
+    for t in trends:
+        kw = t["keyword"].lower()
+        if kw not in seen:
+            seen[kw] = t
+        else:
+            existing = seen[kw]
+            # Prefer trendspy over rss (has growth_pct + category)
+            if existing.get("source") == "rss" and t.get("source") == "trendspy":
+                # Keep trendspy version but note it appeared in both
+                t["source_count"] = existing.get("source_count", 1) + 1
+                seen[kw] = t
+            else:
+                existing["source_count"] = existing.get("source_count", 1) + 1
+    return list(seen.values())
+
+
+def run(sources: list[str], top_n: int = 15,
+        skip_series: bool = False) -> Path | None:
+    today = date.today().isoformat()
+    print(f"[pipeline] date={today}  sources={sources}")
+
+    # --- Stage 1: Collect from sources ---
+    raw = _collect(sources)
 
     if not raw:
         print("[pipeline] Nothing found — skipping write.")
         return None
+
+    # Deduplicate if multiple sources
+    if len(sources) > 1:
+        before = len(raw)
+        raw = _dedup(raw)
+        dupes = before - len(raw)
+        if dupes:
+            print(f"[pipeline] Deduped {dupes} overlapping keywords")
 
     # --- Stage 2: Filter noise ---
     filtered = [t for t in raw if is_buildable(t["keyword"])]
@@ -50,13 +123,12 @@ def run(top_n: int = 15, skip_series: bool = False) -> Path | None:
     top = scored[:top_n]
 
     # --- Stage 4: Enrich with time series (2-4 API calls) ---
-    if not skip_series:
+    if not skip_series and "trendspy" in sources:
         keywords = [t["keyword"] for t in top]
         print(f"[pipeline] Fetching time series for {len(keywords)} keywords...")
         series_map = fetch_time_series(keywords)
         print(f"[pipeline] Got series for {len(series_map)}/{len(keywords)} keywords")
 
-        # Re-score with time series data for better freshness
         enriched = []
         for t in top:
             raw_trend = next(
@@ -83,32 +155,45 @@ def run(top_n: int = 15, skip_series: bool = False) -> Path | None:
 
 
 def _print_summary(trends: list[dict]) -> None:
-    """Per-category breakdown for quick scanning."""
-    by_cat: dict[str, list[dict]] = {}
-    for t in trends:
-        by_cat.setdefault(t["category"], []).append(t)
-
-    print(f"\n{'Category':<20} {'Count':>5}  {'Avg':>4}  Top keyword")
-    print("-" * 65)
-    for cat in sorted(by_cat):
-        items = by_cat[cat]
-        avg = sum(t["score"] for t in items) / len(items)
-        top_kw = items[0]["keyword"]
-        print(f"  {cat:<18} {len(items):>5}  {avg:>4.0f}  {top_kw}")
+    """Top 5 for quick scanning."""
+    print(f"\n  {'#':<4} {'Score':>5}  {'Keyword':<35}  Source")
+    print("  " + "-" * 60)
+    for i, t in enumerate(trends[:5], 1):
+        src = t.get("source", "?")
+        count = t.get("source_count", 1)
+        src_label = f"{src} ({count} sources)" if count > 1 else src
+        print(f"  {i:<4} {t['score']:>5}  {t['keyword']:<35}  {src_label}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Trend Detector pipeline")
-    parser.add_argument(
-        "--top", type=int, default=15,
-        help="Number of top trends to keep after scoring (default: 15)",
-    )
-    parser.add_argument(
-        "--no-series", action="store_true",
-        help="Skip time-series enrichment (faster, less accurate freshness)",
-    )
+
+    # Source selection — mutually exclusive group
+    src = parser.add_mutually_exclusive_group()
+    src.add_argument("--trendspy", action="store_true",
+                     help="trendspy source only")
+    src.add_argument("--rss", action="store_true",
+                     help="RSS feed source only")
+    src.add_argument("--all", action="store_true",
+                     help="All sources + cross-reference")
+
+    parser.add_argument("--top", type=int, default=15,
+                        help="Top N trends to keep (default: 15)")
+    parser.add_argument("--no-series", action="store_true",
+                        help="Skip time-series enrichment (faster)")
+
     args = parser.parse_args()
-    run(top_n=args.top, skip_series=args.no_series)
+
+    # Determine which sources to run
+    if args.all:
+        sources = ["trendspy", "rss"]
+    elif args.rss:
+        sources = ["rss"]
+    else:
+        # Default: trendspy only (backward compat)
+        sources = ["trendspy"]
+
+    run(sources=sources, top_n=args.top, skip_series=args.no_series)
 
 
 if __name__ == "__main__":
