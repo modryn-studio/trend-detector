@@ -104,24 +104,58 @@ def _collect(sources: list[str]) -> list[dict]:
     return all_trends
 
 
-def _dedup(trends: list[dict]) -> list[dict]:
-    """When running multiple sources, deduplicate by keyword.
-    Keep the version with the most data (trendspy > rss)."""
-    seen: dict[str, dict] = {}
+def _cross_reference(trends: list[dict]) -> list[dict]:
+    """Group trends by normalized keyword across sources.
+
+    Merges data from multiple sources into one record per keyword:
+    - Keeps the highest volume and growth_pct seen
+    - Tracks which sources reported each keyword
+    - Preserves the best category (trendspy > email > rss)
+    """
+    groups: dict[str, dict] = {}
+
+    # Source priority for category — higher is better
+    _SRC_RANK = {"trendspy": 3, "email": 2, "rss": 1}
+
     for t in trends:
-        kw = t["keyword"].lower()
-        if kw not in seen:
-            seen[kw] = t
+        key = t["keyword"].lower().strip()
+        source = t.get("source", "unknown")
+
+        if key not in groups:
+            groups[key] = {
+                "keyword":        t["keyword"],
+                "category":       t["category"],
+                "volume":         t["volume"],
+                "growth_pct":     t["growth_pct"],
+                "trend_keywords": t.get("trend_keywords", []),
+                "sources":        [source],
+                "source_count":   1,
+                "related_news":   t.get("related_news", []),
+                "_src_rank":      _SRC_RANK.get(source, 0),
+            }
         else:
-            existing = seen[kw]
-            # Prefer trendspy over rss (has growth_pct + category)
-            if existing.get("source") == "rss" and t.get("source") == "trendspy":
-                # Keep trendspy version but note it appeared in both
-                t["source_count"] = existing.get("source_count", 1) + 1
-                seen[kw] = t
-            else:
-                existing["source_count"] = existing.get("source_count", 1) + 1
-    return list(seen.values())
+            g = groups[key]
+            if source not in g["sources"]:
+                g["sources"].append(source)
+                g["source_count"] += 1
+            # Keep highest volume and growth
+            g["volume"] = max(g["volume"], t["volume"])
+            g["growth_pct"] = max(g["growth_pct"], t["growth_pct"])
+            # Keep best category
+            rank = _SRC_RANK.get(source, 0)
+            if rank > g["_src_rank"] and t["category"] != "unknown":
+                g["category"] = t["category"]
+                g["_src_rank"] = rank
+            # Merge related news
+            g["related_news"].extend(t.get("related_news", []))
+            # Merge trend keywords
+            g["trend_keywords"].extend(t.get("trend_keywords", []))
+
+    # Clean up internal field
+    for g in groups.values():
+        del g["_src_rank"]
+
+    return list(groups.values())
 
 
 def run(sources: list[str], top_n: int = 15,
@@ -136,13 +170,15 @@ def run(sources: list[str], top_n: int = 15,
         print("[pipeline] Nothing found — skipping write.")
         return None
 
-    # Deduplicate if multiple sources
-    if len(sources) > 1:
+    # Cross-reference if multiple sources
+    multi_source = len(sources) > 1
+    if multi_source:
         before = len(raw)
-        raw = _dedup(raw)
-        dupes = before - len(raw)
-        if dupes:
-            print(f"[pipeline] Deduped {dupes} overlapping keywords")
+        raw = _cross_reference(raw)
+        merged = before - len(raw)
+        multi_hits = sum(1 for t in raw if t.get("source_count", 1) > 1)
+        print(f"[pipeline] Cross-referenced: {before} → {len(raw)} unique"
+              f" ({multi_hits} multi-source)")
 
     # --- Stage 2: Filter noise ---
     filtered = [t for t in raw if is_buildable(t["keyword"])]
@@ -154,6 +190,16 @@ def run(sources: list[str], top_n: int = 15,
 
     # --- Stage 3: Quick-score (no API calls) ---
     scored = [score_trend(t) for t in filtered]
+
+    # Apply multi-source confidence boost
+    if multi_source:
+        for t in scored:
+            sc = t.get("source_count", 1)
+            if sc >= 3:
+                t["score"] = min(100, t["score"] + 40)
+            elif sc >= 2:
+                t["score"] = min(100, t["score"] + 20)
+
     scored.sort(key=lambda t: t["score"], reverse=True)
 
     # Keep only top N for time-series enrichment
@@ -181,25 +227,63 @@ def run(sources: list[str], top_n: int = 15,
 
     # --- Stage 5: Write output ---
     DATA_DIR.mkdir(exist_ok=True)
-    out_path = DATA_DIR / f"trends_{today}.json"
+
+    # signals_ for multi-source, trends_ for single-source
+    prefix = "signals" if multi_source else "trends"
+    out_path = DATA_DIR / f"{prefix}_{today}.json"
+
+    # Add source list to each trend for the output
+    output_trends = []
+    for t in top:
+        entry = dict(t)
+        # Include sources list if cross-referencing
+        if multi_source:
+            # Find the merged raw record to get the sources list
+            raw_rec = next(
+                (r for r in raw if r["keyword"].lower() == t["keyword"].lower()),
+                None,
+            )
+            if raw_rec and "sources" in raw_rec:
+                entry["sources"] = raw_rec["sources"]
+        output_trends.append(entry)
 
     with open(out_path, "w") as f:
-        json.dump({"date": today, "trends": top}, f, indent=2)
+        json.dump({"date": today, "trends": output_trends}, f, indent=2)
 
-    print(f"[pipeline] {len(top)} trends written → {out_path}")
-    _print_summary(top)
+    print(f"[pipeline] {len(output_trends)} trends written → {out_path}")
+    _print_summary(output_trends)
     return out_path
 
 
 def _print_summary(trends: list[dict]) -> None:
-    """Top 5 for quick scanning."""
-    print(f"\n  {'#':<4} {'Score':>5}  {'Keyword':<35}  Source")
-    print("  " + "-" * 60)
+    """Top 5 signals for quick morning scanning."""
+    today = date.today().isoformat()
+    print(f"\n  === Top Signals ({today}) ===\n")
     for i, t in enumerate(trends[:5], 1):
-        src = t.get("source", "?")
-        count = t.get("source_count", 1)
-        src_label = f"{src} ({count} sources)" if count > 1 else src
-        print(f"  {i:<4} {t['score']:>5}  {t['keyword']:<35}  {src_label}")
+        parts = [f"score={t['score']}"]
+        # Sources
+        sources = t.get("sources", [t.get("source", "?")])
+        sc = t.get("source_count", 1)
+        parts.append(f"sources={sc}")
+        # Growth
+        growth_pct = t.get("_raw", {}).get("google_growth_pct", 0)
+        if growth_pct >= 5000:
+            parts.append("growth=breakout")
+        elif growth_pct > 0:
+            parts.append(f"growth=+{growth_pct:.0f}%")
+        # Volume
+        vol = t.get("_raw", {}).get("google_volume", 0)
+        if vol >= 100_000:
+            parts.append(f"traffic={vol // 1000}K+")
+        elif vol >= 1_000:
+            parts.append(f"traffic={vol // 1000}K+")
+        elif vol > 0:
+            parts.append(f"traffic={vol}")
+
+        info = "  ".join(parts)
+        src_list = ",".join(sources)
+        print(f"  {i}. {t['keyword']:<35} {info}")
+        print(f"     [{src_list}]")
 
 
 def main() -> None:

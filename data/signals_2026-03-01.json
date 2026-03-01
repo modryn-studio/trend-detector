@@ -1,0 +1,321 @@
+{
+  "date": "2026-03-01",
+  "trends": [
+    {
+      "keyword": "bitcoin atm",
+      "score": 68,
+      "velocity": "rising",
+      "volume": "medium",
+      "buildability": "high",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 66.7,
+        "volume_score": 40.0,
+        "buildability_score": 80.0,
+        "freshness_score": 85.0,
+        "google_volume": 10000,
+        "google_growth_pct": 1000
+      },
+      "sources": [
+        "trendspy"
+      ]
+    },
+    {
+      "keyword": "hip hop hall of fame",
+      "score": 66,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "Top Trends",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 100.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 5000.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "where to meet people",
+      "score": 66,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "Making Friends",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 100.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 5000.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "friend website",
+      "score": 66,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "Making Friends",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 100.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 5000.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "digital third spaces",
+      "score": 66,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "Third Places",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 100.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 5000.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "third place potential",
+      "score": 66,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "Third Places",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 100.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 5000.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "social clubs",
+      "score": 66,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "Community & Clubs",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 100.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 5000.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "hiking club for beginners",
+      "score": 66,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "Community & Clubs",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 100.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 5000.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "art club",
+      "score": 66,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "Community & Clubs",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 100.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 5000.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "tradingview",
+      "score": 55,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 2,
+      "_raw": {
+        "growth_score": 5.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 1000,
+        "google_growth_pct": 75
+      },
+      "sources": [
+        "trendspy",
+        "rss"
+      ]
+    },
+    {
+      "keyword": "cultural events near me",
+      "score": 44,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "high",
+      "category": "Community & Clubs",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 16.7,
+        "volume_score": 5.0,
+        "buildability_score": 80.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 250.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "crude oil prices",
+      "score": 43,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "high",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 80.0,
+        "freshness_score": 85.0,
+        "google_volume": 5000,
+        "google_growth_pct": 100
+      },
+      "sources": [
+        "trendspy"
+      ]
+    },
+    {
+      "keyword": "how to play switch with friends online",
+      "score": 42,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "high",
+      "category": "Third Places",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 10.0,
+        "volume_score": 5.0,
+        "buildability_score": 80.0,
+        "freshness_score": 85.0,
+        "google_volume": 0,
+        "google_growth_pct": 150.0
+      },
+      "sources": [
+        "email"
+      ]
+    },
+    {
+      "keyword": "spacex launch today",
+      "score": 40,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 20.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 5000,
+        "google_growth_pct": 300
+      },
+      "sources": [
+        "trendspy"
+      ]
+    },
+    {
+      "keyword": "dow futures",
+      "score": 38,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 5000,
+        "google_growth_pct": 200
+      },
+      "sources": [
+        "trendspy"
+      ]
+    }
+  ]
+}
