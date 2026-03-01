@@ -2,51 +2,51 @@
   "date": "2026-03-01",
   "trends": [
     {
-      "keyword": "cash app",
-      "score": 36,
-      "velocity": "steady",
-      "volume": "low",
-      "buildability": "high",
-      "category": "finance",
-      "_raw": {
-        "growth_score": 5.0,
-        "volume_score": 5.0,
-        "buildability_score": 80.0,
-        "freshness_score": 65.0,
-        "google_volume": 500,
-        "google_growth_pct": 75
-      }
-    },
-    {
-      "keyword": "johnson and johnson",
-      "score": 26,
+      "keyword": "bitcoin atm",
+      "score": 64,
       "velocity": "rising",
-      "volume": "low",
+      "volume": "medium",
       "buildability": "medium",
       "category": "finance",
       "_raw": {
-        "growth_score": 20.0,
-        "volume_score": 20.0,
+        "growth_score": 66.7,
+        "volume_score": 40.0,
         "buildability_score": 50.0,
-        "freshness_score": 10.0,
-        "google_volume": 2000,
-        "google_growth_pct": 300
+        "freshness_score": 100.0,
+        "google_volume": 10000,
+        "google_growth_pct": 1000
       }
     },
     {
-      "keyword": "pennymac",
-      "score": 20,
+      "keyword": "jeff green",
+      "score": 21,
       "velocity": "steady",
       "volume": "low",
       "buildability": "medium",
       "category": "finance",
       "_raw": {
-        "growth_score": 3.3,
+        "growth_score": 6.7,
         "volume_score": 20.0,
         "buildability_score": 50.0,
         "freshness_score": 10.0,
         "google_volume": 1000,
-        "google_growth_pct": 50
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "stock futures",
+      "score": 13,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "low",
+      "category": "finance",
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 20.0,
+        "freshness_score": 10.0,
+        "google_volume": 2000,
+        "google_growth_pct": 100
       }
     }
   ]

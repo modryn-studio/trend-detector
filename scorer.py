@@ -84,14 +84,6 @@ def is_buildable(keyword: str) -> bool:
     if len(kw) > 60:
         return False
 
-    # Person names (2 words, both alpha) — nearly always news/celebrity noise.
-    # Tool-shaped queries are rarely just "firstname lastname".
-    words = kw.split()
-    if len(words) == 2 and all(w.isalpha() for w in words):
-        # Allow if it contains a buildability signal word
-        if not any(s in kw for s in HIGH_BUILDABILITY):
-            return False
-
     return True
 
 

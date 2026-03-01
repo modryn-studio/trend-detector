@@ -22,12 +22,9 @@ TOPIC_MAP: dict[int, str] = {
     7:  "health",           # Health
 }
 
-# Reverse lookup: our category names → Google topic IDs
-CATEGORIES: dict[str, int] = {v: k for k, v in TOPIC_MAP.items()}
-
-
-def _make_client() -> Trends:
-    return Trends(request_delay=2)
+# One client for the lifetime of the process — shares session/cookies
+# across both the discovery call and the time-series enrichment calls.
+_client = Trends(request_delay=2)
 
 
 def fetch_trending(geo: str = "US") -> list[dict]:
@@ -38,8 +35,7 @@ def fetch_trending(geo: str = "US") -> list[dict]:
 
     This is 1 API call. No seeds, no batching, no rate-limit risk.
     """
-    tr = _make_client()
-    trends = tr.trending_now(geo=geo)
+    trends = _client.trending_now(geo=geo)
 
     results: list[dict] = []
     for t in trends:
@@ -73,13 +69,12 @@ def fetch_time_series(keywords: list[str], geo: str = "US",
     Only called for keywords that survive noise filtering — typically 10-20,
     so 2-4 API calls max.
     """
-    tr = _make_client()
     series: dict[str, list[float]] = {}
 
     chunks = [keywords[i:i + 5] for i in range(0, len(keywords), 5)]
     for chunk in chunks:
         try:
-            df = tr.interest_over_time(chunk, timeframe=timeframe, geo=geo)
+            df = _client.interest_over_time(chunk, timeframe=timeframe, geo=geo)
             if df is not None and not df.empty:
                 df = df.drop(columns=["isPartial"], errors="ignore")
                 for kw in chunk:
