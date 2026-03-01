@@ -55,6 +55,24 @@ ENTERTAINMENT_NOISE_WORDS = [
 ]
 
 
+# Common first names that appear in trending people topics.
+# Used to detect "First Last" person names without false-positives on
+# compound nouns like "stock futures" or "interest rates".
+PERSON_FIRST_NAMES = {
+    "jeff", "mike", "michael", "john", "jane", "james", "joe", "joseph",
+    "bob", "bill", "william", "sam", "samuel", "tom", "thomas", "dan", "daniel",
+    "ben", "benjamin", "chris", "christopher", "mark", "paul", "peter",
+    "steve", "steven", "stephen", "ryan", "kevin", "scott", "eric",
+    "alex", "alexander", "matt", "matthew", "jason", "adam", "brian",
+    "kyle", "brad", "dave", "david", "rob", "robert", "tim", "timothy",
+    "jake", "jacob", "josh", "joshua", "sean", "drew", "derek", "aaron",
+    "justin", "travis", "tyler", "zach", "zachary", "wade", "rick", "richard",
+    "ken", "neil", "carl", "pat", "patrick", "ed", "edward", "jim",
+    "gary", "larry", "donald", "elon", "lebron", "kobe", "shaq",
+    "trump", "biden", "barack", "bernie", "kamala", "hillary", "nancy",
+}
+
+
 def is_buildable(keyword: str) -> bool:
     """Filter out noise. Returns True if this keyword might represent
     a buildable opportunity worth scoring."""
@@ -84,16 +102,29 @@ def is_buildable(keyword: str) -> bool:
     if len(kw) > 60:
         return False
 
+    # Person names — "First Last" format. Check if first word is a known
+    # first name so we don't catch compound nouns like "stock futures".
+    # "jeff green" → "jeff" is a first name → filtered.
+    # "stock futures" → "stock" is not a first name → passes.
+    words = kw.split()
+    if len(words) == 2 and all(w.isalpha() for w in words) and words[0] in PERSON_FIRST_NAMES:
+        return False
+
     return True
 
 
 # --- Buildability heuristic -----------------------------------------------
 
 HIGH_BUILDABILITY = [
+    # Explicit tool shapes
     "tool", "app", "tracker", "generator", "checker", "calculator",
     "finder", "manager", "planner", "dashboard", "monitor", "assistant",
     "bot", "extension", "plugin", "automation", "converter", "analyzer",
     "summarizer", "scheduler", "writer", "builder", "scanner",
+    # Tool-adjacent — signals a specific need even without "app" or "tool"
+    "atm", "locator", "near me", "fee", "fees", "map", "lookup",
+    "compare", "comparison", "rates", "price", "cost", "how to",
+    "alternative", "review", "best",
 ]
 
 LOW_BUILDABILITY = [
