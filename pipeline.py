@@ -4,13 +4,14 @@ pipeline.py — entry point
 3-layer trend pipeline:
   Source 1: trendspy       — Google's internal trending API (2-3 calls)
   Source 2: Google RSS     — public feed, stdlib XML parse (1 call)
-  Source 3: Gmail ingest   — (coming soon)
+  Source 3: Gmail ingest   — IMAP + app password, parses newsletter HTML
 
 Usage:
   python pipeline.py              # trendspy only (default, backward compat)
   python pipeline.py --rss        # RSS only
+  python pipeline.py --email      # email newsletter only
   python pipeline.py --trendspy   # trendspy only (explicit)
-  python pipeline.py --all        # all sources + cross-reference
+  python pipeline.py --all        # all 3 sources + cross-reference
   python pipeline.py --top 20     # keep top 20 after scoring
   python pipeline.py --no-series  # skip time-series enrichment (faster)
 """
@@ -22,6 +23,7 @@ from pathlib import Path
 
 from fetcher import fetch_trending, fetch_time_series
 from rss_fetcher import fetch_rss
+from email_ingest import fetch_email
 from scorer import is_buildable, score_trend
 
 DATA_DIR = Path(__file__).parent / "data"
@@ -40,6 +42,34 @@ def _normalize_rss(rss_trends: list[dict]) -> list[dict]:
             "trend_keywords": [],
             "source":         "rss",
             "related_news":   t.get("related_news", []),
+        })
+    return normalized
+
+
+def _parse_growth_pct(growth_str: str) -> float:
+    """'+2,900%' → 2900.0, 'breakout' → 5000.0, '' → 0."""
+    if not growth_str:
+        return 0.0
+    if growth_str in ("breakout", "all-time high"):
+        return 5000.0  # Treat breakout as maximum growth signal
+    raw = growth_str.replace(",", "").replace("+", "").replace("%", "").strip()
+    try:
+        return float(raw)
+    except ValueError:
+        return 0.0
+
+
+def _normalize_email(email_trends: list[dict]) -> list[dict]:
+    """Convert email-parsed items into the scorer's expected shape."""
+    normalized = []
+    for t in email_trends:
+        normalized.append({
+            "keyword":        t["keyword"],
+            "category":       t.get("category", "unknown"),
+            "volume":         0,                # email has no volume data
+            "growth_pct":     _parse_growth_pct(t.get("growth", "")),
+            "trend_keywords": [],
+            "source":         "email",
         })
     return normalized
 
@@ -63,6 +93,13 @@ def _collect(sources: list[str]) -> list[dict]:
         rss_norm = _normalize_rss(rss)
         print(f"[pipeline]   rss: {len(rss_norm)} trends")
         all_trends.extend(rss_norm)
+
+    if "email" in sources:
+        print("[pipeline] Fetching from email...")
+        email_trends = fetch_email(mark_read=False)
+        email_norm = _normalize_email(email_trends)
+        print(f"[pipeline]   email: {len(email_norm)} trends")
+        all_trends.extend(email_norm)
 
     return all_trends
 
@@ -174,8 +211,10 @@ def main() -> None:
                      help="trendspy source only")
     src.add_argument("--rss", action="store_true",
                      help="RSS feed source only")
+    src.add_argument("--email", action="store_true",
+                     help="Email newsletter source only")
     src.add_argument("--all", action="store_true",
-                     help="All sources + cross-reference")
+                     help="All 3 sources + cross-reference")
 
     parser.add_argument("--top", type=int, default=15,
                         help="Top N trends to keep (default: 15)")
@@ -186,9 +225,11 @@ def main() -> None:
 
     # Determine which sources to run
     if args.all:
-        sources = ["trendspy", "rss"]
+        sources = ["trendspy", "rss", "email"]
     elif args.rss:
         sources = ["rss"]
+    elif args.email:
+        sources = ["email"]
     else:
         # Default: trendspy only (backward compat)
         sources = ["trendspy"]
