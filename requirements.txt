@@ -1,3 +1,2 @@
-pytrends-modern
-selenium          # required by pytrends-modern (missing from its own dep list)
+trendspy
 python-dotenv==1.0.1

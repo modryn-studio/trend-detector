@@ -1,191 +1,206 @@
 """
-scorer.py — scoring logic
+scorer.py — scoring + filtering
 
-Scores a raw trend dict (from fetcher.py) 0–100 based on four signals:
-  velocity     — week-over-week rise delta
-  volume       — absolute search interest
-  buildability — can a solo dev ship something in 48h? (heuristic)
-  freshness    — has this trend already peaked?
+Takes raw trending data from fetcher.py, filters out noise (brands,
+sports, news events, generic terms), then scores what's left 0–100.
 
-WEIGHTS are the first thing to tune after seeing real output.
-The _raw sub-scores in each result make it easy to see which signal
-is driving or dragging a trend's composite score.
+Two scoring paths:
+  1. Quick score — from trending_now metadata alone (volume + growth).
+     Used for all trends. No additional API calls.
+  2. Full score — adds time-series velocity + freshness when available.
+     Used for trends that get a time series from interest_over_time.
 """
 
-from typing import Literal
+# --- Noise filters -------------------------------------------------------
 
-# --- Brand noise (product names, not buildable opportunities) --------
 BRAND_NOISE = {
-    "claude", "chatgpt", "gemini", "openai", "copilot", 
+    "claude", "chatgpt", "gemini", "openai", "copilot",
     "midjourney", "perplexity", "grok", "openclaw",
     "notion", "figma", "github", "slack", "zapier",
+    "xbox", "playstation", "nintendo", "steam",
+    "cash app", "venmo", "paypal", "robinhood", "coinbase",
+    "pennymac", "johnson and johnson", "tesla", "apple",
+    "amazon", "google", "microsoft", "meta", "netflix",
 }
 
-# --- Generic noise (too broad to build on) ----------------------------
-# Terms with high search volume but zero specificity — no problem statement,
-# no audience, nothing to ship. Expand as you observe more noise in output.
+# Terms too broad or unrelated to have a buildable problem behind them
 GENERIC_NOISE = {
     "artificial intelligence", "machine learning", "ai", "technology",
     "health tips", "fitness tips", "health", "fitness", "wellness",
     "productivity", "how to be productive", "personal finance",
-    "make money online", "work from home",
+    "make money online", "work from home", "5g", "internet",
+    "beer", "holi", "oil prices today", "gasbuddy",
 }
-# Keywords that suggest a concrete, tool-shaped problem a dev can ship in 48h.
-# Update these as you observe which trends produce useful tools vs dead ends.
 
-HIGH_BUILDABILITY_SIGNALS = [
+# News/events/people noise — trending but not buildable
+NEWS_NOISE_WORDS = [
+    "shooting", "killed", "died", "death", "arrested", "trial",
+    "crash", "fire", "earthquake", "hurricane", "flood", "tornado",
+    "election", "vote", "president", "congress", "senate",
+    "war", "attack", "bomb", "explosion", "hostage",
+    "university", "college", "school",
+]
+
+# Sports noise — huge volume, zero build signal
+SPORTS_NOISE_WORDS = [
+    "vs", "score", "game", "match", "nfl", "nba", "nhl", "mlb",
+    "fifa", "ufc", "boxing", "playoff", "championship", "tournament",
+    "league", "roster", "draft", "trade", "coach",
+]
+
+# Entertainment noise
+ENTERTAINMENT_NOISE_WORDS = [
+    "movie", "show", "episode", "trailer", "season", "premiere",
+    "concert", "album", "song", "actress", "actor",
+]
+
+
+def is_buildable(keyword: str) -> bool:
+    """Filter out noise. Returns True if this keyword might represent
+    a buildable opportunity worth scoring."""
+    kw = keyword.lower()
+
+    # Brand names
+    if any(brand in kw for brand in BRAND_NOISE):
+        return False
+
+    # Exact generic matches
+    if kw in GENERIC_NOISE:
+        return False
+
+    # News/events
+    if any(w in kw for w in NEWS_NOISE_WORDS):
+        return False
+
+    # Sports
+    if any(w in kw for w in SPORTS_NOISE_WORDS):
+        return False
+
+    # Entertainment
+    if any(w in kw for w in ENTERTAINMENT_NOISE_WORDS):
+        return False
+
+    # Too long = headline, not a keyword
+    if len(kw) > 60:
+        return False
+
+    # Person names (2 words, both alpha) — nearly always news/celebrity noise.
+    # Tool-shaped queries are rarely just "firstname lastname".
+    words = kw.split()
+    if len(words) == 2 and all(w.isalpha() for w in words):
+        # Allow if it contains a buildability signal word
+        if not any(s in kw for s in HIGH_BUILDABILITY):
+            return False
+
+    return True
+
+
+# --- Buildability heuristic -----------------------------------------------
+
+HIGH_BUILDABILITY = [
     "tool", "app", "tracker", "generator", "checker", "calculator",
     "finder", "manager", "planner", "dashboard", "monitor", "assistant",
     "bot", "extension", "plugin", "automation", "converter", "analyzer",
     "summarizer", "scheduler", "writer", "builder", "scanner",
 ]
 
-LOW_BUILDABILITY_SIGNALS = [
+LOW_BUILDABILITY = [
     "stock", "invest", "market", "fund", "insurance", "regulation",
     "policy", "research", "enterprise", "infrastructure", "hardware",
 ]
 
-# --- Weights ----------------------------------------------------------------
-# Must sum to 1.0. Velocity-heavy because you want trends early, not at peak.
-# Tune these after a week of real output.
-WEIGHTS = {
-    "velocity":     0.40,
-    "volume":       0.20,
-    "buildability": 0.25,
-    "freshness":    0.15,
-}
 
-# Type aliases for the output labels
-Velocity    = Literal["rising", "steady", "declining"]
-Volume      = Literal["high", "medium", "low"]
-Buildability = Literal["high", "medium", "low"]
-
-
-def _velocity_score(series: list[float]) -> tuple[float, Velocity]:
-    """
-    Compare the last 7 days avg to the prior 7 days avg.
-    Maps the percentage delta onto a 0–100 scale centered at 50 (no change).
-    """
-    if len(series) < 14:
-        return 50.0, "steady"
-
-    recent = sum(series[-7:])  / 7
-    prior  = sum(series[-14:-7]) / 7
-
-    if prior == 0:
-        # Trend appeared from nothing — treat as maximum velocity
-        delta_pct = 200.0 if recent > 0 else 0.0
-    else:
-        delta_pct = ((recent - prior) / prior) * 100
-
-    # Clamp to [-100, 200] then normalize to [0, 100]
-    clamped    = max(-100.0, min(200.0, delta_pct))
-    normalized = (clamped + 100) / 3  # -100 → 0.0, 50 → 50.0, 200 → 100.0
-
-    if delta_pct > 20:
-        label: Velocity = "rising"
-    elif delta_pct < -20:
-        label = "declining"
-    else:
-        label = "steady"
-
-    return round(normalized, 1), label
-
-
-def _volume_score(series: list[float]) -> tuple[float, Volume]:
-    """
-    Google Trends already scales interest 0–100 relative to peak in window,
-    so we use the peak value directly as the volume score.
-    """
-    if not series:
-        return 0.0, "low"
-
-    peak = max(series)
-
-    if peak >= 60:
-        label: Volume = "high"
-    elif peak >= 30:
-        label = "medium"
-    else:
-        label = "low"
-
-    return round(peak, 1), label
-
-
-def _buildability_score(keyword: str) -> tuple[float, Buildability]:
-    """
-    Heuristic: does this keyword look like something shippable in 48h?
-    Low-signal words (e.g. 'regulation') score low. Tool-shaped words score high.
-    Defaults to medium when neither list matches — most trends land here.
-    """
-    kw_lower = keyword.lower()
-
-    if any(sig in kw_lower for sig in LOW_BUILDABILITY_SIGNALS):
+def _buildability(keyword: str) -> tuple[float, str]:
+    kw = keyword.lower()
+    if any(s in kw for s in LOW_BUILDABILITY):
         return 20.0, "low"
-
-    if any(sig in kw_lower for sig in HIGH_BUILDABILITY_SIGNALS):
+    if any(s in kw for s in HIGH_BUILDABILITY):
         return 80.0, "high"
-
     return 50.0, "medium"
 
 
-def _freshness_score(series: list[float]) -> float:
-    """
-    Penalize trends that peaked weeks ago — you'd be late.
-    100 if peak is in the most recent 7 days, decays to 10 if it was 3+ weeks ago.
-    """
+# --- Scoring ---------------------------------------------------------------
+
+# Weights for the composite score. Must sum to 1.0.
+# When time series is available, all four are used.
+# When it's not, velocity gets redistributed to growth_pct.
+WEIGHTS = {
+    "growth":       0.35,   # Google's own growth % — primary signal
+    "volume":       0.20,   # Absolute search volume
+    "buildability": 0.25,   # Can you ship something in 48h?
+    "freshness":    0.20,   # Is the trend still rising or already peaked?
+}
+
+
+def _growth_score(growth_pct: float) -> float:
+    """Map Google's growth_pct (0–5000+) onto 0–100."""
+    # 100% growth → 50, 500% → 83, 1000%+ → ~100
+    clamped = min(growth_pct, 1500)
+    return round((clamped / 1500) * 100, 1)
+
+
+def _volume_score(volume: int) -> tuple[float, str]:
+    """Map Google's volume estimate onto 0–100."""
+    if volume >= 500_000:
+        return 100.0, "high"
+    elif volume >= 100_000:
+        return 75.0, "high"
+    elif volume >= 50_000:
+        return 60.0, "medium"
+    elif volume >= 10_000:
+        return 40.0, "medium"
+    elif volume >= 1_000:
+        return 20.0, "low"
+    else:
+        return 5.0, "low"
+
+
+def _freshness_from_series(series: list[float]) -> float:
+    """100 if peak is in last 7 days, decays to 10 for 3+ weeks ago."""
     if not series:
         return 50.0
-
-    peak_idx        = series.index(max(series))
-    days_since_peak = len(series) - 1 - peak_idx
-
-    if days_since_peak <= 7:
+    peak_idx = series.index(max(series))
+    days_since = len(series) - 1 - peak_idx
+    if days_since <= 7:
         return 100.0
-    elif days_since_peak <= 14:
+    elif days_since <= 14:
         return 65.0
-    elif days_since_peak <= 21:
+    elif days_since <= 21:
         return 35.0
+    return 10.0
+
+
+def score_trend(trend: dict, series: list[float] | None = None) -> dict:
+    """
+    Score a single trend. Returns the canonical output record.
+
+    trend keys: keyword, category, volume, growth_pct, trend_keywords
+    series: optional interest_over_time data for richer scoring
+    """
+    growth  = _growth_score(trend["growth_pct"])
+    vol_score, vol_label = _volume_score(trend["volume"])
+    build_score, build_label = _buildability(trend["keyword"])
+
+    if series and len(series) >= 7:
+        freshness = _freshness_from_series(series)
     else:
-        return 10.0
-
-
-def score_trend(trend: dict) -> dict | None:
-    """
-    Score a single raw trend dict from fetcher.py.
-    Returns None if it's brand noise, below interest floor, or not buildable.
-    Returns the canonical output record (matching the schema in context.md).
-    """
-    kw_lower = trend["keyword"].lower()
-    
-    # Skip known product brands — they're not buildable opportunities
-    if any(brand in kw_lower for brand in BRAND_NOISE):
-        return None
-
-    # Skip generic terms — too broad to have a problem statement worth building on
-    if kw_lower in GENERIC_NOISE:
-        return None
-    
-    series = trend["interest_series"]
-
-    # Skip low-interest keywords — they're noise, not trends worth building on.
-    # Floor is intentionally conservative; raise it if output is still spammy.
-    RECENT_INTEREST_FLOOR = 15
-    recent_avg = sum(series[-7:]) / max(len(series[-7:]), 1)
-    if recent_avg < RECENT_INTEREST_FLOOR:
-        return None
-
-    vel_score,   vel_label   = _velocity_score(series)
-    vol_score,   vol_label   = _volume_score(series)
-    build_score, build_label = _buildability_score(trend["keyword"])
-    fresh_score              = _freshness_score(series)
+        # No time series — assume it's fresh since it's currently trending
+        freshness = 85.0
 
     composite = (
-        WEIGHTS["velocity"]     * vel_score   +
+        WEIGHTS["growth"]       * growth      +
         WEIGHTS["volume"]       * vol_score   +
         WEIGHTS["buildability"] * build_score +
-        WEIGHTS["freshness"]    * fresh_score
+        WEIGHTS["freshness"]    * freshness
     )
+
+    # Velocity label from growth_pct
+    if trend["growth_pct"] >= 200:
+        vel_label = "rising"
+    elif trend["growth_pct"] >= 50:
+        vel_label = "steady"
+    else:
+        vel_label = "declining"
 
     return {
         "keyword":      trend["keyword"],
@@ -194,12 +209,12 @@ def score_trend(trend: dict) -> dict | None:
         "volume":       vol_label,
         "buildability": build_label,
         "category":     trend["category"],
-        # Sub-scores make it easy to see what's driving each result.
-        # Strip _raw from the output once weights are tuned.
         "_raw": {
-            "velocity_score":     vel_score,
+            "growth_score":       growth,
             "volume_score":       vol_score,
             "buildability_score": build_score,
-            "freshness_score":    fresh_score,
+            "freshness_score":    freshness,
+            "google_volume":      trend["volume"],
+            "google_growth_pct":  trend["growth_pct"],
         },
     }

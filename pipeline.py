@@ -1,134 +1,114 @@
 """
 pipeline.py — entry point
 
-Fetches rising trends for a category, scores them, and writes the daily JSON.
+Fetches currently trending topics from Google, filters noise, scores
+what's left, optionally enriches top results with time-series data,
+and writes the daily JSON.
 
-Cron setup (run once at setup):
-  0 6 * * * /path/to/venv/bin/python /path/to/pipeline.py
-
-Manual run (first-time / testing):
-  python pipeline.py
-  python pipeline.py --category developer-tools
-
-To run all categories in one shot:
-  python pipeline.py --all
+  python pipeline.py              # run with defaults
+  python pipeline.py --top 20     # score top 20 after filtering
+  python pipeline.py --no-series  # skip time-series enrichment (faster)
 """
 
 import argparse
 import json
-import multiprocessing
 from datetime import date
 from pathlib import Path
 
-from fetcher import CATEGORY_SEEDS, fetch_rising_trends
-from scorer import score_trend
+from fetcher import fetch_trending, fetch_time_series, TOPIC_MAP
+from scorer import is_buildable, score_trend
 
 DATA_DIR = Path(__file__).parent / "data"
-DEFAULT_CATEGORY = "ai-tools"
 
 
-# Per-category hard timeout. Each category runs in a child process;
-# if it hasn't returned in this many seconds the process is killed and
-# the pipeline moves on. This is the only reliable way to cancel a stalled
-# requests/SSL socket on Windows — thread cancellation doesn't work.
-CATEGORY_TIMEOUT = 90  # seconds
+def run(top_n: int = 15, skip_series: bool = False) -> Path | None:
+    today = date.today().isoformat()
+    print(f"[pipeline] date={today}")
 
+    # --- Stage 1: Discover (1 API call) ---
+    print("[pipeline] Fetching trending topics...")
+    raw = fetch_trending()
+    print(f"[pipeline] {len(raw)} trends in tracked categories")
 
-def _run_category_worker(category: str) -> None:
-    """Entry point for the child process. Isolation means a hang in one
-    category cannot block or corrupt the others."""
-    try:
-        run(category)
-    except Exception as e:
-        print(f"[pipeline] Error in '{category}': {e}", flush=True)
-
-
-def run(category: str) -> Path | None:
-    print(f"[pipeline] category={category} date={date.today().isoformat()}")
-
-    raw_trends = fetch_rising_trends(category)
-    if not raw_trends:
-        print("[pipeline] Nothing fetched — skipping write.")
+    if not raw:
+        print("[pipeline] Nothing found — skipping write.")
         return None
 
-    scored = sorted(
-        [s for t in raw_trends if (s := score_trend(t)) is not None],
-        key=lambda t: t["score"],
-        reverse=True,
-    )
+    # --- Stage 2: Filter noise ---
+    filtered = [t for t in raw if is_buildable(t["keyword"])]
+    print(f"[pipeline] {len(filtered)} trends after noise filter")
 
+    if not filtered:
+        print("[pipeline] Everything filtered — skipping write.")
+        return None
+
+    # --- Stage 3: Quick-score (no API calls) ---
+    scored = [score_trend(t) for t in filtered]
+    scored.sort(key=lambda t: t["score"], reverse=True)
+
+    # Keep only top N for time-series enrichment
+    top = scored[:top_n]
+
+    # --- Stage 4: Enrich with time series (2-4 API calls) ---
+    if not skip_series:
+        keywords = [t["keyword"] for t in top]
+        print(f"[pipeline] Fetching time series for {len(keywords)} keywords...")
+        series_map = fetch_time_series(keywords)
+        print(f"[pipeline] Got series for {len(series_map)}/{len(keywords)} keywords")
+
+        # Re-score with time series data for better freshness
+        enriched = []
+        for t in top:
+            raw_trend = next(
+                (r for r in filtered if r["keyword"] == t["keyword"]), None
+            )
+            if raw_trend:
+                series = series_map.get(t["keyword"])
+                enriched.append(score_trend(raw_trend, series=series))
+            else:
+                enriched.append(t)
+
+        top = sorted(enriched, key=lambda t: t["score"], reverse=True)
+
+    # --- Stage 5: Write output ---
     DATA_DIR.mkdir(exist_ok=True)
-    out_path = DATA_DIR / f"trends_{date.today().isoformat()}.json"
-
-    # Append to today's file if it already exists (e.g. --all runs multiple categories)
-    existing: list[dict] = []
-    if out_path.exists():
-        with open(out_path) as f:
-            existing = json.load(f).get("trends", [])
-
-    combined = sorted(existing + scored, key=lambda t: t["score"], reverse=True)
+    out_path = DATA_DIR / f"trends_{today}.json"
 
     with open(out_path, "w") as f:
-        json.dump({"date": str(date.today()), "trends": combined}, f, indent=2)
+        json.dump({"date": today, "trends": top}, f, indent=2)
 
-    print(f"[pipeline] {len(scored)} trends written → {out_path}")
+    print(f"[pipeline] {len(top)} trends written → {out_path}")
+    _print_summary(top)
     return out_path
+
+
+def _print_summary(trends: list[dict]) -> None:
+    """Per-category breakdown for quick scanning."""
+    by_cat: dict[str, list[dict]] = {}
+    for t in trends:
+        by_cat.setdefault(t["category"], []).append(t)
+
+    print(f"\n{'Category':<20} {'Count':>5}  {'Avg':>4}  Top keyword")
+    print("-" * 65)
+    for cat in sorted(by_cat):
+        items = by_cat[cat]
+        avg = sum(t["score"] for t in items) / len(items)
+        top_kw = items[0]["keyword"]
+        print(f"  {cat:<18} {len(items):>5}  {avg:>4.0f}  {top_kw}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Trend Detector pipeline")
     parser.add_argument(
-        "--category",
-        default=DEFAULT_CATEGORY,
-        choices=list(CATEGORY_SEEDS),
-        help=f"Category to fetch (default: {DEFAULT_CATEGORY})",
+        "--top", type=int, default=15,
+        help="Number of top trends to keep after scoring (default: 15)",
     )
     parser.add_argument(
-        "--all",
-        action="store_true",
-        help="Fetch all categories and merge into one output file",
+        "--no-series", action="store_true",
+        help="Skip time-series enrichment (faster, less accurate freshness)",
     )
     args = parser.parse_args()
-
-    if args.all:
-        for category in CATEGORY_SEEDS:
-            p = multiprocessing.Process(target=_run_category_worker, args=(category,))
-            p.start()
-            p.join(timeout=CATEGORY_TIMEOUT)
-            if p.is_alive():
-                print(f"[pipeline] Timeout: '{category}' exceeded {CATEGORY_TIMEOUT}s — killing")
-                p.kill()
-                p.join()
-        _print_summary()
-    else:
-        run(args.category)
-
-
-def _print_summary() -> None:
-    """Print a per-category breakdown so you can read signal quality at a glance
-    without opening the JSON. Run time is ~2s after the pipeline finishes."""
-    out_path = DATA_DIR / f"trends_{date.today().isoformat()}.json"
-    if not out_path.exists():
-        print("[pipeline] No output to summarise.")
-        return
-
-    with open(out_path) as f:
-        data = json.load(f)
-
-    trends = data.get("trends", [])
-    by_category: dict[str, list[dict]] = {}
-    for t in trends:
-        by_category.setdefault(t["category"], []).append(t)
-
-    print(f"\n[pipeline] Summary — {date.today().isoformat()}")
-    for cat in CATEGORY_SEEDS:
-        cat_trends = by_category.get(cat, [])
-        if not cat_trends:
-            print(f"  {cat:<20} 0 trends")
-        else:
-            avg_score = sum(t["score"] for t in cat_trends) / len(cat_trends)
-            top = cat_trends[0]["keyword"]
-            print(f"  {cat:<20} {len(cat_trends)} trends  avg={avg_score:.0f}  top='{top}'")
+    run(top_n=args.top, skip_series=args.no_series)
 
 
 if __name__ == "__main__":
