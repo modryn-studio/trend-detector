@@ -169,12 +169,18 @@ def _search_brave(query: str, count: int = 10) -> list[dict]:
     ]
 
 
-def check_competition(keyword: str) -> dict:
+def check_competition(keyword: str, search_queries: list[str] | None = None) -> dict:
     """
     Check if purpose-built tools already exist for a keyword.
 
     Searches Brave for tool-intent queries, then filters results to only
     count hits on known tool-discovery domains (ProductHunt, GitHub, etc.).
+
+    Args:
+        keyword: The keyword or topic to check.
+        search_queries: Optional LLM-generated queries to search instead of
+            building default suffix-based queries. Use this when the LLM has
+            proposed a specific build idea that differs from the raw keyword.
 
     Returns:
     {
@@ -195,16 +201,20 @@ def check_competition(keyword: str) -> dict:
             "error": "BRAVE_SEARCH_KEY not configured",
         }
 
-    # Build queries: "keyword tool", "keyword finder", etc.
-    # Only search 2 most relevant suffixes to conserve API quota
-    kw_lower = keyword.lower()
-    best_suffixes = []
-    for s in _TOOL_SUFFIXES:
-        if s not in kw_lower:
-            best_suffixes.append(s)
-        if len(best_suffixes) >= 2:
-            break
-    queries = [f"{keyword} {s}" for s in best_suffixes]
+    if search_queries:
+        # LLM-generated queries — use directly, cap at 2 to conserve quota
+        queries = search_queries[:2]
+    else:
+        # Build queries: "keyword tool", "keyword finder", etc.
+        # Only search 2 most relevant suffixes to conserve API quota
+        kw_lower = keyword.lower()
+        best_suffixes = []
+        for s in _TOOL_SUFFIXES:
+            if s not in kw_lower:
+                best_suffixes.append(s)
+            if len(best_suffixes) >= 2:
+                break
+        queries = [f"{keyword} {s}" for s in best_suffixes]
 
     all_tools: list[dict] = []
     seen_domains: set[str] = set()

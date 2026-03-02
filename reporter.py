@@ -112,6 +112,7 @@ def _total_breakouts(clusters: list[dict]) -> int:
 
 # Use the canonical _stem from cluster.py
 from cluster import _stem
+from competitor_check import check_competition as _check_competition
 
 
 def _meaningful_stems(text: str) -> set[str]:
@@ -434,7 +435,13 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"If the idea would need a database, user accounts, or more than 3 API\n"
         f"integrations — scope it down until it doesn't.\n\n"
         f"GOOD ideas: 'Enter your zip code → get 5 beginner hiking clubs near you'\n"
-        f"BAD ideas:  'A platform with event scheduling, skill-level filters, and matching'\n"
+        f"BAD ideas:  'A platform with event scheduling, skill-level filters, and matching'\n\n"
+        f"COMPETITION QUERIES: Also output competition_queries \u2014 exactly 3 short,\n"
+        f"tool-focused search queries to check if your build idea already exists\n"
+        f"as a product. Search for the TOOL you'd build, not the raw trend keyword.\n"
+        f"Example: trend='how to set up trip for least amount of pto',\n"
+        f"idea='PTO optimizer' \u2192 ['pto optimizer tool', 'maximize pto days\n"
+        f"calculator', 'vacation day optimizer app']\n"
     )
 
     try:
@@ -476,9 +483,15 @@ def _llm_decision(cluster: dict, competition: dict | None,
                             "type": "string",
                             "description": "Primary risk (1 sentence)",
                         },
+                        "competition_queries": {
+                            "type": "array",
+                            "items": {"type": "string"},
+                            "description": "3 short tool-focused search queries to verify if this build idea already exists. Never reuse the raw trend keyword.",
+                        },
                     },
                     "required": ["decision", "confidence", "build_idea",
-                                 "target_slug", "monetization", "reason", "risk"],
+                                 "target_slug", "monetization", "reason", "risk",
+                                 "competition_queries"],
                     "additionalProperties": False,
                 },
             }},
@@ -493,12 +506,15 @@ def _decision_section(
     clusters: list[dict],
     unclustered: list[dict],
     competition: dict | None,
-) -> str:
+) -> tuple[str, dict]:
     """BUILD/WATCH/SKIP verdicts for top clusters + unclustered.
 
     Uses LLM when available, falls back to rule-based heuristics.
+    Returns (section_text, refined_competition) where refined_competition
+    is a dict of keyword -> competition result from LLM-generated queries.
     """
     lines = ["## Build Decisions", ""]
+    refined_competition: dict = {}  # LLM-query-based results
 
     if not _openai_client:
         lines.append("*OPENAI_API_KEY not set — using rule-based heuristics.*")
@@ -523,6 +539,28 @@ def _decision_section(
         decision = _llm_decision(data, competition, reddit)
 
         if decision:
+            # --- Refined competition check using LLM-generated queries ---
+            comp_queries = decision.get("competition_queries", [])
+            top_kw = data.get("top_keyword", name)
+            if comp_queries:
+                print(f"[reporter] Refined competition check for '{name}': "
+                      f"{comp_queries[:2]}")
+                refined = _check_competition(
+                    top_kw, search_queries=comp_queries
+                )
+                refined_competition[top_kw] = refined
+
+                # Override BUILD → WATCH if refined check finds heavy competition
+                if (decision["decision"] == "BUILD"
+                        and refined["verdict"] == "RED"):
+                    decision["decision"] = "WATCH"
+                    decision["reason"] += (
+                        f" [Revised: refined competition search for "
+                        f"'{comp_queries[0]}' found "
+                        f"{refined['competitor_count']} existing tools — "
+                        f"downgraded from BUILD to WATCH.]"
+                    )
+
             icon = {"BUILD": "🟢", "WATCH": "🟡", "SKIP": "🔴"}.get(
                 decision["decision"], "❓"
             )
@@ -573,7 +611,7 @@ def _decision_section(
 
         lines.append("")
 
-    return "\n".join(lines)
+    return "\n".join(lines), refined_competition
 
 
 def _competition_section(competition: dict | None) -> str:
@@ -686,10 +724,19 @@ def generate_briefing(signals: dict, competition: dict | None = None) -> str:
         _story_section(clusters, editorial_group, shared),
         "---",
         "",
-        _decision_section(clusters, unclustered, competition),
     ]
 
-    comp_section = _competition_section(competition)
+    decision_text, refined_competition = _decision_section(
+        clusters, unclustered, competition
+    )
+    parts.append(decision_text)
+
+    # Merge refined (LLM-query-based) competition with keyword-based results.
+    # Refined results override keyword-based for the same top_keyword.
+    merged_competition = dict(competition) if competition else {}
+    merged_competition.update(refined_competition)
+
+    comp_section = _competition_section(merged_competition)
     if comp_section:
         parts += ["---", "", comp_section]
 
