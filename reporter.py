@@ -93,6 +93,29 @@ def _growth_label(pct: float) -> str:
     return ""
 
 
+def _lifecycle_tag(cluster: dict) -> str:
+    """Derive EARLY / PEAKING / FADING from members' freshness scores.
+
+    freshness_score mapping (from scorer._freshness_from_series):
+      100 = peak in last 7 days, 65 = 8-14d, 35 = 15-21d, 10 = 22+d
+    We average across members that have a score (time-series enrichment
+    only runs for the top ~15 keywords, so some members won't have one).
+    """
+    scores = [
+        m["_raw"]["freshness_score"]
+        for m in cluster.get("members", [])
+        if m.get("_raw", {}).get("freshness_score") is not None
+    ]
+    if not scores:
+        return ""
+    avg = sum(scores) / len(scores)
+    if avg >= 85:
+        return " `EARLY`"
+    if avg >= 50:
+        return " `PEAKING`"
+    return " `FADING`"
+
+
 def _hot_signals(cluster: dict) -> str:
     """Comma-separated list of the top growth signals for the table."""
     parts = []
@@ -223,7 +246,8 @@ def _cluster_table_section(clusters: list[dict], unclustered: list[dict]) -> str
     for i, c in enumerate(clusters, 1):
         name = c.get("display_name", c["cluster_name"])
         original = c.get("original_name")
-        name_cell = f"{name} *(was: {original})*" if original else name
+        tag = _lifecycle_tag(c)
+        name_cell = f"{name}{tag} *(was: {original})*" if original else f"{name}{tag}"
         lines.append(
             f"| {i} | {name_cell} | {c['cluster_score']} "
             f"| {_hot_signals(c)} |"
@@ -456,7 +480,11 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"The build_idea MUST be ONE feature, ONE page, ONE clear user action.\n"
         f"If the idea would need a database, user accounts, or more than 3 API\n"
         f"integrations — scope it down until it doesn't.\n\n"
-        f"GOOD ideas: 'Enter your zip code → get 5 beginner hiking clubs near you'\n"
+        f"BUILD FOR THE EMOTIONAL BARRIER, NOT THE INFORMATION GAP.\n"
+        f"If Reddit posts express fear, loneliness, overwhelm, or frustration,\n"
+        f"the tool should address THAT emotion — not just aggregate links.\n"
+        f"Ask: 'What feeling stops someone from acting?' then build for that.\n\n"
+        f"GOOD ideas: 'First-timer cheat sheet: what to wear, what to say, what to expect at your first hiking club meetup'\n"
         f"BAD ideas:  'A platform with event scheduling, skill-level filters, and matching'\n\n"
         f"COMPETITION QUERIES: Also output competition_queries \u2014 exactly 3 short,\n"
         f"tool-focused search queries to check if your build idea already exists\n"

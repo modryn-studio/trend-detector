@@ -8,33 +8,15 @@
   "clusters": [
     {
       "cluster_name": "Top trending Google Flights destinations for spring break",
-      "cluster_score": 94,
+      "cluster_score": 92,
       "member_count": 7,
-      "top_keyword": "how to set up trip for least amount of pto",
+      "top_keyword": "kaumana caves",
       "growth_signals": [
         "how to set up trip for least amount of pto: breakout",
         "kaumana caves: breakout",
         "hotels with free...: breakout"
       ],
       "members": [
-        {
-          "keyword": "how to set up trip for least amount of pto",
-          "score": 82,
-          "velocity": "rising",
-          "volume": "unknown",
-          "buildability": "high",
-          "category": "Top trending Google Flights destinations for spring break",
-          "source": "trendspy",
-          "source_count": 1,
-          "_raw": {
-            "growth_score": 100.0,
-            "volume_score": 50.0,
-            "buildability_score": 80.0,
-            "freshness_score": 85.0,
-            "google_volume": 0,
-            "google_growth_pct": 5000.0
-          }
-        },
         {
           "keyword": "kaumana caves",
           "score": 74,
@@ -67,6 +49,24 @@
             "volume_score": 50.0,
             "buildability_score": 50.0,
             "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to set up trip for least amount of pto",
+          "score": 67,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Top trending Google Flights destinations for spring break",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 10.0,
             "google_volume": 0,
             "google_growth_pct": 5000.0
           }
@@ -155,9 +155,9 @@
     },
     {
       "cluster_name": "Community & Clubs",
-      "cluster_score": 93,
+      "cluster_score": 92,
       "member_count": 10,
-      "top_keyword": "social clubs",
+      "top_keyword": "hiking club for beginners",
       "growth_signals": [
         "social clubs: breakout",
         "hiking club for beginners: breakout",
@@ -165,24 +165,6 @@
         "cultural events near me: +250%"
       ],
       "members": [
-        {
-          "keyword": "social clubs",
-          "score": 74,
-          "velocity": "rising",
-          "volume": "unknown",
-          "buildability": "medium",
-          "category": "Community & Clubs",
-          "source": "trendspy",
-          "source_count": 1,
-          "_raw": {
-            "growth_score": 100.0,
-            "volume_score": 50.0,
-            "buildability_score": 50.0,
-            "freshness_score": 85.0,
-            "google_volume": 0,
-            "google_growth_pct": 5000.0
-          }
-        },
         {
           "keyword": "hiking club for beginners",
           "score": 74,
@@ -215,6 +197,24 @@
             "volume_score": 50.0,
             "buildability_score": 50.0,
             "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "social clubs",
+          "score": 60,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 10.0,
             "google_volume": 0,
             "google_growth_pct": 5000.0
           }
@@ -347,12 +347,12 @@
         }
       ],
       "reddit": {
-        "total_posts": 28,
+        "total_posts": 29,
         "subreddit_hits": {
           "Advice": 10,
           "socialskills": 8,
           "lonely": 6,
-          "introvert": 4
+          "introvert": 5
         },
         "pain_signal": true,
         "pain_reliable": true,
@@ -361,31 +361,31 @@
           {
             "title": "Have you guys made friends just by being a regular somewhere?",
             "subreddit": "socialskills",
-            "score": 125,
+            "score": 128,
             "url": "https://reddit.com/r/socialskills/comments/1r5wkml/have_you_guys_made_friends_just_by_being_a/",
             "num_comments": 67,
             "created_utc": 1771206465.0
           },
           {
+            "title": "It just hits me I will never experience the joy of close friendships",
+            "subreddit": "socialskills",
+            "score": 156,
+            "url": "https://reddit.com/r/socialskills/comments/1rhzdoz/it_just_hits_me_i_will_never_experience_the_joy/",
+            "num_comments": 21,
+            "created_utc": 1772377248.0
+          },
+          {
             "title": "I've been isolated for too long. Things can't change anymore.",
             "subreddit": "lonely",
-            "score": 141,
+            "score": 133,
             "url": "https://reddit.com/r/lonely/comments/1r1a5eq/ive_been_isolated_for_too_long_things_cant_change/",
             "num_comments": 36,
             "created_utc": 1770750984.0
           },
           {
-            "title": "It just hits me I will never experience the joy of close friendships",
-            "subreddit": "socialskills",
-            "score": 148,
-            "url": "https://reddit.com/r/socialskills/comments/1rhzdoz/it_just_hits_me_i_will_never_experience_the_joy/",
-            "num_comments": 19,
-            "created_utc": 1772377248.0
-          },
-          {
             "title": "I am puzzled why I dont have friends",
             "subreddit": "socialskills",
-            "score": 52,
+            "score": 54,
             "url": "https://reddit.com/r/socialskills/comments/1rbbrwx/i_am_puzzled_why_i_dont_have_friends/",
             "num_comments": 37,
             "created_utc": 1771732862.0
@@ -393,7 +393,7 @@
           {
             "title": "I\u2019m 20 and my only friend is my cat",
             "subreddit": "lonely",
-            "score": 50,
+            "score": 53,
             "url": "https://reddit.com/r/lonely/comments/1r2rfcl/im_20_and_my_only_friend_is_my_cat/",
             "num_comments": 17,
             "created_utc": 1770897142.0
@@ -403,16 +403,16 @@
     },
     {
       "cluster_name": "Third Places",
-      "cluster_score": 86,
+      "cluster_score": 85,
       "member_count": 8,
-      "top_keyword": "digital third spaces",
+      "top_keyword": "third place potential",
       "growth_signals": [
         "digital third spaces: breakout",
         "third place potential: breakout"
       ],
       "members": [
         {
-          "keyword": "digital third spaces",
+          "keyword": "third place potential",
           "score": 74,
           "velocity": "rising",
           "volume": "unknown",
@@ -430,8 +430,8 @@
           }
         },
         {
-          "keyword": "third place potential",
-          "score": 74,
+          "keyword": "digital third spaces",
+          "score": 60,
           "velocity": "rising",
           "volume": "unknown",
           "buildability": "medium",
@@ -442,7 +442,7 @@
             "growth_score": 100.0,
             "volume_score": 50.0,
             "buildability_score": 50.0,
-            "freshness_score": 85.0,
+            "freshness_score": 10.0,
             "google_volume": 0,
             "google_growth_pct": 5000.0
           }
@@ -611,16 +611,16 @@
     },
     {
       "cluster_name": "Making Friends",
-      "cluster_score": 84,
+      "cluster_score": 82,
       "member_count": 7,
-      "top_keyword": "where to meet people",
+      "top_keyword": "friend website",
       "growth_signals": [
         "where to meet people: breakout",
         "friend website: breakout"
       ],
       "members": [
         {
-          "keyword": "where to meet people",
+          "keyword": "friend website",
           "score": 74,
           "velocity": "rising",
           "volume": "unknown",
@@ -638,8 +638,8 @@
           }
         },
         {
-          "keyword": "friend website",
-          "score": 74,
+          "keyword": "where to meet people",
+          "score": 60,
           "velocity": "rising",
           "volume": "unknown",
           "buildability": "medium",
@@ -650,7 +650,7 @@
             "growth_score": 100.0,
             "volume_score": 50.0,
             "buildability_score": 50.0,
-            "freshness_score": 85.0,
+            "freshness_score": 10.0,
             "google_volume": 0,
             "google_growth_pct": 5000.0
           }
@@ -748,36 +748,18 @@
       ]
     },
     {
-      "cluster_name": "stock / ond / costco",
-      "cluster_score": 72,
-      "member_count": 17,
-      "top_keyword": "onds stock",
+      "cluster_name": "stock / today / mdb",
+      "cluster_score": 71,
+      "member_count": 19,
+      "top_keyword": "asts stock",
       "growth_signals": [
-        "onds stock: +200%",
-        "stock market: +300%",
-        "lockheed martin stock: +200%"
+        "mdb stock: +300%",
+        "lockheed martin stock: +200%",
+        "xom stock: +200%"
       ],
       "members": [
         {
-          "keyword": "onds stock",
-          "score": 48,
-          "velocity": "rising",
-          "volume": "low",
-          "buildability": "low",
-          "category": "finance",
-          "source": "trendspy",
-          "source_count": 2,
-          "_raw": {
-            "growth_score": 13.3,
-            "volume_score": 5.0,
-            "buildability_score": 20.0,
-            "freshness_score": 85.0,
-            "google_volume": 500,
-            "google_growth_pct": 200
-          }
-        },
-        {
-          "keyword": "costco stock",
+          "keyword": "asts stock",
           "score": 45,
           "velocity": "steady",
           "volume": "low",
@@ -795,38 +777,56 @@
           }
         },
         {
-          "keyword": "tsm stock",
-          "score": 45,
+          "keyword": "silver prices today",
+          "score": 42,
           "velocity": "steady",
           "volume": "low",
-          "buildability": "low",
+          "buildability": "high",
           "category": "finance",
           "source": "trendspy",
-          "source_count": 2,
+          "source_count": 1,
           "_raw": {
-            "growth_score": 6.7,
-            "volume_score": 5.0,
-            "buildability_score": 20.0,
+            "growth_score": 3.3,
+            "volume_score": 20.0,
+            "buildability_score": 80.0,
             "freshness_score": 85.0,
-            "google_volume": 500,
-            "google_growth_pct": 100
+            "google_volume": 2000,
+            "google_growth_pct": 50
           }
         },
         {
-          "keyword": "stock market",
-          "score": 41,
-          "velocity": "rising",
-          "volume": "medium",
+          "keyword": "stock market today",
+          "score": 39,
+          "velocity": "steady",
+          "volume": "high",
           "buildability": "low",
           "category": "finance",
           "source": "trendspy",
           "source_count": 1,
           "_raw": {
-            "growth_score": 20.0,
-            "volume_score": 60.0,
+            "growth_score": 6.7,
+            "volume_score": 75.0,
             "buildability_score": 20.0,
             "freshness_score": 85.0,
-            "google_volume": 50000,
+            "google_volume": 200000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "mdb stock",
+          "score": 36,
+          "velocity": "rising",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 2,
+          "_raw": {
+            "growth_score": 20.0,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 100.0,
+            "google_volume": 1000,
             "google_growth_pct": 300
           }
         },
@@ -844,79 +844,43 @@
             "volume_score": 40.0,
             "buildability_score": 20.0,
             "freshness_score": 85.0,
-            "google_volume": 10000,
+            "google_volume": 20000,
             "google_growth_pct": 200
           }
         },
         {
-          "keyword": "boeing stock",
-          "score": 30,
-          "velocity": "declining",
+          "keyword": "xom stock",
+          "score": 35,
+          "velocity": "rising",
           "volume": "medium",
           "buildability": "low",
-          "category": "unknown",
+          "category": "finance",
           "source": "trendspy",
           "source_count": 1,
           "_raw": {
-            "growth_score": 0.0,
+            "growth_score": 13.3,
             "volume_score": 40.0,
             "buildability_score": 20.0,
             "freshness_score": 85.0,
-            "google_volume": 10000,
-            "google_growth_pct": 0
+            "google_volume": 20000,
+            "google_growth_pct": 200
           }
         },
         {
           "keyword": "palantir stock",
-          "score": 28,
+          "score": 32,
           "velocity": "steady",
-          "volume": "low",
+          "volume": "medium",
           "buildability": "low",
           "category": "finance",
           "source": "trendspy",
           "source_count": 1,
           "_raw": {
             "growth_score": 6.7,
-            "volume_score": 20.0,
+            "volume_score": 40.0,
             "buildability_score": 20.0,
             "freshness_score": 85.0,
-            "google_volume": 5000,
-            "google_growth_pct": 100
-          }
-        },
-        {
-          "keyword": "spy stock",
-          "score": 28,
-          "velocity": "steady",
-          "volume": "low",
-          "buildability": "low",
-          "category": "finance",
-          "source": "trendspy",
-          "source_count": 1,
-          "_raw": {
-            "growth_score": 5.0,
-            "volume_score": 20.0,
-            "buildability_score": 20.0,
-            "freshness_score": 85.0,
-            "google_volume": 5000,
-            "google_growth_pct": 75
-          }
-        },
-        {
-          "keyword": "chevron stock",
-          "score": 28,
-          "velocity": "steady",
-          "volume": "low",
-          "buildability": "low",
-          "category": "finance",
-          "source": "trendspy",
-          "source_count": 1,
-          "_raw": {
-            "growth_score": 6.7,
-            "volume_score": 20.0,
-            "buildability_score": 20.0,
-            "freshness_score": 85.0,
-            "google_volume": 2000,
+            "google_volume": 10000,
             "google_growth_pct": 100
           }
         },
@@ -934,8 +898,26 @@
             "volume_score": 20.0,
             "buildability_score": 20.0,
             "freshness_score": 85.0,
-            "google_volume": 2000,
+            "google_volume": 5000,
             "google_growth_pct": 75
+          }
+        },
+        {
+          "keyword": "avav stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 100
           }
         },
         {
@@ -957,7 +939,7 @@
           }
         },
         {
-          "keyword": "goog stock",
+          "keyword": "boeing stock",
           "score": 28,
           "velocity": "steady",
           "volume": "low",
@@ -984,11 +966,47 @@
           "source": "trendspy",
           "source_count": 1,
           "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 75
+          }
+        },
+        {
+          "keyword": "onds stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
             "growth_score": 6.7,
             "volume_score": 20.0,
             "buildability_score": 20.0,
             "freshness_score": 85.0,
             "google_volume": 1000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "goog stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
             "google_growth_pct": 100
           }
         },
@@ -1008,6 +1026,24 @@
             "freshness_score": 85.0,
             "google_volume": 1000,
             "google_growth_pct": 75
+          }
+        },
+        {
+          "keyword": "costco stock",
+          "score": 25,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 5.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 100
           }
         },
         {
@@ -1047,21 +1083,21 @@
           }
         },
         {
-          "keyword": "aapl stock",
+          "keyword": "tsm stock",
           "score": 25,
           "velocity": "steady",
           "volume": "low",
           "buildability": "low",
-          "category": "technology",
+          "category": "finance",
           "source": "trendspy",
           "source_count": 1,
           "_raw": {
-            "growth_score": 5.0,
+            "growth_score": 6.7,
             "volume_score": 5.0,
             "buildability_score": 20.0,
             "freshness_score": 85.0,
-            "google_volume": 200,
-            "google_growth_pct": 75
+            "google_volume": 500,
+            "google_growth_pct": 100
           }
         }
       ]
@@ -1184,93 +1220,12 @@
           }
         }
       ]
-    },
-    {
-      "cluster_name": "today / silver / future",
-      "cluster_score": 49,
-      "member_count": 4,
-      "top_keyword": "silver prices today",
-      "growth_signals": [],
-      "members": [
-        {
-          "keyword": "silver prices today",
-          "score": 42,
-          "velocity": "steady",
-          "volume": "low",
-          "buildability": "high",
-          "category": "finance",
-          "source": "trendspy",
-          "source_count": 1,
-          "_raw": {
-            "growth_score": 3.3,
-            "volume_score": 20.0,
-            "buildability_score": 80.0,
-            "freshness_score": 85.0,
-            "google_volume": 2000,
-            "google_growth_pct": 50
-          }
-        },
-        {
-          "keyword": "nasdaq futures",
-          "score": 36,
-          "velocity": "steady",
-          "volume": "low",
-          "buildability": "medium",
-          "category": "finance",
-          "source": "trendspy",
-          "source_count": 1,
-          "_raw": {
-            "growth_score": 6.7,
-            "volume_score": 20.0,
-            "buildability_score": 50.0,
-            "freshness_score": 85.0,
-            "google_volume": 2000,
-            "google_growth_pct": 100
-          }
-        },
-        {
-          "keyword": "silver futures",
-          "score": 36,
-          "velocity": "steady",
-          "volume": "low",
-          "buildability": "medium",
-          "category": "finance",
-          "source": "trendspy",
-          "source_count": 1,
-          "_raw": {
-            "growth_score": 6.7,
-            "volume_score": 20.0,
-            "buildability_score": 50.0,
-            "freshness_score": 85.0,
-            "google_volume": 1000,
-            "google_growth_pct": 100
-          }
-        },
-        {
-          "keyword": "usa today",
-          "score": 35,
-          "velocity": "steady",
-          "volume": "low",
-          "buildability": "medium",
-          "category": "finance",
-          "source": "trendspy",
-          "source_count": 1,
-          "_raw": {
-            "growth_score": 3.3,
-            "volume_score": 20.0,
-            "buildability_score": 50.0,
-            "freshness_score": 85.0,
-            "google_volume": 1000,
-            "google_growth_pct": 50
-          }
-        }
-      ]
     }
   ],
   "unclustered": [
     {
       "keyword": "spacex launch",
-      "score": 68,
+      "score": 71,
       "velocity": "rising",
       "volume": "high",
       "buildability": "medium",
@@ -1281,50 +1236,68 @@
         "growth_score": 66.7,
         "volume_score": 75.0,
         "buildability_score": 50.0,
-        "freshness_score": 85.0,
+        "freshness_score": 100.0,
         "google_volume": 100000,
         "google_growth_pct": 1000
       }
     },
     {
-      "keyword": "dow jones",
-      "score": 46,
-      "velocity": "steady",
-      "volume": "high",
+      "keyword": "iphone 17e",
+      "score": 66,
+      "velocity": "rising",
+      "volume": "medium",
       "buildability": "medium",
-      "category": "finance",
+      "category": "technology",
       "source": "trendspy",
       "source_count": 1,
       "_raw": {
-        "growth_score": 5.0,
-        "volume_score": 75.0,
+        "growth_score": 60.0,
+        "volume_score": 60.0,
         "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 100000,
-        "google_growth_pct": 75
+        "freshness_score": 100.0,
+        "google_volume": 50000,
+        "google_growth_pct": 900
       }
     },
     {
-      "keyword": "10 year treasury yield",
-      "score": 36,
+      "keyword": "crude oil prices",
+      "score": 57,
       "velocity": "steady",
-      "volume": "low",
-      "buildability": "medium",
+      "volume": "high",
+      "buildability": "high",
       "category": "finance",
       "source": "trendspy",
       "source_count": 1,
       "_raw": {
         "growth_score": 6.7,
-        "volume_score": 20.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 2000,
+        "volume_score": 75.0,
+        "buildability_score": 80.0,
+        "freshness_score": 100.0,
+        "google_volume": 100000,
         "google_growth_pct": 100
       }
     },
     {
-      "keyword": "nifty 50",
-      "score": 36,
+      "keyword": "sp500",
+      "score": 43,
+      "velocity": "steady",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 10000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "strait of hormuz closed",
+      "score": 39,
       "velocity": "steady",
       "volume": "low",
       "buildability": "medium",
@@ -1335,13 +1308,67 @@
         "growth_score": 6.7,
         "volume_score": 20.0,
         "buildability_score": 50.0,
-        "freshness_score": 85.0,
+        "freshness_score": 100.0,
         "google_volume": 1000,
         "google_growth_pct": 100
       }
     },
     {
-      "keyword": "jamie lee curtis",
+      "keyword": "10 year treasury yield",
+      "score": 39,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 2000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "marco rubio",
+      "score": 36,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 2000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "graham glasgow",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 2000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "connor murphy",
       "score": 34,
       "velocity": "declining",
       "volume": "low",
@@ -1359,7 +1386,7 @@
       }
     },
     {
-      "keyword": "wagner moura",
+      "keyword": "gang of 8",
       "score": 34,
       "velocity": "declining",
       "volume": "low",
@@ -1372,7 +1399,7 @@
         "volume_score": 20.0,
         "buildability_score": 50.0,
         "freshness_score": 85.0,
-        "google_volume": 1000,
+        "google_volume": 5000,
         "google_growth_pct": 0
       }
     },
@@ -1395,7 +1422,7 @@
       }
     },
     {
-      "keyword": "diego garcia",
+      "keyword": "big arch",
       "score": 30,
       "velocity": "declining",
       "volume": "low",
@@ -1413,7 +1440,7 @@
       }
     },
     {
-      "keyword": "scarpetta on prime",
+      "keyword": "dallas weather",
       "score": 30,
       "velocity": "declining",
       "volume": "low",
@@ -1429,48 +1456,43 @@
         "google_volume": 500,
         "google_growth_pct": 0
       }
+    },
+    {
+      "keyword": "carole radziwill",
+      "score": 30,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "nifty 50",
+      "score": 26,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 35.0,
+        "google_volume": 1000,
+        "google_growth_pct": 100
+      }
     }
   ],
-  "competition": {
-    "how to set up trip for least amount of pto": {
-      "keyword": "how to set up trip for least amount of pto",
-      "queries_searched": [],
-      "competitor_count": 0,
-      "top_competitors": [],
-      "verdict": "UNKNOWN",
-      "error": "GOOGLE_CSE_KEY or GOOGLE_CSE_CX not configured"
-    },
-    "social clubs": {
-      "keyword": "social clubs",
-      "queries_searched": [],
-      "competitor_count": 0,
-      "top_competitors": [],
-      "verdict": "UNKNOWN",
-      "error": "GOOGLE_CSE_KEY or GOOGLE_CSE_CX not configured"
-    },
-    "digital third spaces": {
-      "keyword": "digital third spaces",
-      "queries_searched": [],
-      "competitor_count": 0,
-      "top_competitors": [],
-      "verdict": "UNKNOWN",
-      "error": "GOOGLE_CSE_KEY or GOOGLE_CSE_CX not configured"
-    },
-    "spacex launch": {
-      "keyword": "spacex launch",
-      "queries_searched": [],
-      "competitor_count": 0,
-      "top_competitors": [],
-      "verdict": "UNKNOWN",
-      "error": "GOOGLE_CSE_KEY or GOOGLE_CSE_CX not configured"
-    },
-    "dow jones": {
-      "keyword": "dow jones",
-      "queries_searched": [],
-      "competitor_count": 0,
-      "top_competitors": [],
-      "verdict": "UNKNOWN",
-      "error": "GOOGLE_CSE_KEY or GOOGLE_CSE_CX not configured"
-    }
-  }
+  "competition": {}
 }

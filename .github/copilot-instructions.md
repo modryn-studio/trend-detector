@@ -85,7 +85,7 @@ Gmail    ─┘
    - Pass 2 (build-idea-based): LLM outputs 3 `competition_queries` derived from its build idea; Brave searches those to verify the specific product doesn't already exist. Results stored under cluster name + "(build-idea check)". BUILD → WATCH if refined=RED.
    - Note: `_find_pass1_competition()` searches all member keywords for pass-1 data — survives `top_keyword` shifts from time-series enrichment.
 8. **Time series enrich** — `interest_over_time()` for top ~15 keywords; updates freshness score; re-sorts clusters after enrichment
-9. **Report** — `reporter.py`: LLM renames clusters by human need, generates BUILD/WATCH/SKIP decisions with structured outputs, writes `briefings/briefing_YYYY-MM-DD.md`
+9. **Report** — `reporter.py`: LLM renames clusters by human need, generates BUILD/WATCH/SKIP decisions with structured outputs, writes `briefings/briefing_YYYY-MM-DD.md`. LLM prompt includes emotional-barrier guidance ("build for the feeling that stops someone from acting, not the information gap"). Cluster table includes lifecycle tags (`EARLY`/`PEAKING`/`FADING`) derived from freshness scores.
 
 Total API calls per run: **~13** (1 trending_now + ~3 batched interest_over_time + ~3 Reddit searches + ~5 Brave Search + ~2 Brave refined + ~2 OpenAI)
 RED gate typically saves 2-3 LLM calls/day (obvious news/brand topics never reach the LLM).
