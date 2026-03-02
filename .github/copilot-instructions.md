@@ -22,6 +22,13 @@ When signal quality is proven over several months of private runs, this becomes 
 - Windows Task Scheduler (9 AM daily)
 - Flat JSON files in `/data` — no database
 
+## Google Cloud Project: modryn-trends
+GCP project `modryn-trends` (org: modrynstudio.com, ID: 147653796077) exists for one reason:
+Luke applied for alpha access to the **Google Search Trends API** (official, not trendspy):
+https://developers.google.com/search/apis/trends#apply
+The application requires a GCP project ID. If/when alpha access is granted, this project is where it gets provisioned.
+**Do not delete this project.** trendspy is the current data source; the official API would replace or supplement it.
+
 ## Project Structure
 
 GitHub repo: `modryn-studio/trend-detector`  
