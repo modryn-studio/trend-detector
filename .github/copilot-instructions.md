@@ -29,9 +29,12 @@ email_ingest.py      ← Source 3: Gmail IMAP, parses Google Trends newsletters
 scorer.py            ← noise filter + 0–100 composite score
 cluster.py           ← groups keywords into macro-trend clusters
 reddit_check.py      ← validates top clusters against Reddit (pain signals)
+reporter.py          ← reads signals JSON, writes plain-English markdown briefing
 run_daily.bat        ← Windows Task Scheduler entry point
 data/
   signals_YYYY-MM-DD.json  ← daily output, NEVER delete these
+briefings/
+  briefing_YYYY-MM-DD.md   ← daily morning briefing, auto-generated
 .env                 ← GMAIL_ADDRESS, GMAIL_APP_PASSWORD (gitignored)
 ```
 
@@ -49,6 +52,7 @@ Gmail    ─┘
 5. **Cluster** — Pass 1: group by email newsletter section header (Google's own groupings). Pass 2: group by shared stemmed tokens. No hardcoded synonym maps — must work for any topic regime.
 6. **Reddit validate** — search all of Reddit for top cluster keywords; flag pain signals ("wish there was", "looking for", "frustrated")
 7. **Time series enrich** — `interest_over_time()` for top ~15 keywords; updates freshness score; re-sorts clusters after enrichment
+8. **Report** — `reporter.py` reads the signals JSON and writes `briefings/briefing_YYYY-MM-DD.md`: cluster table, macro-theme detection, build opportunities (Option A / Option B / My read), Reddit validation quality check
 
 Total API calls per run: **~7** (1 trending_now + ~3 batched interest_over_time + ~3 Reddit searches)
 
