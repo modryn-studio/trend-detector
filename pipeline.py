@@ -7,11 +7,10 @@ pipeline.py — entry point
   Source 3: Gmail ingest   — IMAP + app password, parses newsletter HTML
 
 Usage:
-  python pipeline.py              # trendspy only (default, backward compat)
+  python pipeline.py              # all 3 sources + cross-reference (default)
+  python pipeline.py --trendspy   # trendspy only
   python pipeline.py --rss        # RSS only
   python pipeline.py --email      # email newsletter only
-  python pipeline.py --trendspy   # trendspy only (explicit)
-  python pipeline.py --all        # all 3 sources + cross-reference
   python pipeline.py --top 20     # keep top 20 after scoring
   python pipeline.py --no-series  # skip time-series enrichment (faster)
 """
@@ -260,7 +259,7 @@ def run(sources: list[str], top_n: int = 15,
                 c["top_keyword"] = top["keyword"]
                 avg = sum(m["score"] for m in c["members"]) / len(c["members"])
                 n = len(c["members"])
-                size_bonus = min(25, (n - 2) * 5)
+                size_bonus = min(25, n * 3)
                 growth_bonus = min(
                     15,
                     sum(
@@ -274,8 +273,7 @@ def run(sources: list[str], top_n: int = 15,
     # --- Stage 7: Write output ---
     DATA_DIR.mkdir(exist_ok=True)
 
-    prefix = "signals" if multi_source else "trends"
-    out_path = DATA_DIR / f"{prefix}_{today}.json"
+    out_path = DATA_DIR / f"signals_{today}.json"
 
     output = {
         "date": today,
@@ -390,7 +388,7 @@ def main() -> None:
     src.add_argument("--email", action="store_true",
                      help="Email newsletter source only")
     src.add_argument("--all", action="store_true",
-                     help="All 3 sources + cross-reference")
+                     help="All 3 sources + cross-reference (default)")
 
     parser.add_argument("--top", type=int, default=15,
                         help="Top N trends to keep (default: 15)")
@@ -409,8 +407,8 @@ def main() -> None:
     elif args.email:
         sources = ["email"]
     else:
-        # Default: trendspy only (backward compat)
-        sources = ["trendspy"]
+        # Default: all 3 sources
+        sources = ["trendspy", "rss", "email"]
 
     run(sources=sources, top_n=args.top, skip_series=args.no_series,
         skip_reddit=args.no_reddit)

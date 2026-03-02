@@ -21,6 +21,10 @@ When signal quality is proven over several months of private runs, this becomes 
 - Flat JSON files in `/data` — no database
 
 ## Project Structure
+
+GitHub repo: `modryn-studio/trend-detector`  
+Venv: `.venv/` (e.g. `.venv/Scripts/python.exe pipeline.py`)
+
 ```
 pipeline.py          ← entry point, orchestrates all stages
 fetcher.py           ← Source 1: trendspy trending_now() + interest_over_time()
@@ -37,6 +41,19 @@ briefings/
   briefing_YYYY-MM-DD.md   ← daily morning briefing, auto-generated
 .env                 ← GMAIL_ADDRESS, GMAIL_APP_PASSWORD (gitignored)
 ```
+
+## Running the Pipeline
+
+```
+python pipeline.py          # all 3 sources (default — no flags needed)
+python pipeline.py --trendspy   # trendspy only (debugging)
+python pipeline.py --rss        # RSS only (debugging)
+python pipeline.py --email      # email only (debugging)
+python pipeline.py --no-series  # skip time-series enrichment (faster)
+```
+
+The scheduled run (`run_daily.bat`) also uses no flags — relies on the default.
+Output is always `data/signals_YYYY-MM-DD.json` regardless of which sources ran.
 
 ## Pipeline Stages
 ```
@@ -114,6 +131,6 @@ Total API calls per run: **~7** (1 trending_now + ~3 batched interest_over_time 
 - Never add complexity before Phase 2 requires it
 
 ## Cross-Repo Slash Commands
-These work from this repo via GitHub MCP:
+These work from this repo via GitHub MCP (target repo: `modryn-studio/modryn-studio-v2`):
 - `/tool` — register or update Trend Detector on modrynstudio.com (opens PR on modryn-studio-v2)
 - `/log` — draft a build log post for modrynstudio.com (opens PR on modryn-studio-v2)

@@ -6,6 +6,16 @@ Every morning at 9AM, Windows Task Scheduler runs the pipeline automatically. No
 
 Open `briefings/briefing_YYYY-MM-DD.md` in VS Code and press `Ctrl+Shift+V` to read the rendered output.
 
+## Manual run
+
+If you need to run it before 9AM or re-run for any reason:
+
+```
+python pipeline.py
+```
+
+No flags needed — the default runs all 3 sources. Single-source flags (`--trendspy`, `--rss`, `--email`) exist for debugging.
+
 ---
 
 ## What the pipeline does

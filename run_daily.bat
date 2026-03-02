@@ -3,7 +3,7 @@ cd /d C:\Users\Luke\Documents\2026\Feb-26\trend-detector
 
 if not exist logs mkdir logs
 
-call venv\Scripts\activate.bat
+call .venv\Scripts\activate.bat
 
 :: Use Python for an ISO date — %date% parsing is Windows locale-dependent
 for /f %%d in ('python -c "import datetime; print(datetime.date.today())"') do set TODAY=%%d

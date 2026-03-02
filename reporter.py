@@ -85,13 +85,8 @@ def _total_breakouts(clusters: list[dict]) -> int:
     return sum(len(_breakout_kws(c)) for c in clusters)
 
 
-def _stem(word: str) -> str:
-    """Minimal suffix stemming — same logic as cluster.py."""
-    w = word.lower()
-    for suffix in ("ing", "ies", "ed", "er", "s"):
-        if w.endswith(suffix) and len(w) - len(suffix) >= 3:
-            return w[: -len(suffix)]
-    return w
+# Use the canonical _stem from cluster.py
+from cluster import _stem
 
 
 def _meaningful_stems(text: str) -> set[str]:

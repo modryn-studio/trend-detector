@@ -88,7 +88,6 @@ launching cold. signals_2026-02-26.json, signals_2026-03-01.json — keep them a
 THE STACK:
 - Python 3.12+
 - trendspy (replaced pytrends-modern — 2-3 calls vs 24-30, no SSL hangs)
-- requests (for RSS fetch)
 - beautifulsoup4 (for email parse)
 - python-dotenv (for .env credentials)
 - schedule or Windows Task Scheduler for daily automation
@@ -100,6 +99,7 @@ CLI FLAGS (pipeline.py):
   --rss        RSS source only
   --email      email source only
   --all        all 3 sources + cross-reference (default)
+  (no flags)   same as --all
 
 CRON SCHEDULE:
   9:00 AM daily (Windows Task Scheduler, StartWhenAvailable)

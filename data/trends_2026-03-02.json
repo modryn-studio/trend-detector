@@ -1,0 +1,405 @@
+{
+  "date": "2026-03-02",
+  "sources": [
+    "trendspy"
+  ],
+  "clusters": [
+    {
+      "cluster_name": "stock / today / market",
+      "cluster_score": 58,
+      "member_count": 13,
+      "top_keyword": "stock market",
+      "growth_signals": [
+        "stock market: +300%"
+      ],
+      "members": [
+        {
+          "keyword": "stock market",
+          "score": 37,
+          "velocity": "rising",
+          "volume": "medium",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 20.0,
+            "volume_score": 40.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 20000,
+            "google_growth_pct": 300
+          }
+        },
+        {
+          "keyword": "usa today",
+          "score": 32,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 3.3,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 50
+          }
+        },
+        {
+          "keyword": "lockheed martin stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 5000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "stock market today",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "palantir stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "chevron stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "oxy stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 75
+          }
+        },
+        {
+          "keyword": "silver prices today",
+          "score": 27,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "high",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 3.3,
+            "volume_score": 20.0,
+            "buildability_score": 80.0,
+            "freshness_score": 10.0,
+            "google_volume": 1000,
+            "google_growth_pct": 50
+          }
+        },
+        {
+          "keyword": "spy stock",
+          "score": 27,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 3.3,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
+            "google_growth_pct": 50
+          }
+        },
+        {
+          "keyword": "voo stock",
+          "score": 25,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 5.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "sofi stock",
+          "score": 25,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 5.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 75
+          }
+        },
+        {
+          "keyword": "avgo stock",
+          "score": 25,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 5.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 200,
+            "google_growth_pct": 75
+          }
+        },
+        {
+          "keyword": "aapl stock",
+          "score": 25,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 5.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 200,
+            "google_growth_pct": 75
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 25,
+        "subreddit_hits": {
+          "Pmsforsale": 7,
+          "Silverbugs": 3,
+          "Silver": 2,
+          "silverindia": 2,
+          "IndianStockMarket": 2,
+          "wallstreetbets": 1,
+          "investingforbeginners": 1,
+          "SilverDegenClub": 1,
+          "Wallstreetsilver": 1,
+          "Knife_Swap": 1
+        },
+        "pain_signal": true,
+        "pain_reliable": true,
+        "keyword": "silver prices today",
+        "top_posts": [
+          {
+            "title": "\"JPMorgan closed $10 billion in silver shorts at the exact market bottom...\"",
+            "subreddit": "Silverbugs",
+            "score": 1589,
+            "url": "https://reddit.com/r/Silverbugs/comments/1qucjnr/jpmorgan_closed_10_billion_in_silver_shorts_at/",
+            "num_comments": 285,
+            "created_utc": 1770077636.0
+          },
+          {
+            "title": "A Timeline of Today's Silver Crash and its Beneficiaries",
+            "subreddit": "wallstreetbets",
+            "score": 1431,
+            "url": "https://reddit.com/r/wallstreetbets/comments/1qroolh/a_timeline_of_todays_silver_crash_and_its/",
+            "num_comments": 282,
+            "created_utc": 1769823172.0
+          },
+          {
+            "title": "Key GMS Issues Still Unaddressed After the Latest Inkwell Note",
+            "subreddit": "Maplestory",
+            "score": 1167,
+            "url": "https://reddit.com/r/Maplestory/comments/1qsf5w1/key_gms_issues_still_unaddressed_after_the_latest/",
+            "num_comments": 195,
+            "created_utc": 1769895656.0
+          },
+          {
+            "title": "Congratsss. We have win the jackpot.",
+            "subreddit": "IndianStockMarket",
+            "score": 1102,
+            "url": "https://reddit.com/r/IndianStockMarket/comments/1qso30m/congratsss_we_have_win_the_jackpot/",
+            "num_comments": 172,
+            "created_utc": 1769918839.0
+          },
+          {
+            "title": "Please stop posting the price falling",
+            "subreddit": "Silverbugs",
+            "score": 563,
+            "url": "https://reddit.com/r/Silverbugs/comments/1qr8i19/please_stop_posting_the_price_falling/",
+            "num_comments": 476,
+            "created_utc": 1769786820.0
+          }
+        ]
+      }
+    }
+  ],
+  "unclustered": [
+    {
+      "keyword": "spacex launch",
+      "score": 71,
+      "velocity": "rising",
+      "volume": "high",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 66.7,
+        "volume_score": 75.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 100000,
+        "google_growth_pct": 1000
+      }
+    },
+    {
+      "keyword": "gold futures",
+      "score": 39,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 2000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "lloyd blankfein",
+      "score": 36,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 500,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "nifty 50",
+      "score": 26,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 35.0,
+        "google_volume": 1000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "silver futures",
+      "score": 21,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 10.0,
+        "google_volume": 1000,
+        "google_growth_pct": 100
+      }
+    }
+  ]
+}
