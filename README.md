@@ -21,7 +21,7 @@ Trends appearing in 2+ sources get a confidence boost. Keywords are filtered, sc
    - Pass 1 (keyword-based): GREEN/YELLOW/RED/INCONCLUSIVE on raw trend keyword. RED + no pain → SKIP immediately, no LLM call.
    - Pass 2 (build-idea-based): LLM generates 3 tool-focused queries from its build idea; Brave searches those to verify the specific product doesn't already exist.
 8. Time-series enrich — `interest_over_time()` for top ~15 keywords; updates freshness score
-9. Report — LLM renames clusters by human need, generates BUILD/WATCH/SKIP decisions
+9. Report — LLM renames clusters by human need, generates BUILD/WATCH/SKIP decisions with emotional-barrier guidance, adds lifecycle tags (`EARLY`/`PEAKING`/`FADING`)
 
 **Output:**
 - `data/signals_YYYY-MM-DD.json` — full structured output (clusters + scores + Reddit + competition)
