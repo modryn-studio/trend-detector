@@ -83,6 +83,9 @@ PERSON_FIRST_NAMES = {
     "taylor", "hannah", "brittany", "samantha", "stephanie", "heather",
     "viola", "oprah", "beyonce", "rihanna", "serena", "venus",
     "ivanka", "melania", "meghan",
+    "noah", "ted", "ausar", "vj", "liam", "emma", "olivia", "ava",
+    "sophia", "isabella", "mia", "charlotte", "amelia", "harper",
+    "ethan", "mason", "logan", "lucas", "owen", "elijah", "aiden",
 }
 
 
@@ -121,11 +124,17 @@ def is_buildable(keyword: str) -> bool:
 
     # Person names — "First Last" format. Check if first word is a known
     # first name so we don't catch compound nouns like "stock futures".
-    # "jeff green" → "jeff" is a first name → filtered.
-    # "stock futures" → "stock" is not a first name → passes.
     words = kw.split()
     if len(words) == 2 and all(w.isalpha() for w in words) and words[0] in PERSON_FIRST_NAMES:
         return False
+
+    # Single-word all-alpha with no action/tool intent = likely a name or
+    # brand we didn't list. Buildable queries almost always have context:
+    # "bitcoin atm", "friend app", "how to X". A bare "allmendinger" is noise.
+    if len(words) == 1 and kw.isalpha() and kw not in GENERIC_NOISE:
+        # Allow if it contains a buildable signal word as substring
+        if not any(s in kw for s in ["app", "tool", "bot", "tracker", "finder"]):
+            return False
 
     return True
 

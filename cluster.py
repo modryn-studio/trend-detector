@@ -1,19 +1,25 @@
 """
 cluster.py — group related keywords into macro trends
 
-The pipeline scores keywords independently. But when 8 keywords all
-point at the same problem ("friend app", "friend website", "where to
-meet people", "third space near me"), that's a macro trend that's
-stronger than any single keyword score suggests.
+Two clustering strategies, applied in order:
 
-This module detects those clusters, scores them as a group, and
-returns a ranked list with cluster context.
+1. Category clustering — keywords from the same email newsletter section
+   (e.g. "Making Friends", "Third Places") are grouped together. Google
+   already did the semantic work; we just use it. Works for ANY topic.
+
+2. Token clustering — keywords sharing significant words get grouped.
+   Uses basic stemming (plurals) but NO hardcoded synonym lists.
+   "bitcoin atm" and "bitcoin fee calculator" share "bitcoin".
+   This catches cross-source relationships the newsletter doesn't know about.
+
+No domain-specific knowledge. Works the same whether the trend is
+about loneliness, crypto, home security, or AI tutoring.
 """
 
 import re
 from collections import defaultdict
 
-# Words too common to cluster on — would group everything together
+# Words too common to cluster on
 STOP_WORDS = {
     "a", "an", "the", "of", "in", "to", "for", "and", "or", "is", "it",
     "at", "on", "as", "by", "my", "me", "do", "no", "so", "up", "if",
@@ -25,40 +31,16 @@ STOP_WORDS = {
     "near", "best", "top", "new", "free", "after",
 }
 
-# Minimum word length to count as a significant token
 MIN_WORD_LEN = 3
-
-# Minimum shared tokens for two keywords to be "related"
 MIN_SHARED_TOKENS = 1
-
-# Minimum cluster members to qualify as a macro trend
 MIN_CLUSTER_SIZE = 3
 
-# Semantic synonym groups — words that mean the same *problem*.
-# If two keywords each contain a word from the same group, they share
-# a token even if the literal words differ.
-SYNONYM_GROUPS = [
-    {"friend", "friends", "friendship", "people", "meet", "social",
-     "lonely", "loneliness", "community", "connect", "connection"},
-    {"space", "spaces", "place", "places", "coworking", "cafe", "coffee",
-     "hub", "spot"},
-    {"club", "clubs", "group", "groups"},
-    {"volunteer", "volunteering", "charity", "donate"},
-    {"travel", "trip", "flight", "flights", "hotel", "hotels",
-     "vacation", "destination"},
-    {"app", "tool", "website", "platform", "finder", "tracker"},
-]
-
-# Build a fast lookup: word -> canonical form (first word in group)
-_SYNONYM_MAP: dict[str, str] = {}
-for _group in SYNONYM_GROUPS:
-    _canonical = sorted(_group)[0]  # deterministic canonical form
-    for _word in _group:
-        _SYNONYM_MAP[_word] = _canonical
+# Categories that are too vague to cluster on
+SKIP_CATEGORIES = {"unknown", "technology", "finance", "health", ""}
 
 
 def _stem(word: str) -> str:
-    """Cheap stemming: strip common suffixes to normalize plurals, etc."""
+    """Cheap stemming — normalize plurals and gerunds only."""
     if word.endswith("ies") and len(word) > 4:
         return word[:-3] + "y"
     if word.endswith("ing") and len(word) > 5:
@@ -69,138 +51,138 @@ def _stem(word: str) -> str:
 
 
 def _tokenize(keyword: str) -> set[str]:
-    """Extract significant words from a keyword, with stemming + synonyms."""
+    """Extract significant stemmed words. No synonym mapping."""
     words = re.findall(r'[a-z]+', keyword.lower())
-    tokens = set()
-    for w in words:
-        if len(w) < MIN_WORD_LEN or w in STOP_WORDS:
-            continue
-        stemmed = _stem(w)
-        # Map to synonym canonical form if it exists
-        canonical = _SYNONYM_MAP.get(stemmed, _SYNONYM_MAP.get(w, stemmed))
-        tokens.add(canonical)
-    return tokens
+    return {_stem(w) for w in words
+            if len(w) >= MIN_WORD_LEN and w not in STOP_WORDS}
 
-
-def _similarity(tokens_a: set[str], tokens_b: set[str]) -> int:
-    """Number of shared tokens between two keyword token sets."""
-    return len(tokens_a & tokens_b)
 
 
 def detect_clusters(scored_trends: list[dict],
                     min_shared: int = MIN_SHARED_TOKENS,
                     min_size: int = MIN_CLUSTER_SIZE) -> list[dict]:
     """
-    Group scored trends into clusters based on keyword similarity.
+    Group scored trends into clusters. Two passes:
 
-    Returns a list of cluster dicts, sorted by cluster_score descending:
-    {
-        "cluster_name": "friend / social / people",
-        "cluster_score": 78,
-        "member_count": 8,
-        "top_keyword": "friend app",
-        "top_score": 62,
-        "avg_score": 55,
-        "growth_signals": ["all-time high", "breakout", "+290%"],
-        "members": [... scored trend dicts ...],
-    }
+    Pass 1: Category-based. Keywords sharing a specific newsletter section
+            (category field from email_ingest) get grouped. Google already
+            did the semantic analysis; we just use their groupings.
+
+    Pass 2: Token-based. Remaining ungrouped keywords that share significant
+            stemmed words get grouped. Catches cross-source relationships.
+
+    Returns a list of cluster dicts, sorted by cluster_score descending.
     """
-    # Tokenize all keywords
-    items = []
-    for t in scored_trends:
-        tokens = _tokenize(t["keyword"])
-        if tokens:  # skip if no significant words
-            items.append({"trend": t, "tokens": tokens, "assigned": False})
+    assigned: set[int] = set()    # indices of trends already in a cluster
+    clusters: list[dict] = []
 
-    # Build adjacency — which items share enough tokens
-    n = len(items)
-    adj = defaultdict(set)
-    for i in range(n):
-        for j in range(i + 1, n):
-            shared = _similarity(items[i]["tokens"], items[j]["tokens"])
-            if shared >= min_shared:
-                adj[i].add(j)
-                adj[j].add(i)
+    # --- Pass 1: Category clusters (from newsletter sections) ---
+    cat_groups: dict[str, list[int]] = defaultdict(list)
+    for i, t in enumerate(scored_trends):
+        cat = t.get("category", "unknown")
+        if cat.lower() not in SKIP_CATEGORIES:
+            cat_groups[cat].append(i)
 
-    # Greedy clustering — start from highest-connected nodes
-    clusters: list[list[int]] = []
-    for seed in sorted(range(n), key=lambda i: len(adj[i]), reverse=True):
-        if items[seed]["assigned"]:
-            continue
-        # Start a cluster with this seed
-        cluster = {seed}
-        items[seed]["assigned"] = True
+    for cat, indices in cat_groups.items():
+        if len(indices) >= min_size:
+            clusters.append(_build_cluster(scored_trends, indices, name=cat))
+            assigned.update(indices)
 
-        # Add all directly connected unassigned nodes
-        for neighbor in adj[seed]:
-            if not items[neighbor]["assigned"]:
-                # Check the neighbor connects to at least half the cluster
-                # (prevents loose chains)
-                connections = sum(1 for c in cluster if neighbor in adj[c])
-                if connections >= max(1, len(cluster) // 3):
-                    cluster.add(neighbor)
-                    items[neighbor]["assigned"] = True
+    # --- Pass 2: Token clusters (remaining keywords) ---
+    remaining = [(i, t) for i, t in enumerate(scored_trends)
+                 if i not in assigned]
 
-        # Second pass — check remaining unassigned for cluster fit
-        for idx in range(n):
-            if items[idx]["assigned"]:
+    if remaining:
+        items = []
+        for orig_idx, t in remaining:
+            tokens = _tokenize(t["keyword"])
+            if tokens:
+                items.append({"orig_idx": orig_idx, "tokens": tokens})
+
+        # Build adjacency
+        n = len(items)
+        adj = defaultdict(set)
+        for i in range(n):
+            for j in range(i + 1, n):
+                shared = len(items[i]["tokens"] & items[j]["tokens"])
+                if shared >= min_shared:
+                    adj[i].add(j)
+                    adj[j].add(i)
+
+        # Greedy clustering
+        local_assigned: set[int] = set()
+        for seed in sorted(range(n), key=lambda i: len(adj[i]), reverse=True):
+            if seed in local_assigned:
                 continue
-            connections = sum(1 for c in cluster if idx in adj[c])
-            if connections >= max(1, len(cluster) // 3):
-                cluster.add(idx)
-                items[idx]["assigned"] = True
+            cluster_local = {seed}
+            local_assigned.add(seed)
 
-        if len(cluster) >= min_size:
-            clusters.append(sorted(cluster))
+            for neighbor in adj[seed]:
+                if neighbor not in local_assigned:
+                    connections = sum(1 for c in cluster_local if neighbor in adj[c])
+                    if connections >= max(1, len(cluster_local) // 3):
+                        cluster_local.add(neighbor)
+                        local_assigned.add(neighbor)
 
-    # Build cluster records
-    results = []
-    for member_indices in clusters:
-        members = [items[i]["trend"] for i in member_indices]
-        scores = [m["score"] for m in members]
-        avg = sum(scores) / len(scores)
-        top = max(members, key=lambda m: m["score"])
+            # Second pass for stragglers
+            for idx in range(n):
+                if idx in local_assigned:
+                    continue
+                connections = sum(1 for c in cluster_local if idx in adj[c])
+                if connections >= max(1, len(cluster_local) // 3):
+                    cluster_local.add(idx)
+                    local_assigned.add(idx)
 
-        # Collect all significant tokens for naming
-        all_tokens = set()
-        for i in member_indices:
-            all_tokens |= items[i]["tokens"]
+            if len(cluster_local) >= min_size:
+                orig_indices = [items[i]["orig_idx"] for i in sorted(cluster_local)]
+                clusters.append(_build_cluster(scored_trends, orig_indices))
+                assigned.update(orig_indices)
 
-        # Pick top 3 most frequent tokens across members as cluster name
-        token_freq = defaultdict(int)
-        for i in member_indices:
-            for tok in items[i]["tokens"]:
+    clusters.sort(key=lambda c: c["cluster_score"], reverse=True)
+    return clusters
+
+
+def _build_cluster(scored_trends: list[dict], indices: list[int],
+                   name: str | None = None) -> dict:
+    """Build a cluster record from member indices."""
+    members = [scored_trends[i] for i in indices]
+    scores = [m["score"] for m in members]
+    avg = sum(scores) / len(scores)
+    top = max(members, key=lambda m: m["score"])
+
+    # Auto-name from most frequent tokens if no name given
+    if not name:
+        token_freq: dict[str, int] = defaultdict(int)
+        for m in members:
+            for tok in _tokenize(m["keyword"]):
                 token_freq[tok] += 1
         top_tokens = sorted(token_freq, key=token_freq.get, reverse=True)[:3]
-        cluster_name = " / ".join(top_tokens)
+        name = " / ".join(top_tokens)
 
-        # Gather growth signals from raw data
-        growth_signals = []
-        for m in members:
-            gpct = m.get("_raw", {}).get("google_growth_pct", 0)
-            if gpct >= 5000:
-                growth_signals.append(f"{m['keyword']}: breakout")
-            elif gpct >= 200:
-                growth_signals.append(f"{m['keyword']}: +{gpct:.0f}%")
+    # Growth signals
+    growth_signals = []
+    for m in members:
+        gpct = m.get("_raw", {}).get("google_growth_pct", 0)
+        if gpct >= 5000:
+            growth_signals.append(f"{m['keyword']}: breakout")
+        elif gpct >= 200:
+            growth_signals.append(f"{m['keyword']}: +{gpct:.0f}%")
 
-        # Cluster score: average member score + size bonus + growth bonus
-        size_bonus = min(25, len(members) * 3)  # up to +25 for big clusters
-        growth_bonus = min(15, len(growth_signals) * 5)  # up to +15 for growth
-        cluster_score = min(100, round(avg + size_bonus + growth_bonus))
+    # Cluster score: avg + size bonus + growth bonus
+    size_bonus = min(25, len(members) * 3)
+    growth_bonus = min(15, len(growth_signals) * 5)
+    cluster_score = min(100, round(avg + size_bonus + growth_bonus))
 
-        results.append({
-            "cluster_name":   cluster_name,
-            "cluster_score":  cluster_score,
-            "member_count":   len(members),
-            "top_keyword":    top["keyword"],
-            "top_score":      top["score"],
-            "avg_score":      round(avg, 1),
-            "growth_signals": growth_signals,
-            "members":        members,
-        })
-
-    results.sort(key=lambda c: c["cluster_score"], reverse=True)
-    return results
+    return {
+        "cluster_name":   name,
+        "cluster_score":  cluster_score,
+        "member_count":   len(members),
+        "top_keyword":    top["keyword"],
+        "top_score":      top["score"],
+        "avg_score":      round(avg, 1),
+        "growth_signals": growth_signals,
+        "members":        members,
+    }
 
 
 def get_unclustered(scored_trends: list[dict],
@@ -216,16 +198,34 @@ def get_unclustered(scored_trends: list[dict],
 
 # --- Standalone test ---
 if __name__ == "__main__":
-    # Fake data to test clustering
+    # Simulate mixed data — categories from email + uncategorized from trendspy/RSS
     test = [
-        {"keyword": "friend app", "score": 60, "_raw": {"google_growth_pct": 5000}},
-        {"keyword": "friend website", "score": 55, "_raw": {"google_growth_pct": 5000}},
-        {"keyword": "how to make friends", "score": 50, "_raw": {"google_growth_pct": 290}},
-        {"keyword": "where to meet people", "score": 48, "_raw": {"google_growth_pct": 5000}},
-        {"keyword": "social clubs", "score": 52, "_raw": {"google_growth_pct": 5000}},
-        {"keyword": "third space near me", "score": 45, "_raw": {"google_growth_pct": 0}},
-        {"keyword": "digital third spaces", "score": 50, "_raw": {"google_growth_pct": 5000}},
-        {"keyword": "bitcoin atm", "score": 71, "_raw": {"google_growth_pct": 1000}},
+        # Email: same section -> category cluster
+        {"keyword": "friend app", "score": 60, "category": "Making Friends",
+         "_raw": {"google_growth_pct": 5000}},
+        {"keyword": "friend website", "score": 55, "category": "Making Friends",
+         "_raw": {"google_growth_pct": 5000}},
+        {"keyword": "how to make friends", "score": 50, "category": "Making Friends",
+         "_raw": {"google_growth_pct": 290}},
+        {"keyword": "social groups", "score": 48, "category": "Making Friends",
+         "_raw": {"google_growth_pct": 0}},
+        # Email: different section
+        {"keyword": "third space near me", "score": 45, "category": "Third Places",
+         "_raw": {"google_growth_pct": 0}},
+        {"keyword": "digital third spaces", "score": 50, "category": "Third Places",
+         "_raw": {"google_growth_pct": 5000}},
+        {"keyword": "coworking spaces", "score": 44, "category": "Third Places",
+         "_raw": {"google_growth_pct": 0}},
+        # Trendspy: no useful category -> token clustering
+        {"keyword": "bitcoin atm", "score": 71, "category": "finance",
+         "_raw": {"google_growth_pct": 1000}},
+        {"keyword": "bitcoin fee calculator", "score": 55, "category": "finance",
+         "_raw": {"google_growth_pct": 500}},
+        {"keyword": "bitcoin price tracker", "score": 50, "category": "finance",
+         "_raw": {"google_growth_pct": 300}},
+        # Lone wolf
+        {"keyword": "spacex launch today", "score": 62, "category": "unknown",
+         "_raw": {"google_growth_pct": 900}},
     ]
 
     clusters = detect_clusters(test, min_size=2)
