@@ -196,5 +196,5 @@ if __name__ == "__main__":
     trends = fetch_email(mark_read=False)
     print(f"\nExtracted {len(trends)} trends\n")
     for t in trends:
-        growth = t["growth"] or "—"
+        growth = t["growth"] or "-"
         print(f"  {t['keyword']:<45}  {growth:<18}  [{t['category']}]")

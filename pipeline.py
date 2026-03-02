@@ -167,7 +167,7 @@ def run(sources: list[str], top_n: int = 15,
     raw = _collect(sources)
 
     if not raw:
-        print("[pipeline] Nothing found — skipping write.")
+        print("[pipeline] Nothing found -- skipping write.")
         return None
 
     # Cross-reference if multiple sources
@@ -177,7 +177,7 @@ def run(sources: list[str], top_n: int = 15,
         raw = _cross_reference(raw)
         merged = before - len(raw)
         multi_hits = sum(1 for t in raw if t.get("source_count", 1) > 1)
-        print(f"[pipeline] Cross-referenced: {before} → {len(raw)} unique"
+        print(f"[pipeline] Cross-referenced: {before} -> {len(raw)} unique"
               f" ({multi_hits} multi-source)")
 
     # --- Stage 2: Filter noise ---
@@ -185,7 +185,7 @@ def run(sources: list[str], top_n: int = 15,
     print(f"[pipeline] {len(filtered)} trends after noise filter")
 
     if not filtered:
-        print("[pipeline] Everything filtered — skipping write.")
+        print("[pipeline] Everything filtered -- skipping write.")
         return None
 
     # --- Stage 3: Quick-score (no API calls) ---
@@ -250,7 +250,7 @@ def run(sources: list[str], top_n: int = 15,
     with open(out_path, "w") as f:
         json.dump({"date": today, "trends": output_trends}, f, indent=2)
 
-    print(f"[pipeline] {len(output_trends)} trends written → {out_path}")
+    print(f"[pipeline] {len(output_trends)} trends written -> {out_path}")
     _print_summary(output_trends)
     return out_path
 

@@ -14,6 +14,9 @@ __pycache__/
 # Every trends_YYYY-MM-DD.json stays in git.
 # The history is the Phase 2 demo story.
 
+# Logs — daily pipeline output, not committed
+logs/
+
 # OS
 .DS_Store
 Thumbs.db
