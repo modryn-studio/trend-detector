@@ -115,6 +115,29 @@ from cluster import _stem
 from competitor_check import check_competition as _check_competition
 
 
+def _find_pass1_competition(cluster: dict, competition: dict | None) -> dict:
+    """Find pass-1 competition data for a cluster.
+
+    After time-series enrichment, a cluster's top_keyword can shift
+    (e.g. 'kaumana caves' replaces 'how to set up trip for least amount
+    of pto').  Pass-1 checked the OLD top_keyword, so we search all
+    member keywords to find a match.
+    """
+    if not competition:
+        return {}
+    # Try top_keyword first (fast path — no enrichment shift)
+    top_kw = cluster.get("top_keyword", "")
+    comp = competition.get(top_kw)
+    if comp:
+        return comp
+    # Fallback: check all member keywords
+    for m in cluster.get("members", []):
+        comp = competition.get(m["keyword"])
+        if comp:
+            return comp
+    return {}
+
+
 def _meaningful_stems(text: str) -> set[str]:
     """Tokenise + stem, removing stopwords."""
     stop = {
@@ -397,16 +420,15 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"Top keyword: {top_kw}",
     ]
 
-    if competition:
-        comp = competition.get(top_kw, {})
-        if comp:
-            context_parts.append(
-                f"Competition: {comp.get('verdict', 'UNKNOWN')} "
-                f"({comp.get('competitor_count', '?')} existing tools)"
-            )
-            if comp.get("top_competitors"):
-                names = [c["domain"] for c in comp["top_competitors"][:3]]
-                context_parts.append(f"Top competitors: {', '.join(names)}")
+    comp = _find_pass1_competition(cluster, competition)
+    if comp:
+        context_parts.append(
+            f"Competition: {comp.get('verdict', 'UNKNOWN')} "
+            f"({comp.get('competitor_count', '?')} existing tools)"
+        )
+        if comp.get("top_competitors"):
+            names = [c["domain"] for c in comp["top_competitors"][:3]]
+            context_parts.append(f"Top competitors: {', '.join(names)}")
 
     if reddit:
         pain = reddit.get("pain_signal", False)
@@ -542,10 +564,8 @@ def _decision_section(
         # RED gate: if Pass 1 competition already says RED and there's no
         # Reddit pain signal, skip the LLM call entirely — obvious SKIP.
         # Saves ~$0.02/cluster now, 60-70 calls/day at Phase 2 scale.
-        pass1_verdict = ""
-        if competition:
-            pass1_data = competition.get(top_kw, {})
-            pass1_verdict = pass1_data.get("verdict", "")
+        pass1_data = _find_pass1_competition(data, competition)
+        pass1_verdict = pass1_data.get("verdict", "")
 
         if pass1_verdict == "RED" and not has_pain:
             comp_count = pass1_data.get("competitor_count", 0)
@@ -573,10 +593,18 @@ def _decision_section(
             if comp_queries:
                 print(f"[reporter] Refined competition check for '{name}': "
                       f"{comp_queries[:2]}")
+                # Use the keyword pass-1 checked (for incumbent matching),
+                # not the post-enrichment top_kw which may be unrelated
+                pass1_kw = pass1_data.get("keyword", top_kw)
                 refined = _check_competition(
-                    top_kw, search_queries=comp_queries
+                    pass1_kw, search_queries=comp_queries
                 )
-                refined_competition[top_kw] = refined
+                # Key by display name so the competition section doesn't
+                # show PTO results under 'kaumana caves'
+                display_name = data.get("display_name", name)
+                refined_key = f"{display_name} (build-idea check)"
+                refined["_queries_note"] = comp_queries[:2]
+                refined_competition[refined_key] = refined
 
                 # Override BUILD → WATCH if refined check finds heavy competition
                 if (decision["decision"] == "BUILD"
@@ -605,11 +633,8 @@ def _decision_section(
         else:
             # Rule-based fallback
             score = data.get("cluster_score", 0)
-            comp_verdict = "UNKNOWN"
-            if competition:
-                kw = data.get("top_keyword", "")
-                comp_data = competition.get(kw, {})
-                comp_verdict = comp_data.get("verdict", "UNKNOWN")
+            comp_fallback = _find_pass1_competition(data, competition)
+            comp_verdict = comp_fallback.get("verdict", "UNKNOWN")
 
             has_pain = reddit and reddit.get("pain_signal", False)
 
@@ -654,6 +679,12 @@ def _competition_section(competition: dict | None) -> str:
         icon = {"GREEN": "✅", "YELLOW": "⚠️", "RED": "🔴"}.get(verdict, "❓")
         count = data.get("competitor_count", 0)
         lines.append(f"**{kw}** — {icon} {verdict} ({count} tools found)")
+
+        # Show what was actually searched (refined entries have this)
+        queries_note = data.get("_queries_note")
+        if queries_note:
+            q_str = ", ".join(f'"{q}"' for q in queries_note)
+            lines.append(f"  Searched: {q_str}")
 
         if data.get("top_competitors"):
             for comp in data["top_competitors"][:3]:
