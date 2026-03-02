@@ -4,7 +4,7 @@ reporter.py — daily briefing generator
 Reads today's signals JSON and writes a plain-English markdown briefing
 to briefings/briefing_YYYY-MM-DD.md.
 
-Uses OpenAI Structured Outputs (gpt-5-mini) for:
+Uses OpenAI Structured Outputs (gpt-4o-mini) for:
   - Cluster renaming: transforms Google's labels into human-need descriptions
   - BUILD/WATCH/SKIP decisions: structured actionable verdicts per cluster
 
@@ -39,7 +39,7 @@ BRIEFING_DIR = Path(__file__).parent / "briefings"
 # OpenAI setup — optional, briefing degrades gracefully without it
 # ---------------------------------------------------------------------------
 
-_OPENAI_MODEL = "gpt-5-mini"
+_OPENAI_MODEL = "gpt-4o-mini"
 _openai_client = None
 
 _api_key = os.getenv("OPENAI_API_KEY", "")
@@ -346,27 +346,25 @@ def _rename_cluster(cluster: dict) -> str:
     )
 
     try:
-        resp = _openai_client.responses.parse(
+        resp = _openai_client.responses.create(
             model=_OPENAI_MODEL,
             input=[{"role": "user", "content": prompt}],
-            text_format={
-                "format": {
-                    "type": "json_schema",
-                    "name": "cluster_rename",
-                    "strict": True,
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "human_need_name": {
-                                "type": "string",
-                                "description": "3-6 word human-need description"
-                            }
-                        },
-                        "required": ["human_need_name"],
-                        "additionalProperties": False,
+            text={"format": {
+                "type": "json_schema",
+                "name": "cluster_rename",
+                "strict": True,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "human_need_name": {
+                            "type": "string",
+                            "description": "3-6 word human-need description"
+                        }
                     },
-                }
-            },
+                    "required": ["human_need_name"],
+                    "additionalProperties": False,
+                },
+            }},
         )
         parsed = json.loads(resp.output_text)
         name = parsed.get("human_need_name", original)
@@ -434,52 +432,50 @@ def _llm_decision(cluster: dict, competition: dict | None,
     )
 
     try:
-        resp = _openai_client.responses.parse(
+        resp = _openai_client.responses.create(
             model=_OPENAI_MODEL,
             input=[{"role": "user", "content": prompt}],
-            text_format={
-                "format": {
-                    "type": "json_schema",
-                    "name": "build_decision",
-                    "strict": True,
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "decision": {
-                                "type": "string",
-                                "enum": ["BUILD", "WATCH", "SKIP"],
-                            },
-                            "confidence": {
-                                "type": "string",
-                                "enum": ["HIGH", "MED", "LOW"],
-                            },
-                            "build_idea": {
-                                "type": "string",
-                                "description": "One-sentence product idea",
-                            },
-                            "target_slug": {
-                                "type": "string",
-                                "description": "URL-friendly slug, e.g. 'friend-finder'",
-                            },
-                            "monetization": {
-                                "type": "string",
-                                "description": "How this makes money (ads, freemium, affiliate)",
-                            },
-                            "reason": {
-                                "type": "string",
-                                "description": "Why this decision (2-3 sentences)",
-                            },
-                            "risk": {
-                                "type": "string",
-                                "description": "Primary risk (1 sentence)",
-                            },
+            text={"format": {
+                "type": "json_schema",
+                "name": "build_decision",
+                "strict": True,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "decision": {
+                            "type": "string",
+                            "enum": ["BUILD", "WATCH", "SKIP"],
                         },
-                        "required": ["decision", "confidence", "build_idea",
-                                     "target_slug", "monetization", "reason", "risk"],
-                        "additionalProperties": False,
+                        "confidence": {
+                            "type": "string",
+                            "enum": ["HIGH", "MED", "LOW"],
+                        },
+                        "build_idea": {
+                            "type": "string",
+                            "description": "One-sentence product idea",
+                        },
+                        "target_slug": {
+                            "type": "string",
+                            "description": "URL-friendly slug, e.g. 'friend-finder'",
+                        },
+                        "monetization": {
+                            "type": "string",
+                            "description": "How this makes money (ads, freemium, affiliate)",
+                        },
+                        "reason": {
+                            "type": "string",
+                            "description": "Why this decision (2-3 sentences)",
+                        },
+                        "risk": {
+                            "type": "string",
+                            "description": "Primary risk (1 sentence)",
+                        },
                     },
-                }
-            },
+                    "required": ["decision", "confidence", "build_idea",
+                                 "target_slug", "monetization", "reason", "risk"],
+                    "additionalProperties": False,
+                },
+            }},
         )
         return json.loads(resp.output_text)
     except Exception as exc:
