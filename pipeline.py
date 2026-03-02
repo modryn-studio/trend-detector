@@ -25,6 +25,8 @@ from fetcher import fetch_trending, fetch_time_series
 from rss_fetcher import fetch_rss
 from email_ingest import fetch_email
 from scorer import is_buildable, score_trend
+from cluster import detect_clusters, get_unclustered
+from reddit_check import validate_clusters
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -159,7 +161,7 @@ def _cross_reference(trends: list[dict]) -> list[dict]:
 
 
 def run(sources: list[str], top_n: int = 15,
-        skip_series: bool = False) -> Path | None:
+        skip_series: bool = False, skip_reddit: bool = False) -> Path | None:
     today = date.today().isoformat()
     print(f"[pipeline] date={today}  sources={sources}")
 
@@ -188,7 +190,7 @@ def run(sources: list[str], top_n: int = 15,
         print("[pipeline] Everything filtered -- skipping write.")
         return None
 
-    # --- Stage 3: Quick-score (no API calls) ---
+    # --- Stage 3: Score ALL filtered trends (not just top N) ---
     scored = [score_trend(t) for t in filtered]
 
     # Apply multi-source confidence boost
@@ -202,88 +204,146 @@ def run(sources: list[str], top_n: int = 15,
 
     scored.sort(key=lambda t: t["score"], reverse=True)
 
-    # Keep only top N for time-series enrichment
-    top = scored[:top_n]
+    # --- Stage 4: Cluster detection ---
+    clusters = detect_clusters(scored)
+    unclustered = get_unclustered(scored, clusters)
+    print(f"[pipeline] Found {len(clusters)} clusters, "
+          f"{len(unclustered)} unclustered trends")
 
-    # --- Stage 4: Enrich with time series (2-4 API calls) ---
-    if not skip_series and "trendspy" in sources:
-        keywords = [t["keyword"] for t in top]
-        print(f"[pipeline] Fetching time series for {len(keywords)} keywords...")
-        series_map = fetch_time_series(keywords)
-        print(f"[pipeline] Got series for {len(series_map)}/{len(keywords)} keywords")
+    # --- Stage 5: Reddit validation on top clusters ---
+    if not skip_reddit and clusters:
+        print("[pipeline] Validating top clusters against Reddit...")
+        validate_clusters(clusters, max_checks=3)
 
-        enriched = []
-        for t in top:
-            raw_trend = next(
-                (r for r in filtered if r["keyword"] == t["keyword"]), None
-            )
-            if raw_trend:
-                series = series_map.get(t["keyword"])
-                enriched.append(score_trend(raw_trend, series=series))
-            else:
-                enriched.append(t)
+    # --- Stage 6: Enrich top keywords with time series ---
+    # Collect top keywords for enrichment: cluster tops + unclustered tops
+    enrich_keywords = []
+    for c in clusters[:5]:
+        enrich_keywords.append(c["top_keyword"])
+    for t in unclustered[:top_n]:
+        if t["keyword"] not in enrich_keywords:
+            enrich_keywords.append(t["keyword"])
+    enrich_keywords = enrich_keywords[:top_n]
 
-        top = sorted(enriched, key=lambda t: t["score"], reverse=True)
+    if not skip_series and "trendspy" in sources and enrich_keywords:
+        print(f"[pipeline] Fetching time series for {len(enrich_keywords)} keywords...")
+        series_map = fetch_time_series(enrich_keywords)
+        print(f"[pipeline] Got series for {len(series_map)}/{len(enrich_keywords)} keywords")
 
-    # --- Stage 5: Write output ---
+        # Re-score enriched keywords with freshness data
+        for c in clusters:
+            for i, m in enumerate(c["members"]):
+                series = series_map.get(m["keyword"])
+                if series:
+                    raw_trend = next(
+                        (r for r in filtered if r["keyword"] == m["keyword"]), None
+                    )
+                    if raw_trend:
+                        c["members"][i] = score_trend(raw_trend, series=series)
+
+        for i, t in enumerate(unclustered):
+            series = series_map.get(t["keyword"])
+            if series:
+                raw_trend = next(
+                    (r for r in filtered if r["keyword"] == t["keyword"]), None
+                )
+                if raw_trend:
+                    unclustered[i] = score_trend(raw_trend, series=series)
+
+    # --- Stage 7: Write output ---
     DATA_DIR.mkdir(exist_ok=True)
 
-    # signals_ for multi-source, trends_ for single-source
     prefix = "signals" if multi_source else "trends"
     out_path = DATA_DIR / f"{prefix}_{today}.json"
 
-    # Add source list to each trend for the output
-    output_trends = []
-    for t in top:
-        entry = dict(t)
-        # Include sources list if cross-referencing
-        if multi_source:
-            # Find the merged raw record to get the sources list
-            raw_rec = next(
-                (r for r in raw if r["keyword"].lower() == t["keyword"].lower()),
-                None,
-            )
-            if raw_rec and "sources" in raw_rec:
-                entry["sources"] = raw_rec["sources"]
-        output_trends.append(entry)
+    output = {
+        "date": today,
+        "sources": sources,
+        "clusters": [],
+        "unclustered": [],
+    }
+
+    for c in clusters:
+        cluster_out = {
+            "cluster_name":   c["cluster_name"],
+            "cluster_score":  c["cluster_score"],
+            "member_count":   c["member_count"],
+            "top_keyword":    c["top_keyword"],
+            "growth_signals": c["growth_signals"],
+            "members":        c["members"],
+        }
+        # Include Reddit validation if present
+        if "reddit" in c:
+            r = c["reddit"]
+            cluster_out["reddit"] = {
+                "total_posts":    r["total_posts"],
+                "subreddit_hits": r["subreddit_hits"],
+                "pain_signal":    r["pain_signal"],
+                "top_posts":      r["top_posts"][:5],
+            }
+        output["clusters"].append(cluster_out)
+
+    # Top unclustered (individual signals)
+    unclustered.sort(key=lambda t: t["score"], reverse=True)
+    output["unclustered"] = unclustered[:top_n]
 
     with open(out_path, "w") as f:
-        json.dump({"date": today, "trends": output_trends}, f, indent=2)
+        json.dump(output, f, indent=2)
 
-    print(f"[pipeline] {len(output_trends)} trends written -> {out_path}")
-    _print_summary(output_trends)
+    total = sum(c["member_count"] for c in clusters) + len(output["unclustered"])
+    print(f"[pipeline] {len(clusters)} clusters + {len(output['unclustered'])} "
+          f"unclustered written -> {out_path}")
+    _print_summary(clusters, output["unclustered"])
     return out_path
 
 
-def _print_summary(trends: list[dict]) -> None:
-    """Top 5 signals for quick morning scanning."""
+def _print_summary(clusters: list[dict], unclustered: list[dict]) -> None:
+    """Morning-ready summary: clusters first, then top individual signals."""
     today = date.today().isoformat()
-    print(f"\n  === Top Signals ({today}) ===\n")
-    for i, t in enumerate(trends[:5], 1):
-        parts = [f"score={t['score']}"]
-        # Sources
-        sources = t.get("sources", [t.get("source", "?")])
-        sc = t.get("source_count", 1)
-        parts.append(f"sources={sc}")
-        # Growth
-        growth_pct = t.get("_raw", {}).get("google_growth_pct", 0)
-        if growth_pct >= 5000:
-            parts.append("growth=breakout")
-        elif growth_pct > 0:
-            parts.append(f"growth=+{growth_pct:.0f}%")
-        # Volume
-        vol = t.get("_raw", {}).get("google_volume", 0)
-        if vol >= 100_000:
-            parts.append(f"traffic={vol // 1000}K+")
-        elif vol >= 1_000:
-            parts.append(f"traffic={vol // 1000}K+")
-        elif vol > 0:
-            parts.append(f"traffic={vol}")
 
-        info = "  ".join(parts)
-        src_list = ",".join(sources)
-        print(f"  {i}. {t['keyword']:<35} {info}")
-        print(f"     [{src_list}]")
+    if clusters:
+        print(f"\n  === MACRO TRENDS ({today}) ===\n")
+        for i, c in enumerate(clusters, 1):
+            reddit_tag = ""
+            if "reddit" in c:
+                r = c["reddit"]
+                if r["pain_signal"]:
+                    reddit_tag = "  !! PAIN SIGNAL"
+                elif r["total_posts"] > 0:
+                    reddit_tag = f"  ({r['total_posts']} Reddit posts)"
+
+            print(f"  {i}. [{c['cluster_score']}] {c['cluster_name'].upper()}"
+                  f"  ({c['member_count']} keywords){reddit_tag}")
+
+            for m in sorted(c["members"], key=lambda m: m["score"], reverse=True)[:5]:
+                gpct = m.get("_raw", {}).get("google_growth_pct", 0)
+                if gpct >= 5000:
+                    growth = "breakout"
+                elif gpct >= 200:
+                    growth = f"+{gpct:.0f}%"
+                else:
+                    growth = ""
+                marker = f"  [{growth}]" if growth else ""
+                print(f"       - {m['keyword']}{marker}")
+
+            if c.get("growth_signals"):
+                print(f"       Growth: {', '.join(c['growth_signals'][:3])}")
+
+    if unclustered:
+        print(f"\n  === INDIVIDUAL SIGNALS ===\n")
+        for i, t in enumerate(unclustered[:10], 1):
+            gpct = t.get("_raw", {}).get("google_growth_pct", 0)
+            if gpct >= 5000:
+                growth = "breakout"
+            elif gpct > 0:
+                growth = f"+{gpct:.0f}%"
+            else:
+                growth = ""
+            src = t.get("source", "?")
+            info = f"score={t['score']}  [{src}]"
+            if growth:
+                info += f"  {growth}"
+            print(f"  {i}. {t['keyword']:<40} {info}")
 
 
 def main() -> None:
@@ -304,6 +364,8 @@ def main() -> None:
                         help="Top N trends to keep (default: 15)")
     parser.add_argument("--no-series", action="store_true",
                         help="Skip time-series enrichment (faster)")
+    parser.add_argument("--no-reddit", action="store_true",
+                        help="Skip Reddit validation (faster)")
 
     args = parser.parse_args()
 
@@ -318,7 +380,8 @@ def main() -> None:
         # Default: trendspy only (backward compat)
         sources = ["trendspy"]
 
-    run(sources=sources, top_n=args.top, skip_series=args.no_series)
+    run(sources=sources, top_n=args.top, skip_series=args.no_series,
+        skip_reddit=args.no_reddit)
 
 
 if __name__ == "__main__":

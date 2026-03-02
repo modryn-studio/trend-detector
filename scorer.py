@@ -21,6 +21,7 @@ BRAND_NOISE = {
     "cash app", "venmo", "paypal", "robinhood", "coinbase",
     "pennymac", "johnson and johnson", "tesla", "apple",
     "amazon", "google", "microsoft", "meta", "netflix",
+    "wall street journal", "cnn", "fox news", "nyt", "bbc",
 }
 
 # Terms too broad or unrelated to have a buildable problem behind them
@@ -46,6 +47,8 @@ SPORTS_NOISE_WORDS = [
     "vs", "score", "game", "match", "nfl", "nba", "nhl", "mlb",
     "fifa", "ufc", "boxing", "playoff", "championship", "tournament",
     "league", "roster", "draft", "trade", "coach",
+    "basketball", "football", "soccer", "baseball", "hockey",
+    "ncaa", "uconn", "march madness",
 ]
 
 # Entertainment noise
@@ -74,6 +77,12 @@ PERSON_FIRST_NAMES = {
     "ty", "chad", "greg", "gregory", "keith", "roger", "phil", "phillip",
     "doug", "douglas", "terry", "jerry", "randy", "johnny", "bobby",
     "jimmy", "tommy", "danny", "freddy", "charlie", "frank", "hank",
+    # Female first names
+    "amy", "sarah", "jennifer", "jessica", "ashley", "emily", "amanda",
+    "lisa", "nicole", "karen", "rachel", "michelle", "laura", "megan",
+    "taylor", "hannah", "brittany", "samantha", "stephanie", "heather",
+    "viola", "oprah", "beyonce", "rihanna", "serena", "venus",
+    "ivanka", "melania", "meghan",
 }
 
 
@@ -100,6 +109,10 @@ def is_buildable(keyword: str) -> bool:
 
     # Entertainment
     if any(w in kw for w in ENTERTAINMENT_NOISE_WORDS):
+        return False
+
+    # Too short = not a searchable keyword
+    if len(kw) <= 3:
         return False
 
     # Too long = headline, not a keyword
@@ -167,7 +180,11 @@ def _growth_score(growth_pct: float) -> float:
 
 
 def _volume_score(volume: int) -> tuple[float, str]:
-    """Map Google's volume estimate onto 0–100."""
+    """Map Google's volume estimate onto 0–100.
+    volume=0 means unknown (e.g. email source) — use neutral 50 so
+    we don't penalize or reward missing data."""
+    if volume == 0:
+        return 50.0, "unknown"
     if volume >= 500_000:
         return 100.0, "high"
     elif volume >= 100_000:
