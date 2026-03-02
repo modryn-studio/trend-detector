@@ -536,12 +536,40 @@ def _decision_section(
         targets.append((t["keyword"], pseudo, None))
 
     for name, data, reddit in targets:
+        top_kw = data.get("top_keyword", name)
+        has_pain = reddit and reddit.get("pain_signal", False)
+
+        # RED gate: if Pass 1 competition already says RED and there's no
+        # Reddit pain signal, skip the LLM call entirely — obvious SKIP.
+        # Saves ~$0.02/cluster now, 60-70 calls/day at Phase 2 scale.
+        pass1_verdict = ""
+        if competition:
+            pass1_data = competition.get(top_kw, {})
+            pass1_verdict = pass1_data.get("verdict", "")
+
+        if pass1_verdict == "RED" and not has_pain:
+            comp_count = pass1_data.get("competitor_count", 0)
+            top_domains = [c["domain"] for c in pass1_data.get(
+                "top_competitors", [])[:3]]
+            domains_str = ", ".join(top_domains) if top_domains else "various"
+            lines.append(f"### 🔴 SKIP — {name} [HIGH]")
+            lines.append("")
+            lines.append(
+                f"**Reasoning:** Pass 1 competition check found "
+                f"{comp_count} existing tools ({domains_str}). "
+                f"No Reddit pain signal to justify differentiation. "
+                f"Skipped LLM evaluation."
+            )
+            lines.append("")
+            print(f"[reporter] RED gate: skipping LLM for '{name}' "
+                  f"(pass-1 RED, {comp_count} tools, no pain)")
+            continue
+
         decision = _llm_decision(data, competition, reddit)
 
         if decision:
             # --- Refined competition check using LLM-generated queries ---
             comp_queries = decision.get("competition_queries", [])
-            top_kw = data.get("top_keyword", name)
             if comp_queries:
                 print(f"[reporter] Refined competition check for '{name}': "
                       f"{comp_queries[:2]}")
