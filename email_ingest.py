@@ -159,33 +159,32 @@ def fetch_email(mark_read: bool = False) -> list[dict]:
         mail.logout()
         return []
 
-    # Process latest email (most recent = most relevant)
-    # Could process all, but typically one per day is what matters
-    latest_id = ids[-1]
+    # Process all found emails, newest first — accumulate across issues
     all_trends: list[dict] = []
 
-    status, msg_data = mail.fetch(latest_id, "(RFC822)")
-    msg = email_lib.message_from_bytes(msg_data[0][1])
-    email_date = msg["Date"] or ""
+    for email_id in reversed(ids):
+        status, msg_data = mail.fetch(email_id, "(RFC822)")
+        msg = email_lib.message_from_bytes(msg_data[0][1])
+        email_date = msg["Date"] or ""
 
-    # Extract HTML body
-    html = None
-    for part in msg.walk():
-        if part.get_content_type() == "text/html":
-            html = part.get_payload(decode=True).decode("utf-8", errors="replace")
-            break
+        # Extract HTML body
+        html = None
+        for part in msg.walk():
+            if part.get_content_type() == "text/html":
+                html = part.get_payload(decode=True).decode("utf-8", errors="replace")
+                break
 
-    if html:
-        trends = _parse_newsletter_html(html)
-        for t in trends:
-            t["email_date"] = email_date
-        all_trends.extend(trends)
-        print(f"[email] Parsed {len(trends)} trends from newsletter ({email_date})")
+        if html:
+            trends = _parse_newsletter_html(html)
+            for t in trends:
+                t["email_date"] = email_date
+            all_trends.extend(trends)
+            print(f"[email] Parsed {len(trends)} trends from newsletter ({email_date})")
+        else:
+            print("[email] No HTML body found in newsletter")
 
         if mark_read:
-            mail.store(latest_id, "+FLAGS", "\\Seen")
-    else:
-        print("[email] No HTML body found in newsletter")
+            mail.store(email_id, "+FLAGS", "\\Seen")
 
     mail.logout()
     return all_trends
