@@ -15,6 +15,7 @@ import email as email_lib
 import os
 import re
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -122,6 +123,24 @@ def _extract_from_text(text: str, category: str,
         })
 
 
+_LOG_DIR = Path(__file__).parent / "logs"
+
+
+def _write_error_log(message: str) -> None:
+    """Append a timestamped error to logs/errors.log.
+
+    This file persists across runs so Task Scheduler failures are
+    visible in one place without scanning per-day pipeline logs.
+    """
+    try:
+        _LOG_DIR.mkdir(exist_ok=True)
+        ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        with open(_LOG_DIR / "errors.log", "a", encoding="utf-8") as f:
+            f.write(f"[{ts}] {message}\n")
+    except OSError:
+        pass  # Don't let logging failure mask the real error
+
+
 def fetch_email(mark_read: bool = False) -> list[dict]:
     """
     Fetch and parse unread Google Trends newsletters from Gmail.
@@ -142,7 +161,11 @@ def fetch_email(mark_read: bool = False) -> list[dict]:
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
         mail.login(addr, pw)
     except imaplib.IMAP4.error as e:
-        print(f"[email] IMAP login failed: {e}")
+        msg = f"[email] IMAP login failed: {e}"
+        print(msg)
+        # Write to persistent error log so Task Scheduler failures are visible
+        # without scanning daily pipeline logs.
+        _write_error_log(msg)
         return []
 
     mail.select("inbox")
