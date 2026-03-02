@@ -123,10 +123,12 @@ def check_competition(keyword: str) -> dict:
 
     all_tools: list[dict] = []
     seen_domains: set[str] = set()
+    total_results = 0  # raw results across all queries; low count = Brave index gap
 
     for query in queries:
         time.sleep(_REQUEST_DELAY)
         results = _search_brave(query, count=10)
+        total_results += len(results)
         for item in results:
             if _is_tool_result(item):
                 url = item.get("url", "")
@@ -142,7 +144,11 @@ def check_competition(keyword: str) -> dict:
 
     count = len(all_tools)
 
-    if count <= 1:
+    # Brave's index is smaller than Google's — a near-empty result set means
+    # the topic is too niche/new to read, not that no tools exist.
+    if total_results < 3:
+        verdict = "INCONCLUSIVE"
+    elif count <= 1:
         verdict = "GREEN"
     elif count <= 3:
         verdict = "YELLOW"
@@ -152,6 +158,7 @@ def check_competition(keyword: str) -> dict:
     return {
         "keyword":          keyword,
         "queries_searched":  queries,
+        "total_results":     total_results,
         "competitor_count":  count,
         "top_competitors":   all_tools[:5],
         "verdict":           verdict,
