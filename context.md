@@ -90,6 +90,8 @@ THE STACK:
 - trendspy (replaced pytrends-modern — 2-3 calls vs 24-30, no SSL hangs)
 - beautifulsoup4 (for email parse)
 - python-dotenv (for .env credentials)
+- openai (GPT-5 Mini with Structured Outputs for cluster renaming + BUILD/WATCH/SKIP)
+- Google Custom Search JSON API (competitor check, 100 free queries/day)
 - schedule or Windows Task Scheduler for daily automation
 - No database — flat JSON files in /data
 - No server — runs locally
@@ -99,6 +101,9 @@ CLI FLAGS (pipeline.py):
   --rss        RSS source only
   --email      email source only
   --all        all 3 sources + cross-reference (default)
+  --no-series      skip time-series enrichment (faster)
+  --no-competitor  skip competitor check (faster)
+  --no-reddit      skip Reddit validation (faster)
   (no flags)   same as --all
 
 CRON SCHEDULE:

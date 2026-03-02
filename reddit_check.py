@@ -1,12 +1,12 @@
 """
 reddit_check.py — validate trend signals against Reddit discussion
 
-Hits Reddit's public JSON search (no API key, no auth) to check whether
-real people are actively discussing a topic. Searches ALL of Reddit —
-the results tell us which communities care, rather than us guessing.
+Searches targeted subreddits with pain-framed queries to check whether
+real people are actively frustrated about a topic. Routes each cluster
+to relevant communities based on category/keyword matching.
 
 Rate limit: Reddit allows ~10 requests/min from unauthenticated clients.
-We only check top clusters (1 query per cluster, 3 clusters max).
+We check top clusters (up to 3 subreddits × 2 queries each, 3 clusters max).
 """
 
 import json
@@ -14,6 +14,8 @@ import time
 import urllib.request
 import urllib.error
 from collections import Counter
+
+from cluster import _stem
 
 # User-Agent required by Reddit
 _HEADERS = {
@@ -23,95 +25,179 @@ _HEADERS = {
 # Minimum seconds between Reddit requests
 _REQUEST_DELAY = 2.0
 
+# --- Subreddit routing ---
+# Map topic domains to subreddits where real users express pain.
+# General-purpose subs are appended when no specific match is found.
+SUBREDDIT_MAP = {
+    "social": ["socialskills", "makingfriends", "lonely", "introvert", "Advice"],
+    "community": ["socialskills", "makingfriends", "lonely", "introvert", "community"],
+    "friend": ["socialskills", "makingfriends", "lonely", "Advice"],
+    "travel": ["solotravel", "travel", "digitalnomad", "Shoestring", "TravelHacks"],
+    "flight": ["travel", "flights", "TravelHacks", "solotravel"],
+    "hotel": ["travel", "Hotels", "TravelHacks"],
+    "finance": ["personalfinance", "investing", "FinancialPlanning", "povertyfinance"],
+    "stock": ["stocks", "investing", "wallstreetbets", "StockMarket"],
+    "crypto": ["CryptoCurrency", "Bitcoin", "CryptoMarkets"],
+    "tech": ["webdev", "SaaS", "startups", "sideproject", "EntrepreneurRideAlong"],
+    "app": ["webdev", "SaaS", "startups", "androidapps", "iosapps"],
+    "tool": ["webdev", "SaaS", "startups", "InternetIsBeautiful", "productivity"],
+    "health": ["HealthIT", "selfimprovement", "loseit", "Fitness"],
+    "fitness": ["Fitness", "bodyweightfitness", "GYM", "loseit"],
+    "food": ["Cooking", "MealPrepSunday", "EatCheapAndHealthy"],
+    "career": ["careerguidance", "cscareerquestions", "jobs", "antiwork"],
+    "education": ["learnprogramming", "college", "GradSchool", "studytips"],
+    "housing": ["realestate", "FirstTimeHomeBuyer", "personalfinance"],
+}
 
-def check_reddit(keyword: str,
-                 limit: int = 25,
-                 time_filter: str = "month") -> dict:
-    """
-    Search ALL of Reddit for a keyword.
+# Fallback subreddits when no domain match is found
+_GENERAL_SUBS = ["NoStupidQuestions", "Advice", "findareddit", "internetparents"]
 
-    Returns:
-    {
-        "keyword": "friend app",
-        "total_posts": 12,
-        "subreddit_hits": {"socialskills": 5, "lonely": 4, "SaaS": 3},
-        "top_posts": [...],
-        "pain_signal": True/False
-    }
-    """
+# Pain-framing query templates — search the frustration, not the keyword
+_PAIN_TEMPLATES = [
+    "how do I find {kw}",
+    "{kw} frustrated OR struggling OR \"wish there was\" OR \"looking for\"",
+]
+
+# Pain language patterns — checked against post titles AND selftext
+_PAIN_PHRASES = [
+    "wish", "need", "looking for", "frustrated", "struggle",
+    "lonely", "hard to find", "difficult", "impossible", "can't find",
+    "where can i", "does anyone know", "alternative to",
+    "nothing works", "sick of", "tired of", "help me find",
+    "recommendation", "suggest", "any good", "is there a",
+    "how do i", "where do i", "why is it so hard",
+]
+
+
+def _route_subreddits(cluster: dict) -> list[str]:
+    """Pick 3-5 relevant subreddits for a cluster based on keywords and category."""
+    texts = [cluster["cluster_name"].lower()]
+    for m in cluster["members"][:5]:
+        texts.append(m["keyword"].lower())
+    if cluster.get("category"):
+        texts.append(cluster["category"].lower())
+    all_text = " ".join(texts)
+
+    matched_subs: list[str] = []
+    seen: set[str] = set()
+    for domain, subs in SUBREDDIT_MAP.items():
+        if domain in all_text:
+            for s in subs:
+                if s not in seen:
+                    matched_subs.append(s)
+                    seen.add(s)
+
+    if not matched_subs:
+        matched_subs = list(_GENERAL_SUBS)
+
+    return matched_subs[:5]
+
+
+def _search_subreddit(subreddit: str, query: str,
+                      limit: int = 15,
+                      time_filter: str = "month") -> list[dict]:
+    """Search a specific subreddit. Returns list of post dicts."""
+    encoded_q = urllib.request.quote(query, safe='')
     url = (
-        f"https://www.reddit.com/search.json"
-        f"?q={urllib.request.quote(keyword, safe='')}"
-        f"&sort=relevance&t={time_filter}&limit={limit}"
+        f"https://www.reddit.com/r/{subreddit}/search.json"
+        f"?q={encoded_q}&restrict_sr=1&sort=relevance"
+        f"&t={time_filter}&limit={limit}"
     )
     req = urllib.request.Request(url, headers=_HEADERS)
 
     try:
         with urllib.request.urlopen(req, timeout=15) as resp:
             data = json.loads(resp.read().decode("utf-8"))
-    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as e:
-        print(f"[reddit] Search failed for '{keyword}': {e}")
-        return {
-            "keyword": keyword, "total_posts": 0,
-            "subreddit_hits": {}, "top_posts": [], "pain_signal": False,
-        }
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
+        return []
 
     posts_raw = data.get("data", {}).get("children", [])
-    all_posts: list[dict] = []
-    sub_counter: Counter = Counter()
-
+    results = []
     for p in posts_raw:
         pd = p.get("data", {})
-        sub = pd.get("subreddit", "unknown")
-        sub_counter[sub] += 1
-        all_posts.append({
+        results.append({
             "title":        pd.get("title", ""),
-            "subreddit":    sub,
+            "selftext":     pd.get("selftext", "")[:500],
+            "subreddit":    pd.get("subreddit", subreddit),
             "score":        pd.get("score", 0),
             "url":          f"https://reddit.com{pd.get('permalink', '')}",
             "num_comments": pd.get("num_comments", 0),
             "created_utc":  pd.get("created_utc", 0),
         })
+    return results
 
-    # Sort by engagement (score + comments)
+
+def check_reddit(keyword: str, cluster: dict | None = None,
+                 limit: int = 25,
+                 time_filter: str = "month") -> dict:
+    """
+    Search targeted subreddits with pain-framed queries for a keyword.
+
+    If a cluster is provided, routes to relevant subreddits.
+    Otherwise falls back to general subreddits.
+    """
+    if cluster:
+        target_subs = _route_subreddits(cluster)
+    else:
+        target_subs = list(_GENERAL_SUBS)
+
+    queries = [t.format(kw=keyword) for t in _PAIN_TEMPLATES]
+
+    all_posts: list[dict] = []
+    seen_urls: set[str] = set()
+    sub_counter: Counter = Counter()
+
+    for sub in target_subs:
+        for query in queries:
+            time.sleep(_REQUEST_DELAY)
+            per_query_limit = max(5, limit // (len(queries) * len(target_subs)))
+            results = _search_subreddit(sub, query, limit=per_query_limit,
+                                        time_filter=time_filter)
+            for p in results:
+                if p["url"] not in seen_urls:
+                    seen_urls.add(p["url"])
+                    all_posts.append(p)
+                    sub_counter[p["subreddit"]] += 1
+
+    # Sort by engagement
     all_posts.sort(key=lambda p: p["score"] + p["num_comments"], reverse=True)
     top = all_posts[:10]
 
-    # Pain signal — frustration language in titles
-    pain_words = [
-        "wish", "need", "looking for", "frustrated", "struggle",
-        "lonely", "hard to", "difficult", "impossible", "can't find",
-        "where can i", "does anyone know", "alternative to",
-        "nothing works", "sick of", "tired of", "help me",
-        "recommendation", "suggest", "any good",
-    ]
-    pain_signal = any(
-        any(pw in p["title"].lower() for pw in pain_words)
-        for p in all_posts
-    )
+    # Pain signal — check titles AND selftext
+    pain_signal = False
+    for p in all_posts:
+        searchable = (p["title"] + " " + p.get("selftext", "")).lower()
+        if any(pw in searchable for pw in _PAIN_PHRASES):
+            pain_signal = True
+            break
 
-    # Reliability check — are the results actually about this keyword?
-    # At least 1 of the top 5 posts should mention a meaningful keyword word.
-    kw_words = {
-        w for w in keyword.lower().split()
+    # Reliability: at least 2 of top 10 posts must contain a keyword stem
+    kw_stems = {
+        _stem(w) for w in keyword.lower().split()
         if w not in {"a", "an", "the", "to", "for", "of", "in", "how",
                      "is", "are", "i", "my", "do", "can", "near", "me"}
         and len(w) > 2
     }
-    on_topic = sum(
-        1 for p in all_posts[:5]
-        if any(w in p["title"].lower() for w in kw_words)
-    )
-    # Signal is reliable if at least 1 post is visibly on-topic
-    pain_reliable = pain_signal and on_topic >= 1
+
+    on_topic = 0
+    for p in all_posts[:10]:
+        searchable = (p["title"] + " " + p.get("selftext", "")).lower()
+        if any(stem in searchable for stem in kw_stems):
+            on_topic += 1
+
+    pain_reliable = pain_signal and on_topic >= 2
+
+    # Strip selftext from output — used for analysis only
+    clean_posts = [{k: v for k, v in p.items() if k != "selftext"} for p in top]
 
     return {
-        "keyword":        keyword,
-        "total_posts":    len(all_posts),
-        "subreddit_hits": dict(sub_counter.most_common(10)),
-        "top_posts":      top,
-        "pain_signal":    pain_signal,
-        "pain_reliable":  pain_reliable,
+        "keyword":         keyword,
+        "total_posts":     len(all_posts),
+        "subreddit_hits":  dict(sub_counter.most_common(10)),
+        "top_posts":       clean_posts,
+        "pain_signal":     pain_signal,
+        "pain_reliable":   pain_reliable,
+        "targeted_subs":   target_subs,
     }
 
 
@@ -153,23 +239,21 @@ def _best_search_keyword(cluster: dict) -> str:
 def validate_clusters(clusters: list[dict],
                       max_checks: int = 3) -> list[dict]:
     """
-    For the top N clusters, run Reddit validation using the best available
-    search keyword (not necessarily top_keyword — see _best_search_keyword).
+    For the top N clusters, run targeted Reddit validation.
     Mutates clusters in-place, adding 'reddit' field.
     """
     for i, cluster in enumerate(clusters[:max_checks]):
-        if i > 0:
-            time.sleep(_REQUEST_DELAY)
         kw = _best_search_keyword(cluster)
         print(f"[reddit] Checking: {kw}  (cluster: {cluster['cluster_name']})")
-        result = check_reddit(kw)
+        result = check_reddit(kw, cluster=cluster)
         cluster["reddit"] = result
 
         subs = list(result["subreddit_hits"].keys())[:3]
         sub_str = ", ".join(f"r/{s}" for s in subs) if subs else "none"
+        reliable_tag = " (reliable)" if result["pain_reliable"] else ""
         print(f"[reddit]   {result['total_posts']} posts  "
               f"subs=[{sub_str}]  "
-              f"pain_signal={result['pain_signal']}")
+              f"pain_signal={result['pain_signal']}{reliable_tag}")
 
     return clusters
 
@@ -181,8 +265,9 @@ if __name__ == "__main__":
     print(f"Searching Reddit for '{keyword}'...\n")
     result = check_reddit(keyword)
     print(f"Total posts: {result['total_posts']}")
+    print(f"Targeted subs: {result['targeted_subs']}")
     print(f"Subreddits: {result['subreddit_hits']}")
-    print(f"Pain signal: {result['pain_signal']}")
+    print(f"Pain signal: {result['pain_signal']} (reliable: {result['pain_reliable']})")
     print(f"\nTop posts:")
     for p in result["top_posts"][:5]:
         print(f"  [r/{p['subreddit']}] {p['title']}")

@@ -16,13 +16,14 @@ Trends appearing in 2+ sources get a confidence boost. Keywords are filtered, sc
 3. Filter — strip brands, sports, entertainment, news events, person names
 4. Score — 0–100 composite (35% growth velocity, 25% buildability, 20% volume, 20% freshness)
 5. Cluster — group by newsletter section headers, then by shared stemmed tokens
-6. Reddit validate — search top clusters for pain signals ("wish there was", "looking for")
-7. Time-series enrich — `interest_over_time()` for top ~15 keywords; updates freshness score
-8. Report — `reporter.py` writes a plain-English briefing with build opportunities
+6. Reddit validate — targeted subreddit search + pain-framed queries
+7. Competitor check — Google CSE for top keywords; GREEN/YELLOW/RED verdict
+8. Time-series enrich — `interest_over_time()` for top ~15 keywords; updates freshness score
+9. Report — LLM renames clusters by human need, generates BUILD/WATCH/SKIP decisions
 
 **Output:**
-- `data/signals_YYYY-MM-DD.json` — full structured output (clusters + scores + Reddit)
-- `briefings/briefing_YYYY-MM-DD.md` — plain-English: cluster table, the story, build opportunities
+- `data/signals_YYYY-MM-DD.json` — full structured output (clusters + scores + Reddit + competition)
+- `briefings/briefing_YYYY-MM-DD.md` — plain-English: cluster table, the story, BUILD/WATCH/SKIP decisions
 
 **Scheduling:** `run_daily.bat` runs via Windows Task Scheduler at 9:00 AM daily.
 

@@ -26,6 +26,7 @@ from email_ingest import fetch_email
 from scorer import is_buildable, score_trend
 from cluster import detect_clusters, get_unclustered
 from reddit_check import validate_clusters
+from competitor_check import validate_build_opportunities
 from reporter import write_briefing
 
 DATA_DIR = Path(__file__).parent / "data"
@@ -161,7 +162,8 @@ def _cross_reference(trends: list[dict]) -> list[dict]:
 
 
 def run(sources: list[str], top_n: int = 15,
-        skip_series: bool = False, skip_reddit: bool = False) -> Path | None:
+        skip_series: bool = False, skip_reddit: bool = False,
+        skip_competitor: bool = False) -> Path | None:
     today = date.today().isoformat()
     print(f"[pipeline] date={today}  sources={sources}")
 
@@ -214,6 +216,14 @@ def run(sources: list[str], top_n: int = 15,
     if not skip_reddit and clusters:
         print("[pipeline] Validating top clusters against Reddit...")
         validate_clusters(clusters, max_checks=3)
+
+    # --- Stage 5.5: Competitor check ---
+    competition = {}
+    if not skip_competitor and clusters:
+        print("[pipeline] Running competitor checks...")
+        competition = validate_build_opportunities(
+            clusters, unclustered, max_checks=5
+        )
 
     # --- Stage 6: Enrich top keywords with time series ---
     # Collect top keywords for enrichment: cluster tops + unclustered tops
@@ -280,6 +290,7 @@ def run(sources: list[str], top_n: int = 15,
         "sources": sources,
         "clusters": [],
         "unclustered": [],
+        "competition": competition if competition else {},
     }
 
     for c in clusters:
@@ -319,7 +330,7 @@ def run(sources: list[str], top_n: int = 15,
     # --- Stage 8: Generate briefing ---
     # Wrap so a briefing bug never loses a successful data run
     try:
-        briefing_path = write_briefing(output, today)
+        briefing_path = write_briefing(output, today, competition=competition)
         print(f"[pipeline] Briefing written -> {briefing_path}")
     except Exception as exc:  # noqa: BLE001
         print(f"[pipeline] Briefing generation failed (data saved): {exc}")
@@ -396,6 +407,8 @@ def main() -> None:
                         help="Skip time-series enrichment (faster)")
     parser.add_argument("--no-reddit", action="store_true",
                         help="Skip Reddit validation (faster)")
+    parser.add_argument("--no-competitor", action="store_true",
+                        help="Skip competitor check (faster)")
 
     args = parser.parse_args()
 
@@ -411,7 +424,7 @@ def main() -> None:
         sources = ["trendspy", "rss", "email"]
 
     run(sources=sources, top_n=args.top, skip_series=args.no_series,
-        skip_reddit=args.no_reddit)
+        skip_reddit=args.no_reddit, skip_competitor=args.no_competitor)
 
 
 if __name__ == "__main__":

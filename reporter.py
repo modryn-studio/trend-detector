@@ -4,11 +4,16 @@ reporter.py — daily briefing generator
 Reads today's signals JSON and writes a plain-English markdown briefing
 to briefings/briefing_YYYY-MM-DD.md.
 
-Rule-based reasoning — no LLM. Logic:
+Uses OpenAI Structured Outputs (gpt-5-mini) for:
+  - Cluster renaming: transforms Google's labels into human-need descriptions
+  - BUILD/WATCH/SKIP decisions: structured actionable verdicts per cluster
+
+Rule-based sections (no LLM):
   1. Cluster table: what's trending, ranked
   2. Macro-theme detection: are multiple clusters covering the same underlying need?
-  3. Build opportunities: which signals translate to something you can actually ship?
-  4. Reddit validation: is the pain real, or did the search hit noise?
+  3. Reddit validation: is the pain real, or did the search hit noise?
+
+If OPENAI_API_KEY is not set, falls back to rule-based only — briefing always generates.
 
 Usage:
   python reporter.py                    # uses today's signals file
@@ -17,13 +22,33 @@ Usage:
 
 import argparse
 import json
+import os
 import re
 from collections import Counter
 from datetime import date
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).parent / ".env")
+
 DATA_DIR    = Path(__file__).parent / "data"
 BRIEFING_DIR = Path(__file__).parent / "briefings"
+
+# ---------------------------------------------------------------------------
+# OpenAI setup — optional, briefing degrades gracefully without it
+# ---------------------------------------------------------------------------
+
+_OPENAI_MODEL = "gpt-5-mini"
+_openai_client = None
+
+_api_key = os.getenv("OPENAI_API_KEY", "")
+if _api_key:
+    try:
+        from openai import OpenAI
+        _openai_client = OpenAI(api_key=_api_key)
+    except ImportError:
+        print("[reporter] openai package not installed — LLM features disabled")
 
 # Clusters whose names look like token-based fallbacks ("gold / future / stock")
 # vs. Google editorial names ("Making Friends"). We use this to detect
@@ -172,8 +197,11 @@ def _cluster_table_section(clusters: list[dict], unclustered: list[dict]) -> str
         "|------|---------|-------|-------------|",
     ]
     for i, c in enumerate(clusters, 1):
+        name = c.get("display_name", c["cluster_name"])
+        original = c.get("original_name")
+        name_cell = f"{name} *(was: {original})*" if original else name
         lines.append(
-            f"| {i} | {c['cluster_name']} | {c['cluster_score']} "
+            f"| {i} | {name_cell} | {c['cluster_score']} "
             f"| {_hot_signals(c)} |"
         )
     lines.append("")
@@ -293,156 +321,276 @@ def _story_section(
     return "\n".join(lines)
 
 
-def _best_fast_build(
-    clusters: list[dict], unclustered: list[dict]
-) -> dict | None:
-    """Find the single most actionable fast-build keyword.
+def _rename_cluster(cluster: dict) -> str:
+    """Use GPT-5 Mini to rename a cluster by the human need it represents.
 
-    Criteria: buildability=high, score >= 55, breakout or strong growth,
-    2-5 clean words, not a truncated phrase.
+    Input: member keywords + Google's label.
+    Output: 3-6 word human-need description, e.g. "Finding friends as an adult".
+    Falls back to original name if LLM unavailable.
     """
-    candidates = []
+    if not _openai_client:
+        return cluster["cluster_name"]
 
-    # Check unclustered first (already independent signals)
-    for t in unclustered:
-        g = t.get("_raw", {}).get("google_growth_pct", 0)
-        words = t["keyword"].split()
-        if (
-            t.get("buildability") == "high"
-            and t["score"] >= 55
-            and g >= 200
-            and 2 <= len(words) <= 5
-            and "..." not in t["keyword"]
-            and "\u2026" not in t["keyword"]
-        ):
-            candidates.append({"keyword": t["keyword"], "score": t["score"],
-                                "growth": g, "cluster": None})
+    keywords = [m["keyword"] for m in cluster["members"][:10]]
+    original = cluster["cluster_name"]
 
-    # Check cluster members
-    for c in clusters:
-        for m in c["members"]:
-            g = m.get("_raw", {}).get("google_growth_pct", 0)
-            words = m["keyword"].split()
-            if (
-                m.get("buildability") == "high"
-                and m["score"] >= 55
-                and g >= 5000
-                and 2 <= len(words) <= 5
-                and "..." not in m["keyword"]
-                and "\u2026" not in m["keyword"]
-            ):
-                candidates.append({"keyword": m["keyword"], "score": m["score"],
-                                    "growth": g, "cluster": c["cluster_name"]})
+    prompt = (
+        f"These trending search keywords were grouped into a cluster "
+        f"called \"{original}\":\n\n"
+        f"{json.dumps(keywords)}\n\n"
+        f"What human need or frustration drives ALL of these searches?\n"
+        f"Respond with a short phrase (3-6 words) that names the underlying "
+        f"need from the searcher's perspective. Not a category label — "
+        f"a human need. Examples: 'Finding friends as an adult', "
+        f"'Tracking gold as inflation hedge', 'Planning meals on a budget'."
+    )
 
-    if not candidates:
+    try:
+        resp = _openai_client.responses.parse(
+            model=_OPENAI_MODEL,
+            input=[{"role": "user", "content": prompt}],
+            text_format={
+                "format": {
+                    "type": "json_schema",
+                    "name": "cluster_rename",
+                    "strict": True,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "human_need_name": {
+                                "type": "string",
+                                "description": "3-6 word human-need description"
+                            }
+                        },
+                        "required": ["human_need_name"],
+                        "additionalProperties": False,
+                    },
+                }
+            },
+        )
+        parsed = json.loads(resp.output_text)
+        name = parsed.get("human_need_name", original)
+        return name if name else original
+    except Exception as exc:
+        print(f"[reporter] LLM rename failed for '{original}': {exc}")
+        return original
+
+
+def _llm_decision(cluster: dict, competition: dict | None,
+                   reddit: dict | None) -> dict | None:
+    """Use GPT-5 Mini Structured Outputs for BUILD/WATCH/SKIP verdict.
+
+    Returns dict with: decision, confidence, build_idea, target_slug,
+    monetization, reason, risk. Returns None on failure.
+    """
+    if not _openai_client:
         return None
-    candidates.sort(key=lambda x: (x["growth"], x["score"]), reverse=True)
-    return candidates[0]
+
+    keywords = [m["keyword"] for m in cluster["members"][:10]]
+    top_kw = cluster.get("top_keyword", keywords[0] if keywords else "")
+    score = cluster.get("cluster_score", 0)
+
+    # Build context block
+    context_parts = [
+        f"Cluster: {cluster['cluster_name']}",
+        f"Score: {score}",
+        f"Keywords: {json.dumps(keywords)}",
+        f"Top keyword: {top_kw}",
+    ]
+
+    if competition:
+        comp = competition.get(top_kw, {})
+        if comp:
+            context_parts.append(
+                f"Competition: {comp.get('verdict', 'UNKNOWN')} "
+                f"({comp.get('competitor_count', '?')} existing tools)"
+            )
+            if comp.get("top_competitors"):
+                names = [c["domain"] for c in comp["top_competitors"][:3]]
+                context_parts.append(f"Top competitors: {', '.join(names)}")
+
+    if reddit:
+        pain = reddit.get("pain_signal", False)
+        reliable = reddit.get("pain_reliable", False)
+        total = reddit.get("total_posts", 0)
+        context_parts.append(
+            f"Reddit: {total} posts, pain_signal={pain}, reliable={reliable}"
+        )
+
+    context = "\n".join(context_parts)
+
+    prompt = (
+        f"You are a solo developer evaluating whether to build a tool.\n\n"
+        f"{context}\n\n"
+        f"Decide: BUILD (strong signal, clear use case, weak competition), "
+        f"WATCH (interesting but unclear execution or medium competition), "
+        f"or SKIP (strong competition, unclear need, or low signal).\n\n"
+        f"Rules:\n"
+        f"- Competition RED + no pain signal → SKIP\n"
+        f"- Competition RED + strong pain → WATCH (differentiation possible)\n"
+        f"- Competition GREEN + pain signal → BUILD\n"
+        f"- Reddit inconclusive → downgrade confidence one level\n"
+        f"- Score < 50 → SKIP unless exceptional pain signal\n"
+    )
+
+    try:
+        resp = _openai_client.responses.parse(
+            model=_OPENAI_MODEL,
+            input=[{"role": "user", "content": prompt}],
+            text_format={
+                "format": {
+                    "type": "json_schema",
+                    "name": "build_decision",
+                    "strict": True,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "decision": {
+                                "type": "string",
+                                "enum": ["BUILD", "WATCH", "SKIP"],
+                            },
+                            "confidence": {
+                                "type": "string",
+                                "enum": ["HIGH", "MED", "LOW"],
+                            },
+                            "build_idea": {
+                                "type": "string",
+                                "description": "One-sentence product idea",
+                            },
+                            "target_slug": {
+                                "type": "string",
+                                "description": "URL-friendly slug, e.g. 'friend-finder'",
+                            },
+                            "monetization": {
+                                "type": "string",
+                                "description": "How this makes money (ads, freemium, affiliate)",
+                            },
+                            "reason": {
+                                "type": "string",
+                                "description": "Why this decision (2-3 sentences)",
+                            },
+                            "risk": {
+                                "type": "string",
+                                "description": "Primary risk (1 sentence)",
+                            },
+                        },
+                        "required": ["decision", "confidence", "build_idea",
+                                     "target_slug", "monetization", "reason", "risk"],
+                        "additionalProperties": False,
+                    },
+                }
+            },
+        )
+        return json.loads(resp.output_text)
+    except Exception as exc:
+        print(f"[reporter] LLM decision failed for '{cluster['cluster_name']}': {exc}")
+        return None
 
 
-def _build_section(
+def _decision_section(
     clusters: list[dict],
     unclustered: list[dict],
-    editorial_group: list[int],
+    competition: dict | None,
 ) -> str:
-    lines = ["## Build Opportunities", ""]
+    """BUILD/WATCH/SKIP verdicts for top clusters + unclustered.
 
-    fast = _best_fast_build(clusters, unclustered)
-    top = clusters[0] if clusters else None
-    group_clusters = [clusters[i] for i in editorial_group] if len(editorial_group) >= 2 else None
+    Uses LLM when available, falls back to rule-based heuristics.
+    """
+    lines = ["## Build Decisions", ""]
 
-    # --- Option A: fastest build ---
-    if fast:
-        g_label = _growth_label(fast["growth"])
-        scope = "1–2 day build. Pure logic, no backend needed." if len(fast["keyword"].split()) <= 4 else "Weekend project."
-        context = f" (from cluster: {fast['cluster']})" if fast["cluster"] else ""
-        lines.append(f"### Option A — Fastest build")
-        lines.append("")
-        lines.append(
-            f'**"{fast["keyword"]}"** — {g_label}{context}'
-        )
-        lines.append("")
-        lines.append(
-            f"This search query has a completely clear use case. "
-            f"The person knows exactly what they want; there's no ambiguity in the intent. "
-            f"{scope} "
-            f"The query is specific enough that you'd rank for it quickly with no competition "
-            f"in that exact framing."
-        )
+    if not _openai_client:
+        lines.append("*OPENAI_API_KEY not set — using rule-based heuristics.*")
         lines.append("")
 
-    # --- Option B: biggest signal ---
-    lines.append("### Option B — Biggest signal")
-    lines.append("")
+    # Evaluate top 3 clusters + top 2 unclustered
+    targets: list[tuple[str, dict, dict | None]] = []  # (name, data, reddit)
+    for c in clusters[:3]:
+        targets.append((c["cluster_name"], c, c.get("reddit")))
 
-    if group_clusters and len(group_clusters) >= 2:
-        names = [c["cluster_name"] for c in group_clusters]
-        total_members = sum(c["member_count"] for c in group_clusters)
-        total_bo = _total_breakouts(group_clusters)
+    for t in unclustered[:2]:
+        # Wrap unclustered as a pseudo-cluster for consistent handling
+        pseudo = {
+            "cluster_name": t["keyword"],
+            "cluster_score": t["score"],
+            "top_keyword": t["keyword"],
+            "members": [t],
+        }
+        targets.append((t["keyword"], pseudo, None))
 
-        if len(names) == 2:
-            name_str = f"{names[0]} / {names[1]}"
-        else:
-            name_str = " / ".join(names)
+    for name, data, reddit in targets:
+        decision = _llm_decision(data, competition, reddit)
 
-        lines.append(f"**{name_str}** — {total_members} keywords, {total_bo} breakout")
-        lines.append("")
-
-        bo_examples = []
-        for c in group_clusters:
-            bo_examples.extend(_breakout_kws(c)[:2])
-
-        if bo_examples:
-            quoted = ", ".join(f'"{k}"' for k in bo_examples[:5])
-            lines.append(
-                f"{quoted} are all breakout simultaneously across "
-                f"{len(group_clusters)} separate clusters."
+        if decision:
+            icon = {"BUILD": "🟢", "WATCH": "🟡", "SKIP": "🔴"}.get(
+                decision["decision"], "❓"
             )
-        lines.append(
-            "People are searching for this from multiple angles — which means "
-            "the demand exists whether the product takes one angle or covers all three. "
-            "Harder to build than Option A but the signal is unusually strong. "
-            "The data will still be here in a month."
-        )
-        lines.append("")
-    elif top:
-        bo = _breakout_kws(top)
-        lines.append(f"**{top['cluster_name']}** — score {top['cluster_score']}, {top['member_count']} keywords")
-        lines.append("")
-        if bo:
-            lines.append(f"Breakout keywords: {', '.join(chr(34) + k + chr(34) for k in bo[:3])}")
+            lines.append(
+                f"### {icon} {decision['decision']} — {name} "
+                f"[{decision['confidence']}]"
+            )
             lines.append("")
+            lines.append(f"**Idea:** {decision['build_idea']}")
+            lines.append(f"**Slug:** `{decision['target_slug']}`")
+            lines.append(f"**Monetization:** {decision['monetization']}")
+            lines.append(f"**Reasoning:** {decision['reason']}")
+            lines.append(f"**Risk:** {decision['risk']}")
+        else:
+            # Rule-based fallback
+            score = data.get("cluster_score", 0)
+            comp_verdict = "UNKNOWN"
+            if competition:
+                kw = data.get("top_keyword", "")
+                comp_data = competition.get(kw, {})
+                comp_verdict = comp_data.get("verdict", "UNKNOWN")
 
-    # --- My read ---
-    lines.append("---")
-    lines.append("")
-    lines.append("**My read:**")
-    lines.append("")
-    if fast and group_clusters:
-        lines.append(
-            f"Start with Option A — the keyword is specific, the use case is clear, "
-            f"and you can ship it before the trend peaks. "
-            f"Option B is the better business — multiple clusters all pointing at the same need "
-            f"is a rare signal — but it's a longer road. "
-            f"Do A first, validate you can rank and convert, then reassess B."
-        )
-    elif fast:
-        lines.append(
-            f"Option A is the clear first move. "
-            f"The search query is specific enough to rank for with minimal effort, "
-            f"and the use case is unambiguous."
-        )
-    elif group_clusters:
-        lines.append(
-            f"No obvious fast-build keyword today, but Option B has unusually strong signal. "
-            f"Worth deeper research into what specifically people can't find."
-        )
-    elif top:
-        lines.append(
-            f"**{top['cluster_name']}** is the strongest cluster. "
-            f"Look at the breakout keywords for the sharpest product angle."
-        )
-    lines.append("")
+            has_pain = reddit and reddit.get("pain_signal", False)
+
+            if comp_verdict == "RED" and not has_pain:
+                verdict = "SKIP"
+                icon = "🔴"
+            elif comp_verdict == "GREEN" and has_pain:
+                verdict = "BUILD"
+                icon = "🟢"
+            elif score >= 70 and comp_verdict in ("GREEN", "UNKNOWN"):
+                verdict = "BUILD"
+                icon = "🟢"
+            elif score >= 50:
+                verdict = "WATCH"
+                icon = "🟡"
+            else:
+                verdict = "SKIP"
+                icon = "🔴"
+
+            lines.append(f"### {icon} {verdict} — {name}")
+            lines.append("")
+            lines.append(
+                f"Score: {score} · Competition: {comp_verdict}"
+                + (f" · Pain: {'yes' if has_pain else 'no'}"
+                   if reddit else " · Reddit: not checked")
+            )
+
+        lines.append("")
+
+    return "\n".join(lines)
+
+
+def _competition_section(competition: dict | None) -> str:
+    """Render competitor check results."""
+    if not competition:
+        return ""
+
+    lines = ["## Competition Check", ""]
+
+    for kw, data in competition.items():
+        verdict = data.get("verdict", "UNKNOWN")
+        icon = {"GREEN": "✅", "YELLOW": "⚠️", "RED": "🔴"}.get(verdict, "❓")
+        count = data.get("competitor_count", 0)
+        lines.append(f"**{kw}** — {icon} {verdict} ({count} tools found)")
+
+        if data.get("top_competitors"):
+            for comp in data["top_competitors"][:3]:
+                lines.append(f"  - [{comp['domain']}]({comp['url']})")
+        lines.append("")
 
     return "\n".join(lines)
 
@@ -500,7 +648,7 @@ def _reddit_section(clusters: list[dict]) -> str:
 # Orchestration
 # ---------------------------------------------------------------------------
 
-def generate_briefing(signals: dict) -> str:
+def generate_briefing(signals: dict, competition: dict | None = None) -> str:
     today = signals.get("date", date.today().isoformat())
     clusters = signals.get("clusters", [])
     unclustered = signals.get("unclustered", [])
@@ -508,6 +656,16 @@ def generate_briefing(signals: dict) -> str:
 
     editorial_group = _find_editorial_group(clusters)
     shared = _shared_stems(clusters, editorial_group) if len(editorial_group) >= 2 else []
+
+    # Rename clusters using LLM (falls back to original name)
+    for c in clusters:
+        original = c["cluster_name"]
+        renamed = _rename_cluster(c)
+        if renamed != original:
+            c["display_name"] = renamed
+            c["original_name"] = original
+        else:
+            c["display_name"] = original
 
     source_str = " + ".join(sources) if sources else "unknown"
     total_keywords = sum(c["member_count"] for c in clusters) + len(unclustered)
@@ -526,8 +684,12 @@ def generate_briefing(signals: dict) -> str:
         _story_section(clusters, editorial_group, shared),
         "---",
         "",
-        _build_section(clusters, unclustered, editorial_group),
+        _decision_section(clusters, unclustered, competition),
     ]
+
+    comp_section = _competition_section(competition)
+    if comp_section:
+        parts += ["---", "", comp_section]
 
     reddit_section = _reddit_section(clusters)
     if reddit_section:
@@ -536,10 +698,11 @@ def generate_briefing(signals: dict) -> str:
     return "\n".join(parts)
 
 
-def write_briefing(signals: dict, date_str: str) -> Path:
+def write_briefing(signals: dict, date_str: str,
+                   competition: dict | None = None) -> Path:
     BRIEFING_DIR.mkdir(exist_ok=True)
     out_path = BRIEFING_DIR / f"briefing_{date_str}.md"
-    content = generate_briefing(signals)
+    content = generate_briefing(signals, competition=competition)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(content)
     return out_path
@@ -557,12 +720,12 @@ def main() -> None:
         print(f"[reporter] {e}")
         return
 
-    out_path = write_briefing(signals, date_str)
+    out_path = write_briefing(signals, date_str, competition=None)
     print(f"[reporter] Briefing written -> {out_path}")
 
     # Also print to terminal so it appears in the daily log
     print("\n" + "=" * 60)
-    print(generate_briefing(signals))
+    print(generate_briefing(signals, competition=None))
     print("=" * 60)
 
 

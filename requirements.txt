@@ -1,3 +1,4 @@
 trendspy
 python-dotenv==1.0.1
 beautifulsoup4
+openai

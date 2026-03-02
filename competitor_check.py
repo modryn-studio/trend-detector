@@ -1,0 +1,212 @@
+"""
+competitor_check.py — check if tools already exist for a trend keyword
+
+Uses Brave Search API to check for existing tools on product-discovery
+domains. Determines GREEN/YELLOW/RED signal.
+
+Note: Google Custom Search JSON API is closed to new customers (Feb 2026).
+Brave Search API is the drop-in replacement:
+  - $5 free credits/month = 1,000 free queries/month
+  - Pipeline uses ~5 queries/run (~150/month) — within free tier
+
+Setup:
+  1. Sign up at https://api-dashboard.search.brave.com/register
+  2. Create an API key (free plan — $5 credit/month auto-applied)
+  3. Add to .env:
+       BRAVE_SEARCH_KEY=your-api-key
+
+Results are filtered client-side to only count hits on tool-discovery
+domains (ProductHunt, GitHub, G2, Capterra, AlternativeTo, etc.) so the
+GREEN/YELLOW/RED signal remains precise regardless of full-web results.
+"""
+
+import json
+import os
+import time
+import urllib.request
+import urllib.error
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).parent / ".env")
+
+_BRAVE_KEY = os.getenv("BRAVE_SEARCH_KEY", "")
+_REQUEST_DELAY = 1.2  # Brave free tier: 1 req/sec
+
+# Domains that are unambiguous evidence of an existing purpose-built tool.
+# Only results from these domains count toward competitor score.
+_TOOL_DOMAINS = {
+    "producthunt.com", "alternativeto.net", "github.com",
+    "g2.com", "capterra.com", "appsumo.com", "getapp.com",
+    "sourceforge.net", "softwareadvice.com", "toolify.ai",
+}
+
+# Query suffixes that reveal tool-intent competition
+_TOOL_SUFFIXES = ["tool", "calculator", "finder", "app", "generator"]
+
+
+def _is_tool_result(item: dict) -> bool:
+    """Return True if a result is on a known tool-discovery domain."""
+    url = item.get("url", "")
+    for domain in _TOOL_DOMAINS:
+        if domain in url:
+            return True
+    return False
+
+
+def _search_brave(query: str, count: int = 10) -> list[dict]:
+    """Run a Brave web search query. Returns normalized result items."""
+    if not _BRAVE_KEY:
+        return []
+
+    encoded_q = urllib.request.quote(query, safe='')
+    url = (
+        f"https://api.search.brave.com/res/v1/web/search"
+        f"?q={encoded_q}&count={count}&search_lang=en"
+    )
+
+    try:
+        req = urllib.request.Request(
+            url,
+            headers={"X-Subscription-Token": _BRAVE_KEY, "Accept": "application/json"},
+        )
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as e:
+        print(f"[competitor] Brave search failed for '{query}': {e}")
+        return []
+
+    # Normalize to the shape the rest of the code expects
+    return [
+        {"url": r.get("url", ""), "title": r.get("title", "")}
+        for r in data.get("web", {}).get("results", [])
+    ]
+
+
+def check_competition(keyword: str) -> dict:
+    """
+    Check if purpose-built tools already exist for a keyword.
+
+    Searches Brave for tool-intent queries, then filters results to only
+    count hits on known tool-discovery domains (ProductHunt, GitHub, etc.).
+
+    Returns:
+    {
+        "keyword": "bitcoin atm",
+        "queries_searched": ["bitcoin atm tool", "bitcoin atm finder", ...],
+        "competitor_count": 3,
+        "top_competitors": [{"title": "...", "url": "...", "domain": "..."}],
+        "verdict": "GREEN" | "YELLOW" | "RED",
+    }
+    """
+    if not _BRAVE_KEY:
+        return {
+            "keyword": keyword,
+            "queries_searched": [],
+            "competitor_count": 0,
+            "top_competitors": [],
+            "verdict": "UNKNOWN",
+            "error": "BRAVE_SEARCH_KEY not configured",
+        }
+
+    # Build queries: "keyword tool", "keyword finder", etc.
+    # Only search 2 most relevant suffixes to conserve API quota
+    kw_lower = keyword.lower()
+    best_suffixes = []
+    for s in _TOOL_SUFFIXES:
+        if s not in kw_lower:
+            best_suffixes.append(s)
+        if len(best_suffixes) >= 2:
+            break
+    queries = [f"{keyword} {s}" for s in best_suffixes]
+
+    all_tools: list[dict] = []
+    seen_domains: set[str] = set()
+
+    for query in queries:
+        time.sleep(_REQUEST_DELAY)
+        results = _search_brave(query, count=10)
+        for item in results:
+            if _is_tool_result(item):
+                url = item.get("url", "")
+                # Extract domain (e.g. producthunt.com) as dedup key
+                domain = url.split("/")[2] if url.startswith("http") else url
+                if domain not in seen_domains:
+                    seen_domains.add(domain)
+                    all_tools.append({
+                        "title":  item.get("title", ""),
+                        "url":    url,
+                        "domain": domain,
+                    })
+
+    count = len(all_tools)
+
+    if count <= 1:
+        verdict = "GREEN"
+    elif count <= 3:
+        verdict = "YELLOW"
+    else:
+        verdict = "RED"
+
+    return {
+        "keyword":          keyword,
+        "queries_searched":  queries,
+        "competitor_count":  count,
+        "top_competitors":   all_tools[:5],
+        "verdict":           verdict,
+    }
+
+
+def validate_build_opportunities(clusters: list[dict],
+                                 unclustered: list[dict],
+                                 max_checks: int = 5) -> dict:
+    """
+    Run competition checks for top build-worthy keywords.
+
+    Returns dict mapping keyword -> competition result.
+    """
+    keywords_to_check: list[str] = []
+
+    # Top keyword from each cluster (up to 3)
+    for c in clusters[:3]:
+        kw = c.get("top_keyword", "")
+        if kw and kw not in keywords_to_check:
+            keywords_to_check.append(kw)
+
+    # Top unclustered (up to 2)
+    for t in unclustered[:2]:
+        kw = t.get("keyword", "")
+        if kw and kw not in keywords_to_check:
+            keywords_to_check.append(kw)
+
+    keywords_to_check = keywords_to_check[:max_checks]
+
+    results = {}
+    for kw in keywords_to_check:
+        print(f"[competitor] Checking: {kw}")
+        result = check_competition(kw)
+        results[kw] = result
+        icon = {"GREEN": "✅", "YELLOW": "⚠️", "RED": "🔴"}.get(
+            result["verdict"], "❓"
+        )
+        print(f"[competitor]   {icon} {result['verdict']} — "
+              f"{result['competitor_count']} tools found")
+
+    return results
+
+
+# --- Standalone test ---
+if __name__ == "__main__":
+    import sys
+    keyword = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "bitcoin atm"
+    print(f"Checking competition for '{keyword}'...\n")
+    result = check_competition(keyword)
+    print(f"Verdict: {result['verdict']}")
+    print(f"Tool count: {result['competitor_count']}")
+    print(f"Queries: {result['queries_searched']}")
+    if result.get("top_competitors"):
+        print(f"\nTop competitors:")
+        for c in result["top_competitors"]:
+            print(f"  {c['domain']}: {c['title']}")
+            print(f"    {c['url']}")

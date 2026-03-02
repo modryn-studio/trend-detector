@@ -16,7 +16,9 @@ When signal quality is proven over several months of private runs, this becomes 
 - Python 3.12+
 - **trendspy** — Google's internal protobuf Trends API. 1 call = 400+ trending topics. No auth, no selenium.
 - **beautifulsoup4** — Gmail newsletter HTML parsing
-- **python-dotenv** — `.env` for Gmail credentials
+- **python-dotenv** — `.env` for credentials
+- **openai** — GPT-5 Mini with Structured Outputs for cluster renaming + BUILD/WATCH/SKIP decisions
+- **Brave Search API** — competitor check (1,000 free queries/month; Google CSE closed to new customers Feb 2026)
 - Windows Task Scheduler (9 AM daily)
 - Flat JSON files in `/data` — no database
 
@@ -32,14 +34,16 @@ rss_fetcher.py       ← Source 2: Google Trends RSS feed (stdlib XML, no auth)
 email_ingest.py      ← Source 3: Gmail IMAP, parses Google Trends newsletters
 scorer.py            ← noise filter + 0–100 composite score
 cluster.py           ← groups keywords into macro-trend clusters
-reddit_check.py      ← validates top clusters against Reddit (pain signals)
-reporter.py          ← reads signals JSON, writes plain-English markdown briefing
+reddit_check.py      ← validates top clusters against Reddit (targeted subreddits)
+competitor_check.py  ← Brave Search competitor check (GREEN/YELLOW/RED)
+reporter.py          ← LLM-powered briefing: cluster rename + BUILD/WATCH/SKIP
 run_daily.bat        ← Windows Task Scheduler entry point
 data/
   signals_YYYY-MM-DD.json  ← daily output, NEVER delete these
 briefings/
   briefing_YYYY-MM-DD.md   ← daily morning briefing, auto-generated
-.env                 ← GMAIL_ADDRESS, GMAIL_APP_PASSWORD (gitignored)
+.env                 ← GMAIL_ADDRESS, GMAIL_APP_PASSWORD, OPENAI_API_KEY,
+                       BRAVE_SEARCH_KEY (gitignored)
 ```
 
 ## Running the Pipeline
@@ -50,6 +54,7 @@ python pipeline.py --trendspy   # trendspy only (debugging)
 python pipeline.py --rss        # RSS only (debugging)
 python pipeline.py --email      # email only (debugging)
 python pipeline.py --no-series  # skip time-series enrichment (faster)
+python pipeline.py --no-competitor  # skip competitor check (faster)
 ```
 
 The scheduled run (`run_daily.bat`) also uses no flags — relies on the default.
@@ -58,7 +63,7 @@ Output is always `data/signals_YYYY-MM-DD.json` regardless of which sources ran.
 ## Pipeline Stages
 ```
 trendspy ─┐
-RSS      ─┼─► cross-reference ─► noise filter ─► score ─► cluster ─► Reddit ─► time series ─► JSON
+RSS      ─┼─► cross-ref ─► filter ─► score ─► cluster ─► Reddit ─► competitor ─► time series ─► JSON ─► briefing
 Gmail    ─┘
 ```
 
@@ -67,11 +72,12 @@ Gmail    ─┘
 3. **Filter** — `is_buildable()` strips brands, sports, entertainment, news events, person names, single generic words
 4. **Score** — 0–100 composite: 35% growth velocity, 25% buildability, 20% volume, 20% freshness
 5. **Cluster** — Pass 1: group by email newsletter section header (Google's own groupings). Pass 2: group by shared stemmed tokens. No hardcoded synonym maps — must work for any topic regime.
-6. **Reddit validate** — search all of Reddit for top cluster keywords; flag pain signals ("wish there was", "looking for", "frustrated")
-7. **Time series enrich** — `interest_over_time()` for top ~15 keywords; updates freshness score; re-sorts clusters after enrichment
-8. **Report** — `reporter.py` reads the signals JSON and writes `briefings/briefing_YYYY-MM-DD.md`: cluster table, macro-theme detection, build opportunities (Option A / Option B / My read), Reddit validation quality check
+6. **Reddit validate** — targeted subreddit search + pain-framed queries; flag pain signals
+7. **Competitor check** — Brave Search for top 5 keywords; GREEN/YELLOW/RED verdict
+8. **Time series enrich** — `interest_over_time()` for top ~15 keywords; updates freshness score; re-sorts clusters after enrichment
+9. **Report** — `reporter.py`: LLM renames clusters by human need, generates BUILD/WATCH/SKIP decisions with structured outputs, writes `briefings/briefing_YYYY-MM-DD.md`
 
-Total API calls per run: **~7** (1 trending_now + ~3 batched interest_over_time + ~3 Reddit searches)
+Total API calls per run: **~15** (1 trending_now + ~3 batched interest_over_time + ~3 Reddit searches + ~5 Brave Search + ~5 OpenAI)
 
 ## Output Format
 ```json
@@ -96,7 +102,10 @@ Total API calls per run: **~7** (1 trending_now + ~3 batched interest_over_time 
       "category": "finance",
       "_raw": { "google_growth_pct": 1000, "google_volume": 10000 }
     }
-  ]
+  ],
+  "competition": {
+    "friend app": { "verdict": "GREEN", "competitor_count": 1, "top_competitors": [...] }
+  }
 }
 ```
 
