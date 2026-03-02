@@ -90,26 +90,78 @@ def check_reddit(keyword: str,
         for p in all_posts
     )
 
+    # Reliability check — are the results actually about this keyword?
+    # At least 1 of the top 5 posts should mention a meaningful keyword word.
+    kw_words = {
+        w for w in keyword.lower().split()
+        if w not in {"a", "an", "the", "to", "for", "of", "in", "how",
+                     "is", "are", "i", "my", "do", "can", "near", "me"}
+        and len(w) > 2
+    }
+    on_topic = sum(
+        1 for p in all_posts[:5]
+        if any(w in p["title"].lower() for w in kw_words)
+    )
+    # Signal is reliable if at least 1 post is visibly on-topic
+    pain_reliable = pain_signal and on_topic >= 1
+
     return {
         "keyword":        keyword,
         "total_posts":    len(all_posts),
         "subreddit_hits": dict(sub_counter.most_common(10)),
         "top_posts":      top,
         "pain_signal":    pain_signal,
+        "pain_reliable":  pain_reliable,
     }
+
+
+def _best_search_keyword(cluster: dict) -> str:
+    """Pick the most searchable keyword for this cluster.
+
+    Reddit's search works best with 2-5 word phrases. Prefer breakout
+    members that aren't truncated. Fall back to the cluster name if it's
+    short and descriptive (email-sourced clusters = natural English names).
+    """
+    def _word_count_score(kw: str) -> int:
+        """Prefer keywords closest to 3 words."""
+        return abs(len(kw.split()) - 3)
+
+    def _is_clean(kw: str) -> bool:
+        """Reject truncated or malformed keywords."""
+        return "..." not in kw and "\u2026" not in kw and len(kw.split()) >= 2
+
+    # Breakout members with clean 2-5 word phrases
+    candidates = [
+        m["keyword"] for m in cluster["members"]
+        if m.get("_raw", {}).get("google_growth_pct", 0) >= 5000
+        and _is_clean(m["keyword"])
+        and 2 <= len(m["keyword"].split()) <= 5
+    ]
+    if candidates:
+        return min(candidates, key=_word_count_score)
+
+    # Cluster name itself works well for email-sourced clusters ("Making Friends")
+    name = cluster["cluster_name"]
+    if " / " not in name and 1 <= len(name.split()) <= 4:
+        return name
+
+    # Last resort: top_keyword trimmed to 5 words
+    top = cluster["top_keyword"]
+    return " ".join(top.split()[:5])
 
 
 def validate_clusters(clusters: list[dict],
                       max_checks: int = 3) -> list[dict]:
     """
-    For the top N clusters, run Reddit validation on the top keyword.
+    For the top N clusters, run Reddit validation using the best available
+    search keyword (not necessarily top_keyword — see _best_search_keyword).
     Mutates clusters in-place, adding 'reddit' field.
     """
     for i, cluster in enumerate(clusters[:max_checks]):
         if i > 0:
             time.sleep(_REQUEST_DELAY)
-        kw = cluster["top_keyword"]
-        print(f"[reddit] Checking: {kw}")
+        kw = _best_search_keyword(cluster)
+        print(f"[reddit] Checking: {kw}  (cluster: {cluster['cluster_name']})")
         result = check_reddit(kw)
         cluster["reddit"] = result
 

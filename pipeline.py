@@ -27,6 +27,7 @@ from email_ingest import fetch_email
 from scorer import is_buildable, score_trend
 from cluster import detect_clusters, get_unclustered
 from reddit_check import validate_clusters
+from reporter import write_briefing
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -314,6 +315,11 @@ def run(sources: list[str], top_n: int = 15,
     print(f"[pipeline] {len(clusters)} clusters + {len(output['unclustered'])} "
           f"unclustered written -> {out_path}")
     _print_summary(clusters, output["unclustered"])
+
+    # --- Stage 8: Generate briefing ---
+    briefing_path = write_briefing(output, today)
+    print(f"[pipeline] Briefing written -> {briefing_path}")
+
     return out_path
 
 
