@@ -1,108 +1,106 @@
 # Trend Detector — Copilot Context
 
 ## What This Is
-A private Python pipeline that runs daily, pulls rising search trends, scores them, and writes a JSON file Luke reads every morning to decide what to build next. No web server. No database. No users. Just a script and flat files.
+A private Python pipeline that runs daily, pulls rising search trends, scores them, groups them into macro-trend clusters, and writes a JSON file Luke reads every morning to decide what to build next. No web server. No database. No users. Just scripts and flat files.
 
 ## Phase 1 (this repo) — Private Pipeline
-- One script: `pipeline.py`
-- Runs on a cron job at 6:00 AM daily
-- Output: `data/trends_YYYY-MM-DD.json`
-- Keep ALL output files — the history becomes the Phase 2 demo
+- Entry point: `pipeline.py`
+- Runs via Windows Task Scheduler at 9:00 AM daily (`run_daily.bat`)
+- Output: `data/signals_YYYY-MM-DD.json`
+- Keep ALL output files — the history becomes the Phase 2 demo dataset
 
 ## Phase 2 (future, separate repo) — Public Tool
-When Google Trends API alpha access arrives, this becomes a public web tool built on modryn-studio's Next.js boilerplate. Don't build Phase 2 infrastructure here.
+When signal quality is proven over several months of private runs, this becomes a public web tool on modryn-studio's Next.js boilerplate. Don't build Phase 2 infrastructure here.
 
 ## Stack
 - Python 3.12+
-- **trendspy** (`pip install trendspy`) — uses Google's internal protobuf Trends API. 1 call returns 400+ trending topics with volume, growth %, and category. No selenium, no browser automation, no hidden dependencies.
-- Windows Task Scheduler (6 AM daily)
+- **trendspy** — Google's internal protobuf Trends API. 1 call = 400+ trending topics. No auth, no selenium.
+- **beautifulsoup4** — Gmail newsletter HTML parsing
+- **python-dotenv** — `.env` for Gmail credentials
+- Windows Task Scheduler (9 AM daily)
 - Flat JSON files in `/data` — no database
 
 ## Project Structure
 ```
-pipeline.py          ← entry point, run this
-fetcher.py           ← Stage 1: trending_now() + interest_over_time()
-scorer.py            ← Stage 2: filter noise + score 0–100
+pipeline.py          ← entry point, orchestrates all stages
+fetcher.py           ← Source 1: trendspy trending_now() + interest_over_time()
+rss_fetcher.py       ← Source 2: Google Trends RSS feed (stdlib XML, no auth)
+email_ingest.py      ← Source 3: Gmail IMAP, parses Google Trends newsletters
+scorer.py            ← noise filter + 0–100 composite score
+cluster.py           ← groups keywords into macro-trend clusters
+reddit_check.py      ← validates top clusters against Reddit (pain signals)
+run_daily.bat        ← Windows Task Scheduler entry point
 data/
-  trends_YYYY-MM-DD.json   ← daily output, NEVER delete these
-requirements.txt
-.gitignore           ← gitignore .env but NOT /data — keep all history
+  signals_YYYY-MM-DD.json  ← daily output, NEVER delete these
+.env                 ← GMAIL_ADDRESS, GMAIL_APP_PASSWORD (gitignored)
 ```
+
+## Pipeline Stages
+```
+trendspy ─┐
+RSS      ─┼─► cross-reference ─► noise filter ─► score ─► cluster ─► Reddit ─► time series ─► JSON
+Gmail    ─┘
+```
+
+1. **Collect** — fetch from all 3 sources
+2. **Cross-reference** — merge same keyword seen across sources; multi-source hits get a confidence boost (+20 for 2 sources, +40 for 3)
+3. **Filter** — `is_buildable()` strips brands, sports, entertainment, news events, person names, single generic words
+4. **Score** — 0–100 composite: 35% growth velocity, 25% buildability, 20% volume, 20% freshness
+5. **Cluster** — Pass 1: group by email newsletter section header (Google's own groupings). Pass 2: group by shared stemmed tokens. No hardcoded synonym maps — must work for any topic regime.
+6. **Reddit validate** — search all of Reddit for top cluster keywords; flag pain signals ("wish there was", "looking for", "frustrated")
+7. **Time series enrich** — `interest_over_time()` for top ~15 keywords; updates freshness score; re-sorts clusters after enrichment
+
+Total API calls per run: **~7** (1 trending_now + ~3 batched interest_over_time + ~3 Reddit searches)
 
 ## Output Format
 ```json
 {
   "date": "2026-03-01",
-  "trends": [
+  "sources": ["trendspy", "rss", "email"],
+  "clusters": [
+    {
+      "cluster_name": "Making Friends",
+      "cluster_score": 82,
+      "member_count": 4,
+      "top_keyword": "friend app",
+      "growth_signals": ["breakout", "+290%"],
+      "members": [...],
+      "reddit": { "total_posts": 12, "pain_signal": true, "top_posts": [...] }
+    }
+  ],
+  "unclustered": [
     {
       "keyword": "bitcoin atm",
-      "score": 64,
-      "velocity": "rising",
-      "volume": "medium",
-      "buildability": "high",
+      "score": 71,
       "category": "finance",
-      "_raw": {
-        "growth_score": 66.7,
-        "volume_score": 40.0,
-        "buildability_score": 50.0,
-        "freshness_score": 100.0,
-        "google_volume": 10000,
-        "google_growth_pct": 1000
-      }
+      "_raw": { "google_growth_pct": 1000, "google_volume": 10000 }
     }
   ]
 }
 ```
 
-## Stage 1 — Discover (trending_now)
-One API call. No seeds. Google tells us what's rising.
-```python
-from trendspy import Trends
-tr = Trends(request_delay=2)
-trends = tr.trending_now(geo='US')  # 400+ topics, <2 seconds
-```
-Each result includes `.keyword`, `.volume`, `.volume_growth_pct`, `.topics` (Google's category IDs), `.trend_keywords` (related queries).
-
-We filter to topics we care about via `TOPIC_MAP`:
-```python
-TOPIC_MAP = {
-    18: "technology",
-    3:  "finance",
-    7:  "health",
-}
-```
-
-## Stage 2 — Filter + Score
-Noise filtering is the value-add layer. Google gives us raw trending data; we strip everything that isn't a buildable opportunity.
-
-**Noise categories:**
-- Brand names (chatgpt, tesla, netflix, etc.)
+## Noise Filter Rules (scorer.py)
+- Brand names (chatgpt, tesla, netflix, wsj, cnn, fox…)
 - Generic terms (ai, productivity, personal finance)
 - News/events (shooting, earthquake, election)
-- Sports (vs, score, nba, playoff)
+- Sports (vs, score, nba, playoff, basketball, football…)
 - Entertainment (movie, show, episode, concert)
-- Person names (2-word all-alpha → likely celebrity/politician)
+- Person names — 2-word all-alpha → likely celebrity/politician; single-word all-alpha without tool-intent suffix → filtered
+- Single-word all-alpha with no tool-intent signal
 
-**Scoring weights:**
+## Scoring Weights
 | Signal | Weight | Source |
 |--------|--------|--------|
-| Growth % | 35% | Google's trending_now data (no API call needed) |
-| Buildability | 25% | Keyword heuristic (tool, app, tracker → high) |
-| Volume | 20% | Google's trending_now data |
-| Freshness | 20% | Time series peak position (requires interest_over_time) |
+| Growth % | 35% | trending_now growth_pct / email growth string |
+| Buildability | 25% | Keyword heuristic (tool, app, tracker, calculator → high) |
+| Volume | 20% | trending_now volume (email/RSS volume=0 → neutral 50, not penalized) |
+| Freshness | 20% | interest_over_time peak position |
 
-## Time Series Enrichment
-After filtering+scoring, we fetch `interest_over_time` for the top ~15 surviving keywords (batched 5 per call = 3 API calls). This gives us a 30-day time series to compute freshness — has this trend already peaked?
-
-Total API calls per run: **~4** (1 trending_now + 3 interest_over_time batches).
-
-## Why Not Seeds?
-The original pipeline used manually crafted seed keywords per category, then called `related_queries` to discover rising terms. This approach:
-1. Required constant seed tuning (pain-point phrasing vs informational queries)
-2. Made 24-30 API calls per run → guaranteed 429 rate limits
-3. Caused SSL hangs on Windows → required multiprocessing kill hacks
-
-`trending_now()` eliminates all three problems. Google does the discovery; we filter and score.
+## Clustering Rules (cluster.py)
+- `SKIP_CATEGORIES = {"unknown", "technology", "finance", "health", ""}` — trendspy's generic category names don't form meaningful clusters
+- Pass 1 min_size=2, Pass 2 min_size=3
+- Cluster score = avg member score + size bonus (max +25) + growth bonus (max +15)
+- No hardcoded synonym groups — must generalize across any topic domain
 
 ## Code Style
 - Write as a senior engineer: minimal surface area, obvious naming
