@@ -30,11 +30,12 @@ No flags needed — the default runs all 3 sources. Single-source flags (`--tren
 | **Score** | Scores each keyword 0–100: 35% growth velocity, 25% buildability, 20% volume, 20% freshness |
 | **Cluster** | Groups keywords into macro-trend clusters using Google's newsletter section headers first, then shared keyword tokens |
 | **Reddit** | Searches targeted subreddits with pain-framed queries for top clusters — checks for frustration/need signals |
-| **Competitor check** | Brave Search API for top 5 keywords — how many purpose-built tools already exist? GREEN/YELLOW/RED/INCONCLUSIVE |
+| **Competitor check (Pass 1)** | Brave Search on raw trend keyword — how many purpose-built tools already exist? GREEN/YELLOW/RED/INCONCLUSIVE. If RED and no Reddit pain signal, cluster is immediately SKIP — no LLM call. |
+| **Competitor check (Pass 2)** | LLM proposes a build idea and generates 3 tool-focused search queries. Brave searches those to check if that *specific product* already exists. Results shown separately as "(build-idea check)". |
 | **Time series** | Fetches 30-day trend data for top ~15 keywords to refine freshness scores |
 | **Briefing** | LLM renames clusters by human need, generates BUILD/WATCH/SKIP decisions, writes `briefings/briefing_YYYY-MM-DD.md` |
 
-Total API calls per run: ~15 (1 trending_now + ~3 interest_over_time + ~3 Reddit + ~5 Brave Search + ~5 OpenAI).
+Total API calls per run: ~13 (1 trending_now + ~3 interest_over_time + ~3 Reddit + ~5 Brave Search + ~2 Brave refined + ~2 OpenAI). The RED gate typically saves 2–3 LLM calls/day.
 
 ---
 
