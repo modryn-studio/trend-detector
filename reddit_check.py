@@ -41,7 +41,7 @@ def check_reddit(keyword: str,
     """
     url = (
         f"https://www.reddit.com/search.json"
-        f"?q={urllib.request.quote(keyword)}"
+        f"?q={urllib.request.quote(keyword, safe='')}"
         f"&sort=relevance&t={time_filter}&limit={limit}"
     )
     req = urllib.request.Request(url, headers=_HEADERS)

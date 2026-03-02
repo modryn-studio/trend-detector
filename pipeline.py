@@ -250,6 +250,26 @@ def run(sources: list[str], top_n: int = 15,
                 if raw_trend:
                     unclustered[i] = score_trend(raw_trend, series=series)
 
+        # Re-sort clusters after enrichment so top_keyword and cluster_score
+        # reflect the updated member scores
+        for c in clusters:
+            c["members"].sort(key=lambda m: m["score"], reverse=True)
+            if c["members"]:
+                top = c["members"][0]
+                c["top_keyword"] = top["keyword"]
+                avg = sum(m["score"] for m in c["members"]) / len(c["members"])
+                n = len(c["members"])
+                size_bonus = min(25, (n - 2) * 5)
+                growth_bonus = min(
+                    15,
+                    sum(
+                        1 for m in c["members"]
+                        if m.get("_raw", {}).get("google_growth_pct", 0) >= 200
+                    ) * 5,
+                )
+                c["cluster_score"] = round(avg + size_bonus + growth_bonus)
+        clusters.sort(key=lambda c: c["cluster_score"], reverse=True)
+
     # --- Stage 7: Write output ---
     DATA_DIR.mkdir(exist_ok=True)
 

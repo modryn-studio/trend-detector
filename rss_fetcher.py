@@ -23,8 +23,13 @@ _HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:120.0)"}
 
 
 def _parse_traffic(raw: str) -> int:
-    """'500,000+' → 500000, '1,000+' → 1000."""
-    return int(raw.replace(",", "").replace("+", "").strip()) if raw else 0
+    """'500,000+' → 500000, '1,000+' → 1000, non-numeric → 0."""
+    if not raw:
+        return 0
+    try:
+        return int(raw.replace(",", "").replace("+", "").strip())
+    except ValueError:
+        return 0
 
 
 def _parse_news_items(item: ET.Element) -> list[dict]:
@@ -55,10 +60,18 @@ def fetch_rss(geo: str = "US") -> list[dict]:
     """
     url = f"https://trends.google.com/trending/rss?geo={geo}"
     req = Request(url, headers=_HEADERS)
-    with urlopen(req, timeout=15) as resp:
-        xml_bytes = resp.read()
+    try:
+        with urlopen(req, timeout=15) as resp:
+            xml_bytes = resp.read()
+    except Exception as e:
+        print(f"[rss] Fetch failed: {e}")
+        return []
 
-    root = ET.fromstring(xml_bytes)
+    try:
+        root = ET.fromstring(xml_bytes)
+    except ET.ParseError as e:
+        print(f"[rss] XML parse failed: {e}")
+        return []
     now = datetime.now(timezone.utc).isoformat()
 
     results: list[dict] = []

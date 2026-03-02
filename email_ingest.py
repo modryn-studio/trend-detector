@@ -14,7 +14,7 @@ import imaplib
 import email as email_lib
 import os
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -150,8 +150,11 @@ def fetch_email(mark_read: bool = False) -> list[dict]:
     # Search for unread Google Trends newsletters
     status, data = mail.search(None, '(FROM "trends-noreply@google.com" UNSEEN)')
     if status != "OK" or not data[0]:
-        # Fallback: try ALL (not just UNSEEN) — useful for first run
-        status, data = mail.search(None, '(FROM "trends-noreply@google.com")')
+        # Fallback: recent emails (last 7 days) — avoids reprocessing full history
+        since_str = (datetime.now() - timedelta(days=7)).strftime("%d-%b-%Y")
+        status, data = mail.search(
+            None, f'(FROM "trends-noreply@google.com" SINCE {since_str})'
+        )
 
     ids = data[0].split() if data[0] else []
     if not ids:
@@ -164,6 +167,9 @@ def fetch_email(mark_read: bool = False) -> list[dict]:
 
     for email_id in reversed(ids):
         status, msg_data = mail.fetch(email_id, "(RFC822)")
+        if status != "OK" or not msg_data or not msg_data[0] or not msg_data[0][1]:
+            print("[email] Failed to fetch message body, skipping")
+            continue
         msg = email_lib.message_from_bytes(msg_data[0][1])
         email_date = msg["Date"] or ""
 
