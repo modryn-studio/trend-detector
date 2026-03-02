@@ -17,7 +17,7 @@ When signal quality is proven over several months of private runs, this becomes 
 - **trendspy** — Google's internal protobuf Trends API. 1 call = 400+ trending topics. No auth, no selenium.
 - **beautifulsoup4** — Gmail newsletter HTML parsing
 - **python-dotenv** — `.env` for credentials
-- **openai** — GPT-4o Mini with Structured Outputs for cluster renaming + BUILD/WATCH/SKIP decisions
+- **openai** — GPT-5 Mini with Structured Outputs for cluster renaming + BUILD/WATCH/SKIP decisions
 - **Brave Search API** — competitor check (1,000 free queries/month; Google CSE closed to new customers Feb 2026)
 - Windows Task Scheduler (9 AM daily)
 - Flat JSON files in `/data` — no database

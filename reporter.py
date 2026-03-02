@@ -4,7 +4,7 @@ reporter.py — daily briefing generator
 Reads today's signals JSON and writes a plain-English markdown briefing
 to briefings/briefing_YYYY-MM-DD.md.
 
-Uses OpenAI Structured Outputs (gpt-4o-mini) for:
+Uses OpenAI Structured Outputs (gpt-5-mini) for:
   - Cluster renaming: transforms Google's labels into human-need descriptions
   - BUILD/WATCH/SKIP decisions: structured actionable verdicts per cluster
 
@@ -39,7 +39,7 @@ BRIEFING_DIR = Path(__file__).parent / "briefings"
 # OpenAI setup — optional, briefing degrades gracefully without it
 # ---------------------------------------------------------------------------
 
-_OPENAI_MODEL = "gpt-4o-mini"
+_OPENAI_MODEL = "gpt-5-mini"
 _openai_client = None
 
 _api_key = os.getenv("OPENAI_API_KEY", "")
