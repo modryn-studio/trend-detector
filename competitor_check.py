@@ -42,16 +42,97 @@ _TOOL_DOMAINS = {
     "sourceforge.net", "softwareadvice.com", "toolify.ai",
 }
 
+# Title-only signals that indicate a purpose-built tool on unknown domains.
+# Checked against the page TITLE only — not the snippet, because generic
+# words like "find" or "track" appear in every blog post description.
+# These are words that a tool/product puts in its own page title.
+_TITLE_TOOL_SIGNALS = [
+    "tracker", "tracking", "monitor", "calculator", "generator",
+    "builder", "planner", "finder", "dashboard", "countdown",
+    "app", "free trial", "pricing", "sign up", "get started",
+    "download the", "schedule", "live chart", "live data",
+]
+
+# SaaS-heavy TLDs — a title signal + one of these domains is very likely a tool
+_TOOL_TLDS = {".io", ".app", ".tools", ".dev", ".software"}
+
+# Well-known incumbents per topic.  If any result URL contains one of these
+# domains, it counts as a tool hit regardless of snippet text.  Only add
+# domains that ARE a tool/product — not news or encyclopedias.
+_KNOWN_INCUMBENTS: dict[str, set[str]] = {
+    # space / launch
+    "spacex": {"rocketlaunch.live", "nextspaceflight.com", "spacex.com",
+               "spaceflightnow.com", "everydayastronaut.com"},
+    "launch": {"rocketlaunch.live", "nextspaceflight.com"},
+    # oil / commodities
+    "oil": {"oilprice.com", "tradingeconomics.com", "investing.com",
+            "marketwatch.com", "bloomberg.com"},
+    "crude": {"oilprice.com", "tradingeconomics.com", "investing.com"},
+    "commodity": {"tradingeconomics.com", "investing.com"},
+    # stock / finance
+    "stock": {"tradingview.com", "finance.yahoo.com", "marketwatch.com",
+              "investing.com", "seekingalpha.com"},
+    # social / meetup
+    "club": {"meetup.com", "eventbrite.com"},
+    "meetup": {"meetup.com"},
+    "friends": {"bumble.com", "meetup.com"},
+    # travel
+    "flight": {"google.com/travel", "kayak.com", "skyscanner.com",
+               "expedia.com", "hopper.com"},
+    "hotel": {"booking.com", "hotels.com", "expedia.com", "trivago.com"},
+    "pto": set(),  # nothing purpose-built yet
+}
+
+# Domains that are always informational — never count them as tools even
+# if snippet text matches.  Keeps false positives out.
+_INFORMATIONAL_DOMAINS = {
+    "wikipedia.org", "reddit.com", "quora.com", "stackoverflow.com",
+    "medium.com", "youtube.com", "twitter.com", "x.com",
+    "nytimes.com", "bbc.com", "cnn.com", "reuters.com",
+    "apnews.com", "theguardian.com", "news.google.com",
+}
+
 # Query suffixes that reveal tool-intent competition
 _TOOL_SUFFIXES = ["tool", "calculator", "finder", "app", "generator"]
 
 
-def _is_tool_result(item: dict) -> bool:
-    """Return True if a result is on a known tool-discovery domain."""
-    url = item.get("url", "")
+def _is_tool_result(item: dict, keyword: str = "") -> bool:
+    """Return True if a result looks like an existing purpose-built tool.
+
+    Three-layer check:
+    1. Known tool-discovery domains (ProductHunt, GitHub, G2…)
+    2. Known incumbent domains for the keyword's topic
+    3. Functional-language signals in the snippet/title on non-informational
+       domains (catches tools that don't live on product-listing sites)
+    """
+    url = item.get("url", "").lower()
+    title = item.get("title", "").lower()
+    snippet = item.get("description", "").lower()
+
+    # Skip known informational sites — never tools
+    for domain in _INFORMATIONAL_DOMAINS:
+        if domain in url:
+            return False
+
+    # Layer 1: product-discovery domains
     for domain in _TOOL_DOMAINS:
         if domain in url:
             return True
+
+    # Layer 2: known incumbents for this keyword's topic
+    kw_lower = keyword.lower()
+    for trigger, domains in _KNOWN_INCUMBENTS.items():
+        if trigger in kw_lower:
+            for domain in domains:
+                if domain in url:
+                    return True
+
+    # Layer 3: functional language in title (not snippet — too many false positives
+    # from blog posts that mention "track" or "find" incidentally)
+    for signal in _TITLE_TOOL_SIGNALS:
+        if signal in title:
+            return True
+
     return False
 
 
@@ -77,9 +158,13 @@ def _search_brave(query: str, count: int = 10) -> list[dict]:
         print(f"[competitor] Brave search failed for '{query}': {e}")
         return []
 
-    # Normalize to the shape the rest of the code expects
+    # Normalize — keep description/snippet for functional-signal matching
     return [
-        {"url": r.get("url", ""), "title": r.get("title", "")}
+        {
+            "url": r.get("url", ""),
+            "title": r.get("title", ""),
+            "description": r.get("description", ""),
+        }
         for r in data.get("web", {}).get("results", [])
     ]
 
@@ -130,7 +215,7 @@ def check_competition(keyword: str) -> dict:
         results = _search_brave(query, count=10)
         total_results += len(results)
         for item in results:
-            if _is_tool_result(item):
+            if _is_tool_result(item, keyword=keyword):
                 url = item.get("url", "")
                 # Extract domain (e.g. producthunt.com) as dedup key
                 domain = url.split("/")[2] if url.startswith("http") else url

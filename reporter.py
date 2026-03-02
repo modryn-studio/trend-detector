@@ -428,7 +428,13 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"- Competition RED + strong pain → WATCH (differentiation possible)\n"
         f"- Competition GREEN + pain signal → BUILD\n"
         f"- Reddit inconclusive → downgrade confidence one level\n"
-        f"- Score < 50 → SKIP unless exceptional pain signal\n"
+        f"- Score < 50 → SKIP unless exceptional pain signal\n\n"
+        f"CRITICAL SCOPE CONSTRAINT: This developer builds alone in 48 hours maximum.\n"
+        f"The build_idea MUST be ONE feature, ONE page, ONE clear user action.\n"
+        f"If the idea would need a database, user accounts, or more than 3 API\n"
+        f"integrations — scope it down until it doesn't.\n\n"
+        f"GOOD ideas: 'Enter your zip code → get 5 beginner hiking clubs near you'\n"
+        f"BAD ideas:  'A platform with event scheduling, skill-level filters, and matching'\n"
     )
 
     try:
