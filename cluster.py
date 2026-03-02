@@ -83,8 +83,11 @@ def detect_clusters(scored_trends: list[dict],
         if cat.lower() not in SKIP_CATEGORIES:
             cat_groups[cat].append(i)
 
+    # Pass 1 uses a lower threshold: Google's editorial team deliberately
+    # named this section, so 2 members is already a meaningful signal.
+    pass1_min = max(2, min_size - 1)
     for cat, indices in cat_groups.items():
-        if len(indices) >= min_size:
+        if len(indices) >= pass1_min:
             clusters.append(_build_cluster(scored_trends, indices, name=cat))
             assigned.update(indices)
 

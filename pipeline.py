@@ -300,6 +300,8 @@ def run(sources: list[str], top_n: int = 15,
                 "total_posts":    r["total_posts"],
                 "subreddit_hits": r["subreddit_hits"],
                 "pain_signal":    r["pain_signal"],
+                "pain_reliable":  r.get("pain_reliable", False),
+                "keyword":        r.get("keyword", c["top_keyword"]),
                 "top_posts":      r["top_posts"][:5],
             }
         output["clusters"].append(cluster_out)
@@ -317,8 +319,12 @@ def run(sources: list[str], top_n: int = 15,
     _print_summary(clusters, output["unclustered"])
 
     # --- Stage 8: Generate briefing ---
-    briefing_path = write_briefing(output, today)
-    print(f"[pipeline] Briefing written -> {briefing_path}")
+    # Wrap so a briefing bug never loses a successful data run
+    try:
+        briefing_path = write_briefing(output, today)
+        print(f"[pipeline] Briefing written -> {briefing_path}")
+    except Exception as exc:  # noqa: BLE001
+        print(f"[pipeline] Briefing generation failed (data saved): {exc}")
 
     return out_path
 

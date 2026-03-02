@@ -18,6 +18,7 @@ Usage:
 import argparse
 import json
 import re
+from collections import Counter
 from datetime import date
 from pathlib import Path
 
@@ -135,7 +136,6 @@ def _shared_stems(clusters: list[dict], indices: list[int]) -> list[str]:
         return []
 
     # Count how many clusters each stem appears in
-    from collections import Counter
     counter: Counter = Counter()
     for s in stem_sets:
         for stem in s:
