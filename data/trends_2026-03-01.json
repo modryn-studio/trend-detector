@@ -3,50 +3,164 @@
   "trends": [
     {
       "keyword": "bitcoin atm",
-      "score": 64,
+      "score": 68,
       "velocity": "rising",
       "volume": "medium",
-      "buildability": "medium",
+      "buildability": "high",
       "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
       "_raw": {
         "growth_score": 66.7,
         "volume_score": 40.0,
-        "buildability_score": 50.0,
-        "freshness_score": 100.0,
+        "buildability_score": 80.0,
+        "freshness_score": 85.0,
         "google_volume": 10000,
         "google_growth_pct": 1000
       }
     },
     {
-      "keyword": "jeff green",
-      "score": 21,
+      "keyword": "crude oil prices",
+      "score": 43,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "high",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 80.0,
+        "freshness_score": 85.0,
+        "google_volume": 5000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "spacex launch today",
+      "score": 40,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 20.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 5000,
+        "google_growth_pct": 300
+      }
+    },
+    {
+      "keyword": "dow futures",
+      "score": 38,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 5000,
+        "google_growth_pct": 200
+      }
+    },
+    {
+      "keyword": "gold futures",
+      "score": 35,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 500,
+        "google_growth_pct": 200
+      }
+    },
+    {
+      "keyword": "tradingview",
+      "score": 35,
       "velocity": "steady",
       "volume": "low",
       "buildability": "medium",
       "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
       "_raw": {
-        "growth_score": 6.7,
+        "growth_score": 5.0,
         "volume_score": 20.0,
         "buildability_score": 50.0,
-        "freshness_score": 10.0,
+        "freshness_score": 85.0,
         "google_volume": 1000,
+        "google_growth_pct": 75
+      }
+    },
+    {
+      "keyword": "wall street journal",
+      "score": 35,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "technology",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 3.3,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 1000,
+        "google_growth_pct": 50
+      }
+    },
+    {
+      "keyword": "por",
+      "score": 33,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 200,
         "google_growth_pct": 100
       }
     },
     {
       "keyword": "stock futures",
-      "score": 13,
-      "velocity": "steady",
+      "score": 31,
+      "velocity": "rising",
       "volume": "low",
       "buildability": "low",
       "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
       "_raw": {
-        "growth_score": 6.7,
+        "growth_score": 13.3,
         "volume_score": 20.0,
         "buildability_score": 20.0,
-        "freshness_score": 10.0,
-        "google_volume": 2000,
-        "google_growth_pct": 100
+        "freshness_score": 85.0,
+        "google_volume": 5000,
+        "google_growth_pct": 200
       }
     }
   ]

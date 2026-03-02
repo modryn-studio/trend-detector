@@ -1,6 +1,1017 @@
 {
   "date": "2026-03-01",
-  "trends": [
+  "sources": [
+    "trendspy",
+    "rss",
+    "email"
+  ],
+  "clusters": [
+    {
+      "cluster_name": "Top trending Google Flights destinations for spring break",
+      "cluster_score": 94,
+      "member_count": 7,
+      "top_keyword": "how to set up trip for least amount of pto",
+      "growth_signals": [
+        "how to set up trip for least amount of pto: breakout",
+        "kaumana caves: breakout",
+        "hotels with free...: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "how to set up trip for least amount of pto",
+          "score": 82,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Top trending Google Flights destinations for spring break",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "kaumana caves",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top trending Google Flights destinations for spring break",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "hotels with free...",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top trending Google Flights destinations for spring break",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "best way to take pto",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Top trending Google Flights destinations for spring break",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "how to travel with\u2026",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Top trending Google Flights destinations for spring break",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "things to do",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top trending Google Flights destinations for spring break",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "No money",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top trending Google Flights destinations for spring break",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 25,
+        "subreddit_hits": {
+          "BestofRedditorUpdates": 16,
+          "financialindependence": 1,
+          "HPFanfictionPrompts": 1,
+          "travel": 1,
+          "AITAH": 1,
+          "nba": 1,
+          "relationship_advice": 1,
+          "Overwatch": 1,
+          "Games": 1,
+          "geography": 1
+        },
+        "pain_signal": true,
+        "top_posts": [
+          {
+            "title": "Recently visited the USA from The Netherlands. Here is my take on the cities we visited.",
+            "subreddit": "travel",
+            "score": 11685,
+            "url": "https://reddit.com/r/travel/comments/1qwzbes/recently_visited_the_usa_from_the_netherlands/",
+            "num_comments": 2268,
+            "created_utc": 1770329345.0
+          },
+          {
+            "title": "I have 2 weeks to get away from my husband (New 1 year Update)",
+            "subreddit": "BestofRedditorUpdates",
+            "score": 8720,
+            "url": "https://reddit.com/r/BestofRedditorUpdates/comments/1r16c55/i_have_2_weeks_to_get_away_from_my_husband_new_1/",
+            "num_comments": 605,
+            "created_utc": 1770742864.0
+          },
+          {
+            "title": "Do I (50m) allow family that kicked me out at 18 back into my life, wife (48f) thinks I should",
+            "subreddit": "BestofRedditorUpdates",
+            "score": 8806,
+            "url": "https://reddit.com/r/BestofRedditorUpdates/comments/1rd6vm2/do_i_50m_allow_family_that_kicked_me_out_at_18/",
+            "num_comments": 465,
+            "created_utc": 1771909325.0
+          },
+          {
+            "title": "My (F30) husband (M33) has been cheating on me with my best friend (F31) and asked me tonight if I want to be in a \u201cthrouple\u201d",
+            "subreddit": "BestofRedditorUpdates",
+            "score": 7652,
+            "url": "https://reddit.com/r/BestofRedditorUpdates/comments/1qsp4zt/my_f30_husband_m33_has_been_cheating_on_me_with/",
+            "num_comments": 363,
+            "created_utc": 1769922003.0
+          },
+          {
+            "title": "AITAH for refusing to give out my son's saving account information?",
+            "subreddit": "AITAH",
+            "score": 4956,
+            "url": "https://reddit.com/r/AITAH/comments/1rdrr62/aitah_for_refusing_to_give_out_my_sons_saving/",
+            "num_comments": 2712,
+            "created_utc": 1771965073.0
+          }
+        ]
+      }
+    },
+    {
+      "cluster_name": "Community & Clubs",
+      "cluster_score": 93,
+      "member_count": 10,
+      "top_keyword": "social clubs",
+      "growth_signals": [
+        "social clubs: breakout",
+        "hiking club for beginners: breakout",
+        "art club: breakout",
+        "cultural events near me: +250%"
+      ],
+      "members": [
+        {
+          "keyword": "social clubs",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "hiking club for beginners",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "art club",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "cultural events near me",
+          "score": 53,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 16.7,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 250.0
+          }
+        },
+        {
+          "keyword": "how to volunteer at children's hospital",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "how to volunteer",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "community events",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "run clubs",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "cookbook club",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "community volunteer",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 25,
+        "subreddit_hits": {
+          "xbox": 2,
+          "heatedrivalry": 2,
+          "BestofRedditorUpdates": 2,
+          "antimeme": 1,
+          "Bombstrap": 1,
+          "MtF": 1,
+          "Millennials": 1,
+          "CirclejerkSopranos": 1,
+          "Leeds": 1,
+          "vinyl": 1
+        },
+        "pain_signal": true,
+        "top_posts": [
+          {
+            "title": "Full Course Story, Apology &amp; Mod Election",
+            "subreddit": "antimeme",
+            "score": 15972,
+            "url": "https://reddit.com/r/antimeme/comments/1r4q7od/full_course_story_apology_mod_election/",
+            "num_comments": 3319,
+            "created_utc": 1771089494.0
+          },
+          {
+            "title": "I\u2019ll never forgive a certain demographic of us for dry snitching on the value of remote work",
+            "subreddit": "Millennials",
+            "score": 13670,
+            "url": "https://reddit.com/r/Millennials/comments/1r6vzzq/ill_never_forgive_a_certain_demographic_of_us_for/",
+            "num_comments": 959,
+            "created_utc": 1771301473.0
+          },
+          {
+            "title": "3k followers and wants a private booth, 10 free drinks and Grey Goose \ud83d\udc80",
+            "subreddit": "ChoosingBeggars",
+            "score": 12319,
+            "url": "https://reddit.com/r/ChoosingBeggars/comments/1rbusbe/3k_followers_and_wants_a_private_booth_10_free/",
+            "num_comments": 276,
+            "created_utc": 1771787983.0
+          },
+          {
+            "title": "I went to a sex club for the first time and experienced matriarchy.",
+            "subreddit": "TwoXChromosomes",
+            "score": 6945,
+            "url": "https://reddit.com/r/TwoXChromosomes/comments/1r8iin7/i_went_to_a_sex_club_for_the_first_time_and/",
+            "num_comments": 624,
+            "created_utc": 1771456112.0
+          },
+          {
+            "title": "Ilya at the club",
+            "subreddit": "heatedrivalry",
+            "score": 4552,
+            "url": "https://reddit.com/r/heatedrivalry/comments/1qwoiyw/ilya_at_the_club/",
+            "num_comments": 423,
+            "created_utc": 1770305903.0
+          }
+        ]
+      }
+    },
+    {
+      "cluster_name": "Third Places",
+      "cluster_score": 86,
+      "member_count": 8,
+      "top_keyword": "digital third spaces",
+      "growth_signals": [
+        "digital third spaces: breakout",
+        "third place potential: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "digital third spaces",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Third Places",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "third place potential",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Third Places",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to play switch with friends online",
+          "score": 50,
+          "velocity": "steady",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Third Places",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 10.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 150.0
+          }
+        },
+        {
+          "keyword": "third place coffee",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Third Places",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "third space near me",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Third Places",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "coworking spaces near me,",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Third Places",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "are malls third spaces",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Third Places",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "are\u2026third spaces,",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Third Places",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 25,
+        "subreddit_hits": {
+          "HFY": 2,
+          "nosleep": 1,
+          "Watches": 1,
+          "NintendoSwitch": 1,
+          "Fantasy": 1,
+          "OpenChristian": 1,
+          "uneasy_agora": 1,
+          "writers": 1,
+          "UnresolvedMysteries": 1,
+          "aiwars": 1
+        },
+        "pain_signal": false,
+        "top_posts": [
+          {
+            "title": "The most important rule at my job is to never create a physical record. I found what the last person in my position wrote, and I think I'm in danger.",
+            "subreddit": "nosleep",
+            "score": 3276,
+            "url": "https://reddit.com/r/nosleep/comments/1qs7t5r/the_most_important_rule_at_my_job_is_to_never/",
+            "num_comments": 95,
+            "created_utc": 1769879078.0
+          },
+          {
+            "title": "[SOTC] My watch collection @6 after 6 years of collecting!",
+            "subreddit": "Watches",
+            "score": 1811,
+            "url": "https://reddit.com/r/Watches/comments/1qvnhz0/sotc_my_watch_collection_6_after_6_years_of/",
+            "num_comments": 86,
+            "created_utc": 1770208830.0
+          },
+          {
+            "title": "Wearing Power Armor to a Magic School (158/?)",
+            "subreddit": "HFY",
+            "score": 1426,
+            "url": "https://reddit.com/r/HFY/comments/1qt8qcq/wearing_power_armor_to_a_magic_school_158/",
+            "num_comments": 225,
+            "created_utc": 1769975476.0
+          },
+          {
+            "title": "2025.02.05 Nintendo Direct: Partner Showcase MegaThread",
+            "subreddit": "NintendoSwitch",
+            "score": 235,
+            "url": "https://reddit.com/r/NintendoSwitch/comments/1qwkonv/20250205_nintendo_direct_partner_showcase/",
+            "num_comments": 793,
+            "created_utc": 1770296528.0
+          },
+          {
+            "title": "Why Didn't AI Replace Novelists?",
+            "subreddit": "Fantasy",
+            "score": 230,
+            "url": "https://reddit.com/r/Fantasy/comments/1r1csca/why_didnt_ai_replace_novelists/",
+            "num_comments": 676,
+            "created_utc": 1770756677.0
+          }
+        ]
+      }
+    },
+    {
+      "cluster_name": "Making Friends",
+      "cluster_score": 84,
+      "member_count": 7,
+      "top_keyword": "where to meet people",
+      "growth_signals": [
+        "where to meet people: breakout",
+        "friend website: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "where to meet people",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Making Friends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "friend website",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Making Friends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to make friends",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Making Friends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "friend app",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Making Friends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "how to meet people as\u2026",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Making Friends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "Social groups",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Making Friends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "travel groups",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Making Friends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "cluster_name": "Top Trends",
+      "cluster_score": 69,
+      "member_count": 6,
+      "top_keyword": "hip hop hall of fame",
+      "growth_signals": [
+        "hip hop hall of fame: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "hip hop hall of fame",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "mercury retrograde pisces",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "mercury retrograde",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "pisces horoscope",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "is phil collins in the rock and roll hall of fame",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "is\u2026in the rock and roll hall of fame",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "cluster_name": "future / gold / stock",
+      "cluster_score": 56,
+      "member_count": 4,
+      "top_keyword": "gold futures",
+      "growth_signals": [
+        "stock futures: +200%",
+        "futures market: +200%"
+      ],
+      "members": [
+        {
+          "keyword": "gold futures",
+          "score": 36,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "stock futures",
+          "score": 35,
+          "velocity": "rising",
+          "volume": "medium",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 13.3,
+            "volume_score": 40.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 20000,
+            "google_growth_pct": 200
+          }
+        },
+        {
+          "keyword": "spy futures",
+          "score": 33,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "futures market",
+          "score": 31,
+          "velocity": "rising",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 13.3,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 200
+          }
+        }
+      ]
+    }
+  ],
+  "unclustered": [
     {
       "keyword": "bitcoin atm",
       "score": 68,
@@ -17,305 +1028,151 @@
         "freshness_score": 85.0,
         "google_volume": 10000,
         "google_growth_pct": 1000
-      },
-      "sources": [
-        "trendspy"
-      ]
+      }
     },
     {
-      "keyword": "hip hop hall of fame",
-      "score": 66,
+      "keyword": "spacex launch",
+      "score": 61,
       "velocity": "rising",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "Top Trends",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 100.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 5000.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "where to meet people",
-      "score": 66,
-      "velocity": "rising",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "Making Friends",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 100.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 5000.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "friend website",
-      "score": 66,
-      "velocity": "rising",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "Making Friends",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 100.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 5000.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "digital third spaces",
-      "score": 66,
-      "velocity": "rising",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "Third Places",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 100.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 5000.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "third place potential",
-      "score": 66,
-      "velocity": "rising",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "Third Places",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 100.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 5000.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "social clubs",
-      "score": 66,
-      "velocity": "rising",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "Community & Clubs",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 100.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 5000.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "hiking club for beginners",
-      "score": 66,
-      "velocity": "rising",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "Community & Clubs",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 100.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 5000.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "art club",
-      "score": 66,
-      "velocity": "rising",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "Community & Clubs",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 100.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 5000.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "tradingview",
-      "score": 55,
-      "velocity": "steady",
-      "volume": "low",
+      "volume": "medium",
       "buildability": "medium",
       "category": "finance",
       "source": "trendspy",
-      "source_count": 2,
+      "source_count": 1,
       "_raw": {
-        "growth_score": 5.0,
+        "growth_score": 66.7,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 20000,
+        "google_growth_pct": 1000
+      }
+    },
+    {
+      "keyword": "michael j fox",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 2000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "kristen bell",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 2000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "kristen wiig",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
         "volume_score": 20.0,
         "buildability_score": 50.0,
         "freshness_score": 85.0,
         "google_volume": 1000,
-        "google_growth_pct": 75
-      },
-      "sources": [
-        "trendspy",
-        "rss"
-      ]
+        "google_growth_pct": 0
+      }
     },
     {
-      "keyword": "cultural events near me",
-      "score": 44,
-      "velocity": "rising",
-      "volume": "low",
-      "buildability": "high",
-      "category": "Community & Clubs",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 16.7,
-        "volume_score": 5.0,
-        "buildability_score": 80.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 250.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "crude oil prices",
-      "score": 43,
-      "velocity": "steady",
-      "volume": "low",
-      "buildability": "high",
-      "category": "finance",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 6.7,
-        "volume_score": 20.0,
-        "buildability_score": 80.0,
-        "freshness_score": 85.0,
-        "google_volume": 5000,
-        "google_growth_pct": 100
-      },
-      "sources": [
-        "trendspy"
-      ]
-    },
-    {
-      "keyword": "how to play switch with friends online",
-      "score": 42,
-      "velocity": "steady",
-      "volume": "low",
-      "buildability": "high",
-      "category": "Third Places",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 10.0,
-        "volume_score": 5.0,
-        "buildability_score": 80.0,
-        "freshness_score": 85.0,
-        "google_volume": 0,
-        "google_growth_pct": 150.0
-      },
-      "sources": [
-        "email"
-      ]
-    },
-    {
-      "keyword": "spacex launch today",
-      "score": 40,
-      "velocity": "rising",
+      "keyword": "jayson tatum",
+      "score": 34,
+      "velocity": "declining",
       "volume": "low",
       "buildability": "medium",
-      "category": "finance",
+      "category": "unknown",
       "source": "trendspy",
       "source_count": 1,
       "_raw": {
-        "growth_score": 20.0,
+        "growth_score": 0.0,
         "volume_score": 20.0,
         "buildability_score": 50.0,
         "freshness_score": 85.0,
-        "google_volume": 5000,
-        "google_growth_pct": 300
-      },
-      "sources": [
-        "trendspy"
-      ]
+        "google_volume": 1000,
+        "google_growth_pct": 0
+      }
     },
     {
-      "keyword": "dow futures",
-      "score": 38,
-      "velocity": "rising",
+      "keyword": "tolima - atl\u00e9tico nacional",
+      "score": 30,
+      "velocity": "declining",
       "volume": "low",
       "buildability": "medium",
-      "category": "finance",
+      "category": "unknown",
       "source": "trendspy",
       "source_count": 1,
       "_raw": {
-        "growth_score": 13.3,
-        "volume_score": 20.0,
+        "growth_score": 0.0,
+        "volume_score": 5.0,
         "buildability_score": 50.0,
         "freshness_score": 85.0,
-        "google_volume": 5000,
-        "google_growth_pct": 200
-      },
-      "sources": [
-        "trendspy"
-      ]
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "jenna ortega",
+      "score": 30,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "carmelo anthony",
+      "score": 30,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
     }
   ]
 }
