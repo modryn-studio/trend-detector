@@ -161,6 +161,33 @@ def _cross_reference(trends: list[dict]) -> list[dict]:
     return list(groups.values())
 
 
+def _persist_decisions(output: dict, out_path: Path) -> None:
+    """Re-write signals JSON with decision data attached during briefing.
+
+    _decision_section attaches _decision dicts (including context_seed)
+    to cluster/unclustered dicts via mutation. This writes them to disk
+    under a top-level "decisions" key so the build phase can pull them.
+    """
+    decisions = {}
+    for c in output.get("clusters", []):
+        d = c.pop("_decision", None)
+        # Clean up transient render fields so JSON stays canonical
+        c.pop("display_name", None)
+        c.pop("original_name", None)
+        if d:
+            decisions[c["cluster_name"]] = d
+    for t in output.get("unclustered", []):
+        d = t.pop("_decision", None)
+        if d:
+            decisions[t["keyword"]] = d
+
+    if decisions:
+        output["decisions"] = decisions
+        with open(out_path, "w") as f:
+            json.dump(output, f, indent=2)
+        print(f"[pipeline] Decisions persisted ({len(decisions)} entries)")
+
+
 def run(sources: list[str], top_n: int = 15,
         skip_series: bool = False, skip_reddit: bool = False,
         skip_competitor: bool = False) -> Path | None:
@@ -332,6 +359,10 @@ def run(sources: list[str], top_n: int = 15,
     try:
         briefing_path = write_briefing(output, today, competition=competition)
         print(f"[pipeline] Briefing written -> {briefing_path}")
+
+        # Re-write JSON with decision data (including context_seed)
+        # that was attached to cluster/unclustered dicts during briefing generation
+        _persist_decisions(output, out_path)
     except Exception as exc:  # noqa: BLE001
         print(f"[pipeline] Briefing generation failed (data saved): {exc}")
 

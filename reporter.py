@@ -4,9 +4,10 @@ reporter.py — daily briefing generator
 Reads today's signals JSON and writes a plain-English markdown briefing
 to briefings/briefing_YYYY-MM-DD.md.
 
-Uses OpenAI Structured Outputs (gpt-5-mini) for:
+Uses OpenAI Structured Outputs (gpt-5.2) for:
   - Cluster renaming: transforms Google's labels into human-need descriptions
   - BUILD/WATCH/SKIP decisions: structured actionable verdicts per cluster
+  - context_seed: product_description, target_user, emotional_barrier, routes
 
 Rule-based sections (no LLM):
   1. Cluster table: what's trending, ranked
@@ -39,7 +40,7 @@ BRIEFING_DIR = Path(__file__).parent / "briefings"
 # OpenAI setup — optional, briefing degrades gracefully without it
 # ---------------------------------------------------------------------------
 
-_OPENAI_MODEL = "gpt-5-mini"
+_OPENAI_MODEL = "gpt-5.2"
 _openai_client = None
 
 _api_key = os.getenv("OPENAI_API_KEY", "")
@@ -424,10 +425,10 @@ def _rename_cluster(cluster: dict) -> str:
 
 def _llm_decision(cluster: dict, competition: dict | None,
                    reddit: dict | None) -> dict | None:
-    """Use GPT-5 Mini Structured Outputs for BUILD/WATCH/SKIP verdict.
+    """Use GPT-5.2 Structured Outputs for BUILD/WATCH/SKIP verdict.
 
     Returns dict with: decision, confidence, build_idea, target_slug,
-    monetization, reason, risk. Returns None on failure.
+    monetization, reason, risk, context_seed. Returns None on failure.
     """
     if not _openai_client:
         return None
@@ -476,22 +477,35 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"- Competition GREEN + pain signal → BUILD\n"
         f"- Reddit inconclusive → downgrade confidence one level\n"
         f"- Score < 50 → SKIP unless exceptional pain signal\n\n"
-        f"CRITICAL SCOPE CONSTRAINT: This developer builds alone in 48 hours maximum.\n"
-        f"The build_idea MUST be ONE feature, ONE page, ONE clear user action.\n"
-        f"If the idea would need a database, user accounts, or more than 3 API\n"
-        f"integrations — scope it down until it doesn't.\n\n"
+        f"BUILDER CAPACITY — what '48 hours' actually means for this developer:\n"
+        f"- Multi-file systems (this pipeline itself is 2,700 lines across 9 files, built in 48 hours)\n"
+        f"- 3–6 API integrations (REST, IMAP, protobuf, structured LLM outputs)\n"
+        f"- Scoring/ranking algorithms, multi-pass clustering, noise filtering\n"
+        f"- Full Next.js deployment on Vercel with Stripe payments, GA4, Resend email\n"
+        f"- Programmatic SEO with dynamic routes and structured data\n"
+        f"The constraint is not 'how many files' — it's 'no ongoing infrastructure'.\n"
+        f"No moderation queues, no user-generated content, no two-sided marketplaces.\n"
+        f"One developer, one deploy, zero ongoing ops.\n\n"
         f"BUILD FOR THE EMOTIONAL BARRIER, NOT THE INFORMATION GAP.\n"
         f"If Reddit posts express fear, loneliness, overwhelm, or frustration,\n"
         f"the tool should address THAT emotion — not just aggregate links.\n"
         f"Ask: 'What feeling stops someone from acting?' then build for that.\n\n"
-        f"GOOD ideas: 'First-timer cheat sheet: what to wear, what to say, what to expect at your first hiking club meetup'\n"
-        f"BAD ideas:  'A platform with event scheduling, skill-level filters, and matching'\n\n"
-        f"COMPETITION QUERIES: Also output competition_queries \u2014 exactly 3 short,\n"
+        f"GOOD ideas:\n"
+        f"- 'Pipeline that scrapes rising trends, scores by buildability, and outputs a ranked dashboard with Stripe checkout'\n"
+        f"- 'Calculator that pulls real-time futures data, applies 3 technical indicators, and gives a single buy/hold/exit verdict with reasoning'\n"
+        f"- 'Tool that fetches all local meetups for a hobby, scores them by beginner-friendliness, and generates a personalized first-visit game plan'\n"
+        f"BAD ideas:\n"
+        f"- 'A marketplace with user profiles, messaging, and a recommendation engine'\n"
+        f"- 'A social network for hobbyists with friend lists and activity feeds'\n"
+        f"- 'A cheat sheet generator that outputs static text' (too small — undersells the opportunity)\n\n"
+        f"COMPETITION QUERIES: Also output competition_queries — exactly 3 short,\n"
         f"tool-focused search queries to check if your build idea already exists\n"
         f"as a product. Search for the TOOL you'd build, not the raw trend keyword.\n"
         f"Example: trend='how to set up trip for least amount of pto',\n"
-        f"idea='PTO optimizer' \u2192 ['pto optimizer tool', 'maximize pto days\n"
-        f"calculator', 'vacation day optimizer app']\n"
+        f"idea='PTO optimizer' → ['pto optimizer tool', 'maximize pto days\n"
+        f"calculator', 'vacation day optimizer app']\n\n"
+        f"CONTEXT SEED: Also output context_seed — structured fields that describe\n"
+        f"the product for the build phase. These seed the project's context.md.\n"
     )
 
     try:
@@ -538,10 +552,36 @@ def _llm_decision(cluster: dict, competition: dict | None,
                             "items": {"type": "string"},
                             "description": "3 short tool-focused search queries to verify if this build idea already exists. Never reuse the raw trend keyword.",
                         },
+                        "context_seed": {
+                            "type": "object",
+                            "description": "Structured fields to seed the project's context.md for the build phase.",
+                            "properties": {
+                                "product_description": {
+                                    "type": "string",
+                                    "description": "2-3 sentence product description. What it does, how it works, what the user gets.",
+                                },
+                                "target_user": {
+                                    "type": "string",
+                                    "description": "One specific person — not a demographic. Who they are, what they feel, what they want.",
+                                },
+                                "emotional_barrier": {
+                                    "type": "string",
+                                    "description": "The feeling that stops the target user from acting. One sentence.",
+                                },
+                                "routes": {
+                                    "type": "array",
+                                    "items": {"type": "string"},
+                                    "description": "1-3 route descriptions like '/ → Ranked dashboard with score + action button'",
+                                },
+                            },
+                            "required": ["product_description", "target_user",
+                                         "emotional_barrier", "routes"],
+                            "additionalProperties": False,
+                        },
                     },
                     "required": ["decision", "confidence", "build_idea",
                                  "target_slug", "monetization", "reason", "risk",
-                                 "competition_queries"],
+                                 "competition_queries", "context_seed"],
                     "additionalProperties": False,
                 },
             }},
@@ -576,12 +616,15 @@ def _decision_section(
         targets.append((c["cluster_name"], c, c.get("reddit")))
 
     for t in unclustered[:2]:
-        # Wrap unclustered as a pseudo-cluster for consistent handling
+        # Wrap unclustered as a pseudo-cluster for consistent handling.
+        # _original_ref lets _decision land on t (which lives in output["unclustered"])
+        # rather than on the ephemeral pseudo dict.
         pseudo = {
             "cluster_name": t["keyword"],
             "cluster_score": t["score"],
             "top_keyword": t["keyword"],
             "members": [t],
+            "_original_ref": t,
         }
         targets.append((t["keyword"], pseudo, None))
 
@@ -609,6 +652,11 @@ def _decision_section(
                 f"Skipped LLM evaluation."
             )
             lines.append("")
+            # Persist RED-gate decision on the correct dict (original item for unclustered)
+            data.get("_original_ref", data)["_decision"] = {
+                "decision": "SKIP", "confidence": "HIGH",
+                "reason": f"RED gate: {comp_count} existing tools, no pain",
+            }
             print(f"[reporter] RED gate: skipping LLM for '{name}' "
                   f"(pass-1 RED, {comp_count} tools, no pain)")
             continue
@@ -658,6 +706,8 @@ def _decision_section(
             lines.append(f"**Monetization:** {decision['monetization']}")
             lines.append(f"**Reasoning:** {decision['reason']}")
             lines.append(f"**Risk:** {decision['risk']}")
+            # Persist full decision (including context_seed) on the correct dict
+            data.get("_original_ref", data)["_decision"] = decision
         else:
             # Rule-based fallback
             score = data.get("cluster_score", 0)
@@ -688,8 +738,11 @@ def _decision_section(
                 f"Score: {score} · Competition: {comp_verdict}"
                 + (f" · Pain: {'yes' if has_pain else 'no'}"
                    if reddit else " · Reddit: not checked")
-            )
-
+            )            # Persist rule-based decision so _persist_decisions can write it to JSON
+            data.get("_original_ref", data)["_decision"] = {
+                "decision": verdict, "confidence": "LOW",
+                "reason": f"Rule-based: score={score}, competition={comp_verdict}",
+            }
         lines.append("")
 
     return "\n".join(lines), refined_competition
@@ -856,12 +909,41 @@ def main() -> None:
         print(f"[reporter] {e}")
         return
 
-    out_path = write_briefing(signals, date_str, competition=None)
+    # Generate once — avoids double LLM calls from generate_briefing + write_briefing
+    competition = signals.get("competition") or None
+    content = generate_briefing(signals, competition=competition)
+
+    BRIEFING_DIR.mkdir(exist_ok=True)
+    out_path = BRIEFING_DIR / f"briefing_{date_str}.md"
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(content)
     print(f"[reporter] Briefing written -> {out_path}")
 
-    # Also print to terminal so it appears in the daily log
+    # Persist decisions (including context_seed) back to the signals JSON.
+    # generate_briefing attaches _decision to cluster/unclustered dicts via mutation.
+    signals_path = DATA_DIR / f"signals_{date_str}.json"
+    if signals_path.exists():
+        decisions = {}
+        for c in signals.get("clusters", []):
+            d = c.pop("_decision", None)
+            # Also clean up transient render fields so JSON stays canonical
+            c.pop("display_name", None)
+            c.pop("original_name", None)
+            if d:
+                decisions[c["cluster_name"]] = d
+        for t in signals.get("unclustered", []):
+            d = t.pop("_decision", None)
+            if d:
+                decisions[t["keyword"]] = d
+        if decisions:
+            signals["decisions"] = decisions
+            with open(signals_path, "w") as f:
+                json.dump(signals, f, indent=2)
+            print(f"[reporter] Decisions persisted ({len(decisions)} entries) -> {signals_path}")
+
+    # Print to terminal so it appears in the daily log
     print("\n" + "=" * 60)
-    print(generate_briefing(signals, competition=None))
+    print(content)
     print("=" * 60)
 
 
