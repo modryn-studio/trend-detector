@@ -14,13 +14,22 @@ Two scoring paths:
 # --- Noise filters -------------------------------------------------------
 
 BRAND_NOISE = {
+    # AI models & platforms
     "claude", "chatgpt", "gemini", "openai", "copilot",
     "midjourney", "perplexity", "grok", "openclaw",
-    "notion", "figma", "github", "slack", "zapier",
-    "xbox", "playstation", "nintendo", "steam",
+    "llama", "mistral", "anthropic", "groq", "deepseek",
+    "stability", "runway", "sora", "cohere", "ideogram",
+    # Dev tools
+    "cursor", "replit", "windsurf", "github",
+    "notion", "figma", "slack", "zapier",
+    # Gaming
+    "xbox", "playstation", "nintendo", "steam", "roblox", "fortnite",
+    # Finance
     "cash app", "venmo", "paypal", "robinhood", "coinbase",
+    # Enterprises / media
     "pennymac", "johnson and johnson", "tesla", "apple",
     "amazon", "google", "microsoft", "meta", "netflix",
+    "spacex", "palantir", "nvidia",
     "wall street journal", "cnn", "fox news", "nyt", "bbc",
 }
 

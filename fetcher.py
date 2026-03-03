@@ -13,13 +13,16 @@ import time
 from trendspy import Trends
 
 # Google's Trending Now topic IDs → our category names.
-# Only the topics that reliably contain buildable signals.
-# Dropped Hobbies/Leisure (8) and Jobs/Education (9) — too noisy,
-# surfaced random cultural events instead of tool-shaped trends.
+# Covers the 5 categories most likely to contain buildable signals.
+# Hobbies/Leisure (8) and Jobs/Education (9) were previously dropped for
+# noise, but the noise filter in scorer.py handles cultural events — and
+# missing these categories means 0 trendspy results if trends shift there.
 TOPIC_MAP: dict[int, str] = {
     18: "technology",       # Technology
     3:  "finance",          # Business and Finance
     7:  "health",           # Health
+    8:  "hobbies",          # Hobbies & Leisure
+    9:  "education",        # Jobs & Education
 }
 
 # One client for the lifetime of the process — shares session/cookies

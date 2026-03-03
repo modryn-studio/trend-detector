@@ -13,6 +13,7 @@ expects so cross-referencing with trendspy data is trivial.
 
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from pathlib import Path
 from urllib.request import urlopen, Request
 
 RSS_URL = "https://trends.google.com/trending/rss?geo=US"
@@ -20,6 +21,19 @@ HT_NS = {"ht": "https://trends.google.com/trending/rss"}
 
 # Fake a browser UA — Google sometimes 403s bare urllib
 _HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:120.0)"}
+
+_LOG_DIR = Path(__file__).parent / "logs"
+
+
+def _write_error_log(message: str) -> None:
+    """Append a timestamped error to logs/errors.log (same file as email_ingest)."""
+    try:
+        _LOG_DIR.mkdir(exist_ok=True)
+        ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        with open(_LOG_DIR / "errors.log", "a", encoding="utf-8") as f:
+            f.write(f"[{ts}] [rss] {message}\n")
+    except OSError:
+        pass
 
 
 def _parse_traffic(raw: str) -> int:
@@ -64,13 +78,17 @@ def fetch_rss(geo: str = "US") -> list[dict]:
         with urlopen(req, timeout=15) as resp:
             xml_bytes = resp.read()
     except Exception as e:
-        print(f"[rss] Fetch failed: {e}")
+        msg = f"Fetch failed: {e}"
+        print(f"[rss] {msg}")
+        _write_error_log(msg)
         return []
 
     try:
         root = ET.fromstring(xml_bytes)
     except ET.ParseError as e:
-        print(f"[rss] XML parse failed: {e}")
+        msg = f"XML parse failed: {e}"
+        print(f"[rss] {msg}")
+        _write_error_log(msg)
         return []
     now = datetime.now(timezone.utc).isoformat()
 

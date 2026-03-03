@@ -270,8 +270,8 @@ def validate_build_opportunities(clusters: list[dict],
     """
     keywords_to_check: list[str] = []
 
-    # Top keyword from each cluster (up to 3)
-    for c in clusters[:3]:
+    # Top keyword from each cluster (up to 5 — matches reporter's decision cap)
+    for c in clusters[:5]:
         kw = c.get("top_keyword", "")
         if kw and kw not in keywords_to_check:
             keywords_to_check.append(kw)

@@ -446,6 +446,8 @@ def main() -> None:
     # Determine which sources to run
     if args.all:
         sources = ["trendspy", "rss", "email"]
+    elif args.trendspy:
+        sources = ["trendspy"]
     elif args.rss:
         sources = ["rss"]
     elif args.email:

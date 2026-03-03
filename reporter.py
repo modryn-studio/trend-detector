@@ -620,7 +620,14 @@ def _decision_section(
 
     for name, data, reddit in targets:
         top_kw = data.get("top_keyword", name)
-        has_pain = reddit and reddit.get("pain_signal", False)
+        # Only treat as confirmed pain if Reddit results are on-topic.
+        # Unreliable pain (off-topic subreddit hits with incidental pain words)
+        # should not prevent gates from firing — confirmed on 03-01 travel cluster.
+        has_pain = (
+            bool(reddit)
+            and reddit.get("pain_signal", False)
+            and reddit.get("pain_reliable", False)
+        )
 
         # RED gate: if Pass 1 competition already says RED and there's no
         # Reddit pain signal, skip the LLM call entirely — obvious SKIP.
@@ -655,8 +662,7 @@ def _decision_section(
         # Score gate: deterministic rules shouldn't depend on LLM compliance.
         # Score < 50 with no confirmed pain = not worth an LLM call.
         score = data.get("cluster_score", 0)
-        pain_reliable = reddit and reddit.get("pain_reliable", False)
-        if score < 50 and not (has_pain and pain_reliable):
+        if score < 50 and not has_pain:
             header_name = data.get("display_name", name)
             lines.append(f"### 🔴 SKIP — {header_name} [HIGH]")
             lines.append("")
