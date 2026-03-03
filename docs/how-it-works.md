@@ -30,12 +30,12 @@ No flags needed — the default runs all 3 sources. Single-source flags (`--tren
 | **Score** | Scores each keyword 0–100: 35% growth velocity, 25% buildability, 20% volume, 20% freshness |
 | **Cluster** | Groups keywords into macro-trend clusters using Google's newsletter section headers first, then shared keyword tokens |
 | **Reddit** | Searches targeted subreddits with pain-framed queries for top clusters — checks for frustration/need signals |
-| **Competitor check (Pass 1)** | Brave Search on raw trend keyword — how many purpose-built tools already exist? GREEN/YELLOW/RED/INCONCLUSIVE. If RED and no Reddit pain signal, cluster is immediately SKIP — no LLM call. |
+| **Competitor check (Pass 1)** | Brave Search on raw trend keyword — how many purpose-built tools already exist? GREEN/YELLOW/RED/INCONCLUSIVE. If RED and no reliable Reddit pain signal → immediate SKIP (RED gate). If score < 50 and no confirmed pain → immediate SKIP (score gate). Both gates are enforced in code before any LLM call. |
 | **Competitor check (Pass 2)** | LLM proposes a build idea and generates 3 tool-focused search queries. Brave searches those to check if that *specific product* already exists. Results shown separately as "(build-idea check)". |
 | **Time series** | Fetches 30-day trend data for top ~15 keywords to refine freshness scores |
-| **Briefing** | GPT-5.2 renames clusters by human need, generates BUILD/WATCH/SKIP decisions with emotional-barrier guidance ("build for the feeling that stops someone from acting") and builder-capacity calibration (multi-file systems, 3–6 APIs, full-stack deploy — not static pages), adds lifecycle tags (`EARLY`/`PEAKING`/`FADING`), outputs `context_seed` fields into the signals JSON, writes `briefings/briefing_YYYY-MM-DD.md` |
+| **Briefing** | GPT-5.2 renames clusters by human need, generates BUILD/WATCH/SKIP decisions anchored to signal quality (strong demand + confirmed pain + market gap), adds lifecycle tags (`EARLY`/`PEAKING`/`FADING`), outputs `context_seed` fields into the signals JSON, writes `briefings/briefing_YYYY-MM-DD.md` |
 
-Total API calls per run: ~13 (1 trending_now + ~3 interest_over_time + ~3 Reddit + ~5 Brave Search + ~2 Brave refined + ~2 OpenAI). The RED gate typically saves 2–3 LLM calls/day.
+Total API calls per run: ~15 (1 trending_now + ~3 interest_over_time + ~3 Reddit + ~7 Brave Search + ~2 Brave refined + ~2 OpenAI). The RED gate and score gate typically save 2–3 LLM calls/day.
 
 ---
 
