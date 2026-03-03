@@ -277,7 +277,7 @@ def run(sources: list[str], top_n: int = 15,
                         if m.get("_raw", {}).get("google_growth_pct", 0) >= 200
                     ) * 5,
                 )
-                c["cluster_score"] = round(avg + size_bonus + growth_bonus)
+                c["cluster_score"] = min(100, round(avg + size_bonus + growth_bonus))
         clusters.sort(key=lambda c: c["cluster_score"], reverse=True)
 
     # --- Stage 7: Write output ---
