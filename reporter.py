@@ -652,6 +652,28 @@ def _decision_section(
                   f"(pass-1 RED, {comp_count} tools, no pain)")
             continue
 
+        # Score gate: deterministic rules shouldn't depend on LLM compliance.
+        # Score < 50 with no confirmed pain = not worth an LLM call.
+        score = data.get("cluster_score", 0)
+        pain_reliable = reddit and reddit.get("pain_reliable", False)
+        if score < 50 and not (has_pain and pain_reliable):
+            header_name = data.get("display_name", name)
+            lines.append(f"### 🔴 SKIP — {header_name} [HIGH]")
+            lines.append("")
+            lines.append(
+                f"**Reasoning:** Score {score} is below threshold (50) "
+                f"with no confirmed pain signal. "
+                f"Skipped LLM evaluation."
+            )
+            lines.append("")
+            data.get("_original_ref", data)["_decision"] = {
+                "decision": "SKIP", "confidence": "HIGH",
+                "reason": f"Score gate: {score} < 50, no confirmed pain",
+            }
+            print(f"[reporter] Score gate: skipping LLM for '{name}' "
+                  f"(score {score} < 50, no confirmed pain)")
+            continue
+
         decision = _llm_decision(data, competition, reddit)
 
         if decision:
@@ -695,11 +717,16 @@ def _decision_section(
                 f"[{decision['confidence']}]"
             )
             lines.append("")
-            lines.append(f"**Idea:** {decision['build_idea']}")
-            lines.append(f"**Slug:** `{decision['target_slug']}`")
-            lines.append(f"**Monetization:** {decision['monetization']}")
-            lines.append(f"**Reasoning:** {decision['reason']}")
-            lines.append(f"**Risk:** {decision['risk']}")
+            if decision["decision"] == "SKIP":
+                # SKIP: only show reasoning — no point pitching a product
+                # the pipeline just told you not to build
+                lines.append(f"**Reasoning:** {decision['reason']}")
+            else:
+                lines.append(f"**Idea:** {decision['build_idea']}")
+                lines.append(f"**Slug:** `{decision['target_slug']}`")
+                lines.append(f"**Monetization:** {decision['monetization']}")
+                lines.append(f"**Reasoning:** {decision['reason']}")
+                lines.append(f"**Risk:** {decision['risk']}")
             # Persist full decision (including context_seed) on the correct dict
             data.get("_original_ref", data)["_decision"] = decision
         else:
