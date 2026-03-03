@@ -600,9 +600,9 @@ def _decision_section(
         lines.append("*OPENAI_API_KEY not set — using rule-based heuristics.*")
         lines.append("")
 
-    # Evaluate top 3 clusters + top 2 unclustered
+    # Evaluate top 5 clusters + top 2 unclustered
     targets: list[tuple[str, dict, dict | None]] = []  # (name, data, reddit)
-    for c in clusters[:3]:
+    for c in clusters[:5]:
         targets.append((c["cluster_name"], c, c.get("reddit")))
 
     for t in unclustered[:2]:
@@ -633,7 +633,8 @@ def _decision_section(
             top_domains = [c["domain"] for c in pass1_data.get(
                 "top_competitors", [])[:3]]
             domains_str = ", ".join(top_domains) if top_domains else "various"
-            lines.append(f"### 🔴 SKIP — {name} [HIGH]")
+            header_name = data.get("display_name", name)
+            lines.append(f"### 🔴 SKIP — {header_name} [HIGH]")
             lines.append("")
             lines.append(
                 f"**Reasoning:** Pass 1 competition check found "
@@ -655,8 +656,10 @@ def _decision_section(
 
         if decision:
             # --- Refined competition check using LLM-generated queries ---
+            # Only run if decision is BUILD or WATCH — SKIP decisions don't
+            # need further validation and the queries may match adjacent domains.
             comp_queries = decision.get("competition_queries", [])
-            if comp_queries:
+            if comp_queries and decision["decision"] != "SKIP":
                 print(f"[reporter] Refined competition check for '{name}': "
                       f"{comp_queries[:2]}")
                 # Use the keyword pass-1 checked (for incumbent matching),
@@ -686,8 +689,9 @@ def _decision_section(
             icon = {"BUILD": "🟢", "WATCH": "🟡", "SKIP": "🔴"}.get(
                 decision["decision"], "❓"
             )
+            header_name = data.get("display_name", name)
             lines.append(
-                f"### {icon} {decision['decision']} — {name} "
+                f"### {icon} {decision['decision']} — {header_name} "
                 f"[{decision['confidence']}]"
             )
             lines.append("")
@@ -722,7 +726,8 @@ def _decision_section(
                 verdict = "SKIP"
                 icon = "🔴"
 
-            lines.append(f"### {icon} {verdict} — {name}")
+            header_name = data.get("display_name", name)
+            lines.append(f"### {icon} {verdict} — {header_name}")
             lines.append("")
             lines.append(
                 f"Score: {score} · Competition: {comp_verdict}"
