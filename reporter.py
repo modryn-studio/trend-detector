@@ -466,7 +466,7 @@ def _llm_decision(cluster: dict, competition: dict | None,
     context = "\n".join(context_parts)
 
     prompt = (
-        f"You are a solo developer evaluating whether to build a tool.\n\n"
+        f"You are a product analyst evaluating market opportunities for software products.\n\n"
         f"{context}\n\n"
         f"Decide: BUILD (strong signal, clear use case, weak competition), "
         f"WATCH (interesting but unclear execution or medium competition), "
@@ -477,27 +477,17 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"- Competition GREEN + pain signal → BUILD\n"
         f"- Reddit inconclusive → downgrade confidence one level\n"
         f"- Score < 50 → SKIP unless exceptional pain signal\n\n"
-        f"BUILDER CAPACITY — what '48 hours' actually means for this developer:\n"
-        f"- Multi-file systems (this pipeline itself is 2,700 lines across 9 files, built in 48 hours)\n"
-        f"- 3–6 API integrations (REST, IMAP, protobuf, structured LLM outputs)\n"
-        f"- Scoring/ranking algorithms, multi-pass clustering, noise filtering\n"
-        f"- Full Next.js deployment on Vercel with Stripe payments, GA4, Resend email\n"
-        f"- Programmatic SEO with dynamic routes and structured data\n"
-        f"The constraint is not 'how many files' — it's 'no ongoing infrastructure'.\n"
-        f"No moderation queues, no user-generated content, no two-sided marketplaces.\n"
-        f"One developer, one deploy, zero ongoing ops.\n\n"
         f"BUILD FOR THE EMOTIONAL BARRIER, NOT THE INFORMATION GAP.\n"
         f"If Reddit posts express fear, loneliness, overwhelm, or frustration,\n"
         f"the tool should address THAT emotion — not just aggregate links.\n"
         f"Ask: 'What feeling stops someone from acting?' then build for that.\n\n"
-        f"GOOD ideas:\n"
-        f"- 'Pipeline that scrapes rising trends, scores by buildability, and outputs a ranked dashboard with Stripe checkout'\n"
-        f"- 'Calculator that pulls real-time futures data, applies 3 technical indicators, and gives a single buy/hold/exit verdict with reasoning'\n"
-        f"- 'Tool that fetches all local meetups for a hobby, scores them by beginner-friendliness, and generates a personalized first-visit game plan'\n"
-        f"BAD ideas:\n"
-        f"- 'A marketplace with user profiles, messaging, and a recommendation engine'\n"
-        f"- 'A social network for hobbyists with friend lists and activity feeds'\n"
-        f"- 'A cheat sheet generator that outputs static text' (too small — undersells the opportunity)\n\n"
+        f"SIGNAL EXAMPLES:\n"
+        f"- Breakout trend (+400%), 1,200 Reddit posts expressing genuine frustration, "
+        f"competition GREEN (one underfunded tool last updated 2022) → BUILD HIGH\n"
+        f"- Rising trend (+180%), Reddit has mild interest but no pain signals, "
+        f"competition YELLOW (2 established tools with active freemium plans) → WATCH\n"
+        f"- Trending keyword, Reddit consensus is 'existing apps are fine', "
+        f"competition RED (dominant player, 50k+ users, recent funding) → SKIP\n\n"
         f"COMPETITION QUERIES: Also output competition_queries — exactly 3 short,\n"
         f"tool-focused search queries to check if your build idea already exists\n"
         f"as a product. Search for the TOOL you'd build, not the raw trend keyword.\n"
@@ -505,7 +495,7 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"idea='PTO optimizer' → ['pto optimizer tool', 'maximize pto days\n"
         f"calculator', 'vacation day optimizer app']\n\n"
         f"CONTEXT SEED: Also output context_seed — structured fields that describe\n"
-        f"the product for the build phase. These seed the project's context.md.\n"
+        f"the product opportunity for the discovery phase. These seed the project's context.md.\n"
     )
 
     try:
@@ -529,7 +519,7 @@ def _llm_decision(cluster: dict, competition: dict | None,
                         },
                         "build_idea": {
                             "type": "string",
-                            "description": "One-sentence product idea",
+                            "description": "The product opportunity: what problem it solves, what category of product addresses it (tool/dashboard/calculator/tracker/etc), and the core value proposition. Do not scope to implementation details.",
                         },
                         "target_slug": {
                             "type": "string",
@@ -571,7 +561,7 @@ def _llm_decision(cluster: dict, competition: dict | None,
                                 "routes": {
                                     "type": "array",
                                     "items": {"type": "string"},
-                                    "description": "1-3 route descriptions like '/ → Ranked dashboard with score + action button'",
+                                    "description": "Suggested routes for this product category, not an implementation plan. List the core user flows the product needs — as many as the category warrants. Format: '/ → description'.",
                                 },
                             },
                             "required": ["product_description", "target_user",
