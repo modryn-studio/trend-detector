@@ -1,0 +1,1294 @@
+{
+  "date": "2026-03-04",
+  "sources": [
+    "trendspy",
+    "rss",
+    "email"
+  ],
+  "clusters": [
+    {
+      "cluster_name": "Community & Clubs",
+      "cluster_score": 92,
+      "member_count": 10,
+      "top_keyword": "hiking club for beginners",
+      "growth_signals": [
+        "social clubs: breakout",
+        "hiking club for beginners: breakout",
+        "art club: breakout",
+        "cultural events near me: +250%"
+      ],
+      "members": [
+        {
+          "keyword": "hiking club for beginners",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "art club",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "social clubs",
+          "score": 60,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 10.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "cultural events near me",
+          "score": 53,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 16.7,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 250.0
+          }
+        },
+        {
+          "keyword": "how to volunteer at children's hospital",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "how to volunteer",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "community events",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "run clubs",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "cookbook club",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "community volunteer",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Community & Clubs",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 29,
+        "subreddit_hits": {
+          "Advice": 10,
+          "socialskills": 8,
+          "lonely": 6,
+          "introvert": 5
+        },
+        "pain_signal": true,
+        "pain_reliable": true,
+        "keyword": "social clubs",
+        "top_posts": [
+          {
+            "title": "Have you guys made friends just by being a regular somewhere?",
+            "subreddit": "socialskills",
+            "score": 131,
+            "url": "https://reddit.com/r/socialskills/comments/1r5wkml/have_you_guys_made_friends_just_by_being_a/",
+            "num_comments": 65,
+            "created_utc": 1771206465.0
+          },
+          {
+            "title": "It just hits me I will never experience the joy of close friendships",
+            "subreddit": "socialskills",
+            "score": 162,
+            "url": "https://reddit.com/r/socialskills/comments/1rhzdoz/it_just_hits_me_i_will_never_experience_the_joy/",
+            "num_comments": 21,
+            "created_utc": 1772377248.0
+          },
+          {
+            "title": "I've been isolated for too long. Things can't change anymore.",
+            "subreddit": "lonely",
+            "score": 140,
+            "url": "https://reddit.com/r/lonely/comments/1r1a5eq/ive_been_isolated_for_too_long_things_cant_change/",
+            "num_comments": 36,
+            "created_utc": 1770750984.0
+          },
+          {
+            "title": "I am puzzled why I dont have friends",
+            "subreddit": "socialskills",
+            "score": 54,
+            "url": "https://reddit.com/r/socialskills/comments/1rbbrwx/i_am_puzzled_why_i_dont_have_friends/",
+            "num_comments": 36,
+            "created_utc": 1771732862.0
+          },
+          {
+            "title": "I\u2019m 20 and my only friend is my cat",
+            "subreddit": "lonely",
+            "score": 51,
+            "url": "https://reddit.com/r/lonely/comments/1r2rfcl/im_20_and_my_only_friend_is_my_cat/",
+            "num_comments": 17,
+            "created_utc": 1770897142.0
+          }
+        ]
+      }
+    },
+    {
+      "cluster_name": "Third Places",
+      "cluster_score": 85,
+      "member_count": 8,
+      "top_keyword": "third place potential",
+      "growth_signals": [
+        "digital third spaces: breakout",
+        "third place potential: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "third place potential",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Third Places",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "digital third spaces",
+          "score": 60,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Third Places",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 10.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to play switch with friends online",
+          "score": 50,
+          "velocity": "steady",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Third Places",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 10.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 150.0
+          }
+        },
+        {
+          "keyword": "third place coffee",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Third Places",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "third space near me",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Third Places",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "coworking spaces near me,",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Third Places",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "are malls third spaces",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Third Places",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "are\u2026third spaces,",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Third Places",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 7,
+        "subreddit_hits": {
+          "Advice": 5,
+          "lonely": 2
+        },
+        "pain_signal": true,
+        "pain_reliable": true,
+        "keyword": "digital third spaces",
+        "top_posts": [
+          {
+            "title": "My worst fear came true and everyone is excited for me",
+            "subreddit": "Advice",
+            "score": 0,
+            "url": "https://reddit.com/r/Advice/comments/1rbxz32/my_worst_fear_came_true_and_everyone_is_excited/",
+            "num_comments": 10,
+            "created_utc": 1771795116.0
+          },
+          {
+            "title": "I think I may be male-centered. What do I do?",
+            "subreddit": "Advice",
+            "score": 0,
+            "url": "https://reddit.com/r/Advice/comments/1ray94h/i_think_i_may_be_malecentered_what_do_i_do/",
+            "num_comments": 8,
+            "created_utc": 1771697772.0
+          },
+          {
+            "title": "Pls help!! i have an art assignment due soon and i\u2019m so stuck on ideas !!",
+            "subreddit": "Advice",
+            "score": 2,
+            "url": "https://reddit.com/r/Advice/comments/1r6bq00/pls_help_i_have_an_art_assignment_due_soon_and_im/",
+            "num_comments": 6,
+            "created_utc": 1771253719.0
+          },
+          {
+            "title": "I think its too late for me to even pursue my dreams.",
+            "subreddit": "Advice",
+            "score": 1,
+            "url": "https://reddit.com/r/Advice/comments/1rfxlge/i_think_its_too_late_for_me_to_even_pursue_my/",
+            "num_comments": 6,
+            "created_utc": 1772168723.0
+          },
+          {
+            "title": "What \"Lonely\" means to me",
+            "subreddit": "lonely",
+            "score": 3,
+            "url": "https://reddit.com/r/lonely/comments/1rk5k1r/what_lonely_means_to_me/",
+            "num_comments": 3,
+            "created_utc": 1772581374.0
+          }
+        ]
+      }
+    },
+    {
+      "cluster_name": "Making Friends",
+      "cluster_score": 82,
+      "member_count": 7,
+      "top_keyword": "friend website",
+      "growth_signals": [
+        "where to meet people: breakout",
+        "friend website: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "friend website",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Making Friends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "where to meet people",
+          "score": 60,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Making Friends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 10.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to make friends",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Making Friends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "friend app",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Making Friends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "how to meet people as\u2026",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Making Friends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "Social groups",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Making Friends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "travel groups",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Making Friends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 33,
+        "subreddit_hits": {
+          "socialskills": 10,
+          "lonely": 10,
+          "Advice": 9,
+          "webdev": 4
+        },
+        "pain_signal": true,
+        "pain_reliable": true,
+        "keyword": "where to meet people",
+        "top_posts": [
+          {
+            "title": "My bestfriend implied she would sleep with my boyfriend",
+            "subreddit": "Advice",
+            "score": 270,
+            "url": "https://reddit.com/r/Advice/comments/1r6dovi/my_bestfriend_implied_she_would_sleep_with_my/",
+            "num_comments": 468,
+            "created_utc": 1771258135.0
+          },
+          {
+            "title": "update: my wife said she regrets ever meeting me",
+            "subreddit": "Advice",
+            "score": 366,
+            "url": "https://reddit.com/r/Advice/comments/1r70i7c/update_my_wife_said_she_regrets_ever_meeting_me/",
+            "num_comments": 149,
+            "created_utc": 1771316548.0
+          },
+          {
+            "title": "My now-ex told me he wish I killed myself because I chose not to abort our child",
+            "subreddit": "Advice",
+            "score": 199,
+            "url": "https://reddit.com/r/Advice/comments/1qulie6/my_nowex_told_me_he_wish_i_killed_myself_because/",
+            "num_comments": 280,
+            "created_utc": 1770103415.0
+          },
+          {
+            "title": "There's a girl that doesn't like me in a meet up group I attend",
+            "subreddit": "socialskills",
+            "score": 372,
+            "url": "https://reddit.com/r/socialskills/comments/1r29m1k/theres_a_girl_that_doesnt_like_me_in_a_meet_up/",
+            "num_comments": 91,
+            "created_utc": 1770843939.0
+          },
+          {
+            "title": "I'm white but I don't \"look it\" and experience racism.",
+            "subreddit": "Advice",
+            "score": 78,
+            "url": "https://reddit.com/r/Advice/comments/1r18tyg/im_white_but_i_dont_look_it_and_experience_racism/",
+            "num_comments": 259,
+            "created_utc": 1770748201.0
+          }
+        ]
+      }
+    },
+    {
+      "cluster_name": "Top Trends",
+      "cluster_score": 67,
+      "member_count": 6,
+      "top_keyword": "hip hop hall of fame",
+      "growth_signals": [
+        "hip hop hall of fame: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "hip hop hall of fame",
+          "score": 64,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 35.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "mercury retrograde pisces",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "mercury retrograde",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "pisces horoscope",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "is phil collins in the rock and roll hall of fame",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "is\u2026in the rock and roll hall of fame",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ]
+    }
+  ],
+  "unclustered": [
+    {
+      "keyword": "macbook neo",
+      "score": 57,
+      "velocity": "rising",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "technology",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 46.7,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 20000,
+        "google_growth_pct": 700
+      }
+    },
+    {
+      "keyword": "gas stations",
+      "score": 39,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 2000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "dow futures",
+      "score": 39,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 5000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "united rentals",
+      "score": 38,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 500,
+        "google_growth_pct": 200
+      }
+    },
+    {
+      "keyword": "south korea",
+      "score": 36,
+      "velocity": "rising",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 40.0,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 10.0,
+        "google_volume": 20000,
+        "google_growth_pct": 600
+      }
+    },
+    {
+      "keyword": "crimson desert",
+      "score": 36,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 1000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "cole mcconchie",
+      "score": 36,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 1000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "arnold palmer invitational",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 1000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "seth macfarlane",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 2000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "crwd stock",
+      "score": 33,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "low",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 20.0,
+        "volume_score": 20.0,
+        "buildability_score": 20.0,
+        "freshness_score": 85.0,
+        "google_volume": 2000,
+        "google_growth_pct": 300
+      }
+    },
+    {
+      "keyword": "debt relief",
+      "score": 32,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 3.3,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 200,
+        "google_growth_pct": 50
+      }
+    },
+    {
+      "keyword": "crypto gaming",
+      "score": 32,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 5.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 200,
+        "google_growth_pct": 75
+      }
+    },
+    {
+      "keyword": "nj transit",
+      "score": 31,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 65.0,
+        "google_volume": 500,
+        "google_growth_pct": 200
+      }
+    },
+    {
+      "keyword": "mekhi becton",
+      "score": 30,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "xrp price",
+      "score": 27,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "high",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 3.3,
+        "volume_score": 20.0,
+        "buildability_score": 80.0,
+        "freshness_score": 10.0,
+        "google_volume": 1000,
+        "google_growth_pct": 50
+      }
+    }
+  ],
+  "competition": {
+    "social clubs": {
+      "keyword": "social clubs",
+      "queries_searched": [
+        "social clubs tool",
+        "social clubs calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 3,
+      "top_competitors": [
+        {
+          "title": "GitHub - Senexis/Social-Club-Tool: A simple tool for Rockstar's Social Club that adds much-needed functionality for anyone that's popular.",
+          "url": "https://github.com/Senexis/Social-Club-Tool",
+          "domain": "github.com"
+        },
+        {
+          "title": "Meetup | Find Local Groups, Events, and Activities Near You",
+          "url": "https://www.meetup.com/",
+          "domain": "www.meetup.com"
+        },
+        {
+          "title": "Social Club ;) App - App Store",
+          "url": "https://apps.apple.com/us/app/social-club/id6444059570",
+          "domain": "apps.apple.com"
+        }
+      ],
+      "verdict": "YELLOW"
+    },
+    "digital third spaces": {
+      "keyword": "digital third spaces",
+      "queries_searched": [
+        "digital third spaces tool",
+        "digital third spaces calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "where to meet people": {
+      "keyword": "where to meet people",
+      "queries_searched": [
+        "where to meet people tool",
+        "where to meet people calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 4,
+      "top_competitors": [
+        {
+          "title": "Meetup: Social Events & Groups App - App Store",
+          "url": "https://apps.apple.com/us/app/meetup-social-events-groups/id375990038",
+          "domain": "apps.apple.com"
+        },
+        {
+          "title": "14 Best Apps to Meet People Around You (Feb. 2026)",
+          "url": "https://www.datingadvice.com/online-dating/apps-to-meet-people-around-you",
+          "domain": "www.datingadvice.com"
+        },
+        {
+          "title": "Meet Your Standards Test Calculator - US Census Data",
+          "url": "https://www.meetyourstandardstest.com/",
+          "domain": "www.meetyourstandardstest.com"
+        },
+        {
+          "title": "Dating Standards Calculator | BarGlance",
+          "url": "https://www.barglance.com/datingcalculator",
+          "domain": "www.barglance.com"
+        }
+      ],
+      "verdict": "RED"
+    },
+    "hip hop hall of fame": {
+      "keyword": "hip hop hall of fame",
+      "queries_searched": [
+        "hip hop hall of fame tool",
+        "hip hop hall of fame calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "macbook neo": {
+      "keyword": "macbook neo",
+      "queries_searched": [
+        "macbook neo tool",
+        "macbook neo calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 5,
+      "top_competitors": [
+        {
+          "title": "MacBook Neo - Apple",
+          "url": "https://www.apple.com/macbook-neo/",
+          "domain": "www.apple.com"
+        },
+        {
+          "title": "MacBook Neo feels like the biggest shift for Apple laptops since the 12-inch MacBook",
+          "url": "https://www.theshortcut.com/p/macbook-neo-analysis",
+          "domain": "www.theshortcut.com"
+        },
+        {
+          "title": "Leaked Apple Documents Detail MacBook Neo Features Ahead of Launch - MacRumors",
+          "url": "https://www.macrumors.com/2026/03/03/apple-documents-macbook-neo-features/",
+          "domain": "www.macrumors.com"
+        },
+        {
+          "title": "Calculator User Guide for Mac - Apple Support",
+          "url": "https://support.apple.com/guide/calculator/welcome/mac",
+          "domain": "support.apple.com"
+        },
+        {
+          "title": "Meet the MacBook Neo, Apple's colorful answer to the Chromebook, starting at $599 | TechCrunch",
+          "url": "https://techcrunch.com/2026/03/04/meet-the-macbook-neo-apples-colorful-answer-to-the-chromebook-starting-at-599/",
+          "domain": "techcrunch.com"
+        }
+      ],
+      "verdict": "RED"
+    }
+  },
+  "decisions": {
+    "Community & Clubs": {
+      "decision": "BUILD",
+      "confidence": "MED",
+      "build_idea": "A \u201cfirst-hike confidence companion\u201d for adults attending their very first beginner group hike alone (often after moving cities or trying to get healthier). The emotional barrier is fear of being the slowest/most inexperienced, showing up alone, and not knowing what to bring or what the social norms are. The core value: a guided onboarding that matches them to explicitly beginner-friendly outings with a vetted leader, gives a personalized prep plan (gear/pace/weather), and provides a low-stakes pre-chat + buddy pairing so they arrive feeling socially safe and practically ready.",
+      "target_slug": "first-hike-confidence",
+      "monetization": "Freemium: free onboarding + limited matches; paid ($6\u201312/mo) for unlimited matched outings, buddy pairing, packing/pace plans, and 24-hour \u201cweather/what-to-do\u201d checklists. B2B add-on for local guiding companies/nonprofits: leader tools (waivers, attendance, beginner difficulty rubric) + featured placement. Optional affiliate revenue from beginner gear checklists.",
+      "reason": "Search intent clusters around joining clubs/events but the pain signal suggests the real blocker is anxiety and uncertainty about being a beginner in public, not lack of listings. Meetup and generic event apps list hikes, but they don\u2019t reduce first-timer fear (pace ambiguity, showing up solo, gear uncertainty) or create pre-commitment social safety. Competition is only YELLOW with room to differentiate on \u201cfirst outing readiness\u201d rather than discovery. [Note: refined competition search for 'app for showing up alone to first group hike beginner' found 5 existing tools \u2014 review competition section before building.]",
+      "risk": "Niche may be too small in a single city unless you bootstrap via partnerships with beginner-friendly leaders/clubs and expand to adjacent \u201cfirst-time group activity\u201d verticals (run clubs, volunteering).",
+      "competition_queries": [
+        "app for showing up alone to first group hike beginner",
+        "beginner outdoor group hike buddy pairing onboarding",
+        "tool for hike leaders to manage first-timer readiness checklist waivers"
+      ],
+      "context_seed": {
+        "product_description": "A mobile/web tool that helps someone go from \u201cI want to try a beginner group hike but I\u2019m nervous\u201d to confidently attending their first outing. It matches users only to explicitly beginner-friendly events, generates a personalized prep plan (pace/gear/weather), and offers optional buddy pairing and a short pre-hike chat to reduce social anxiety. Leaders get lightweight tools to label true beginner difficulty and welcome first-timers.",
+        "target_user": "Jordan, 29, newly relocated for work, wants to get outdoors and meet people but is afraid of being the slowest person and awkwardly arriving alone to a group hike.",
+        "emotional_barrier": "They fear embarrassment and social rejection if they show up unprepared, can\u2019t keep up, or don\u2019t know the unspoken norms of the group.",
+        "routes": [
+          "/ \u2192 Landing + choose goal (first hike / new to city / getting back in shape)",
+          "/onboarding \u2192 Fitness/pace comfort, schedule, transport, gear you have, anxiety triggers",
+          "/matches \u2192 Curated beginner-only outings with transparent pace, elevation, leader vibe, and \u201chow beginner is it?\u201d rubric",
+          "/prep-plan/:event \u2192 Packing list, pace expectations, meet-up logistics, conversation prompts, safety notes",
+          "/buddy \u2192 Opt-in buddy pairing + pre-hike intro chat",
+          "/check-in \u2192 Day-before and day-of confidence checklist + weather-triggered reminders",
+          "/post-hike \u2192 Reflection + streak/next-step suggestions (repeat with same group, try slightly harder)",
+          "/leaders \u2192 Create event, set beginner rubric, welcome script, manage waivers/attendance, message first-timers"
+        ]
+      }
+    },
+    "Third Places": {
+      "decision": "BUILD",
+      "confidence": "MED",
+      "build_idea": "A \"first-visit buddy\" micro-tool for newly remote workers trying a coworking space alone for the first time: it creates a low-stakes plan (arrival script, where to sit, 2 conversation openers, and a 20-minute \"exit ramp\"), plus an opt-in \"silent buddy slot\" that matches you with one other first-timer at the same venue/time for a minimal-pressure co-arrival. Niche: people searching \"coworking spaces near me\" because they feel lonely working from home but are anxious about walking into a social space alone. Core value: reduce social friction and fear of awkwardness so they actually show up once.",
+      "target_slug": "coworking-first-visit-buddy",
+      "monetization": "B2B2C: coworking spaces pay a monthly fee for \"First-Visit Buddy\" onboarding (embedded on their website/booking flow) + optional per-lead fee for trial-day conversions; light consumer freemium (scripts/plans free, buddy-slot matching and venue-specific perks as paid).",
+      "reason": "Competition is GREEN and Reddit shows real pain: people want a \"third place\" but the blocker is emotional (awkwardness/anxiety), not lack of listings. A narrow wedge\u2014\"first time going to a coworking space alone\"\u2014avoids competing with Meetup/Yelp/Google and gives coworking operators a direct conversion incentive to distribute it.",
+      "risk": "Cold-start and safety/trust for buddy matching could undermine the core promise if not tightly scoped and venue-partnered.",
+      "competition_queries": [
+        "first day coworking anxiety app co-arrival buddy",
+        "coworking space trial day onboarding conversation prompts tool",
+        "match first time coworking visitors same venue time"
+      ],
+      "context_seed": {
+        "product_description": "A lightweight web app (and embeddable widget for coworking sites) that turns \"I should go to a coworking space\" into a guided first visit. It generates a personalized arrival plan (what to do on entry, where to sit, how long to stay, and how to leave) and offers an opt-in co-arrival pairing with another verified first-timer at the same venue/time to reduce social anxiety.",
+        "target_user": "Sam, a 29-year-old remote worker who has been working from a small apartment for months, keeps searching for nearby coworking spaces but closes the tab because showing up alone feels awkward and intimidating.",
+        "emotional_barrier": "They fear walking in alone, looking out of place, and not knowing how to start (or end) a social interaction without it being awkward.",
+        "routes": [
+          "/ \u2192 pick a venue and choose a first-visit goal (focus work, meet 1 person, just get out)",
+          "/plan \u2192 receive the first-visit script, seating suggestions, time-box, and exit ramp",
+          "/buddy-slot \u2192 opt in to co-arrival matching for a specific day/time (venue-verified)",
+          "/checklist \u2192 quick pre-departure checklist + 2 conversation openers",
+          "/debrief \u2192 60-second reflection; set next-step commitment (book again, try new time)",
+          "/for-venues \u2192 coworking operator dashboard: embed widget, verify trial visitors, view conversion metrics"
+        ]
+      }
+    },
+    "Making Friends": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A \u201cfirst-outing buddy\u201d micro-coach for adults who want to join an in-person social group alone (book club, run club, board games) but freeze at the last step. Niche: people who have already found a group/event online, yet don\u2019t go because they fear being awkward, not fitting in, or arriving alone. Core value: turn a scary first attendance into a scripted, low-friction plan (arrival timing, icebreakers, text prompts, escape hatches) plus lightweight accountability and post-event reflection so they try again and convert into real friendships.",
+      "target_slug": "first-outing-buddy",
+      "monetization": "Freemium: free first-outing plan + basic scripts; $6\u201312/mo for weekly plans, accountability nudges, \u201cmessage generator\u201d for follow-ups, and templates tailored to specific group types (fitness, games, volunteering). Optional affiliate rev from partner groups/classes that opt into \u201cwelcoming host\u201d listings.",
+      "reason": "Competition is RED for generic friend-making tools, but Reddit shows real pain (fear/loneliness/overwhelm) and the searches indicate people are stuck at execution, not information. A narrowly-scoped confidence + accountability product aimed at the first in-person attempt is differentiated from event directories and broad social apps, but still needs validation that users will pay for coaching versus relying on friends/therapy/content.",
+      "risk": "Users may perceive this as \u201cjust advice\u201d and churn quickly unless the product delivers a measurable confidence boost and repeatable habit formation beyond the first event.",
+      "competition_queries": [
+        "app for joining a hobby group alone first time",
+        "social anxiety first meetup arrival script tool",
+        "accountability planner for attending local club alone"
+      ],
+      "context_seed": {
+        "product_description": "A mobile/web tool that helps you actually show up to a social group you\u2019ve already chosen by generating a personalized first-outing plan: when to arrive, what to say, who to approach, and how to follow up. It adds gentle accountability (check-ins, commitments, optional anonymous buddy mode) and a quick post-event debrief that turns one awkward attempt into a repeatable routine. The user gets reduced anxiety, a concrete script, and momentum to return until familiarity turns into friendships.",
+        "target_user": "Sam, 29, moved to a new neighborhood and saved a local board-game night, but keeps bailing an hour before because walking in alone feels humiliating and they worry everyone already knows each other.",
+        "emotional_barrier": "They\u2019re afraid of looking awkward and alone, so they avoid the discomfort of the first 10 minutes and never convert intent into attendance.",
+        "routes": [
+          "/ \u2192 landing: pick your situation (found an event, invited but nervous, returning after skipping)",
+          "/plan \u2192 create a first-outing plan (event type, vibe, your worries, goals)",
+          "/scripts \u2192 icebreakers, introductions, and exit/escape-hatch lines tailored to the venue",
+          "/commit \u2192 set a micro-commitment (arrival time, stay-minimum) + accountability nudges",
+          "/checkin \u2192 pre-event calming + \u201cwhat to do when you walk in\u201d step-by-step",
+          "/debrief \u2192 2-minute reflection + generate follow-up message / next-step plan",
+          "/streaks \u2192 track attempts and confidence over time (return plan)"
+        ]
+      }
+    },
+    "Top Trends": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A \"Hall of Fame speech rehearsal + confidence kit\" for first-time inductees (or their speechwriters/managers) preparing a short, emotionally safe acceptance speech that must balance gratitude, authenticity, and brand risk. Niche: artists entering a high-scrutiny legacy moment (e.g., genre-specific halls), feeling overwhelmed by expectations and terrified of public backlash or sounding cringe. Core value: a guided workflow that turns chaotic memories/credits into a tight speech, with tone checks (humble vs. boastful), timeboxing, sensitive-topic prompts, and private table-reads with trusted reviewers.",
+      "target_slug": "hof-speech-kit",
+      "monetization": "Paid one-time package ($49\u2013$199) + premium concierge add-on (human editor/coach) + agency/label team seats.",
+      "reason": "The search cluster signals recurring attention around Hall-of-Fame status (who\u2019s in, what counts), but the monetizable emotional pain is strongest for the small number of people who must perform publicly in a legacy setting (stress, fear of judgment, reputational risk). Competition appears green for a focused speech-prep product, but overall demand volume may be spiky and tied to annual induction cycles, so execution risk is non-trivial.",
+      "risk": "Market size is narrow and seasonal; without expanding to adjacent high-stakes speeches (award shows, commencements), growth may stall.",
+      "competition_queries": [
+        "induction speech rehearsal tool for award recipients",
+        "acceptance speech timeboxing app for artists and managers",
+        "reputation-safe public speech drafting workflow for first-time honorees"
+      ],
+      "context_seed": {
+        "product_description": "A guided speech-building tool for first-time honorees preparing an induction/legacy acceptance speech. Users import key life moments, collaborators, and credits, then the app generates a structured outline, enforces time limits, and runs tone/sensitivity checks to reduce cringe and backlash risk. It also supports private table-reads with selected reviewers and version control for manager/publicist sign-off.",
+        "target_user": "A newly announced inductee (or their manager/publicist) who has to deliver a 2\u20136 minute acceptance speech under intense public scrutiny and wants to sound authentic without triggering controversy.",
+        "emotional_barrier": "They\u2019re afraid of being judged as inauthentic, forgetting key people, or saying something that sparks backlash in a career-defining moment.",
+        "routes": [
+          "/ \u2192 landing + examples of great speeches by archetype (humble, funny, activist, legacy)",
+          "/onboarding \u2192 speech context (venue, time limit, themes to avoid, must-mention people)",
+          "/memory-capture \u2192 guided prompts to collect stories, credits, collaborators, influences",
+          "/outline \u2192 auto-structured outline with time estimates per section",
+          "/draft \u2192 write/edit with tone meter + red-flag prompts (controversy, legal/PR)",
+          "/rehearse \u2192 teleprompter mode + pacing coach + recording + filler-word stats",
+          "/review \u2192 invite manager/publicist + inline comments + approve/version history",
+          "/finalize \u2192 export to doc/PDF + cue cards + teleprompter script"
+        ]
+      }
+    },
+    "macbook neo": {
+      "decision": "SKIP",
+      "confidence": "HIGH",
+      "reason": "RED gate: 5 existing tools, no pain"
+    },
+    "gas stations": {
+      "decision": "SKIP",
+      "confidence": "HIGH",
+      "reason": "Score gate: 39 < 50, no confirmed pain"
+    }
+  }
+}
