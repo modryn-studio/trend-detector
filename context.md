@@ -53,7 +53,8 @@ PIPELINE STAGES (in order):
   4. Score         — 0-100 composite (see weights below)
   5. Cluster       — Pass 1: group by email section header (Google's own
                      groupings). Pass 2: group by shared stemmed tokens.
-  6. Reddit        — targeted subreddit search; flag pain signals
+  6. Reddit        — targeted subreddit search + pain-framed queries (frustration,
+                     anxiety, solution-seeking); preserves post excerpts for briefing
   7. Competitor    — two-pass Brave Search (see below)
   8. Time series   — interest_over_time() enrichment; updates freshness;
                      re-sorts clusters
@@ -63,7 +64,9 @@ PIPELINE STAGES (in order):
                      LLM uses streak length to raise BUILD confidence
  10. Briefing      — GPT-5.2 renames clusters by human need, generates
                      BUILD/WATCH/SKIP decisions, writes
-                     briefings/briefing_YYYY-MM-DD.md
+                     briefings/briefing_YYYY-MM-DD.md. Order: cluster table
+                     → story → Reddit pain excerpts → decisions → competition.
+                     Build idea in collapsible block (reference only).
 
 COMPETITOR CHECK (competitor_check.py):
   Pass 1 (keyword-based): checks trend keyword + suffix variants for top 5
@@ -72,8 +75,8 @@ COMPETITOR CHECK (competitor_check.py):
     Score gate: score < 50 + no confirmed pain → SKIP (enforced in code).
   Pass 2 (build-idea-based): LLM outputs 3 competition_queries for its
     specific build idea; Brave searches those to check the product doesn't
-    already exist. Only runs for BUILD/WATCH decisions. BUILD→WATCH if
-    refined verdict is RED.
+    already exist. Only runs for BUILD/WATCH decisions. Results are
+    informational only — no auto-downgrade. Luke reviews and decides.
 
 SCORING WEIGHTS:
   Growth %     35%  — trending_now growth_pct / email growth string
@@ -155,6 +158,7 @@ CLI FLAGS (pipeline.py):
   --trendspy       trendspy only (debugging)
   --rss            RSS only (debugging)
   --email          email only (debugging)
+  --no-email       skip email source (use trendspy + RSS only)
   --no-series      skip time-series enrichment (faster)
   --no-competitor  skip competitor check (faster)
   --no-reddit      skip Reddit validation (faster)

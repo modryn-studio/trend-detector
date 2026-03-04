@@ -52,10 +52,12 @@ SUBREDDIT_MAP = {
 # Fallback subreddits when no domain match is found
 _GENERAL_SUBS = ["NoStupidQuestions", "Advice", "findareddit", "internetparents"]
 
-# Pain-framing query templates — search the frustration, not the keyword
+# Pain-framing query templates — search the frustration, not the keyword.
+# Multiple angles: direct frustration, emotional barrier, solution-seeking.
 _PAIN_TEMPLATES = [
-    "how do I find {kw}",
-    "{kw} frustrated OR struggling OR \"wish there was\" OR \"looking for\"",
+    "{kw} frustrated OR struggling OR overwhelmed OR \"wish there was\"",
+    "afraid OR anxious OR nervous {kw}",
+    "{kw} \"looking for\" OR \"any good\" OR \"is there a\" OR recommendation",
 ]
 
 # Pain language patterns — checked against post titles AND selftext
@@ -187,14 +189,19 @@ def check_reddit(keyword: str, cluster: dict | None = None,
 
     pain_reliable = pain_signal and on_topic >= 2
 
-    # Strip selftext from output — used for analysis only
-    clean_posts = [{k: v for k, v in p.items() if k != "selftext"} for p in top]
+    # Keep selftext (truncated to 300 chars) so briefing can show pain excerpts
+    brief_posts = []
+    for p in top:
+        post = dict(p)
+        body = post.get("selftext", "")
+        post["selftext"] = body[:300].rstrip() if body else ""
+        brief_posts.append(post)
 
     return {
         "keyword":         keyword,
         "total_posts":     len(all_posts),
         "subreddit_hits":  dict(sub_counter.most_common(10)),
-        "top_posts":       clean_posts,
+        "top_posts":       brief_posts,
         "pain_signal":     pain_signal,
         "pain_reliable":   pain_reliable,
         "targeted_subs":   target_subs,

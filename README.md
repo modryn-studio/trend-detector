@@ -16,17 +16,17 @@ Trends appearing in 2+ sources get a confidence boost. Keywords are filtered, sc
 3. Filter — strip brands, sports, entertainment, news events, person names
 4. Score — 0–100 composite (35% growth velocity, 25% buildability, 20% volume, 20% freshness)
 5. Cluster — group by newsletter section headers, then by shared stemmed tokens
-6. Reddit validate — targeted subreddit search + pain-framed queries
+6. Reddit validate — targeted subreddit search + pain-framed queries (frustration, anxiety, solution-seeking angles); preserves post excerpts (title + body) for briefing display
 7. Competitor check — two-pass Brave Search:
    - Pass 1 (keyword-based): GREEN/YELLOW/RED/INCONCLUSIVE on raw trend keyword. RED + no pain → SKIP immediately, no LLM call.
-   - Pass 2 (build-idea-based): LLM generates 3 tool-focused queries from its build idea; Brave searches those to verify the specific product doesn't already exist.
+   - Pass 2 (build-idea-based): LLM generates 3 tool-focused queries from its build idea; Brave searches those to verify the specific product doesn't already exist. Results are **informational only** — no auto-downgrade. Luke reviews and decides.
 8. Time-series enrich — `interest_over_time()` for top ~15 keywords; updates freshness score
 9. Trend memory — reads last 7 days of `signals_*.json`; annotates clusters and unclustered with `days_seen`, `trajectory` (rising/stable/fading), `first_seen`, `best_day_score`; no API calls
-10. Report — GPT-5.2 renames clusters by human need, generates BUILD/WATCH/SKIP decisions with niche-specific build ideas anchored to signal quality (strong demand + confirmed pain + market gap), adds lifecycle tags (`EARLY`/`PEAKING`/`FADING`) and memory tags (`Nd ↑/→/↓`), outputs a `context_seed` (product_description, target_user, emotional_barrier, routes) ready to paste into the boilerplate's `context.md`
+10. Report — GPT-5.2 renames clusters by human need, generates BUILD/WATCH/SKIP decisions. Briefing order: cluster table → macro-theme story → **Reddit pain excerpts** (raw voices before LLM opinion) → build decisions (reasoning/risk first, build idea in collapsible block) → competition. Lifecycle tags (`EARLY`/`PEAKING`/`FADING`) and memory tags (`Nd ↑/→/↓`) in cluster table.
 
 **Output:**
 - `data/signals_YYYY-MM-DD.json` — full structured output (clusters + scores + Reddit + competition + `decisions` with `context_seed` for each evaluated cluster)
-- `briefings/briefing_YYYY-MM-DD.md` — plain-English: cluster table, the story, BUILD/WATCH/SKIP decisions
+- `briefings/briefing_YYYY-MM-DD.md` — plain-English: cluster table → story → Reddit excerpts → BUILD/WATCH/SKIP decisions → competition
 
 **Scheduling:** `run_daily.bat` runs via Windows Task Scheduler at 9:00 AM daily.
 

@@ -11,8 +11,10 @@ Usage:
   python pipeline.py --trendspy   # trendspy only
   python pipeline.py --rss        # RSS only
   python pipeline.py --email      # email newsletter only
-  python pipeline.py --top 20     # keep top 20 after scoring
-  python pipeline.py --no-series  # skip time-series enrichment (faster)
+  python pipeline.py --top 20         # keep top 20 after scoring
+  python pipeline.py --no-email       # trendspy + RSS only (skip newsletter)
+  python pipeline.py --no-series      # skip time-series enrichment (faster)
+  python pipeline.py --no-competitor  # skip competitor check (faster)
 """
 
 import argparse
@@ -441,6 +443,8 @@ def main() -> None:
 
     parser.add_argument("--top", type=int, default=15,
                         help="Top N trends to keep (default: 15)")
+    parser.add_argument("--no-email", action="store_true",
+                        help="Exclude email newsletter source (trendspy + RSS only)")
     parser.add_argument("--no-series", action="store_true",
                         help="Skip time-series enrichment (faster)")
     parser.add_argument("--no-reddit", action="store_true",
@@ -460,8 +464,8 @@ def main() -> None:
     elif args.email:
         sources = ["email"]
     else:
-        # Default: all 3 sources
-        sources = ["trendspy", "rss", "email"]
+        # Default: all 3 sources (--no-email removes newsletter)
+        sources = ["trendspy", "rss"] if args.no_email else ["trendspy", "rss", "email"]
 
     run(sources=sources, top_n=args.top, skip_series=args.no_series,
         skip_reddit=args.no_reddit, skip_competitor=args.no_competitor)

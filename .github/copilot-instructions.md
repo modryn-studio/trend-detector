@@ -63,6 +63,7 @@ python pipeline.py --rss        # RSS only (debugging)
 python pipeline.py --email      # email only (debugging)
 python pipeline.py --no-series  # skip time-series enrichment (faster)
 python pipeline.py --no-competitor  # skip competitor check (faster)
+python pipeline.py --no-email    # skip email source (use trendspy + RSS only)
 ```
 
 The scheduled run (`run_daily.bat`) also uses no flags — relies on the default.
@@ -80,14 +81,14 @@ Gmail    ─┘
 3. **Filter** — `is_buildable()` strips brands, sports, entertainment, news events, person names, single generic words
 4. **Score** — 0–100 composite: 35% growth velocity, 25% buildability, 20% volume, 20% freshness
 5. **Cluster** — Pass 1: group by email newsletter section header (Google's own groupings). Pass 2: group by shared stemmed tokens. No hardcoded synonym maps — must work for any topic regime.
-6. **Reddit validate** — targeted subreddit search + pain-framed queries; flag pain signals
+6. **Reddit validate** — targeted subreddit search + pain-framed queries (frustration, anxiety, solution-seeking angles); flag pain signals; **preserves selftext excerpts** (truncated to 300 chars) for briefing display
 7. **Competitor check** — two-pass Brave Search:
    - Pass 1 (keyword-based): checks raw trend keyword + suffix variants for top 5 clusters; GREEN/YELLOW/RED/INCONCLUSIVE. RED + no reliable Reddit pain → emit SKIP immediately, skip LLM entirely (RED gate). Score < 50 + no confirmed pain → SKIP gate (enforced in code, not delegated to LLM).
-   - Pass 2 (build-idea-based): LLM outputs 3 `competition_queries` derived from its build idea; Brave searches those to verify the specific product doesn't already exist. Only runs for BUILD/WATCH decisions. Results stored under cluster name + "(build-idea check)". BUILD → WATCH if refined=RED.
+   - Pass 2 (build-idea-based): LLM outputs 3 `competition_queries` derived from its build idea; Brave searches those to verify the specific product doesn't already exist. Only runs for BUILD/WATCH decisions. Results stored under cluster name + "(build-idea check)". Results are **informational only** — pass-2 no longer auto-downgrades BUILD → WATCH. Luke reviews competition data and decides.
    - Note: `_find_pass1_competition()` searches all member keywords for pass-1 data — survives `top_keyword` shifts from time-series enrichment.
 8. **Time series enrich** — `interest_over_time()` for top ~15 keywords; updates freshness score; re-sorts clusters after enrichment
 9. **Trend memory** — reads last 7 days of `signals_*.json`; annotates clusters and unclustered with `days_seen`, `trajectory` (rising/stable/fading), `first_seen`, `best_day_score`; LLM uses this to raise BUILD confidence for multi-day rising signals
-10. **Report** — `reporter.py`: LLM (GPT-5.2) renames clusters by human need, generates BUILD/WATCH/SKIP decisions with structured outputs, writes `briefings/briefing_YYYY-MM-DD.md`. LLM prompt includes emotional-barrier guidance ("build for the feeling that stops someone from acting, not the information gap") and signal-quality anchored decisions (BUILD for strong demand + confirmed pain + market gap — not filtered by build complexity). Structured output includes `context_seed` (product_description, target_user, emotional_barrier, routes) to pre-fill the boilerplate's `context.md` during build phase. Cluster table includes lifecycle tags (`EARLY`/`PEAKING`/`FADING`) derived from freshness scores and memory tags (`Nd ↑/→/↓`) from trend_memory.
+10. **Report** — `reporter.py`: LLM (GPT-5.2) renames clusters by human need, generates BUILD/WATCH/SKIP decisions with structured outputs, writes `briefings/briefing_YYYY-MM-DD.md`. Briefing order: cluster table → macro-theme story → **Reddit pain excerpts** → build decisions → competition. Reddit section shows up to 3 pain-matched post excerpts (title + 150-char body) per cluster so Luke reads raw voices before seeing LLM opinions. Build decisions lead with reasoning/risk; LLM build idea + context_seed are in a collapsible `<details>` block (reference only, not prescriptive — Luke decides product shape). Cluster table includes lifecycle tags (`EARLY`/`PEAKING`/`FADING`) derived from freshness scores and memory tags (`Nd ↑/→/↓`) from trend_memory.
 
 Total API calls per run: **~15** (1 trending_now + ~3 batched interest_over_time + ~3 Reddit searches + ~7 Brave Search pass-1 + ~2 Brave refined + ~2 OpenAI)
 RED gate + score gate typically save 2-3 LLM calls/day. Trend memory is pure file-reads — zero API calls.

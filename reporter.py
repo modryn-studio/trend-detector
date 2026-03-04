@@ -56,6 +56,15 @@ if _api_key:
 # whether Google itself grouped these searches as a coherent theme.
 _GENERIC_CLUSTER_NAMES = {"top trends", "top searches", "trending", "top topics"}
 
+# Subset of pain phrases for filtering Reddit excerpts in briefing.
+# Full list lives in reddit_check.py; this is just enough for display ranking.
+_PAIN_PHRASES = [
+    "wish", "need", "looking for", "frustrated", "struggle",
+    "lonely", "hard to find", "difficult", "impossible", "can't find",
+    "nothing works", "sick of", "tired of", "help me find",
+    "how do i", "why is it so hard", "afraid", "anxious", "overwhelmed",
+]
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -756,15 +765,16 @@ def _decision_section(
                 refined["_queries_note"] = comp_queries[:2]
                 refined_competition[refined_key] = refined
 
-                # Override BUILD → WATCH if refined check finds heavy competition
+                # Log if refined check found heavy competition — informational
+                # only, no longer auto-downgrades BUILD → WATCH. The briefing
+                # shows the data; Luke decides.
                 if (decision["decision"] == "BUILD"
                         and refined["verdict"] == "RED"):
-                    decision["decision"] = "WATCH"
                     decision["reason"] += (
-                        f" [Revised: refined competition search for "
+                        f" [Note: refined competition search for "
                         f"'{comp_queries[0]}' found "
                         f"{refined['competitor_count']} existing tools — "
-                        f"downgraded from BUILD to WATCH.]"
+                        f"review competition section before building.]"
                     )
 
             icon = {"BUILD": "🟢", "WATCH": "🟡", "SKIP": "🔴"}.get(
@@ -780,12 +790,27 @@ def _decision_section(
                 # SKIP: only show reasoning — no point pitching a product
                 # the pipeline just told you not to build
                 lines.append(f"**Reasoning:** {decision['reason']}")
+                lines.append(f"**Risk:** {decision['risk']}")
             else:
+                # Lead with the verdict and reasoning — the WHY comes first.
+                # Build idea is secondary context, not the headline.
+                lines.append(f"**Reasoning:** {decision['reason']}")
+                lines.append(f"**Risk:** {decision['risk']}")
+                lines.append("")
+                lines.append("<details>")
+                lines.append(f"<summary>LLM Build Idea (reference only — not prescriptive)</summary>")
+                lines.append("")
                 lines.append(f"**Idea:** {decision['build_idea']}")
                 lines.append(f"**Slug:** `{decision['target_slug']}`")
                 lines.append(f"**Monetization:** {decision['monetization']}")
-                lines.append(f"**Reasoning:** {decision['reason']}")
-                lines.append(f"**Risk:** {decision['risk']}")
+                ctx = decision.get("context_seed", {})
+                if ctx:
+                    lines.append("")
+                    lines.append(f"**Target user:** {ctx.get('target_user', 'N/A')}")
+                    lines.append(f"**Emotional barrier:** {ctx.get('emotional_barrier', 'N/A')}")
+                    lines.append(f"**Product:** {ctx.get('product_description', 'N/A')}")
+                lines.append("")
+                lines.append("</details>")
             # Persist full decision (including context_seed) on the correct dict
             data.get("_original_ref", data)["_decision"] = decision
         else:
@@ -893,12 +918,23 @@ def _reddit_section(clusters: list[dict]) -> str:
                 f"No pain signal detected (topic discussed but not as a frustration)."
             )
 
-        # Show top relevant post if subreddits look on-topic
-        if r.get("top_posts"):
-            best = r["top_posts"][0]
+        # Show top pain excerpts — real voices, not summaries
+        pain_posts = []
+        for p in r.get("top_posts", []):
+            body = p.get("selftext", "")
+            searchable = (p["title"] + " " + body).lower()
+            if any(pw in searchable for pw in _PAIN_PHRASES):
+                pain_posts.append(p)
+        if not pain_posts and r.get("top_posts"):
+            # Fall back to top post by engagement if no pain-matched
+            pain_posts = r["top_posts"][:1]
+
+        for p in pain_posts[:3]:
+            body = p.get("selftext", "").strip()
+            excerpt = f" — *\"{body[:150].rstrip()}…\"*" if body else ""
             lines.append(
-                f"   Top post: \"{best['title']}\" "
-                f"[r/{best['subreddit']}] score={best['score']:,}"
+                f"   > **\"{p['title']}\"** "
+                f"[r/{p['subreddit']}] score={p['score']:,}{excerpt}"
             )
         lines.append("")
 
@@ -947,6 +983,12 @@ def generate_briefing(signals: dict, competition: dict | None = None) -> str:
         "",
     ]
 
+    # Reddit validation BEFORE decisions — read the raw pain first, then
+    # see the LLM's opinion. This is the most important reordering change.
+    reddit_section = _reddit_section(clusters)
+    if reddit_section:
+        parts += [reddit_section, "---", ""]
+
     decision_text, refined_competition = _decision_section(
         clusters, unclustered, competition
     )
@@ -960,10 +1002,6 @@ def generate_briefing(signals: dict, competition: dict | None = None) -> str:
     comp_section = _competition_section(merged_competition)
     if comp_section:
         parts += ["---", "", comp_section]
-
-    reddit_section = _reddit_section(clusters)
-    if reddit_section:
-        parts += ["---", "", reddit_section]
 
     return "\n".join(parts)
 
