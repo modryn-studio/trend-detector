@@ -114,10 +114,11 @@ def _cross_reference(trends: list[dict]) -> list[dict]:
     - Keeps the highest volume and growth_pct seen
     - Tracks which sources reported each keyword
     - Preserves the best category (trendspy > email > rss)
+    - Preserves the best source (trendspy > email > rss) for display
     """
     groups: dict[str, dict] = {}
 
-    # Source priority for category — higher is better
+    # Source priority for category and source display — higher is better
     _SRC_RANK = {"trendspy": 3, "email": 2, "rss": 1}
 
     for t in trends:
@@ -131,6 +132,7 @@ def _cross_reference(trends: list[dict]) -> list[dict]:
                 "volume":         t["volume"],
                 "growth_pct":     t["growth_pct"],
                 "trend_keywords": t.get("trend_keywords", []),
+                "source":         source,
                 "sources":        [source],
                 "source_count":   1,
                 "related_news":   t.get("related_news", []),
@@ -144,11 +146,14 @@ def _cross_reference(trends: list[dict]) -> list[dict]:
             # Keep highest volume and growth
             g["volume"] = max(g["volume"], t["volume"])
             g["growth_pct"] = max(g["growth_pct"], t["growth_pct"])
-            # Keep best category
+            # Keep best category (trendspy > email > rss)
             rank = _SRC_RANK.get(source, 0)
             if rank > g["_src_rank"] and t["category"] != "unknown":
                 g["category"] = t["category"]
                 g["_src_rank"] = rank
+            # Keep best source regardless of category availability
+            if rank > _SRC_RANK.get(g["source"], 0):
+                g["source"] = source
             # Merge related news
             g["related_news"].extend(t.get("related_news", []))
             # Merge trend keywords
