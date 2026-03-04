@@ -370,28 +370,42 @@ def _story_section(
     return "\n".join(lines)
 
 
-def _rename_cluster(cluster: dict) -> str:
-    """Use GPT-5 Mini to rename a cluster by the human need it represents.
+def _rename_clusters(clusters: list[dict]) -> list[str]:
+    """Rename all clusters in one LLM call by the human need each represents.
 
-    Input: member keywords + Google's label.
-    Output: 3-6 word human-need description, e.g. "Finding friends as an adult".
-    Falls back to original name if LLM unavailable.
+    Batching all clusters into a single request gives the LLM full context so
+    it can avoid assigning the same human-need description to two clusters.
+    Saves N-1 API calls vs. the previous per-cluster loop.
+
+    Returns a list of names in the same order as the input clusters.
+    Falls back to original names for any cluster the LLM omits or on failure.
     """
-    if not _openai_client:
-        return cluster["cluster_name"]
+    originals = [c["cluster_name"] for c in clusters]
 
-    keywords = [m["keyword"] for m in cluster["members"][:10]]
-    original = cluster["cluster_name"]
+    if not _openai_client or not clusters:
+        return originals
+
+    cluster_data = [
+        {
+            "index": i,
+            "original_name": c["cluster_name"],
+            "keywords": [m["keyword"] for m in c["members"][:10]],
+        }
+        for i, c in enumerate(clusters)
+    ]
 
     prompt = (
-        f"These trending search keywords were grouped into a cluster "
-        f"called \"{original}\":\n\n"
-        f"{json.dumps(keywords)}\n\n"
-        f"What human need or frustration drives ALL of these searches?\n"
-        f"Respond with a short phrase (3-6 words) that names the underlying "
-        f"need from the searcher's perspective. Not a category label — "
-        f"a human need. Examples: 'Finding friends as an adult', "
-        f"'Tracking gold as inflation hedge', 'Planning meals on a budget'."
+        f"You are given {len(clusters)} trending keyword clusters. "
+        f"For each cluster, identify the human need or frustration that drives "
+        f"ALL of its searches.\n\n"
+        f"Clusters:\n{json.dumps(cluster_data, indent=2)}\n\n"
+        f"For each cluster, respond with a short phrase (3-6 words) that names "
+        f"the underlying need from the searcher's perspective. "
+        f"Not a category label — a human need. "
+        f"Examples: 'Finding friends as an adult', "
+        f"'Tracking gold as inflation hedge', 'Planning meals on a budget'.\n\n"
+        f"Use the index field to identify each cluster unambiguously. "
+        f"Every index from 0 to {len(clusters) - 1} must appear exactly once."
     )
 
     try:
@@ -400,27 +414,46 @@ def _rename_cluster(cluster: dict) -> str:
             input=[{"role": "user", "content": prompt}],
             text={"format": {
                 "type": "json_schema",
-                "name": "cluster_rename",
+                "name": "cluster_renames",
                 "strict": True,
                 "schema": {
                     "type": "object",
                     "properties": {
-                        "human_need_name": {
-                            "type": "string",
-                            "description": "3-6 word human-need description"
+                        "renamed_clusters": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "index": {
+                                        "type": "integer",
+                                        "description": "0-based cluster index"
+                                    },
+                                    "human_need_name": {
+                                        "type": "string",
+                                        "description": "3-6 word human-need description"
+                                    },
+                                },
+                                "required": ["index", "human_need_name"],
+                                "additionalProperties": False,
+                            },
                         }
                     },
-                    "required": ["human_need_name"],
+                    "required": ["renamed_clusters"],
                     "additionalProperties": False,
                 },
             }},
         )
         parsed = json.loads(resp.output_text)
-        name = parsed.get("human_need_name", original)
-        return name if name else original
+        names = list(originals)  # start with originals as fallback
+        for entry in parsed.get("renamed_clusters", []):
+            idx = entry.get("index")
+            name = entry.get("human_need_name", "")
+            if isinstance(idx, int) and 0 <= idx < len(names) and name.strip():
+                names[idx] = name
+        return names
     except Exception as exc:
-        print(f"[reporter] LLM rename failed for '{original}': {exc}")
-        return original
+        print(f"[reporter] LLM batch rename failed: {exc}")
+        return originals
 
 
 def _llm_decision(cluster: dict, competition: dict | None,
@@ -865,10 +898,10 @@ def generate_briefing(signals: dict, competition: dict | None = None) -> str:
     editorial_group = _find_editorial_group(clusters)
     shared = _shared_stems(clusters, editorial_group) if len(editorial_group) >= 2 else []
 
-    # Rename clusters using LLM (falls back to original name)
-    for c in clusters:
+    # Rename all clusters in one LLM call (falls back to original names)
+    renamed_names = _rename_clusters(clusters)
+    for c, renamed in zip(clusters, renamed_names):
         original = c["cluster_name"]
-        renamed = _rename_cluster(c)
         if renamed != original:
             c["display_name"] = renamed
             c["original_name"] = original
