@@ -1025,112 +1025,111 @@
     "Daylight Savings": {
       "decision": "WATCH",
       "confidence": "LOW",
-      "build_idea": "\"Shift-Week Sleep Shield\" for parents of elementary-school kids who melt down the week after the clock change. Emotional barrier: guilt + dread that they\u2019ll \"ruin\" bedtime and the next week\u2019s school mornings, so they either do nothing or try random hacks. Core value: a 10-day, kid-safe micro-plan (light timing, bedtime steps, breakfast/caffeine guidance for adults, device rules) that adapts to the family\u2019s schedule and sends just-in-time prompts so the parent feels in control and stops catastrophizing.",
-      "target_slug": "shift-week-sleep-shield",
-      "monetization": "Freemium: free 3-day plan + reminders; $4.99 one-time per time-change pack or $19/yr for spring+fall, multiple kids, and printable school-note templates; optional affiliate add-ons (blackout curtains, sunrise lamps) without becoming a store.",
-      "reason": "Search interest is strong and competition is flagged GREEN, but Reddit is inconclusive and there\u2019s no clear pain-signal confirmation, so confidence is downgraded. The cluster suggests a real, recurring moment of anxiety (clock change) that can be productized as an actionable, emotionally reassuring plan rather than information.",
-      "risk": "Users may prefer generic sleep advice/apps; without validated parent pain (or a measurable outcome like fewer rough mornings), retention could be weak outside the 2x/year spike.",
+      "build_idea": "A \u201cshift-work proof\u201d DST transition kit for hospital nurses on rotating night shifts who dread the spring-forward week because it wrecks sleep and anxiety: it generates a 7\u2011day micro-shift plan (light exposure, caffeine cutoff, magnesium timing, meal timing/circadian fasting windows) and a sunrise-alarm sequence tailored to their upcoming schedule, with simple check-ins that reduce overwhelm and decision fatigue.",
+      "target_slug": "dst-shiftwork-kit",
+      "monetization": "Freemium: free personalized plan + reminders; paid ($4.99/mo or $19/yr) for schedule imports (Google/Outlook), wearable integration (Oura/Apple Health), and \u201cswap-proof\u201d re-planning when shifts change; affiliate add-ons for sunrise lamps and sleep products (optional).",
+      "reason": "Competition is GREEN, but Reddit is inconclusive with no clear pain signal, so confidence is downgraded. The keyword cluster suggests real intent around DST, sleep/anxiety, and circadian tactics; a narrow, high-stakes niche (rotating-shift clinicians) has a plausible emotional barrier (fear of being dysfunctional at work) yet needs validation before a full BUILD call.",
+      "risk": "Primary risk is weak validated willingness-to-pay because many users may prefer generic sleep advice or existing wearable guidance rather than a DST-specific workflow.",
       "competition_queries": [
-        "clock change bedtime plan elementary school kids app",
-        "daylight shift morning routine coach for parents app",
-        "time change sleep adjustment reminders family schedule tool"
+        "rotating night shift nurse sleep schedule planner app",
+        "hospital shift workers daylight change adjustment plan tool",
+        "DST transition sleep plan for nurses app reminders"
       ],
       "context_seed": {
-        "product_description": "A lightweight web/mobile tool that creates a personalized 10-day schedule around the time change for families with school-age kids. It turns the plan into daily checklists and timed reminders (light exposure, bedtime wind-down, wake time, breakfast), and tracks \u201crough mornings\u201d to show progress and reduce parent anxiety.",
-        "target_user": "A working parent with a 7-year-old who has struggled with bedtime and morning transitions before; they\u2019re bracing for the time change, feel guilty when their kid is tired at school, and want a simple, reliable plan they can follow without overthinking.",
-        "emotional_barrier": "They feel dread and guilt that they\u2019ll fail to manage the week, so they avoid committing to a plan and end up reacting in crisis each morning.",
+        "product_description": "A mobile/web tool that creates a personalized 7-day transition plan around the clock-change for rotating shift workers (starting with nurses). Users enter their upcoming shifts and sleep constraints; the app outputs a minute-level plan for light exposure, wake time, caffeine cutoff, meal window, and optional supplement timing, plus reminders and quick re-planning when shifts change.",
+        "target_user": "A hospital nurse who just got next week\u2019s rotating schedule and feels anxious about being unsafe and exhausted during the clock-change week, but doesn\u2019t have the time or energy to design a plan from scratch.",
+        "emotional_barrier": "Overwhelm and fear of underperforming at work makes them avoid planning until it\u2019s too late.",
         "routes": [
-          "/ \u2192 Time-change countdown + choose household profile",
-          "/onboarding \u2192 Kid age, school start time, current sleep window, constraints (sports, siblings)",
-          "/plan \u2192 Generated 10-day adjustment plan with what/when/why in one line",
-          "/today \u2192 Daily checklist + timed prompts",
-          "/log \u2192 Quick \u2018morning went\u2019 rating + notes (meltdown, late, fine)",
-          "/progress \u2192 Simple trend view + reassurance messaging",
-          "/resources \u2192 Optional gear + printable bedtime routine + teacher note template",
-          "/settings \u2192 Multiple kids, notification windows, travel/exception days"
+          "/ \u2192 Landing: pick role (nurse), upcoming shift pattern, and sleep constraints",
+          "/onboarding/schedule \u2192 Enter shifts manually or import calendar",
+          "/plan \u2192 7-day DST transition plan (sleep, light, caffeine, meals, optional supplements)",
+          "/reminders \u2192 Configure notifications (wake, light, caffeine cutoff, bedtime)",
+          "/checkin \u2192 30-second daily check-in (sleep quality, anxiety, alertness)",
+          "/replan \u2192 One-tap re-plan when shifts change",
+          "/insights \u2192 What helped most + next-step recommendations",
+          "/upgrade \u2192 Paywall for calendar/wearable integration and auto-replanning"
         ]
       }
     },
     "Return of Wooden Kitchens": {
       "decision": "WATCH",
-      "confidence": "MED",
-      "build_idea": "A \u201cCabinet Confidence\u201d visualizer and spec-checker for a first-time remodeler who\u2019s emotionally stuck between loving the look of wood kitchens (warm, cozy, vintage) and fearing they\u2019ll choose the \u201cwrong\u201d undertone/finish that clashes with their fixed elements (white countertops, flooring, lighting) and looks dated. User uploads 3\u20136 photos + picks constraints (countertop color, floor species, wall paint). The tool generates 2\u20133 vetted wood-tone directions with a \u2018why this won\u2019t go orange/ashy\u2019 explanation, a small shopping/spec sheet (sheen, stain tone, grain fill, sample sizes), and a step-by-step sample plan to reduce decision anxiety.",
-      "target_slug": "cabinet-confidence",
-      "monetization": "Freemium: free 1 project with limited tone recommendations; Pro ($9\u2013$19/project) for multi-room, contractor-ready spec sheet, and unlimited comparisons. Affiliate revenue from curated sample kits (stain samples, hardware, lighting bulbs, under-cab lighting) and partner leads to cabinet refinishers/designers.",
-      "reason": "The trend signal is strong (score 72) and competition is green, suggesting an underserved tooling gap around choosing wood cabinet tones. However Reddit is inconclusive with no pain signal, so we can\u2019t assume the emotional barrier is widespread/acute; execution risk is that this is \u2018inspiration browsing\u2019 rather than a must-solve anxiety. Worth watching and validating with targeted interviews/ads because a narrow, decision-reducing tool could convert if the fear-of-regret is real.",
-      "risk": "Demand may be primarily aesthetic curiosity (Pinterest behavior) rather than a high-intent, pay-worthy decision problem\u2014making CAC and conversion difficult.",
+      "confidence": "LOW",
+      "build_idea": "A \u201cconfidence-first\u201d kitchen finish visualizer for first-time DIY remodelers who feel overwhelmed choosing a wood-cabinet tone (oak variations) that won\u2019t look dated with their existing fixed elements (counters/flooring/paint). The emotional barrier is decision paralysis + fear of spending thousands and ending up with a yellow/orange \u2018builder-grade\u2019 look. Core value: guided, mistake-proof pairing flow that constrains choices, shows realistic before/after mockups from the user\u2019s own photos, and outputs a buyable spec sheet (stain/paint sheen + hardware + lighting warmth) they can take to a cabinet shop or painter.",
+      "target_slug": "oak-tone-decision-coach",
+      "monetization": "Freemium: free upload + 3 guided pairings; $19 one-time \u201cProject Pack\u201d (unlimited pairings + printable spec sheet + shopping list). Affiliate links for hardware/lighting/finishes; optional $49 add-on for a 15-min async \u201csanity check\u201d from a vetted designer.",
+      "reason": "Search demand suggests a real aesthetic shift toward warmer wood kitchens, but Reddit has no pain signal here, so we can\u2019t confirm the emotional urgency or willingness to pay yet. Competition appears open, yet execution risk is high because generic moodboards and visualizers already satisfy many users unless the product strongly reduces fear and choice overload with constraints + realistic results.",
+      "risk": "Without validated anxiety/pain (and strong realism in render previews), users may default to Pinterest/Instagram + free retailer visualizers, making conversion difficult.",
       "competition_queries": [
-        "wood cabinet undertone matcher white quartz countertop tool",
-        "kitchen remodel sample plan app for cabinet stain decisions",
-        "photo-based cabinet finish recommender for homeowners with fixed flooring"
+        "photo-based cabinet color pairing guide for overwhelmed DIY kitchen remodel",
+        "decision coach app for choosing stain tone with existing countertops and flooring",
+        "kitchen finish spec sheet generator for cabinet painters and homeowners"
       ],
       "context_seed": {
-        "product_description": "A photo-based decision tool that recommends safe wood-cabinet tone/finish directions based on the user\u2019s existing kitchen constraints (countertops, floors, wall color, lighting). It outputs a small set of confident options, explains clash risks (orange/green/ashy), and provides a step-by-step sampling plan plus a contractor-ready spec sheet. The goal is to reduce regret and overwhelm during cabinet selection or refinishing.",
-        "target_user": "A homeowner planning their first kitchen refresh who loves the warmth of wood but is anxious about committing to a cabinet tone that will clash with their white counters and existing floors\u2014and worries it will look dated or too yellow once installed.",
-        "emotional_barrier": "Fear of making an expensive, irreversible aesthetic mistake (and being stuck with a \u2018wrong\u2019 undertone that looks orange/ashy in their lighting).",
+        "product_description": "Upload photos of your current kitchen (or inspiration + your fixed elements), then follow a short guided flow that narrows wood-tone and finish choices based on what you can\u2019t change (countertop, floor, wall color, lighting). The app generates realistic mock previews, explains tradeoffs (too warm/too ashy risk), and produces a printable \u201cProject Pack\u201d with exact finish targets, hardware suggestions, and bulb color temperature recommendations.",
+        "target_user": "A homeowner planning their first kitchen refresh who can\u2019t stop second-guessing cabinet wood tone because they\u2019re afraid it will read \u2018yellow/orange and dated\u2019 once installed under their real lighting and next to their existing counters/flooring.",
+        "emotional_barrier": "They feel paralyzed by irreversible, expensive choices and fear regretting a wood tone that looks great online but wrong in their own kitchen.",
         "routes": [
-          "/ \u2192 Upload photos + choose constraints (countertop, floor, wall paint, lighting)",
-          "/analyze \u2192 Undertone detection + \u2018risk flags\u2019 (orange cast, green cast, low light)",
-          "/recommendations \u2192 2\u20133 cabinet tone paths with explanations + do/don\u2019t pairings",
-          "/compare \u2192 Side-by-side compare options on user photos (before/after mock)",
-          "/sample-plan \u2192 Step-by-step plan: what samples to order, how to view in lighting, timeline",
-          "/spec-sheet \u2192 Exportable finish + sheen + material + hardware notes for contractor/cabinet shop",
-          "/project \u2192 Save iterations, notes, and decisions per kitchen"
+          "/ \u2192 upload kitchen photos + pick what\u2019s staying (counters/floor/backsplash)",
+          "/guided-quiz \u2192 constraints (lighting warmth, adjacent finishes, style goal, budget, repaint vs refinish)",
+          "/pairings \u2192 ranked cabinet-tone + countertop/paint/hardware combos with \u2018why this works\u2019 explanations",
+          "/preview \u2192 before/after mockups on user photos + lighting toggle (day/night, warm/cool bulbs)",
+          "/project-pack \u2192 export spec sheet + shopping list + contractor-ready notes",
+          "/save \u2192 boards for options + decision countdown/checklist to commit"
         ]
       }
     },
     "Boy Kibble": {
       "decision": "WATCH",
       "confidence": "LOW",
-      "build_idea": "A \u201cdefault dinner autopilot\u201d for newly single or newly living-alone men who want to eat high-protein, low-effort bowls but feel embarrassed/overwhelmed by cooking and decision fatigue at 6\u20138pm. The product generates a 10-minute, one-pan weekly bowl plan (e.g., lamb/beef/chicken rice bowls) with a single consolidated grocery list, portion guidance, and a shame-free \u201cgood enough\u201d mode that prevents ordering delivery.",
-      "target_slug": "bowl-autopilot-living-alone",
-      "monetization": "Freemium: free weekly plan + grocery list; paid subscription for macro targets, pantry-aware substitutions, 2-person/date-night scaling, and Instacart/Walmart grocery list export + affiliate revenue.",
-      "reason": "The cluster suggests a cultural meme (\u201cboy dinner/boy kibble\u201d) translating into a repeatable behavior: quick protein bowl cooking with lots of variations and substitutions. Competition is marked GREEN, but Reddit provides no pain signal, so we can\u2019t confirm this is more than humor + casual recipe curiosity; that uncertainty downgrades confidence.",
-      "risk": "This may be a short-lived meme where users consume content on TikTok/YouTube and won\u2019t adopt a standalone tool, making retention and willingness to pay weak.",
+      "build_idea": "A 7\u2011day \u201csolo dinner confidence\u201d meal coach for newly single men who want to eat high\u2011protein bowls at home but feel embarrassed, overwhelmed, or aimless cooking for one. It converts a user\u2019s vibes (\"I can\u2019t be bothered\" / \"I\u2019m trying to get in shape\"), time, and pantry into a tiny rotating plan of \u2018bowl\u2019 templates (lamb/beef/chicken + rice + veg + sauce) with ultra-short steps, automatic leftover chaining, and a shame-free check-in that keeps them consistent.",
+      "target_slug": "solo-bowl-coach",
+      "monetization": "Freemium: free bowl templates + shopping list; $6\u201310/mo for adaptive weekly plans, macro targets, leftover optimization, and \u201c1 pan / 15 min\u201d mode. Optional affiliate links for groceries/spices/rice cookers.",
+      "reason": "Searches cluster around a meme-able concept plus very specific bowl-style meal intent, suggesting demand for a repeatable routine rather than one-off recipes. However Reddit signal is inconclusive (no posts/pain), so it\u2019s unclear whether this is a durable need or a passing trend phrase; execution must hinge on reducing the emotional friction of cooking-for-one, not just providing recipes.",
+      "risk": "The trend may be mostly cultural/novelty; users might default to free TikTok/YouTube recipes unless the product delivers a uniquely low-effort routine and habit support.",
       "competition_queries": [
-        "single guy high protein bowl meal plan app",
-        "one pan rice bowl weekly planner grocery list",
-        "living alone meal autopilot app for quick protein dinners"
+        "meal plan app cooking for one men high protein bowls",
+        "leftover chaining dinner planner for singles rice bowl templates",
+        "15 minute protein bowl generator grocery list for solo eaters"
       ],
       "context_seed": {
-        "product_description": "A lightweight web/mobile planner that turns a user\u2019s protein target and time budget into a weekly set of 10-minute bowl dinners and a single grocery list. It focuses on ultra-simple, repeatable templates (meat + rice + sauce + veg) with substitutions and portioning so users can cook without thinking. The user gets fewer decisions, less shame about \"lazy\" meals, and consistent protein dinners.",
-        "target_user": "A 28-year-old man who recently started living alone after a breakup, gets home tired, wants to eat high-protein dinners, but feels intimidated by cooking and defaults to delivery or snacks.",
-        "emotional_barrier": "He feels overwhelmed and a little embarrassed that he \"can\u2019t cook like an adult,\" so he avoids planning and chooses the easiest immediate option.",
+        "product_description": "A lightweight web/mobile coach that builds a tiny weekly rotation of high-protein bowl dinners for people cooking for one. Users pick time/effort level, protein preference (beef/lamb/chicken), and goal (high-protein, cut, maintenance), and it outputs repeatable bowl templates with 5\u20137 step cooking flows, a consolidated shopping list, and leftover chaining so tomorrow\u2019s dinner is half-done. The app tracks adherence with quick, non-judgmental check-ins and offers \u201cminimum viable dinner\u201d fallbacks when motivation is low.",
+        "target_user": "A newly single guy in his late 20s/30s who\u2019s trying to get back on track (gym/health) and wants simple, hearty dinners, but feels a mix of embarrassment and decision fatigue when cooking alone after work.",
+        "emotional_barrier": "He feels cooking for one is pointless and overwhelming, so he procrastinates until he defaults to takeout or random snacking.",
         "routes": [
-          "/ \u2192 choose goal (protein target), time limit, appliances",
-          "/onboarding/pantry \u2192 pick staples you usually have (rice, tortillas, frozen veg, sauces)",
-          "/plan \u2192 auto-generate 5\u20137 bowl dinners with swaps (beef/lamb/chicken)",
-          "/recipe/:id \u2192 10-minute step card + portion slider + \"good enough\" shortcuts",
-          "/grocery-list \u2192 consolidated list by aisle + optional retailer export",
-          "/swap \u2192 one-tap substitutions when an ingredient is unavailable",
-          "/history \u2192 rerun favorites + keep variety without thinking"
+          "/ \u2192 pick tonight\u2019s mood (lazy/normal/energy) + time + protein",
+          "/plan \u2192 7-day bowl rotation with leftover chaining",
+          "/cook/:template \u2192 ultra-short step mode + timers + substitutions",
+          "/shop \u2192 consolidated grocery list by store section + pantry check-off",
+          "/fallback \u2192 \u201cminimum viable dinner\u201d options when motivation is low",
+          "/checkin \u2192 10-second adherence + mood, adjust next plan automatically",
+          "/profile \u2192 goals (protein target), dislikes, budget, equipment (rice cooker/air fryer)"
         ]
       }
     },
     "Top Trends": {
       "decision": "WATCH",
       "confidence": "MED",
-      "build_idea": "A \"Celebrity Rumor Anxiety\" checker for wedding/relationship claims aimed at a specific person: a teen/young adult Zendaya/Tom Holland superfan who feels social FOMO and embarrassment about sharing fake news in group chats. The core value is a one-screen \u201cCan I share this?\u201d verdict (confirmed / unconfirmed / false) with source-quality scoring, a short, screenshot-friendly explanation, and a gentle nudge that reduces anxiety (\u201cYou\u2019re not behind\u2014here\u2019s what\u2019s actually known\u201d). It\u2019s not a general news aggregator; it\u2019s a confidence tool for sharing celeb relationship updates without getting called out.",
-      "target_slug": "celebrity-rumor-anxiety-checker",
-      "monetization": "Freemium: free checks + limited daily verdicts; premium for faster alerts on followed couples, shareable cards without watermark, and a \"group chat safe\" weekly digest. Affiliate links to verified merch or magazines only when relevant; no ads in the verdict view to preserve trust.",
-      "reason": "The cluster shows recurring, high-intent verification behavior around a specific rumor type (celebrity marriage/wedding details), suggesting an emotional barrier: fear of being wrong and missing out socially. Competition looks light (one content site), but execution risk is moderate because the product needs trust, fast updates, and careful sourcing to avoid becoming another rumor mill.",
-      "risk": "Building and maintaining trust (accurate sourcing, moderation, legal/PR sensitivity) is hard; one high-profile mistake can kill retention.",
+      "build_idea": "A \u201cCelebrity Rumor Reality Check\u201d companion for anxious teen/Gen\u2011Z fans who feel embarrassed about being fooled by TikTok/IG wedding & relationship rumors and need a fast, shame-free way to verify claims before they share. It turns viral relationship/marriage \u2018news\u2019 into a simple confidence score + timeline (what\u2019s confirmed, what\u2019s speculation, what started the rumor), and offers a one-tap \u2018share the correction\u2019 card so they can save face in group chats.",
+      "target_slug": "celebrity-rumor-reality-check",
+      "monetization": "Freemium: free rumor checks + limited timelines; paid tier for faster alerts on selected celebs, deeper source tracebacks, and \u2018group chat pack\u2019 share templates. Affiliate revenue from official merch/retailer links when product-related trends (e.g., Needoh) spike.",
+      "reason": "Searches cluster around celebrity wedding rumors and product curiosity\u2014high curiosity, but the emotional barrier is fear of looking gullible when sharing misinformation. Competition appears light, but execution risk is medium because fact-verification depends on reliable sourcing and careful UX to avoid becoming another gossip site.",
+      "risk": "Maintaining trust (accuracy, neutrality, and source transparency) is hard; one high-profile mistake can kill retention and invite platform/legal issues.",
       "competition_queries": [
-        "group chat safe celebrity rumor verification app",
-        "celebrity relationship claim fact check tool for stan accounts",
-        "screenshot card generator for verified celebrity news sources"
+        "anti-embarrassment celebrity rumor check app for group chats",
+        "viral tiktok celebrity relationship rumor verification tool timeline",
+        "misinformation-safe celebrity news checker shareable correction cards"
       ],
       "context_seed": {
-        "product_description": "A mobile-first tool that lets users paste a link, screenshot text, or type a celebrity relationship claim and get a simple verdict: confirmed, unconfirmed, or false. It explains why in 3 bullets, cites primary/credible sources, and generates a shareable \u201csafe to share\u201d card for group chats. Users can follow specific celebrity couples for calm, non-clickbait updates when something becomes verified.",
-        "target_user": "A 19-year-old Zendaya/Tom Holland fan who\u2019s active in TikTok and group chats, wants to be the first to share updates, but hates the feeling of getting corrected or mocked for spreading misinformation.",
-        "emotional_barrier": "They\u2019re anxious about looking gullible or out of the loop when sharing celeb news, so they keep searching repeatedly for reassurance before posting.",
+        "product_description": "A mobile/web tool that detects and explains viral celebrity relationship/wedding rumors with a clear \u2018confirmed vs unconfirmed\u2019 breakdown, source trail, and a confidence score. Users select a few celebs to follow, get alerts when a claim trends, and can share a polite correction card to friends. The product emphasizes emotional safety: helping fans avoid feeling stupid or starting drama in group chats.",
+        "target_user": "A 19-year-old college student who gets celebrity updates from TikTok and Instagram and often becomes the \u2018news sharer\u2019 in her friend group; she worries about being roasted for sharing fake marriage rumors but still wants to participate in the conversation.",
+        "emotional_barrier": "Fear of embarrassment and social backlash for sharing a false claim stops them from engaging confidently.",
         "routes": [
-          "/ \u2192 paste claim/link, choose couple/topic",
-          "/verdict \u2192 confirmed/unconfirmed/false with citations + share card",
-          "/follow \u2192 follow specific couples, set alert sensitivity (confirmed only vs rumors)",
-          "/digest \u2192 weekly \u201cwhat\u2019s actually confirmed\u201d recap",
-          "/sources \u2192 how ratings work, transparency log",
-          "/history \u2192 past checks, saved share cards"
+          "/ \u2192 Trending claims feed with quick confidence labels",
+          "/claim/:id \u2192 Claim breakdown (what\u2019s known, what\u2019s not, timeline, primary sources)",
+          "/follow \u2192 Pick celebrities/topics to follow + notification preferences",
+          "/alerts \u2192 New/updated rumor alerts and retractions",
+          "/share/:id \u2192 Generate shareable correction/clarification card for group chats",
+          "/sources \u2192 Explain methodology and source standards to build trust"
         ]
       }
     },
