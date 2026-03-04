@@ -76,20 +76,28 @@ def _is_section_header_span(tag) -> bool:
 def _parse_newsletter_html(html: str) -> list[dict]:
     """Parse one newsletter's HTML into a list of trend dicts.
 
-    Handles two newsletter layouts:
-      1. Standard: section headers are <h3> or <h4> tags
-      2. Styled: section headers are <p><span style="font-size:16pt...">
-         (used for sub-sections like "Boy Kibble", "Daylight Savings")
-    Both layouts can appear in the same email — sorted by document order.
+    Handles three observed newsletter layouts (may appear in same email):
+      1. Format A (standard): section headers are <h3> tags containing a
+         14pt Google-blue span — e.g. "Top Trends", "Making Friends"
+      2. Format A sub-sections: <p><span style="font-size:16pt Google Sans">
+         for topic clusters within a section — e.g. "Boy Kibble"
+      3. Format B (older): section headers are <p><span style="font-size:19pt">
+         in Google blue/green — e.g. "Spring Break", "Destinations"
+
+    Note: Format B also uses <h4> tags for 12pt gray sub-labels
+    ("Top trending 'spring break itinerary for…'") — these are NOT section
+    headers and are intentionally excluded from detection.
     """
     soup = BeautifulSoup(html, "html.parser")
     trends: list[dict] = []
     seen_keywords: set[str] = set()
 
-    # Collect all section-header nodes in document order
+    # Collect all section-header nodes in document order.
+    # Only <h3> (not <h4>) is treated as a section-header tag — Format B
+    # newsletters use <h4> for short gray caption labels, not true headers.
     header_nodes = []
     for tag in soup.find_all(True):
-        if tag.name in ("h3", "h4"):
+        if tag.name == "h3":
             header_nodes.append(tag)
         elif _is_section_header_span(tag):
             # Use the parent <p> as the boundary node for sibling iteration
