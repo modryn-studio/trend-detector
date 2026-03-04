@@ -501,6 +501,15 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"If Reddit posts express fear, loneliness, overwhelm, or frustration,\n"
         f"the tool should address THAT emotion — not just aggregate links.\n"
         f"Ask: 'What feeling stops someone from acting?' then build for that.\n\n"
+        f"NICHE SPECIFICITY — CRITICAL:\n"
+        f"Do NOT propose a generic category app (friend app, social network, event finder).\n"
+        f"Identify the SPECIFIC person in the SPECIFIC context driving these searches.\n"
+        f"Examples of too generic: 'a friendship app', 'a meetup tool', 'a social platform'\n"
+        f"Examples of specific enough: 'a first-outing confidence tool for adults joining\n"
+        f"a hobby club alone for the first time', 'a post-relocation social planner for\n"
+        f"remote workers who moved cities in the last 6 months'\n"
+        f"The niche must be narrow enough that existing tools (Meetup, generic event apps)\n"
+        f"do NOT already solve it. If you can't find that niche, output WATCH or SKIP.\n\n"
         f"SIGNAL EXAMPLES:\n"
         f"- Breakout trend (+400%), 1,200 Reddit posts expressing genuine frustration, "
         f"competition GREEN (one underfunded tool last updated 2022) → BUILD HIGH\n"
@@ -508,12 +517,19 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"competition YELLOW (2 established tools with active freemium plans) → WATCH\n"
         f"- Trending keyword, Reddit consensus is 'existing apps are fine', "
         f"competition RED (dominant player, 50k+ users, recent funding) → SKIP\n\n"
-        f"COMPETITION QUERIES: Also output competition_queries — exactly 3 short,\n"
-        f"tool-focused search queries to check if your build idea already exists\n"
-        f"as a product. Search for the TOOL you'd build, not the raw trend keyword.\n"
-        f"Example: trend='how to set up trip for least amount of pto',\n"
-        f"idea='PTO optimizer' → ['pto optimizer tool', 'maximize pto days\n"
-        f"calculator', 'vacation day optimizer app']\n\n"
+        f"COMPETITION QUERIES — CRITICAL:\n"
+        f"Output competition_queries — exactly 3 short, tool-focused search queries\n"
+        f"to check if your SPECIFIC build idea already exists as a product.\n"
+        f"Rules for queries:\n"
+        f"- Test the NICHE product you described, not the broad category\n"
+        f"- Never reuse the raw trend keyword\n"
+        f"- Never search for the generic problem (e.g. 'friend app', 'meetup tool')\n"
+        f"- Each query should contain the specific context/niche you identified\n"
+        f"Bad: ['friend app', 'social accountability tool', 'meetup finder']\n"
+        f"Good (for 'post-relocation social planner for remote workers'): \n"
+        f"  ['new city social planner remote worker', \n"
+        f"   'relocation loneliness app digital nomad', \n"
+        f"   'moving city friend making tracker']\n\n"
         f"CONTEXT SEED: Also output context_seed — structured fields that describe\n"
         f"the product opportunity for the discovery phase. These seed the project's context.md.\n"
     )
@@ -539,7 +555,7 @@ def _llm_decision(cluster: dict, competition: dict | None,
                         },
                         "build_idea": {
                             "type": "string",
-                            "description": "The product opportunity: what problem it solves, what category of product addresses it (tool/dashboard/calculator/tracker/etc), and the core value proposition. Do not scope to implementation details.",
+                            "description": "The product opportunity targeting a SPECIFIC person in a SPECIFIC context — not a broad category. Name the niche, the emotional barrier, and the core value proposition. Must be narrow enough that existing large apps (Meetup, generic social apps) do not already solve it.",
                         },
                         "target_slug": {
                             "type": "string",
@@ -560,7 +576,7 @@ def _llm_decision(cluster: dict, competition: dict | None,
                         "competition_queries": {
                             "type": "array",
                             "items": {"type": "string"},
-                            "description": "3 short tool-focused search queries to verify if this build idea already exists. Never reuse the raw trend keyword.",
+                            "description": "3 short search queries that test whether the SPECIFIC niche product you described already exists. Each query must include the specific context/audience you identified. Never search for the general category or reuse the raw trend keyword.",
                         },
                         "context_seed": {
                             "type": "object",
