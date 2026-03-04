@@ -131,6 +131,7 @@ def _cross_reference(trends: list[dict]) -> list[dict]:
                 "volume":         t["volume"],
                 "growth_pct":     t["growth_pct"],
                 "trend_keywords": t.get("trend_keywords", []),
+                "source":         source,
                 "sources":        [source],
                 "source_count":   1,
                 "related_news":   t.get("related_news", []),
@@ -144,10 +145,12 @@ def _cross_reference(trends: list[dict]) -> list[dict]:
             # Keep highest volume and growth
             g["volume"] = max(g["volume"], t["volume"])
             g["growth_pct"] = max(g["growth_pct"], t["growth_pct"])
-            # Keep best category
+            # Keep best category and highest-priority source label
             rank = _SRC_RANK.get(source, 0)
-            if rank > g["_src_rank"] and t["category"] != "unknown":
-                g["category"] = t["category"]
+            if rank > g["_src_rank"]:
+                if t["category"] != "unknown":
+                    g["category"] = t["category"]
+                g["source"] = source
                 g["_src_rank"] = rank
             # Merge related news
             g["related_news"].extend(t.get("related_news", []))

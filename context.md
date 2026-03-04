@@ -6,80 +6,124 @@ Luke — one-person studio, modrynstudio.com. I build tools targeting
 trending search markets. I ship fast using AI-assisted development.
 
 WHAT THIS PROJECT IS:
-A private trend detection pipeline I run for myself.
+A private trend detection pipeline I run for myself daily.
 Problem it solves: every morning I need to decide what to build next.
-This script answers that question with data instead of gut feel.
+This pipeline answers that question with data instead of gut feel.
 
 PHASE 1 — PRIVATE PIPELINE (this repo):
-A Python cron job that runs daily, pulls rising search trends from 3
-sources, cross-references them, scores them, and writes a JSON file I
-read over morning coffee. Zero public-facing infrastructure. Zero cost.
+A Python script that runs via Windows Task Scheduler at 9 AM, pulls
+rising search trends from 3 sources, cross-references them, scores
+them, clusters them, validates against Reddit, checks competitors,
+and writes a morning briefing I read over coffee. Zero public-facing
+infrastructure. Zero cost beyond API keys I already have.
 
 PHASE 2 — PUBLIC TOOL (future, separate repo):
 Trend Detector becomes a public web tool: user enters a niche → tool
 shows rising trends scored by velocity, volume, and buildability →
 returns "here are 5 tools worth building this month."
-Indie hackers would pay for this. Built on modryn studio's boilerplate.
-Note: Google Trends official API access (on waitlist) is a nice-to-have
-for scaling Phase 2, but is NOT a blocker. The 3-layer source architecture
-already provides better signal quality than the official API would.
+Indie hackers would pay for this. Built on modryn studio's Next.js
+boilerplate. Don't build Phase 2 infrastructure here.
 
-THE 3-LAYER PIPELINE:
+THE 3-LAYER PIPELINE (sources):
 
-Source 1: trendspy
-  - Real-time trending via Google's internal API (same data Google uses)
-  - 2-3 API calls per run (vs 24-30 with the old pytrends approach)
-  - No auth, no waitlist, pure requests
-  - Key calls: trending_now(geo='US'), trending_now_showcase_timeline()
-  - File: fetcher.py
+Source 1: trendspy (fetcher.py)
+  - Google's internal protobuf Trends API — same data Google uses
+  - 1 call = 400+ trending topics, no auth, no selenium
+  - Key calls: trending_now(geo='US'), interest_over_time()
+  - Categories tracked: technology, finance, health, hobbies, education
 
-Source 2: Google Trends RSS
+Source 2: Google Trends RSS (rss_fetcher.py)
   - URL: https://trends.google.com/trending/rss?geo=US
-  - Public feed, no auth, updated frequently
-  - stdlib XML parse — no new dependencies
+  - Public feed, no auth, stdlib XML parse (no new dependencies)
   - Provides: keyword, approx_traffic, pubDate, related news articles
-  - File: rss_fetcher.py
 
-Source 3: Gmail newsletter
+Source 3: Gmail newsletter (email_ingest.py)
   - Google Trends Daily Trending email (subscribed)
   - IMAP + app password (credentials in .env, never committed)
-  - BeautifulSoup parse — only new dependency vs stdlib
-  - Provides: trend clusters, growth %, categories, editorial curation
-    that neither trendspy nor RSS offers
-  - File: email_ingest.py
-  - One-time setup: Google Account → App Passwords → generate for "Mail"
+  - BeautifulSoup HTML parse
+  - Provides: editorial section headers (Google's own cluster groupings),
+    growth %, categories — context neither trendspy nor RSS offers
 
-CROSS-REFERENCE ENGINE:
-  - Normalize keywords (lowercase + strip)
-  - Group by keyword across all 3 sources
-  - Score boost: +20 for 2 sources, +40 for 3 sources
-  - Output: data/signals_YYYY-MM-DD.json
+PIPELINE STAGES (in order):
+  1. Collect       — fetch from all 3 sources
+  2. Cross-ref     — merge same keyword seen across sources; multi-source
+                     gets a confidence boost (+20 for 2 sources, +40 for 3)
+  3. Filter        — is_buildable() strips brands, sports, entertainment,
+                     news events, person names, single generic words
+  4. Score         — 0-100 composite (see weights below)
+  5. Cluster       — Pass 1: group by email section header (Google's own
+                     groupings). Pass 2: group by shared stemmed tokens.
+  6. Reddit        — targeted subreddit search; flag pain signals
+  7. Competitor    — two-pass Brave Search (see below)
+  8. Time series   — interest_over_time() enrichment; updates freshness;
+                     re-sorts clusters
+  9. Briefing      — GPT-5.2 renames clusters by human need, generates
+                     BUILD/WATCH/SKIP decisions, writes
+                     briefings/briefing_YYYY-MM-DD.md
 
-WHY THIS MATTERS:
-  - 1 source = a trend is happening
-  - 2+ sources = a trend is real and worth acting on
-  - trendspy catches it fast, RSS confirms volume, email provides
-    context (growth %, category, related queries) that pure API data
-    can't give you
+COMPETITOR CHECK (competitor_check.py):
+  Pass 1 (keyword-based): checks trend keyword + suffix variants for top 5
+    clusters. Verdict: GREEN / YELLOW / RED / INCONCLUSIVE.
+    RED gate: RED + no confirmed Reddit pain → emit SKIP, skip LLM.
+    Score gate: score < 50 + no confirmed pain → SKIP (enforced in code).
+  Pass 2 (build-idea-based): LLM outputs 3 competition_queries for its
+    specific build idea; Brave searches those to check the product doesn't
+    already exist. Only runs for BUILD/WATCH decisions. BUILD→WATCH if
+    refined verdict is RED.
 
-DECISION SIGNAL:
-  High-confidence signal = keyword appears in 2+ sources + Reddit/HN
-  complaint about the problem = build it this week.
+SCORING WEIGHTS:
+  Growth %     35%  — trending_now growth_pct / email growth string
+  Buildability 25%  — keyword heuristic (tool, app, tracker, calculator)
+  Volume       20%  — trending_now volume (email/RSS = neutral 50, not penalized)
+  Freshness    20%  — interest_over_time peak position
+
+OUTPUTS:
+  data/signals_YYYY-MM-DD.json     — full structured output (NEVER delete)
+  briefings/briefing_YYYY-MM-DD.md — morning briefing in plain English
 
 OUTPUT FORMAT (data/signals_YYYY-MM-DD.json):
-  [
-    {
-      "keyword": "friend app",
-      "score": 85,
-      "sources": ["trendspy", "email"],
-      "source_count": 2,
-      "traffic": 5000,
-      "growth": "+290%",
-      "related": ["how to make friends after college"],
-      "first_seen": "2026-03-01"
+  {
+    "date": "2026-03-04",
+    "sources": ["trendspy", "rss", "email"],
+    "clusters": [
+      {
+        "cluster_name": "Making Friends",
+        "cluster_score": 82,
+        "member_count": 4,
+        "top_keyword": "friend app",
+        "growth_signals": ["breakout", "+290%"],
+        "members": [...],
+        "reddit": { "total_posts": 12, "pain_signal": true, "top_posts": [...] }
+      }
+    ],
+    "unclustered": [
+      {
+        "keyword": "bitcoin atm",
+        "score": 71,
+        "source": "trendspy",
+        "source_count": 1,
+        "category": "finance",
+        "_raw": { "google_growth_pct": 1000, "google_volume": 10000 }
+      }
+    ],
+    "competition": {
+      "friend app": { "verdict": "GREEN", "competitor_count": 1, "top_competitors": [...] }
     },
-    ...
-  ]
+    "decisions": {
+      "Making Friends": {
+        "decision": "BUILD",
+        "confidence": "HIGH",
+        "build_idea": "...",
+        "target_slug": "...",
+        "context_seed": {
+          "product_description": "...",
+          "target_user": "...",
+          "emotional_barrier": "...",
+          "routes": ["/ → ..."]
+        }
+      }
+    }
+  }
 
 KEEP ALL DAILY OUTPUT FILES — the history IS the product demo.
 "I ran this privately for 3 months" is a better launch story than
@@ -87,50 +131,57 @@ launching cold. signals_2026-02-26.json, signals_2026-03-01.json — keep them a
 
 THE STACK:
 - Python 3.12+
-- trendspy (replaced pytrends-modern — 2-3 calls vs 24-30, no SSL hangs)
-- beautifulsoup4 (for email parse)
-- python-dotenv (for .env credentials)
-- openai (GPT-5 Mini with Structured Outputs for cluster renaming + BUILD/WATCH/SKIP)
-- Google Custom Search JSON API (competitor check, 100 free queries/day)
-- schedule or Windows Task Scheduler for daily automation
+- trendspy (Google's internal protobuf API, no auth)
+- beautifulsoup4 (email newsletter HTML parse)
+- python-dotenv (.env credentials)
+- openai (GPT-5.2 with Structured Outputs — cluster rename + BUILD/WATCH/SKIP + context_seed)
+- Brave Search API (competitor check, 1,000 free queries/month)
+- Windows Task Scheduler (9 AM daily via run_daily.bat)
 - No database — flat JSON files in /data
 - No server — runs locally
 
+ENV (.env, gitignored):
+  OPENAI_API_KEY
+  BRAVE_SEARCH_KEY
+  GMAIL_ADDRESS
+  GMAIL_APP_PASSWORD
+
 CLI FLAGS (pipeline.py):
-  --trendspy   trendspy source only
-  --rss        RSS source only
-  --email      email source only
-  --all        all 3 sources + cross-reference (default)
+  (no flags)       all 3 sources — default for scheduled run
+  --trendspy       trendspy only (debugging)
+  --rss            RSS only (debugging)
+  --email          email only (debugging)
   --no-series      skip time-series enrichment (faster)
   --no-competitor  skip competitor check (faster)
   --no-reddit      skip Reddit validation (faster)
-  (no flags)   same as --all
 
 CRON SCHEDULE:
   9:00 AM daily (Windows Task Scheduler, StartWhenAvailable)
-  Output written to data/signals_YYYY-MM-DD.json
-  Logs written to logs/pipeline_YYYY-MM-DD.log
+  Entry point: run_daily.bat → .venv/Scripts/python.exe pipeline.py
+  Output: data/signals_YYYY-MM-DD.json
+  Briefing: briefings/briefing_YYYY-MM-DD.md
+  Logs: logs/pipeline_YYYY-MM-DD.log
 
 MORNING WORKFLOW:
-  9:00 AM     cron runs pipeline.py --all
-  9:02 AM     data/signals_YYYY-MM-DD.json written, top 5 printed to log
-  Morning     open the file, scan top 5
+  9:00 AM     Task Scheduler runs pipeline.py
+  ~9:02 AM    briefings/briefing_YYYY-MM-DD.md written
+  Morning     open briefing, read BUILD decisions
   Decide      "I'm building X this week"
 
-THE SCORING ALGORITHM:
-  Score each trend 0-100 based on:
-  - velocity     — how fast it's rising (week-over-week delta)
-  - volume       — absolute search interest
-  - buildability — can a solo dev build something useful in 48h?
-                   (heuristic, hand-tuned, refine over time)
-  - freshness    — has this already peaked? penalize if so
-  - source_count — multi-source confidence boost (+20/+40)
+DECISION SIGNAL:
+  BUILD  = strong demand + confirmed Reddit pain + market gap (GREEN/YELLOW)
+  WATCH  = demand present but competition saturated or signal weak
+  SKIP   = RED competitor gate, or score < 50 with no confirmed pain
+
+context_seed in BUILD decisions pre-fills context.md for the build phase:
+  product_description, target_user, emotional_barrier, routes
 
 CORE PRINCIPLES:
   - Solve your own problem first — you are the user
-  - Keep it boring: one script, one output file, one cron job
+  - Keep it boring: one script, one output file, one scheduler job
   - No premature optimization
   - Version every output file — the history IS the product
+  - Never add complexity before Phase 2 requires it
 
 FUTURE PHASE 2 ROUTES (not built yet):
   /                   → Hero + "enter your niche" input
