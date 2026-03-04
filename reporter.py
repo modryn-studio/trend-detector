@@ -248,7 +248,12 @@ def _cluster_table_section(clusters: list[dict], unclustered: list[dict]) -> str
         name = c.get("display_name", c["cluster_name"])
         original = c.get("original_name")
         tag = _lifecycle_tag(c)
-        name_cell = f"{name}{tag} *(was: {original})*" if original else f"{name}{tag}"
+        mem = c.get("memory")
+        mem_tag = ""
+        if mem:
+            arrow = {"rising": "↑", "stable": "→", "fading": "↓"}.get(mem["trajectory"], "")
+            mem_tag = f" `{mem['days_seen']}d {arrow}`"
+        name_cell = f"{name}{tag}{mem_tag} *(was: {original})*" if original else f"{name}{tag}{mem_tag}"
         lines.append(
             f"| {i} | {name_cell} | {c['cluster_score']} "
             f"| {_hot_signals(c)} |"
@@ -483,6 +488,15 @@ def _llm_decision(cluster: dict, competition: dict | None,
             f"Reddit: {total} posts, pain_signal={pain}, reliable={reliable}"
         )
 
+    mem = cluster.get("memory")
+    if mem:
+        arrow = {"rising": "↑", "stable": "→", "fading": "↓"}.get(mem["trajectory"], "")
+        context_parts.append(
+            f"Trend memory: seen {mem['days_seen']} of last 7 days {arrow}, "
+            f"trajectory={mem['trajectory']}, first_seen={mem['first_seen']}, "
+            f"best_day_score={mem['best_day_score']}"
+        )
+
     context = "\n".join(context_parts)
 
     prompt = (
@@ -496,7 +510,10 @@ def _llm_decision(cluster: dict, competition: dict | None,
         f"- Competition RED + strong pain → WATCH (differentiation possible)\n"
         f"- Competition GREEN + pain signal → BUILD\n"
         f"- Reddit inconclusive → downgrade confidence one level\n"
-        f"- Score < 50 → SKIP unless exceptional pain signal\n\n"
+        f"- Score < 50 → SKIP unless exceptional pain signal\n"
+        f"- Trend memory seen 4+ days → treat as confirmed real demand; weight toward BUILD\n"
+        f"- Trend memory seen 3+ days with trajectory=rising → raise confidence one level\n"
+        f"- Trend memory seen 1 day only → do not upgrade to BUILD on signal strength alone\n\n"
         f"BUILD FOR THE EMOTIONAL BARRIER, NOT THE INFORMATION GAP.\n"
         f"If Reddit posts express fear, loneliness, overwhelm, or frustration,\n"
         f"the tool should address THAT emotion — not just aggregate links.\n"

@@ -43,6 +43,7 @@ scorer.py            ← noise filter + 0–100 composite score
 cluster.py           ← groups keywords into macro-trend clusters
 reddit_check.py      ← validates top clusters against Reddit (targeted subreddits)
 competitor_check.py  ← Brave Search competitor check (GREEN/YELLOW/RED)
+trend_memory.py      ← annotates clusters with days_seen, trajectory, first_seen, best_day_score
 reporter.py          ← LLM-powered briefing: cluster rename + BUILD/WATCH/SKIP
 run_daily.bat        ← Windows Task Scheduler entry point
 data/
@@ -85,10 +86,11 @@ Gmail    ─┘
    - Pass 2 (build-idea-based): LLM outputs 3 `competition_queries` derived from its build idea; Brave searches those to verify the specific product doesn't already exist. Only runs for BUILD/WATCH decisions. Results stored under cluster name + "(build-idea check)". BUILD → WATCH if refined=RED.
    - Note: `_find_pass1_competition()` searches all member keywords for pass-1 data — survives `top_keyword` shifts from time-series enrichment.
 8. **Time series enrich** — `interest_over_time()` for top ~15 keywords; updates freshness score; re-sorts clusters after enrichment
-9. **Report** — `reporter.py`: LLM (GPT-5.2) renames clusters by human need, generates BUILD/WATCH/SKIP decisions with structured outputs, writes `briefings/briefing_YYYY-MM-DD.md`. LLM prompt includes emotional-barrier guidance ("build for the feeling that stops someone from acting, not the information gap") and signal-quality anchored decisions (BUILD for strong demand + confirmed pain + market gap — not filtered by build complexity). Structured output includes `context_seed` (product_description, target_user, emotional_barrier, routes) to pre-fill the boilerplate's `context.md` during build phase. Cluster table includes lifecycle tags (`EARLY`/`PEAKING`/`FADING`) derived from freshness scores.
+9. **Trend memory** — reads last 7 days of `signals_*.json`; annotates clusters and unclustered with `days_seen`, `trajectory` (rising/stable/fading), `first_seen`, `best_day_score`; LLM uses this to raise BUILD confidence for multi-day rising signals
+10. **Report** — `reporter.py`: LLM (GPT-5.2) renames clusters by human need, generates BUILD/WATCH/SKIP decisions with structured outputs, writes `briefings/briefing_YYYY-MM-DD.md`. LLM prompt includes emotional-barrier guidance ("build for the feeling that stops someone from acting, not the information gap") and signal-quality anchored decisions (BUILD for strong demand + confirmed pain + market gap — not filtered by build complexity). Structured output includes `context_seed` (product_description, target_user, emotional_barrier, routes) to pre-fill the boilerplate's `context.md` during build phase. Cluster table includes lifecycle tags (`EARLY`/`PEAKING`/`FADING`) derived from freshness scores and memory tags (`Nd ↑/→/↓`) from trend_memory.
 
 Total API calls per run: **~15** (1 trending_now + ~3 batched interest_over_time + ~3 Reddit searches + ~7 Brave Search pass-1 + ~2 Brave refined + ~2 OpenAI)
-RED gate + score gate typically save 2-3 LLM calls/day.
+RED gate + score gate typically save 2-3 LLM calls/day. Trend memory is pure file-reads — zero API calls.
 
 ## Output Format
 ```json

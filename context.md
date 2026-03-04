@@ -57,7 +57,11 @@ PIPELINE STAGES (in order):
   7. Competitor    — two-pass Brave Search (see below)
   8. Time series   — interest_over_time() enrichment; updates freshness;
                      re-sorts clusters
-  9. Briefing      — GPT-5.2 renames clusters by human need, generates
+  9. Trend memory  — reads last 7 days of signals_*.json; annotates each
+                     cluster + unclustered item with days_seen, trajectory
+                     (rising/stable/fading), first_seen, best_day_score;
+                     LLM uses streak length to raise BUILD confidence
+ 10. Briefing      — GPT-5.2 renames clusters by human need, generates
                      BUILD/WATCH/SKIP decisions, writes
                      briefings/briefing_YYYY-MM-DD.md
 

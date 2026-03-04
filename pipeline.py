@@ -28,6 +28,7 @@ from cluster import detect_clusters, get_unclustered
 from reddit_check import validate_clusters
 from competitor_check import validate_build_opportunities
 from reporter import write_briefing
+from trend_memory import annotate as annotate_memory
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -348,6 +349,9 @@ def run(sources: list[str], top_n: int = 15,
     # Top unclustered (individual signals)
     unclustered.sort(key=lambda t: t["score"], reverse=True)
     output["unclustered"] = unclustered[:top_n]
+
+    # Annotate with multi-day trend memory (no-op if no history exists yet)
+    annotate_memory(output, DATA_DIR)
 
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
