@@ -33,9 +33,10 @@ No flags needed — the default runs all 3 sources. Single-source flags (`--tren
 | **Competitor check (Pass 1)** | Brave Search on raw trend keyword — how many purpose-built tools already exist? GREEN/YELLOW/RED/INCONCLUSIVE. If RED and no reliable Reddit pain signal → immediate SKIP (RED gate). If score < 50 and no confirmed pain → immediate SKIP (score gate). Both gates are enforced in code before any LLM call. |
 | **Competitor check (Pass 2)** | LLM proposes a build idea and generates 3 tool-focused search queries. Brave searches those to check if that *specific product* already exists. Results shown separately as "(build-idea check)". |
 | **Time series** | Fetches 30-day trend data for top ~15 keywords to refine freshness scores |
-| **Briefing** | GPT-5.2 renames clusters by human need, generates BUILD/WATCH/SKIP decisions anchored to signal quality (strong demand + confirmed pain + market gap), adds lifecycle tags (`EARLY`/`PEAKING`/`FADING`), outputs `context_seed` fields into the signals JSON, writes `briefings/briefing_YYYY-MM-DD.md` |
+| **Trend memory** | Reads last 7 days of `signals_*.json` — annotates each cluster and unclustered item with `days_seen`, `trajectory` (↑ rising / → stable / ↓ fading), `first_seen`, and `best_day_score`. Multi-day rising signals raise LLM confidence toward BUILD. No API calls. |
+| **Briefing** | GPT-5.2 renames clusters by human need, generates BUILD/WATCH/SKIP decisions with niche-specific build ideas anchored to signal quality (strong demand + confirmed pain + market gap), adds lifecycle tags (`EARLY`/`PEAKING`/`FADING`) and memory tags (`Nd ↑/→/↓`), outputs `context_seed` fields into the signals JSON, writes `briefings/briefing_YYYY-MM-DD.md` |
 
-Total API calls per run: ~15 (1 trending_now + ~3 interest_over_time + ~3 Reddit + ~7 Brave Search + ~2 Brave refined + ~2 OpenAI). The RED gate and score gate typically save 2–3 LLM calls/day.
+Total API calls per run: ~15 (1 trending_now + ~3 interest_over_time + ~3 Reddit + ~7 Brave Search + ~2 Brave refined + ~2 OpenAI). Trend memory is pure file-reads — zero API calls. The RED gate and score gate typically save 2–3 LLM calls/day.
 
 ---
 

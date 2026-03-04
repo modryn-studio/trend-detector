@@ -21,7 +21,8 @@ Trends appearing in 2+ sources get a confidence boost. Keywords are filtered, sc
    - Pass 1 (keyword-based): GREEN/YELLOW/RED/INCONCLUSIVE on raw trend keyword. RED + no pain → SKIP immediately, no LLM call.
    - Pass 2 (build-idea-based): LLM generates 3 tool-focused queries from its build idea; Brave searches those to verify the specific product doesn't already exist.
 8. Time-series enrich — `interest_over_time()` for top ~15 keywords; updates freshness score
-9. Report — GPT-5.2 renames clusters by human need, generates BUILD/WATCH/SKIP decisions with emotional-barrier guidance and builder-capacity calibration (multi-file systems, 3–6 API integrations, full-stack deploys — not static pages), adds lifecycle tags (`EARLY`/`PEAKING`/`FADING`), and outputs a `context_seed` (product_description, target_user, emotional_barrier, routes) ready to paste into the boilerplate's `context.md`
+9. Trend memory — reads last 7 days of `signals_*.json`; annotates clusters and unclustered with `days_seen`, `trajectory` (rising/stable/fading), `first_seen`, `best_day_score`; no API calls
+10. Report — GPT-5.2 renames clusters by human need, generates BUILD/WATCH/SKIP decisions with niche-specific build ideas anchored to signal quality (strong demand + confirmed pain + market gap), adds lifecycle tags (`EARLY`/`PEAKING`/`FADING`) and memory tags (`Nd ↑/→/↓`), outputs a `context_seed` (product_description, target_user, emotional_barrier, routes) ready to paste into the boilerplate's `context.md`
 
 **Output:**
 - `data/signals_YYYY-MM-DD.json` — full structured output (clusters + scores + Reddit + competition + `decisions` with `context_seed` for each evaluated cluster)
