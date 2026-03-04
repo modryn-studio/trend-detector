@@ -1467,59 +1467,120 @@
     },
     "Community & Clubs": {
       "decision": "BUILD",
-      "confidence": "HIGH",
-      "build_idea": "A \u201cfirst-time friendly\u201d club-joiner and event buddy tool that helps anxious beginners (hiking/run/art/volunteering) go from interest to actually showing up by matching them into small, welcoming cohorts with clear expectations (pace, skill level, vibe), providing a confidence-building pre-event checklist and lightweight social onboarding, and offering a safety/comfort layer (who\u2019s going, what to bring, what happens next). Core value: reduce loneliness and intimidation so joining a community feels safe and doable.",
-      "target_slug": "beginner-club-buddy",
-      "monetization": "Freemium: free to join public cohorts + basic event buddy matching; paid ($6\u201312/mo) for advanced matching filters, unlimited buddy chats, \u201cshow-up coaching\u201d plans, and verified-host/safety features. B2B add-on for clubs/volunteer orgs to run beginner intakes and retain newcomers (seat-based or per-event).",
-      "reason": "Score is very high (92) and Reddit shows reliable pain signals\u2014people want community but feel intimidated, worry they won\u2019t fit in, or don\u2019t know how to show up alone. Competition is only YELLOW and current solutions (e.g., Meetup) optimize for listing events, not for the emotional barrier of being a beginner and arriving solo.",
-      "risk": "Cold-start and trust/safety risk: without enough high-quality hosts and newcomers in a city, matching and first-event experiences can fail and harm retention.",
+      "confidence": "MED",
+      "build_idea": "A \u201cfirst-hike confidence companion\u201d for adults who want to join a beginner-friendly hike alone for the first time and are anxious about being the slowest/awkward one. The app matches them into tiny, pace-labeled starter pods (3\u20136 people) for a specific trail/time, includes a pre-hike micro-chat with scripted intros, and a day-of check-in flow (where to park, what to wear, how to bail gracefully) so they actually show up. Core value: reduce social anxiety + uncertainty, not just list hikes.",
+      "target_slug": "first-hike-confidence-pods",
+      "monetization": "Freemium: free to join limited starter pods/month; $8\u201312/mo for unlimited pods, \u201cbuddy guarantee\u201d (1:1 pairing if no pod fit), and guided first-outing plans. Optional affiliate revenue from beginner gear checklists (retail links) and local guiding partners.",
+      "reason": "The cluster shows strong demand (score 92) with reliable Reddit pain signals, and competition is only YELLOW: Meetup/event directories exist, but they don\u2019t solve the emotional blocker of showing up alone and fearing mismatch in pace/fitness/social vibe. A narrowly scoped product around \u201cfirst outing + beginner pace pods\u201d differentiates from generic event listings.",
+      "risk": "Cold-start liquidity and safety/trust expectations (verifying hosts, liability) could raise acquisition and ops costs if not tightly scoped to small pods and clear guidelines.",
       "competition_queries": [
-        "beginner event buddy matching app",
-        "newcomer cohort onboarding tool for clubs",
-        "first time social anxiety event checklist app"
+        "first time hiking alone confidence app pace matched pods",
+        "beginner trail meetup anxiety buddy pairing product",
+        "small group pace labeled hike matching tool for new hikers"
       ],
       "context_seed": {
-        "product_description": "A tool that helps beginners join local clubs and community activities by pairing them with a small cohort or buddy and guiding them through a \u201cfirst event\u201d plan. Users pick interests and comfort level (pace, skill, social vibe) and get matched into beginner-friendly groups with clear expectations and a step-by-step pre-event checklist. The product focuses on making the first attendance feel safe, welcoming, and easy to commit to.",
-        "target_user": "Maya, 29, new to town and craving friends, keeps bookmarking hikes and volunteer opportunities but bails at the last minute because she\u2019s scared of being the awkward newbie who can\u2019t keep up or doesn\u2019t know anyone.",
-        "emotional_barrier": "Fear of showing up alone and not fitting in (and the anxiety of unknown expectations) stops them from committing.",
+        "product_description": "A mobile/web tool that helps a person take their first step into a beginner hiking community by matching them into a tiny, pace-labeled pod for a specific hike, then guiding them through pre-hike intros, logistics, and day-of check-ins. Instead of browsing endless events, the user gets a curated \u201cyou will fit here\u201d plan and a small group expecting them. The outcome is showing up (and feeling safe/comfortable), not just discovering an event.",
+        "target_user": "A 29-year-old who recently decided to get fitter and meet people, but feels intimidated joining a hiking group alone and worries they\u2019ll slow everyone down or not know trail etiquette. They want a welcoming first experience with people at their pace, with clear expectations.",
+        "emotional_barrier": "They\u2019re anxious about being judged (pace/fitness/social awkwardness) and overwhelmed by uncertainty about what will happen if they show up alone.",
         "routes": [
-          "/ \u2192 pick an intent: \u201cmake friends\u201d, \u201cget active\u201d, \u201cvolunteer\u201d, \u201clearn something\u201d",
-          "/onboarding \u2192 select interests + beginner level + preferred vibe (quiet/talkative, structured/loose) + comfort/safety preferences",
-          "/match \u2192 see suggested cohorts/buddies with plain-language expectations (pace, duration, who\u2019s going, newcomer-friendly score)",
-          "/event/:id \u2192 \u201cwhat to expect\u201d page: agenda, packing list, arrival instructions, conversation starters, opt-out safety plan",
-          "/chat/:cohort \u2192 lightweight pre-event introductions + one-click \u201cI\u2019m going\u201d commitment",
-          "/checkin \u2192 day-of nudges and arrival check-in; post-event reflection + next-step suggestion",
-          "/host \u2192 create a beginner-friendly event template and newcomer onboarding flow",
-          "/trust-safety \u2192 verification options, reporting, and personal boundaries settings"
+          "/ \u2192 pick your first-outing goal (meet people, get fitter, both) + set pace/comfort level",
+          "/onboarding/pace \u2192 simple pace & terrain preferences + mobility considerations",
+          "/pods \u2192 recommended starter pods (3\u20136) with clear pace label, vibe, and expectations",
+          "/pods/:id \u2192 pod details, who\u2019s going (light profiles), meeting point clarity, safety guidelines",
+          "/join \u2192 commitment + \u201cbail gracefully\u201d option + reminders",
+          "/prechat/:id \u2192 scripted icebreakers + what-to-bring checklist + carpool/arrival coordination",
+          "/dayof/:id \u2192 live check-in, parking pin, late/issue reporting, safety CTA",
+          "/after/:id \u2192 quick debrief, comfort rating, re-match suggestions, request a buddy",
+          "/trust \u2192 verification, rules, incident reporting, host/pod reviews"
         ]
       }
     },
     "Third Places": {
-      "decision": "WATCH",
+      "decision": "BUILD",
       "confidence": "MED",
-      "build_idea": "A \u201cThird Place Matchmaker\u201d that helps people who feel lonely or out-of-place actually show up to a repeatable, low-stakes social routine. It recommends nearby third places (cafes, malls, coworking lobbies, game nights, libraries, hobby meetups) but, more importantly, turns them into predictable weekly rituals with gentle accountability, friendlier \u201cfirst time\u201d scripts, and lightweight small-group pairing so users don\u2019t have to walk in alone.",
-      "target_slug": "third-place-matchmaker",
-      "monetization": "Freemium: free planning + reminders; paid subscription for small-group matching, hosted \u201cfirst-timer\u201d cohorts, and advanced scheduling. Local partner revenue: sponsored placements/lead fees from cafes/coworking spaces/event hosts for verified newcomers.",
-      "reason": "The cluster signal is strong (score 85) and competition is GREEN with only one obvious incumbent-type source, which suggests room for a purpose-built tool. The emotional job-to-be-done is reducing loneliness and social friction\u2014helping users move from \u2018I want a third place\u2019 to \u2018I went and it felt safe,\u2019 which existing content sites don\u2019t operationalize. Reddit is present with pain_signal but reliability is flagged, so confidence is reduced one level. [Revised: refined competition search for 'local social routine planner app' found 8 existing tools \u2014 downgraded from BUILD to WATCH.]",
-      "risk": "The core risk is chicken-and-egg: without enough local density and trustworthy venue data, matching and habit formation may feel empty or unsafe.",
+      "build_idea": "A \u201cfirst-visit confidence companion\u201d for people who want a dependable third place (coffee shop/coworking/library) but freeze at the moment of going alone. Target: a newly-remote worker in a new neighborhood who keeps searching \u2018third space near me\u2019 and then bails because they don\u2019t know the norms, what to do when they arrive, or how to become a regular without feeling awkward. Core value: pick a venue, get a low-stakes first-visit plan (time window, seating/etiquette tips, what to bring), a gentle exposure ladder (visit #1\u2013#4), and lightweight check-ins that reduce anxiety and make \u201cbecoming a regular\u201d feel achievable\u2014not social-networking.",
+      "target_slug": "third-place-confidence-companion",
+      "monetization": "Freemium: free venue shortlists + first-visit plan; paid ($6\u2013$10/mo) for personalized routines, multi-venue rotation plans, accountability check-ins, and \u2018regular-building\u2019 progress. Optional affiliate revenue from coworking day passes/coffee subscriptions where available.",
+      "reason": "The cluster points to active demand around finding/using third places, and competition is GREEN with at least some pain signal. The emotional blocker isn\u2019t information (\u201cwhat is a third place\u201d)\u2014it\u2019s hesitation/awkwardness about showing up alone and turning a place into a routine. Reddit is flagged reliable=False, so confidence is downgraded one level. [Note: refined competition search for 'app for going to a coffee shop alone first time plan' found 6 existing tools \u2014 review competition section before building.]",
+      "risk": "If the real blocker is simply discovery (hours, amenities, pricing), the emotional-confidence positioning may underperform against existing local search/maps products.",
       "competition_queries": [
-        "local social routine planner app",
-        "meet new friends small group matching tool",
-        "third place finder with safety ratings app"
+        "app for going to a coffee shop alone first time plan",
+        "remote worker become a regular at coworking checklist app",
+        "social anxiety first visit routine builder for local hangout spot"
       ],
       "context_seed": {
-        "product_description": "A mobile/web tool that helps users find and commit to a repeatable \u201cthird place\u201d routine by turning nearby venues and recurring events into weekly rituals. It reduces the anxiety of going alone with first-time guidance, optional small-group pairing, and reminders that build consistency. The user leaves with a concrete plan (\u201cTuesday 6pm board game cafe, with two other first-timers\u201d) instead of an overwhelming list of options.",
-        "target_user": "Jenna, 29, moved to a new city for work and spends evenings scrolling because she doesn\u2019t want to walk into places alone and feel awkward. She wants a reliable, low-pressure spot where she can become a regular and gradually make friends without forcing extroversion.",
-        "emotional_barrier": "She\u2019s afraid of showing up alone and feeling visibly out of place or rejected, so she never converts intent into action.",
+        "product_description": "A mobile/web companion that helps someone choose a local third place and actually show up. It generates a low-pressure first-visit script (when to go, where to sit, what to order/do, exit plan), then guides a 2\u20134 week routine that turns one-off visits into a comfortable habit. The user gets reduced anxiety, consistent outings, and a realistic path to feeling like a regular.",
+        "target_user": "Jordan, 29, newly remote and newly moved, wants a nearby place to work/read after work but feels self-conscious walking in alone and not knowing the vibe or what to do once there.",
+        "emotional_barrier": "They fear feeling out of place or judged, so they keep researching instead of going.",
         "routes": [
-          "/ \u2192 quick check-in (mood, energy, budget, tonight vs weekly routine)",
-          "/onboarding \u2192 preferences + comfort level (alone vs paired), neighborhoods, time windows",
-          "/plan \u2192 recommended \u2018rituals\u2019 (recurring options) with clear first-visit steps",
-          "/pairing \u2192 join a small first-timers group for a specific time/place",
-          "/venue/:id \u2192 what to expect, best times for newcomers, quiet/loud, solo-friendly score, safety notes",
-          "/commit \u2192 schedule + reminders + optional accountability buddy",
-          "/after-visit \u2192 debrief (how it felt) + adjust recommendations + prompt to rebook",
-          "/community \u2192 lightweight regulars groups tied to a place/time (no endless feeds)"
+          "/ \u2192 quick assessment: why you want a third place + comfort level",
+          "/pick-a-spot \u2192 shortlist from a few candidates you already have (or add manually)",
+          "/first-visit-plan \u2192 time window, micro-goals, what-to-bring, \u2018what if it\u2019s full\u2019 fallbacks",
+          "/on-arrival \u2192 discreet checklist + exit plan button",
+          "/routine \u2192 2\u20134 week exposure ladder + calendar slots",
+          "/check-in \u2192 post-visit reflection (1 minute) + next-step suggestion",
+          "/progress \u2192 streaks and \u2018regular-building\u2019 milestones without social features",
+          "/settings \u2192 privacy, reminders, accessibility needs"
+        ]
+      }
+    },
+    "Making Friends": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A \u201cfirst-outing wingman\u201d for adults who moved to a new city in the last 6 months and keep bailing on going to groups alone. The emotional barrier is fear of showing up solo (awkwardness, rejection, not knowing what to say/where to stand), not lack of information about events. The core value prop: choose one nearby activity, get a 7\u2011day micro-plan (scripts, arrival timing, tiny goals), and match with 1\u20132 other first-timers going to the same event so you can arrive together and debrief after.",
+      "target_slug": "first-outing-wingman",
+      "monetization": "Freemium: free planning + limited matches; $8\u2013$12/mo for unlimited \u201cfirst-timer pair\u201d matches, anxiety-reducing coaching packs (conversation scripts, exposure ladder), and post-event reflection + next-step recommendations. Optional affiliate rev from ticketed classes/venues.",
+      "reason": "High intent keywords suggest real demand, but the broad space (friend-making, social groups, travel groups) is crowded and easily confused with Meetup/FB Groups/Bumble BFF. A narrow wedge focused on the emotional friction of attending the first event alone is differentiable, but execution risk is non-trivial (critical mass for matching + safety/trust).",
+      "risk": "Chicken-and-egg liquidity and safety concerns: without enough first-timers per event/location (and strong verification/moderation), matches won\u2019t form and users won\u2019t feel safe meeting strangers.",
+      "competition_queries": [
+        "arrive-together matching app for first-time attendees of local hobby events",
+        "new city first outing anxiety planner app moved to a new city adults",
+        "pair up with another newcomer for the same meetup debrief tool"
+      ],
+      "context_seed": {
+        "product_description": "A mobile/web tool that helps newly relocated adults actually show up to one local group activity by reducing social anxiety and friction. Users pick an event/class, get a short confidence plan (when to arrive, what to do/say, micro-goals), and can match with 1\u20132 other verified first-timers attending the same event to walk in together and debrief afterward.",
+        "target_user": "Jenna, 29, moved to a new city for work 3 months ago and spends evenings scrolling event listings but rarely goes. She wants 1\u20132 real friends but feels awkward arriving alone and worries everyone else already has their group.",
+        "emotional_barrier": "She\u2019s afraid of the first 10 minutes\u2014walking in solo, not knowing where to stand, and feeling visibly out of place.",
+        "routes": [
+          "/ \u2192 onboarding: new city timeline, interests, comfort level, availability",
+          "/pick \u2192 choose one specific upcoming event or import from a link",
+          "/plan/:event \u2192 7-day micro-plan: prep tasks, arrival script, tiny goals",
+          "/match/:event \u2192 request/accept first-timer pair (time/place to meet outside)",
+          "/safety \u2192 verification, boundaries, emergency check-in, report/block",
+          "/go-time/:event \u2192 day-of guidance: arrival timer, prompts, quick exit plan",
+          "/debrief/:event \u2192 reflection + next-step suggestion (message template, next event)",
+          "/streaks \u2192 momentum tracker: \u2018showed up\u2019 streak, exposure ladder progress"
+        ]
+      }
+    },
+    "Top Trends": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A \"nomination kit\" builder for small local hip-hop museums, community organizers, and indie artists trying to get a deceased/legacy regional act recognized (local hall, state music hall, or a new genre-specific hall). Emotional barrier: they feel intimidated by opaque criteria, don\u2019t know how to assemble credible proof, and fear public embarrassment if they submit something \u201cnot official enough.\u201d Core value: a guided workflow that turns scattered memories into a professional, evidence-backed nomination packet (citations, press archive, impact timeline, supporter letters, rights-safe media list) plus a private review checklist before they share it publicly.",
+      "target_slug": "legacy-nomination-kit",
+      "monetization": "Freemium: free basic packet outline + citation capture; paid $19\u2013$49 per nomination for export-ready packets, collaborator invites, and archival backup. Optional services marketplace take-rate for scanning/archiving, transcription, and legal/right-to-use consults.",
+      "reason": "The cluster suggests curiosity around \u201chall of fame\u201d status and genre-specific recognition, which often masks a deeper motivation: proving cultural impact and preserving legacy. There\u2019s a plausible pain point for grassroots organizers (uncertainty + intimidation), but demand is unclear and competition could include generic portfolio/press-kit tools and wiki-style databases, so execution risk is medium.",
+      "risk": "If the \u201chall of fame\u201d interest is mostly trivia/SEO-driven rather than people actively preparing nominations, willingness to pay and retention will be low.",
+      "competition_queries": [
+        "guided nomination packet builder for local music hall of fame",
+        "legacy artist evidence archive tool for community museum nominations",
+        "music impact timeline and press clipping archive app for heritage campaigns"
+      ],
+      "context_seed": {
+        "product_description": "A guided web app that helps community organizers compile an evidence-based recognition packet for a legacy hip-hop act: impact timeline, digitized clippings, citations, supporter letters, and rights-safe media references. Users capture sources as they browse, invite collaborators, and export a submission-ready PDF/drive structure plus a public-facing summary page when they\u2019re ready. The product emphasizes private reassurance (checklists, completeness scoring, reviewer feedback) before public sharing.",
+        "target_user": "A volunteer curator at a small city hip-hop exhibit who promised an artist\u2019s family they\u2019d \u201cget their story recognized,\u201d but is overwhelmed by scattered sources, unclear standards, and fear of doing it wrong in public.",
+        "emotional_barrier": "They feel intimidated and anxious that their submission will look amateurish or be dismissed, so they procrastinate and never ship the nomination.",
+        "routes": [
+          "/ \u2192 landing with examples of completed packets and who it\u2019s for",
+          "/create \u2192 start a new nomination (artist/crew, region, era, goal)",
+          "/capture \u2192 save sources (links, scans, screenshots) with citation fields",
+          "/timeline \u2192 build impact timeline with evidence attached",
+          "/supporters \u2192 request/collect endorsement letters (templates + tracking)",
+          "/media-rights \u2192 checklist for what can/can\u2019t be included + reference-only mode",
+          "/review \u2192 completeness score + private preflight checks",
+          "/export \u2192 generate submission-ready PDF + folder structure",
+          "/share \u2192 publish a public summary page (optional)",
+          "/collaborators \u2192 invite family/peers to contribute sources securely"
         ]
       }
     },
@@ -1530,30 +1591,8 @@
     },
     "dow futures": {
       "decision": "SKIP",
-      "confidence": "MED",
-      "build_idea": "A pre-market anxiety-reduction companion for index-futures watchers: a simple scenario planner + alerting tool that turns overnight moves and key levels into a few actionable \u201cif/then\u201d plans (e.g., \u201cIf futures gap down >0.8% and VIX up >10%, here are 2 risk-contained playbooks\u201d), with checklists to prevent panic trades and over-monitoring.",
-      "target_slug": "premarket-calm-planner",
-      "monetization": "Freemium: free basic scenario cards and delayed alerts; paid tier for real-time alerts, customizable playbooks, journaling/behavior nudges, and integrations (email/SMS/Discord).",
-      "reason": "Competition looks weak, but the overall signal is below the score cutoff (49 < 50) and the core query is heavily information-oriented (people can already see futures everywhere). Unless there\u2019s exceptional evidence of emotional pain (panic, compulsive checking, FOMO) that a tool can uniquely reduce, this is more likely to become another data display with low differentiation.",
-      "risk": "Without strong, validated emotional pain (stress/overwhelm) the product collapses into commodity price-tracking where incumbents win on data and distribution.",
-      "competition_queries": [
-        "premarket scenario planner tool",
-        "trading anxiety checklist app",
-        "gap down playbook generator"
-      ],
-      "context_seed": {
-        "product_description": "A lightweight pre-market companion that helps traders and investors stop panic-checking futures by turning overnight moves into a few clear scenarios and risk-contained actions. Users set their risk profile and receive simple \u201cif/then\u201d playbooks, alerts, and a quick checklist before market open. The output is confidence and calm\u2014fewer impulsive trades\u2014rather than more charts.",
-        "target_user": "A retail trader who wakes up early, refreshes futures repeatedly, feels their stomach drop on red prints, and wants a simple plan that tells them what (if anything) to do at the open without spiraling.",
-        "emotional_barrier": "Fear of missing out or getting blindsided at the open causes compulsive monitoring and impulsive decisions.",
-        "routes": [
-          "/ \u2192 landing + choose goal (stay calm, trade plan, long-term investor)",
-          "/onboarding \u2192 set risk profile, watchlist/indexes, alert thresholds",
-          "/today \u2192 3 scenario cards for the next session + recommended no-action option",
-          "/alerts \u2192 configure and view triggered scenarios",
-          "/checklist \u2192 pre-open checklist + \u201ccooldown\u201d timer",
-          "/journal \u2192 log decision + emotion tag + outcome review"
-        ]
-      }
+      "confidence": "HIGH",
+      "reason": "Score gate: 49 < 50, no confirmed pain"
     }
   }
 }
