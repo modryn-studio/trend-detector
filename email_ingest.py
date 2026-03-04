@@ -5,7 +5,7 @@ Connects to Gmail via IMAP, fetches unread Google Trends Daily Trending
 newsletters, parses the narrative HTML to extract:
   - Trend keywords (quoted phrases)
   - Growth percentages (+290%, breakout, all-time high)
-  - Category/section names (from h3/h4 headings)
+  - Category/section names (from h3/h4 headings or large-font styled spans)
 
 Requires GMAIL_ADDRESS and GMAIL_APP_PASSWORD in .env.
 """
@@ -49,30 +49,80 @@ def _parse_growth(context: str) -> str:
     return ""
 
 
+_LARGE_FONT_RE = re.compile(r'font-size\s*:\s*(\d+)pt', re.I)
+
+
+def _is_section_header_span(tag) -> bool:
+    """Return True if this tag is a large-font span used as a section header.
+
+    Some newsletter editions use <p><span style="font-size:16pt..."> instead
+    of <h3>/<h4> for sub-section titles. Detect by font-size >= 14pt on a
+    span whose parent is a <p> with no other substantial text siblings.
+    """
+    if tag.name != "span":
+        return False
+    style = tag.get("style", "")
+    m = _LARGE_FONT_RE.search(style)
+    if not m or int(m.group(1)) < 14:
+        return False
+    # Must be the primary content of its parent <p>
+    parent = tag.parent
+    if not parent or parent.name != "p":
+        return False
+    text = tag.get_text(strip=True)
+    return bool(text) and len(text.split()) <= 8  # headings are short
+
+
 def _parse_newsletter_html(html: str) -> list[dict]:
-    """Parse one newsletter's HTML into a list of trend dicts."""
+    """Parse one newsletter's HTML into a list of trend dicts.
+
+    Handles two newsletter layouts:
+      1. Standard: section headers are <h3> or <h4> tags
+      2. Styled: section headers are <p><span style="font-size:16pt...">
+         (used for sub-sections like "Boy Kibble", "Daylight Savings")
+    Both layouts can appear in the same email — sorted by document order.
+    """
     soup = BeautifulSoup(html, "html.parser")
     trends: list[dict] = []
     seen_keywords: set[str] = set()
 
-    # Find section headers — newsletters use h3 or h4
-    sections = soup.find_all(["h3", "h4"])
+    # Collect all section-header nodes in document order
+    header_nodes = []
+    for tag in soup.find_all(True):
+        if tag.name in ("h3", "h4"):
+            header_nodes.append(tag)
+        elif _is_section_header_span(tag):
+            # Use the parent <p> as the boundary node for sibling iteration
+            header_nodes.append(tag.parent)
 
-    if not sections:
-        # Fallback: try to extract from the full body text
+    if not header_nodes:
         full_text = soup.get_text(" ", strip=True)
         _extract_from_text(full_text, "general", trends, seen_keywords)
         return trends
 
-    for sec in sections:
-        category = sec.get_text(strip=True)
+    # Deduplicate while preserving order (span parent <p> may appear twice
+    # if the same <p> was already added)
+    seen_nodes: set[int] = set()
+    unique_headers = []
+    for node in header_nodes:
+        if id(node) not in seen_nodes:
+            seen_nodes.add(id(node))
+            unique_headers.append(node)
+
+    header_set = {id(n) for n in unique_headers}
+
+    for node in unique_headers:
+        category = node.get_text(strip=True)
         if category.lower() in _SKIP_SECTIONS:
             continue
 
-        # Collect text from siblings until the next heading
+        # Collect sibling text until the next section header
         text_parts: list[str] = []
-        for sib in sec.find_next_siblings():
-            if sib.name in ("h3", "h4"):
+        for sib in node.find_next_siblings():
+            if id(sib) in header_set or sib.name in ("h3", "h4"):
+                break
+            # Also stop if we hit another large-font span header
+            if sib.find(_is_section_header_span):
                 break
             text_parts.append(sib.get_text(" ", strip=True))
 
