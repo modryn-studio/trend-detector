@@ -8,9 +8,9 @@
   "clusters": [
     {
       "cluster_name": "Daylight Savings",
-      "cluster_score": 96,
+      "cluster_score": 98,
       "member_count": 8,
-      "top_keyword": "circadian fasting",
+      "top_keyword": "sunshine protection act",
       "growth_signals": [
         "sunshine protection act: breakout",
         "circadian fasting: breakout",
@@ -18,6 +18,24 @@
         "is magnesium glycinate good for anxiety: breakout"
       ],
       "members": [
+        {
+          "keyword": "sunshine protection act",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
         {
           "keyword": "circadian fasting",
           "score": 74,
@@ -68,24 +86,6 @@
             "volume_score": 50.0,
             "buildability_score": 50.0,
             "freshness_score": 85.0,
-            "google_volume": 0,
-            "google_growth_pct": 5000.0
-          }
-        },
-        {
-          "keyword": "sunshine protection act",
-          "score": 60,
-          "velocity": "rising",
-          "volume": "unknown",
-          "buildability": "medium",
-          "category": "Daylight Savings",
-          "source": "email",
-          "source_count": 1,
-          "_raw": {
-            "growth_score": 100.0,
-            "volume_score": 50.0,
-            "buildability_score": 50.0,
-            "freshness_score": 10.0,
             "google_volume": 0,
             "google_growth_pct": 5000.0
           }
@@ -164,12 +164,60 @@
         }
       ],
       "reddit": {
-        "total_posts": 0,
-        "subreddit_hits": {},
+        "total_posts": 5,
+        "subreddit_hits": {
+          "Advice": 5
+        },
         "pain_signal": false,
         "pain_reliable": false,
         "keyword": "sunshine protection act",
-        "top_posts": []
+        "top_posts": [
+          {
+            "title": "My aunt is at her last straw with her daughter",
+            "selftext": "A little context, my aunt is almost 37, her daughter is 13, turning 14 this year. Her daughter's dad is and was very mentally abusive but got the kids in his custody when her daughter was barely a toddler. With that being said, we know she has trauma from him and his side of the family, when she was",
+            "subreddit": "Advice",
+            "score": 2,
+            "url": "https://reddit.com/r/Advice/comments/1r8hj5g/my_aunt_is_at_her_last_straw_with_her_daughter/",
+            "num_comments": 16,
+            "created_utc": 1771453788.0
+          },
+          {
+            "title": "Am I asking for too much by  expecting these things from my unborn baby\u2019s father?",
+            "selftext": "TLDR: Baby dad keeps making promises he doesn\u2019t keep, and makes me feel like it\u2019s my fault\u2026 Should I cut baby dad off? Am I the one asking for too much? Would it make me an A-hole to keep the baby from him?\n\nI\u2019m posting this on my main account cause I don\u2019t care anymore if he finds this. To make a l",
+            "subreddit": "Advice",
+            "score": 2,
+            "url": "https://reddit.com/r/Advice/comments/1r59qgq/am_i_asking_for_too_much_by_expecting_these/",
+            "num_comments": 3,
+            "created_utc": 1771145074.0
+          },
+          {
+            "title": "I (19,ftm) accidently fell for my roommate (18,m)",
+            "selftext": "I(19, ftm) have had feelings for my roommate (18m) for a while. I\u2019m bi, and he usually describes himself as gay\u2014he says he\u2019s mostly (sexually) attracted to men, occasionally to women, but only wants to date men. I\u2019m about a year on T, post\u2011top surgery, and I pass decently (you can still clock me som",
+            "subreddit": "Advice",
+            "score": 2,
+            "url": "https://reddit.com/r/Advice/comments/1r1difz/i_19ftm_accidently_fell_for_my_roommate_18m/",
+            "num_comments": 3,
+            "created_utc": 1770758276.0
+          },
+          {
+            "title": "How to confront issues with fianc\u00e9's boss?",
+            "selftext": "This is a tricky topic because it gets a little complicated. I know laws surrounding employment, employee treatment, etc vary by state (NOT seeking legal advice), so we're in Kansas for context. This will be long, I'm sorry.\n\nMy fianc\u00e9 works under a major car dealership, but directly for a different",
+            "subreddit": "Advice",
+            "score": 2,
+            "url": "https://reddit.com/r/Advice/comments/1qvzkyo/how_to_confront_issues_with_fianc\u00e9s_boss/",
+            "num_comments": 1,
+            "created_utc": 1770236170.0
+          },
+          {
+            "title": "My father (59) game overed himself yesterday and I don\u2019t feel sadness or grief, just annoyance and I don\u2019t know if I should attend the funeral. Does this make me a bad daughter (26)?",
+            "selftext": "TW: mention of depression and suicide  \n  \nThis is a throwaway account. I apologise for the long post, but I don\u2019t know what would be relevant to inform you properly and what not, but I try to keep it as short as possible. I also apologise for spelling and grammar errors, since English is not my nat",
+            "subreddit": "Advice",
+            "score": 1,
+            "url": "https://reddit.com/r/Advice/comments/1quabt1/my_father_59_game_overed_himself_yesterday_and_i/",
+            "num_comments": 2,
+            "created_utc": 1770072249.0
+          }
+        ]
       },
       "memory": {
         "days_seen": 1,
@@ -180,7 +228,7 @@
     },
     {
       "cluster_name": "Return of Wooden Kitchens",
-      "cluster_score": 72,
+      "cluster_score": 74,
       "member_count": 9,
       "top_keyword": "white oak cabinets",
       "growth_signals": [
@@ -189,7 +237,7 @@
       "members": [
         {
           "keyword": "white oak cabinets",
-          "score": 60,
+          "score": 74,
           "velocity": "rising",
           "volume": "unknown",
           "buildability": "medium",
@@ -200,7 +248,7 @@
             "growth_score": 100.0,
             "volume_score": 50.0,
             "buildability_score": 50.0,
-            "freshness_score": 10.0,
+            "freshness_score": 85.0,
             "google_volume": 0,
             "google_growth_pct": 5000.0
           }
@@ -351,12 +399,61 @@
         }
       ],
       "reddit": {
-        "total_posts": 0,
-        "subreddit_hits": {},
-        "pain_signal": false,
+        "total_posts": 8,
+        "subreddit_hits": {
+          "Advice": 7,
+          "NoStupidQuestions": 1
+        },
+        "pain_signal": true,
         "pain_reliable": false,
         "keyword": "white oak cabinets",
-        "top_posts": []
+        "top_posts": [
+          {
+            "title": "My friend always points out to me that I\u2019m just a white girl, is that messed up?",
+            "selftext": "Feel like this is the most fitting place to ask, super curious to hear what everyone says.\n\nBasically yes I am a white American girl, but it is brought up every time we hang out so it is beginning to feel odd\u2026..EVERY TIME we hangout. She is Asian so wouldn\u2019t it be weird if the roles were reversed an",
+            "subreddit": "NoStupidQuestions",
+            "score": 696,
+            "url": "https://reddit.com/r/NoStupidQuestions/comments/1rfua7b/my_friend_always_points_out_to_me_that_im_just_a/",
+            "num_comments": 279,
+            "created_utc": 1772159214.0
+          },
+          {
+            "title": "my boyfriend freezes in serious moments, and last night it involved a racial slur. what do i do?",
+            "selftext": "(WE DO NOT LIVE TOGETHER) i need to get this out. something happened last night at my boyfriend\u2019s house and i can\u2019t stop thinking about it.\n\nfor context, we\u2019ve been together for over two years. his mom is going through a messy divorce and the house is constant chaos. she spends hours writing long em",
+            "subreddit": "Advice",
+            "score": 16,
+            "url": "https://reddit.com/r/Advice/comments/1rizyg0/my_boyfriend_freezes_in_serious_moments_and_last/",
+            "num_comments": 86,
+            "created_utc": 1772474202.0
+          },
+          {
+            "title": "Inappropriate or worse coworker?",
+            "selftext": "I am a 32yo F with a 50ish yo M coworker in healthcare. We work at an urgent care. I am a medical assistant and he is a provider. I don\u2019t know what to do about his misogynistic behavior/words. This guy is starting to scare me, especially since he sees a lot of female patients.\n\nFirst of all, he seem",
+            "subreddit": "Advice",
+            "score": 18,
+            "url": "https://reddit.com/r/Advice/comments/1qw192g/inappropriate_or_worse_coworker/",
+            "num_comments": 48,
+            "created_utc": 1770239786.0
+          },
+          {
+            "title": "I think my roommates girlfriend may have stolen my missing wedding band",
+            "selftext": "So this will be long because there are a lot of details that need to be included so I can get proper advice for this situation. Our ages may matter, so my husband is 25, I\u2019m 23, our roommate is 23, and the \u201csuspect\u201d is 25.\n\nMy husband and I are military, and he had a coworker whose roommate recently",
+            "subreddit": "Advice",
+            "score": 11,
+            "url": "https://reddit.com/r/Advice/comments/1rbt5ez/i_think_my_roommates_girlfriend_may_have_stolen/",
+            "num_comments": 37,
+            "created_utc": 1771784331.0
+          },
+          {
+            "title": "My dad is a cheater and Im too scared to tell on him.",
+            "selftext": "I don\u2019t even know how to preface this, so I\u2019ll just go straight into it. I apologize for any grammar mistakes, as I live in Brazil and English is not my first language. I (15F) am a child of divorce. My parents started the process in 2023 and are still going through court. Not to be alarmed, they ar",
+            "subreddit": "Advice",
+            "score": 3,
+            "url": "https://reddit.com/r/Advice/comments/1r0thcd/my_dad_is_a_cheater_and_im_too_scared_to_tell_on/",
+            "num_comments": 18,
+            "created_utc": 1770705254.0
+          }
+        ]
       },
       "memory": {
         "days_seen": 1,
@@ -367,7 +464,7 @@
     },
     {
       "cluster_name": "Boy Kibble",
-      "cluster_score": 68,
+      "cluster_score": 70,
       "member_count": 6,
       "top_keyword": "boy kibble",
       "growth_signals": [
@@ -376,7 +473,7 @@
       "members": [
         {
           "keyword": "boy kibble",
-          "score": 60,
+          "score": 74,
           "velocity": "rising",
           "volume": "unknown",
           "buildability": "medium",
@@ -387,7 +484,7 @@
             "growth_score": 100.0,
             "volume_score": 50.0,
             "buildability_score": 50.0,
-            "freshness_score": 10.0,
+            "freshness_score": 85.0,
             "google_volume": 0,
             "google_growth_pct": 5000.0
           }
@@ -484,12 +581,62 @@
         }
       ],
       "reddit": {
-        "total_posts": 0,
-        "subreddit_hits": {},
-        "pain_signal": false,
+        "total_posts": 20,
+        "subreddit_hits": {
+          "Advice": 10,
+          "NoStupidQuestions": 6,
+          "internetparents": 4
+        },
+        "pain_signal": true,
         "pain_reliable": false,
         "keyword": "boy kibble",
-        "top_posts": []
+        "top_posts": [
+          {
+            "title": "Do I tell my wife or let her stay happy for another week?",
+            "selftext": "My mom suffered a stroke while on vacation earlier this week and while she's at a great hospital in the southern US right now, the prognosis is saying she has a 90% chance to pass away. Before this happened my wife flew to Europe to visit her sister for a week+shoulder weekends. While she knows that",
+            "subreddit": "Advice",
+            "score": 1222,
+            "url": "https://reddit.com/r/Advice/comments/1qyv81p/do_i_tell_my_wife_or_let_her_stay_happy_for/",
+            "num_comments": 134,
+            "created_utc": 1770513142.0
+          },
+          {
+            "title": "Should men be involved in choosing the engagement ring, or should their partner pick it alone?",
+            "selftext": "Ive been together with my gf for almost 4 years now and we started talking about getting engaged soon and we cool with each other except one thing thats bugging me. Every time we talk about engagement rings or such like if were watching netflix and theres a proposal scene she says stuff like \"I got",
+            "subreddit": "NoStupidQuestions",
+            "score": 232,
+            "url": "https://reddit.com/r/NoStupidQuestions/comments/1quzfxl/should_men_be_involved_in_choosing_the_engagement/",
+            "num_comments": 351,
+            "created_utc": 1770142248.0
+          },
+          {
+            "title": "Should i drop my therapist?",
+            "selftext": "Last session she wanted to talk about my sexuality again. I told her i was a lesbian from the first day, and she didn't seem to have any problems with it, and i also told her i was very secure and comfortable in my identity and sexuality (i dress pretty masculine so therapists seem to think that mak",
+            "subreddit": "Advice",
+            "score": 125,
+            "url": "https://reddit.com/r/Advice/comments/1riz44r/should_i_drop_my_therapist/",
+            "num_comments": 116,
+            "created_utc": 1772472398.0
+          },
+          {
+            "title": "Weed makes me feel completely unreal and my heart goes crazy. what should I do?",
+            "selftext": "Whenever I smoke weed i don\u2019t get relaxed and everything just starts to feel unreal. It\u2019s like I\u2019m there but not really there.Peoples faces suddenly look weird or different, i can\u2019t hold eye contact, and I feel completely disconnected from everything around me.\n\nI become super aware of my heart, and",
+            "subreddit": "Advice",
+            "score": 19,
+            "url": "https://reddit.com/r/Advice/comments/1rcwpow/weed_makes_me_feel_completely_unreal_and_my_heart/",
+            "num_comments": 142,
+            "created_utc": 1771886999.0
+          },
+          {
+            "title": "My best friend\u2019s fianc\u00e9 hit on me- how do I tell her?",
+            "selftext": "I\u2019m honestly sick to my stomach over this. I(25f) have been best friends with \u201cSarah\u201d (fake name)(25f) since kindergarten. She is my ride-or-die, I would do anything for her, we are basically sisters. She is supposed to be getting married to \u201cJosh\u201d (28m) this September, and I\u2019m her maid of honor.\n\nT",
+            "subreddit": "Advice",
+            "score": 91,
+            "url": "https://reddit.com/r/Advice/comments/1rifciu/my_best_friends_fianc\u00e9_hit_on_me_how_do_i_tell_her/",
+            "num_comments": 64,
+            "created_utc": 1772414706.0
+          }
+        ]
       },
       "memory": {
         "days_seen": 1,
@@ -509,7 +656,7 @@
       "members": [
         {
           "keyword": "when did zendaya and tom holland get married",
-          "score": 66,
+          "score": 63,
           "velocity": "rising",
           "volume": "unknown",
           "buildability": "medium",
@@ -520,7 +667,7 @@
             "growth_score": 66.7,
             "volume_score": 50.0,
             "buildability_score": 50.0,
-            "freshness_score": 100.0,
+            "freshness_score": 85.0,
             "google_volume": 0,
             "google_growth_pct": 1000.0
           }
@@ -607,17 +754,18 @@
     },
     {
       "cluster_name": "stock / avgo / raytheon",
-      "cluster_score": 54,
+      "cluster_score": 59,
       "member_count": 4,
       "top_keyword": "avgo stock",
       "growth_signals": [
-        "avgo stock: +300%",
-        "raytheon stock: +300%"
+        "avgo stock: +200%",
+        "raytheon stock: +300%",
+        "ttd stock: +200%"
       ],
       "members": [
         {
           "keyword": "avgo stock",
-          "score": 40,
+          "score": 35,
           "velocity": "rising",
           "volume": "medium",
           "buildability": "low",
@@ -625,12 +773,12 @@
           "source": "trendspy",
           "source_count": 1,
           "_raw": {
-            "growth_score": 20.0,
+            "growth_score": 13.3,
             "volume_score": 40.0,
             "buildability_score": 20.0,
-            "freshness_score": 100.0,
+            "freshness_score": 85.0,
             "google_volume": 20000,
-            "google_growth_pct": 300
+            "google_growth_pct": 200
           }
         },
         {
@@ -653,20 +801,20 @@
         },
         {
           "keyword": "ttd stock",
-          "score": 28,
-          "velocity": "steady",
+          "score": 31,
+          "velocity": "rising",
           "volume": "low",
           "buildability": "low",
           "category": "finance",
           "source": "trendspy",
           "source_count": 1,
           "_raw": {
-            "growth_score": 6.7,
+            "growth_score": 13.3,
             "volume_score": 20.0,
             "buildability_score": 20.0,
             "freshness_score": 85.0,
-            "google_volume": 1000,
-            "google_growth_pct": 100
+            "google_volume": 2000,
+            "google_growth_pct": 200
           }
         },
         {
@@ -758,7 +906,7 @@
         "volume_score": 40.0,
         "buildability_score": 50.0,
         "freshness_score": 100.0,
-        "google_volume": 20000,
+        "google_volume": 10000,
         "google_growth_pct": 800
       }
     },
@@ -799,45 +947,123 @@
       }
     },
     {
-      "keyword": "new macbook",
-      "score": 45,
+      "keyword": "epr properties",
+      "score": 46,
       "velocity": "rising",
-      "volume": "medium",
-      "buildability": "medium",
-      "category": "technology",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 13.3,
-        "volume_score": 40.0,
-        "buildability_score": 50.0,
-        "freshness_score": 100.0,
-        "google_volume": 10000,
-        "google_growth_pct": 200
-      },
-      "memory": {
-        "days_seen": 1,
-        "trajectory": "rising",
-        "first_seen": "2026-03-04",
-        "best_day_score": 41
-      }
-    },
-    {
-      "keyword": "tax preparer",
-      "score": 39,
-      "velocity": "steady",
       "volume": "low",
       "buildability": "medium",
       "category": "finance",
       "source": "trendspy",
       "source_count": 1,
       "_raw": {
-        "growth_score": 6.7,
+        "growth_score": 26.7,
         "volume_score": 20.0,
         "buildability_score": 50.0,
         "freshness_score": 100.0,
+        "google_volume": 2000,
+        "google_growth_pct": 400
+      }
+    },
+    {
+      "keyword": "interstellar comet 3i atlas nasa",
+      "score": 38,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 2000,
+        "google_growth_pct": 200
+      }
+    },
+    {
+      "keyword": "los angeles",
+      "score": 38,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 1000,
+        "google_growth_pct": 200
+      },
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 33
+      }
+    },
+    {
+      "keyword": "morgan stanley",
+      "score": 38,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
         "google_volume": 5000,
-        "google_growth_pct": 100
+        "google_growth_pct": 200
+      }
+    },
+    {
+      "keyword": "kuala lumpur",
+      "score": 38,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 20.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 200,
+        "google_growth_pct": 300
+      }
+    },
+    {
+      "keyword": "tax refund",
+      "score": 37,
+      "velocity": "rising",
+      "volume": "medium",
+      "buildability": "low",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 20.0,
+        "volume_score": 40.0,
+        "buildability_score": 20.0,
+        "freshness_score": 85.0,
+        "google_volume": 20000,
+        "google_growth_pct": 300
+      },
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 28
       }
     },
     {
@@ -865,6 +1091,24 @@
       }
     },
     {
+      "keyword": "new zealand",
+      "score": 36,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 2000,
+        "google_growth_pct": 100
+      }
+    },
+    {
       "keyword": "re9 update",
       "score": 36,
       "velocity": "steady",
@@ -883,7 +1127,25 @@
       }
     },
     {
-      "keyword": "hong kong",
+      "keyword": "cape town",
+      "score": 35,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "hobbies",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 200,
+        "google_growth_pct": 200
+      }
+    },
+    {
+      "keyword": "rio de janeiro",
       "score": 35,
       "velocity": "rising",
       "volume": "low",
@@ -901,7 +1163,7 @@
       }
     },
     {
-      "keyword": "abhishek sharma",
+      "keyword": "tilak varma",
       "score": 34,
       "velocity": "declining",
       "volume": "low",
@@ -915,126 +1177,6 @@
         "buildability_score": 50.0,
         "freshness_score": 85.0,
         "google_volume": 1000,
-        "google_growth_pct": 0
-      }
-    },
-    {
-      "keyword": "tax refund",
-      "score": 33,
-      "velocity": "rising",
-      "volume": "medium",
-      "buildability": "low",
-      "category": "finance",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 20.0,
-        "volume_score": 40.0,
-        "buildability_score": 20.0,
-        "freshness_score": 65.0,
-        "google_volume": 10000,
-        "google_growth_pct": 300
-      },
-      "memory": {
-        "days_seen": 1,
-        "trajectory": "rising",
-        "first_seen": "2026-03-04",
-        "best_day_score": 28
-      }
-    },
-    {
-      "keyword": "ios 26.3.1",
-      "score": 32,
-      "velocity": "steady",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "technology",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 3.3,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 100,
-        "google_growth_pct": 50
-      }
-    },
-    {
-      "keyword": "oceans calling",
-      "score": 30,
-      "velocity": "declining",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "unknown",
-      "source": "rss",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 0.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 200,
-        "google_growth_pct": 0
-      }
-    },
-    {
-      "keyword": "edie falco",
-      "score": 30,
-      "velocity": "declining",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "unknown",
-      "source": "rss",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 0.0,
-        "volume_score": 5.0,
-        "buildability_score": 50.0,
-        "freshness_score": 85.0,
-        "google_volume": 200,
-        "google_growth_pct": 0
-      }
-    },
-    {
-      "keyword": "los angeles",
-      "score": 28,
-      "velocity": "rising",
-      "volume": "low",
-      "buildability": "medium",
-      "category": "finance",
-      "source": "trendspy",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 13.3,
-        "volume_score": 20.0,
-        "buildability_score": 50.0,
-        "freshness_score": 35.0,
-        "google_volume": 1000,
-        "google_growth_pct": 200
-      },
-      "memory": {
-        "days_seen": 1,
-        "trajectory": "rising",
-        "first_seen": "2026-03-04",
-        "best_day_score": 33
-      }
-    },
-    {
-      "keyword": "cricket live",
-      "score": 28,
-      "velocity": "declining",
-      "volume": "medium",
-      "buildability": "medium",
-      "category": "unknown",
-      "source": "rss",
-      "source_count": 1,
-      "_raw": {
-        "growth_score": 0.0,
-        "volume_score": 40.0,
-        "buildability_score": 50.0,
-        "freshness_score": 35.0,
-        "google_volume": 10000,
         "google_growth_pct": 0
       }
     }
@@ -1100,6 +1242,11 @@
       "competitor_count": 5,
       "top_competitors": [
         {
+          "title": "Broadcom Inc. (AVGO) Stock Price, News, Quote & History - Yahoo Finance",
+          "url": "https://finance.yahoo.com/quote/AVGO/",
+          "domain": "finance.yahoo.com"
+        },
+        {
           "title": "AVGO Stock Price and Chart \u2014 NASDAQ:AVGO \u2014 TradingView",
           "url": "https://www.tradingview.com/symbols/NASDAQ-AVGO/",
           "domain": "www.tradingview.com"
@@ -1110,19 +1257,14 @@
           "domain": "seekingalpha.com"
         },
         {
-          "title": "Broadcom Inc. (AVGO) Stock Price, News, Quote & History - Yahoo Finance",
-          "url": "https://finance.yahoo.com/quote/AVGO/",
-          "domain": "finance.yahoo.com"
+          "title": "AVGO Stock Calculator: If I Invested in Broadcom Inc. | Stake",
+          "url": "https://hellostake.com/au/invest/wall-st/stock-calculator/avgo",
+          "domain": "hellostake.com"
         },
         {
           "title": "Broadcom Stock Calculator",
           "url": "https://finlo.io/stock-calculator/AVGO",
           "domain": "finlo.io"
-        },
-        {
-          "title": "AVGO Stock Calculator: If I Invested in Broadcom Inc. | Stake",
-          "url": "https://hellostake.com/au/invest/wall-st/stock-calculator/avgo",
-          "domain": "hellostake.com"
         }
       ],
       "verdict": "RED"
@@ -1132,114 +1274,114 @@
     "Daylight Savings": {
       "decision": "WATCH",
       "confidence": "LOW",
-      "build_idea": "A \"shift-worker DST reset coach\" for night-shift nurses doing 12s who dread the spring-forward week because they feel wrecked and anxious at work. Emotional barrier: fear of being unsafe/ineffective on shift (and the shame of \"I should be able to handle this\") stops them from committing to a sleep/meal plan. Core value: a 7-day, minute-by-minute light exposure + meal timing + caffeine cutoff plan that auto-adjusts for their exact shift start/end, commute, and local sunrise, with a simple \"do this now\" checklist and a one-tap fallback plan when they miss steps.",
-      "target_slug": "dst-shift-reset-coach",
-      "monetization": "Freemium: free DST plan generator + reminders; $6.99/month or $19/year for shift templates (3x12, 4x10), wearable/HealthKit imports, partner mode (household schedule), and \"missed day\" recovery plans. Optional affiliate revenue for sunrise lamps/blue-light blockers (careful: evidence-based positioning).",
-      "reason": "Competition is GREEN, but Reddit is inconclusive and the trend has only been seen 1 day, so the demand signal isn\u2019t confirmed enough to BUILD. The cluster ties DST, circadian routines, sunrise alarms, fasting timing, magnesium/sleep/anxiety\u2014suggesting a coherent behavioral problem rather than pure info-seeking, but we still lack strong pain proof in communities.",
-      "risk": "People may prefer free content (blogs/YouTube) and may not trust a paid plan without clinical credibility or workplace-specific validation.",
+      "build_idea": "A \u201cDST Transition Sleep Coach\u201d for U.S. parents of elementary-school kids (ages ~6\u201311) in the 10 days around clock change. The emotional barrier is dread/overwhelm\u2014parents know what to do in theory, but feel like they\u2019ll fail and the whole week will be chaos (bedtime battles, cranky mornings). The core value proposition is a tiny, done-for-you, family-specific micro-plan (light exposure + meal timing + bedtime shifts + magnesium safety guardrails) with daily checklists, push reminders, and a \u2018panic button\u2019 alternative plan when a day goes off the rails\u2014so parents feel in control and can keep mornings functional.",
+      "target_slug": "dst-sleep-coach-parents",
+      "monetization": "Freemium: free one-child basic plan + reminders; $9.99/season for multi-child, personalized constraints (sports, school bus time), and clinician-reviewed supplement/contraindication screen; optional affiliate revenue for sunrise alarm clocks/light boxes (clearly disclosed).",
+      "reason": "Competition appears green for a narrowly scoped, DST-only execution, and the keyword cluster suggests a real behavior-change moment (DST policy + sleep/anxiety + circadian tactics) that people struggle to operationalize. However Reddit is inconclusive and the trend has only appeared 1 of the last 7 days, so it\u2019s too early to upgrade to BUILD on signal strength alone.",
+      "risk": "Primary risk is that users default to generic advice articles/apps (sleep trackers, alarm clocks) and won\u2019t pay for a narrowly seasonal coach unless the plan feels uniquely actionable and personalized to school schedules/family constraints.",
       "competition_queries": [
-        "night shift nurse daylight saving time sleep plan app",
-        "spring forward shift work light exposure schedule tool",
-        "12 hour night shift circadian meal timing planner"
+        "daylight saving time bedtime shift plan elementary school parents app",
+        "clock change sleep coach school bus morning routine tool for families",
+        "circadian light schedule planner for parents of kids around time change"
       ],
       "context_seed": {
-        "product_description": "A mobile web/app coach that generates a personalized pre- and post-DST reset plan for shift workers. Users enter shift times, commute, typical sleep window, caffeine habits, and whether they have a sunrise lamp; the product outputs time-stamped actions (light, darkness, meals, naps, caffeine) and sends reminders with an emergency recovery path if they fall off-plan.",
-        "target_user": "A night-shift ICU nurse on 3\u00d712s who\u2019s anxious about the spring-forward week because they already feel near-burnout and fear making a mistake at work due to poor sleep.",
-        "emotional_barrier": "They\u2019re afraid the plan won\u2019t work in real life (busy shifts, missed sleep) and they\u2019ll feel like a failure\u2014or worse, be unsafe\u2014so they don\u2019t start anything.",
+        "product_description": "A seasonal micro-coaching web/mobile tool that generates a 7\u201310 day plan around the clock change for a parent\u2019s real wake times, school start, bus pickup, and kids\u2019 bedtimes. It converts circadian principles into daily tasks (light exposure windows, wind-down timing, meal/caffeine cutoffs) plus contingency actions when the day slips. Users get reminders, a simple progress view, and a confidence-first tone focused on reducing overwhelm.",
+        "target_user": "Maya, a working parent with two kids in elementary school who has to get everyone out the door by 7:20am and dreads the clock change because it reliably causes a week of meltdowns, late mornings, and her feeling like a bad parent.",
+        "emotional_barrier": "She feels overwhelmed and doomed-to-fail because generic sleep tips don\u2019t translate into a realistic plan for her family\u2019s schedule and inevitable disruptions.",
         "routes": [
-          "/ \u2192 landing + choose scenario (spring forward, fall back, new night shift rotation)",
-          "/onboarding \u2192 collect shift pattern, dates, commute, current sleep/meal/caffeine, tools (lamp, blackout curtains)",
-          "/plan \u2192 timeline view (next 7\u201310 days) with \"do now\" actions",
-          "/reminders \u2192 notification settings + quiet hours (for sleep)",
-          "/fallback \u2192 missed-step recovery (\"I slept late\", \"I had caffeine\", \"I was called in\")",
-          "/progress \u2192 check-ins: sleepiness, anxiety, adherence; adjust plan",
-          "/education \u2192 short, evidence-based explainers (light, meals, magnesium disclaimer)",
-          "/export \u2192 share plan with partner/household; calendar export"
+          "/ \u2192 DST countdown + choose Spring/Fall change",
+          "/onboarding \u2192 enter location/timezone, school start/bus time, kid ages, current bedtime/wake time, constraints (sports, weekends)",
+          "/plan \u2192 personalized day-by-day micro-shifts + light/meal guidance",
+          "/today \u2192 checklist + timed reminders + \u2018we fell off plan\u2019 recovery option",
+          "/panic \u2192 15-minute rescue plan for tonight/tomorrow morning",
+          "/family \u2192 add multiple kids + different bedtimes",
+          "/insights \u2192 simple progress + what\u2019s working/what to adjust",
+          "/safety \u2192 supplement/medication caution screen + when to talk to a clinician",
+          "/settings \u2192 notification schedule + calendar export"
         ]
       }
     },
     "Return of Wooden Kitchens": {
-      "decision": "WATCH",
-      "confidence": "LOW",
-      "build_idea": "A \u201cKitchen-Confidence Visualizer\u201d for a first-time renovator in a 1980s home trying to keep existing warm/medium wood cabinets but terrified it\u2019ll look dated. The emotional barrier is paralysis and fear of making an expensive, irreversible aesthetic mistake (\"will this read cozy or cheap/outdated?\"). Core value: take 3 quick inputs (cabinet undertone + countertop + lighting) and generate a small set of photorealistic, style-locked mockups plus a confidence score and next-step checklist (samples to order, lighting tweaks) to move them from indecision to action.",
-      "target_slug": "kitchen-confidence-visualizer",
-      "monetization": "Freemium: free 1 project + low-res renders; $19\u2013$39/project for HD render packs + \"shop my exact finishes\" links. Affiliate revenue from cabinet sample kits, countertops, lighting, and hardware via curated vendor links.",
-      "reason": "The trend signal is promising (rising, score 72) and competition appears open, but Reddit is inconclusive with no clear pain signal, and the trend has only appeared 1 of the last 7 days\u2014too early to commit to BUILD on strength alone. The execution can be sharply niche (keeping existing wood cabinets) and emotion-led (decision paralysis), but it needs validation that people will pay for confidence, not just browse inspiration for free.",
-      "risk": "Users may treat it as \u201cPinterest with renders\u201d and not pay unless accuracy and trust (undertone/lighting realism) are exceptionally good.",
+      "decision": "BUILD",
+      "confidence": "MED",
+      "build_idea": "A \"decision-stress\" cabinet + countertop pairing tool for a first-time kitchen remodeler trying to choose a warm wood look (white oak / honey oak / ashy tones) without ending up with a dated or mismatched kitchen. Niche: the homeowner working with a contractor/cabinet shop sample board and paralyzed by fear of choosing the \u201cwrong\u201d undertone in their home\u2019s lighting. Emotional barrier: overwhelm + regret-aversion (\u201cthis is permanent and expensive; I\u2019ll hate it\u201d). Core value: turn a few quick inputs (room light direction, existing floors, countertop candidate, appliance finish, and 2\u20134 phone photos) into 3 safe, confidence-boosting \"approved palettes\" with an explanation of undertones and a shopping/spec sheet they can hand to their cabinet maker.",
+      "target_slug": "oak-kitchen-palette-check",
+      "monetization": "Freemium: free 1 project with limited palette outputs; $29/project for unlimited iterations + shareable contractor spec sheet; optional $99 \"designer review\" add-on via vetted partners/affiliate leads (cabinet fronts, stains, hardware, lighting).",
+      "reason": "Competition is GREEN and there\u2019s a plausible pain signal: people aren\u2019t just browsing aesthetics, they\u2019re anxious about making an expensive, irreversible choice (undertones, lighting, matching floors/counters). Trend is rising but only seen 1 day, so the opportunity looks real but not yet fully confirmed\u2014still, the niche execution is concrete and defensible.",
+      "risk": "The primary risk is that users may prefer human designer reassurance (or already get it from cabinet showrooms), so the product must clearly reduce regret and produce a contractor-ready output, not just moodboards.",
       "competition_queries": [
-        "keep existing oak cabinets mockup app",
-        "1980s kitchen cabinet undertone lighting simulator",
-        "wood cabinet countertop pairing visualizer tool"
+        "undertone checker app for cabinet stain with existing floors",
+        "kitchen remodel palette generator lighting direction countertop match",
+        "contractor spec sheet tool for cabinet color and hardware selections"
       ],
       "context_seed": {
-        "product_description": "A decision-support tool for homeowners keeping existing wood cabinets: it simulates cabinet undertones, countertop pairings, wall colors, and lighting in consistent, photorealistic scenes. Users answer a short guided quiz and upload 1\u20132 photos, then receive a limited set of high-confidence combinations, mockups, and a purchase-ready action plan (samples, hardware, lighting). The outcome is confidence to commit\u2014not endless browsing.",
-        "target_user": "A homeowner who just bought a 1980s/1990s house with honey/medium oak cabinets and a tight budget, who wants a modern-cozy look but feels embarrassed that the kitchen might look \u201cdated\u201d if they choose wrong.",
-        "emotional_barrier": "They\u2019re scared of wasting thousands on the wrong countertop/paint and being stuck with a kitchen that looks cheap or out of style.",
+        "product_description": "A mobile-first tool that helps homeowners committing to wood cabinetry choose a \u201csafe\u201d cabinet stain + countertop + hardware + lighting combination that will look warm/cozy (not yellow/orange/ashy) in their specific home. Users upload a few photos and answer a short lighting/flooring questionnaire; the app outputs 3 recommended palettes, highlights undertone conflicts, and generates a shareable spec sheet for contractors and cabinet shops.",
+        "target_user": "Maya, 34, just bought a 1990s home and is doing her first kitchen remodel while juggling work. She loves the warm wood-kitchen revival but feels panicked that white oak/honey oak will clash with her floors and look dated under her lighting; she wants a clear, defensible choice she can commit to and share with her contractor.",
+        "emotional_barrier": "She\u2019s overwhelmed by infinite Pinterest options and terrified of making an expensive, permanent choice that she\u2019ll regret every time she walks into the kitchen.",
         "routes": [
-          "/ \u2192 quick promise + examples of before/after outcomes",
-          "/quiz \u2192 guided undertone + style + budget + constraints intake",
-          "/upload \u2192 photo upload + lighting/time-of-day prompts",
-          "/results \u2192 3\u20136 recommended pairings with confidence rationale",
-          "/mockup/:id \u2192 photorealistic render(s) + variations (hardware/backsplash/paint)",
-          "/plan \u2192 step-by-step checklist: samples to order, measurements, what to test at home",
-          "/shop \u2192 affiliate-ready list of exact materials/dupes",
-          "/project/:id \u2192 save, compare, share with partner/contractor"
+          "/ \u2192 quick start: \u201cCheck my kitchen palette\u201d",
+          "/new-project \u2192 upload photos (kitchen, floors, adjacent rooms) + pick constraints (budget tier, appliances, countertop candidates)",
+          "/lighting-check \u2192 guided questions (window direction, time of day photos, bulb temperature)",
+          "/palette-results \u2192 3 recommended palettes with confidence scores + \u201cwhy this works\u201d undertone explanation",
+          "/compare \u2192 side-by-side palette comparison + swap one element (countertop/hardware)",
+          "/spec-sheet \u2192 generate/share PDF for contractor/cabinet shop (stain name, sheen, hardware finish, lighting temp)",
+          "/saved \u2192 saved projects + version history to reduce decision churn",
+          "/designer-review \u2192 optional paid feedback loop (upload revisions, get notes)"
         ]
       }
     },
     "Boy Kibble": {
       "decision": "WATCH",
-      "confidence": "LOW",
-      "build_idea": "A \u201cno-shame weeknight fuel\u201d planner for a specific person: the newly single guy in his late 20s/30s who\u2019s trying to stop living on takeout but feels overwhelmed and vaguely embarrassed by cooking. It turns a few constraints (microwave-only vs stovetop, budget, protein target, grocery store) into repeatable 10-minute ground-meat-and-rice bowl rotations with an auto-generated grocery list and a \u2018default mode\u2019 when motivation is low. Emotional barrier: overwhelm + shame (\u201cI should know how to feed myself\u201d) leading to decision paralysis; value prop: remove choices, make it feel effortless, and keep protein/price on track.",
-      "target_slug": "weeknight-fuel-bowls",
-      "monetization": "Freemium: free core generator + grocery list; $5\u20138/mo for macro targets, save/favorite rotations, store-specific pricing, and \u2018pantry mode\u2019. Optional affiliate links for grocery delivery and cookware staples.",
-      "reason": "Competition is GREEN, but Reddit is inconclusive and the trend has only appeared 1 of the last 7 days, so the signal isn\u2019t confirmed enough to justify BUILD yet. The keyword cluster suggests a meme/identity-driven behavior (\u201cgirl dinner\u201d \u2192 \u201cboy kibble\u201d) that could translate into a lightweight, emotionally reassuring meal-rotation product, but we need validation that people want a tool (not just jokes/recipes).",
-      "risk": "The trend may be short-lived slang; users might just want shareable content, not a dedicated product, making retention and paid conversion weak.",
+      "confidence": "MED",
+      "build_idea": "A \u201cdefault dinner autopilot\u201d for solo lifters/remote workers who rotate through the same meat-and-rice bowls but feel overwhelmed and vaguely ashamed about eating the same thing every night. The niche is the person who wants high-protein, cheap, low-dish meals yet gets stuck deciding portions, seasoning, and how to make it feel like a \u2018real meal\u2019 (not sad utilitarian food). Core value: a 10-minute, low-friction bowl generator that turns whatever ground meat + rice + frozen veg you have into a satisfying, varied plan with automatic portions/macros, a tiny grocery top-up list, and a 1-pan execution checklist\u2014reducing decision fatigue and the \u2018this is depressing\u2019 feeling.",
+      "target_slug": "bowl-autopilot",
+      "monetization": "Freemium: free bowl generator + 3 templates; paid unlocks macro targets, rotating weekly plans, pantry-based suggestions, and grocery integration. Optional affiliate revenue for spices/sauces/rice cookers/meal prep containers.",
+      "reason": "Competition is GREEN and there\u2019s a plausible emotional barrier (decision fatigue + embarrassment about repetitive \u2018sad meals\u2019), but trend memory is only 1 day and Reddit reliability is inconclusive, so this shouldn\u2019t be upgraded to BUILD on signal strength alone. Watch for 1\u20132 more weeks of repeated searches/posts and validate the emotion by interviewing people who actually eat bowls nightly.",
+      "risk": "The trend may be a meme phrase that doesn\u2019t translate into durable willingness to adopt/pay for a tool versus using TikTok/YouTube recipes or generic meal-planning apps.",
       "competition_queries": [
-        "microwave rice bowl meal rotation app for single men",
-        "10 minute ground meat bowl macro planner for beginners",
-        "grocery list generator for weeknight protein bowls budget"
+        "macro bowl generator for solo meal prep ground meat rice",
+        "one-pan high-protein rice bowl planner for gym meal prep",
+        "pantry-based meat-and-rice bowl app with automatic portions"
       ],
       "context_seed": {
-        "product_description": "A lightweight planner that generates a repeatable set of 10-minute protein bowl meals (ground beef/lamb/chicken + rice + add-ins) based on the user\u2019s cooking setup, budget, and protein target. It outputs a simple weekly rotation, minimal-step instructions, and an auto grocery list designed for low motivation nights. The experience is framed as \u2018default fuel\u2019 to reduce shame and decision fatigue.",
-        "target_user": "A newly single 31-year-old man who\u2019s back to feeding himself after years of shared meals, gets home tired, and wants to hit protein goals without learning \u2018real cooking.\u2019 He feels embarrassed asking for help and ends up defaulting to takeout or random snacks.",
-        "emotional_barrier": "He feels overwhelmed by choices and ashamed that cooking feels hard, so he procrastinates and defaults to takeout.",
+        "product_description": "A lightweight web/mobile tool that generates high-protein meat-and-rice bowl variations from what you already have, then outputs exact portions, a 10-minute cooking checklist, and a minimal \u201ctop-up\u201d grocery list. It focuses on making repetitive bowl meals feel satisfying and intentional by adding controlled variety (seasoning profiles, sauces, crunch, acids) while keeping dishes and prep time low.",
+        "target_user": "A remote-working guy who lifts after work and defaults to ground meat + rice bowls, but feels stuck and mildly embarrassed that dinner is monotonous and \u2018sad.\u2019 He wants something that tells him exactly what to do tonight without thinking, while still hitting protein goals and staying cheap.",
+        "emotional_barrier": "He avoids starting because choosing a \u2018good\u2019 variation and portion feels like extra mental work, and he doesn\u2019t want to feel like he\u2019s failing at adulthood by eating the same utilitarian meal again.",
         "routes": [
-          "/ \u2192 choose vibe: \u2018default fuel\u2019, \u2018higher protein\u2019, \u2018cheapest week\u2019, \u2018microwave-only\u2019",
-          "/onboarding \u2192 select equipment, store, budget, protein goal, dislikes",
-          "/plan \u2192 view this week\u2019s 3\u20135 repeatable bowl templates + swap options",
-          "/recipe/:id \u2192 ultra-short steps, timing, and \u2018if you mess up, do this\u2019 fixes",
-          "/grocery-list \u2192 consolidated list with quantities, aisle grouping, and substitutions",
-          "/pantry \u2192 what you have \u2192 generate 2\u20133 bowls without extra shopping",
-          "/favorites \u2192 saved rotations and \u2018lazy-night\u2019 defaults",
-          "/check-in \u2192 quick adherence + mood (\u201ctoo tired/too hard\u201d) to adjust next week"
+          "/ \u2192 choose tonight\u2019s mode (cheap, high-protein, low-dish, spicy, comfort)",
+          "/pantry \u2192 input what you have (meat type, rice, frozen veg, sauces/spices)",
+          "/targets \u2192 set protein/calorie target or pick a preset (cut/bulk/maintenance)",
+          "/generate \u2192 get a bowl recipe with exact portions + substitutions",
+          "/cook \u2192 step-by-step 1-pan checklist + timing",
+          "/shop \u2192 minimal add-on list for the next 3\u20135 bowls",
+          "/history \u2192 saved favorites + rotate to avoid repetition"
         ]
       }
     },
     "Top Trends": {
       "decision": "WATCH",
       "confidence": "MED",
-      "build_idea": "A \u201cRumor Spiral Guard\u201d for entertainment-news obsessed fans who feel anxious/FOMO when TikTok and group chats claim a celebrity relationship milestone (engagement/marriage) is \u201cconfirmed,\u201d but they don\u2019t know what to believe and keep compulsively refreshing. The tool turns chaotic rumors into a calm, time-boxed update ritual: it detects claim types (married/engaged/pregnant), shows a confidence meter based on primary-source evidence (official reps, verified posts, reputable outlets), and offers a \u2018Stop the Spiral\u2019 mode that limits checking and summarizes only meaningful changes.",
-      "target_slug": "rumor-spiral-guard",
-      "monetization": "Freemium: free rumor timelines + source grading; paid ($3\u20135/mo) for alert filters, \u2018Spiral mode\u2019 check-in limits, mute keywords across feeds, and weekly digest. Optional affiliate revenue via subscriptions to reputable entertainment outlets/newsletters.",
-      "reason": "The keyword cluster suggests recurring rumor-chasing (celebrity marriage + wedding dress) and product-adjacent intent (Needoh stress toy), indicating an emotional driver: anxiety/compulsive checking and the need to self-soothe. Competition appears light, but this trend is only seen 1 of the last 7 days, so demand isn\u2019t confirmed enough to justify a full build yet.",
-      "risk": "The demand may be a short-lived spike around a single celebrity rumor cycle, making retention and repeat use uncertain without expanding to multiple fandoms/claim categories.",
+      "build_idea": "A \u201ccelebrity-rumor anxiety\u201d browser assistant for highly-engaged fandom readers who don\u2019t want to get duped or embarrassed by sharing fake relationship/news updates (e.g., wedding rumors, fake photos, fake product claims). The niche: a college-age fandom group-chat \u2018news sharer\u2019 who feels social-risk (cringe/embarrassment) about posting unverified claims; the tool gives a one-tap \u2018share-safe\u2019 verification card that explains what\u2019s confirmed, what\u2019s speculation, and why, with receipts and a confidence score.",
+      "target_slug": "share-safe-fandom-verify",
+      "monetization": "Freemium: free rumor checks + limited verification cards; Pro ($3\u2013$6/mo) for faster checks, source provenance breakdowns, and auto-generated share cards; affiliate links to official merch/ticketing when relevant; brand-safe ads in free tier.",
+      "reason": "Competition is GREEN, but the trend has only been seen 1 day so it\u2019s not confirmed durable demand yet. The keywords suggest repetitive rumor/consumer-curiosity behavior around celebrity news and viral products; the emotional pain is fear of being wrong or scammed, which a \u201cshare-safe verification\u201d flow can directly reduce\u2014if the behavior persists beyond a spike.",
+      "risk": "This may be a short-lived gossip spike with weak retention once the rumor cycle moves on, making it hard to sustain usage outside major news moments.",
       "competition_queries": [
-        "fandom rumor verification app anxiety scrolling",
-        "celebrity claim tracker confidence meter primary sources",
-        "doomscrolling reduction tool for pop culture news alerts"
+        "group chat rumor verification share card fandom",
+        "celebrity news authenticity checker for fan accounts",
+        "browser extension verify viral celebrity claim before sharing"
       ],
       "context_seed": {
-        "product_description": "A mobile/web tool that converts fast-moving celebrity claims into a single verified timeline with a confidence score and primary-source receipts. Users follow specific topics (e.g., a couple, a tour, a casting) and get alerts only when the confidence meaningfully changes. A built-in \u2018Stop the Spiral\u2019 mode helps users reduce compulsive refreshing with time-boxed check-ins and calming summaries.",
-        "target_user": "A college student in a very online fandom group chat who feels embarrassed asking \u201cis this real?\u201d yet keeps refreshing TikTok/X late at night to avoid missing updates and to feel in-the-know.",
-        "emotional_barrier": "They feel anxious and left out, so they compulsively check rumors even though it stresses them out and they don\u2019t trust what they\u2019re seeing.",
+        "product_description": "A lightweight browser extension + mobile share sheet that turns a rumor-heavy claim into a \u2018share-safe\u2019 verification card. It analyzes the claim, surfaces primary sources and reputable confirmations/denials, labels what\u2019s confirmed vs. speculation, and generates a clean card you can paste into group chats or social posts with a confidence rating and citations.",
+        "target_user": "Maya, 20, runs a small fan account and is the person who \u2018keeps everyone updated\u2019 in her friends\u2019 group chat. She wants to share exciting news fast, but she\u2019s been burned before by fake screenshots and gets anxious about looking gullible.",
+        "emotional_barrier": "She\u2019s afraid of the social embarrassment (and backlash) of spreading misinformation, so she hesitates or doom-scrolls for reassurance instead of sharing confidently.",
         "routes": [
-          "/ \u2192 follow topics + choose alert strictness",
-          "/topic/:id \u2192 timeline of claims, confidence meter, primary-source receipts",
-          "/claim/:id \u2192 evidence breakdown + what would change the confidence",
-          "/spiral-mode \u2192 set check-in windows, breathing prompt, summarize changes since last check",
-          "/alerts \u2192 meaningful-change notifications only",
-          "/settings \u2192 mute keywords, source trust controls, export/share \u2018receipts\u2019 card"
+          "/ \u2192 paste/clip a claim (text, link, screenshot) and start a check",
+          "/check \u2192 results: confirmed/speculation/false, key citations, timeline, confidence score",
+          "/share-card \u2192 generate a concise card (with receipts) for iMessage/WhatsApp/X/IG",
+          "/source-breakdown \u2192 why this score: origin tracing, first appearance, edits, account credibility signals",
+          "/history \u2192 saved checks and alerts when a claim\u2019s status changes",
+          "/alerts \u2192 follow topics (e.g., specific public figures/brands) for confirmation/denial updates"
         ]
       }
     },
@@ -1251,57 +1393,56 @@
     "morgan stanley layoffs": {
       "decision": "WATCH",
       "confidence": "MED",
-      "build_idea": "A \"next-72-hours\" stability coach for Morgan Stanley employees who just got laid off and are paralyzed by fear/overwhelm about money, health insurance, and what to tell family. It turns the first week into a calming, private checklist with timed prompts: (1) what to do today vs later, (2) scripts for tough conversations (manager, recruiter, partner), (3) severance/benefits decision reminders, and (4) a one-page \"I\u2019m handling it\" plan they can share with a spouse to reduce shame. Core value: reduce panic and decision fatigue so they actually take the first actions.",
-      "target_slug": "post-layoff-stability-coach",
-      "monetization": "Freemium: free 7-day layoff playbook + paid $29 one-time \u201cStability Pack\u201d (scripts, reminders, benefits decision calendar) or $9/mo for ongoing job-search cadence. Optional affiliate revenue for resume/recruiting services and COBRA alternatives (where compliant).",
-      "reason": "The query suggests real-world disruption, but \u201clayoffs\u201d spikes are event-driven and it\u2019s unclear if pain concentrates enough on a single unmet workflow versus people using existing spreadsheets, Reddit threads, and career coaches. A narrowly-scoped emotional-first product could work, but execution and differentiation need validation against existing layoff playbooks/coaching funnels.",
-      "risk": "Most demand may be satisfied by free checklists/coaches, and the niche could be too employer-specific to sustain outside a news cycle.",
+      "build_idea": "A \"layoff landing\" coach specifically for Morgan Stanley (and similar investment bank) professionals who were just cut and feel ashamed to tell their network. The emotional barrier is identity shock + fear of reputational damage, which causes paralysis and ghosting recruiters/friends. Core value: a private, step-by-step outreach and decision system that turns \"I don\u2019t know what to say\" into vetted messages, a 14\u2011day micro-plan, and accountability\u2014optimized for finance norms (discretion, compliance, seniority signaling) rather than generic job-search advice.",
+      "target_slug": "layoff-landing-coach-finance",
+      "monetization": "Freemium: free \u201cDay 0\u20133\u201d plan + limited message templates; $19\u2013$49/mo for full playbooks, recruiter/firm-specific outreach packs, accountability check-ins, and priority updates. Optional $99 one-time add-on for \"role narrative\" review and LinkedIn change-timing planner.",
+      "reason": "The search cluster suggests acute, time-bounded demand around a high-stress event, and the strongest unmet need is emotional\u2014shame, fear, and overwhelm\u2014more than information. However, job-search tooling and coaching is competitive; differentiation hinges on being tightly tailored to investment-banking layoff etiquette, discretion, and fast re-employment workflows.",
+      "risk": "Users may default to existing job boards/coaches or avoid tools entirely due to privacy concerns, so trust and confidentiality positioning are critical.",
       "competition_queries": [
-        "72 hour layoff checklist investment banking app",
-        "severance benefits decision coach app for big bank employees",
-        "post layoff conversation scripts tool for finance professionals"
+        "investment banking layoff outreach message templates app",
+        "discreet job search planner for finance professionals",
+        "wall street layoff emotional support job search accountability tool"
       ],
       "context_seed": {
-        "product_description": "A private, mobile-first \u201cfirst week after layoff\u201d coach that converts overwhelm into a timed plan: today/tomorrow/this week. It provides calming prompts, decision reminders for severance/benefits, and copy-paste scripts for high-stress conversations, plus a shareable one-page plan for a partner/family member.",
-        "target_user": "An associate at a large bank who was unexpectedly laid off this morning, is embarrassed to tell their partner, and keeps doom-scrolling instead of taking the first practical steps.",
-        "emotional_barrier": "Shame and panic create decision paralysis\u2014so they avoid actions that would make the situation feel real.",
+        "product_description": "A private web app that guides recently laid-off investment bank employees through the first 14 days post-layoff with an emotionally supportive plan: stabilize, craft a credible narrative, and execute discreet outreach. It generates role- and seniority-appropriate messages (to ex-colleagues, recruiters, clients), schedules outreach in small steps, and provides lightweight accountability check-ins. The user gets momentum without feeling exposed or \"salesy\" while navigating finance-specific norms.",
+        "target_user": "An associate in NYC who was just laid off from an investment bank, is doom-scrolling and avoiding calls because they\u2019re embarrassed, and wants a discreet way to regain control and start reaching out without damaging their reputation.",
+        "emotional_barrier": "They feel shame and fear that being seen as \u201cdesperate\u201d will permanently harm their standing, so they freeze and avoid outreach.",
         "routes": [
-          "/ \u2192 reassurance + pick your situation (laid off / expecting / survivor guilt)",
-          "/triage \u2192 10-minute intake (dates, benefits window, dependents, urgency)",
-          "/plan \u2192 next 72 hours checklist with timers and \u201cdo later\u201d bucket",
-          "/scripts \u2192 conversation scripts (partner, recruiter, former manager, landlord)",
-          "/benefits \u2192 decision calendar + reminders (severance deadline, insurance, 401k)",
-          "/share \u2192 generate a one-page status plan to share with partner",
-          "/support \u2192 optional buddy check-ins + resources directory"
+          "/ \u2192 Day-0 triage: what to do in first 24 hours (mindset + practical checklist)",
+          "/plan \u2192 14-day micro-plan builder (select role, level, geography, urgency)",
+          "/narrative \u2192 craft layoff narrative + confidence prompts (what to say, what not to say)",
+          "/messages \u2192 generate/edit outreach messages by recipient type (ex-team, senior sponsor, recruiter, client)",
+          "/outreach-tracker \u2192 send-log, follow-up schedule, and \"next tiny step\" queue",
+          "/accountability \u2192 daily 5-minute check-in + gentle nudges",
+          "/privacy \u2192 discretion settings, data deletion, and export controls"
         ]
       }
     },
     "grocery outlet closing stores": {
       "decision": "WATCH",
       "confidence": "MED",
-      "build_idea": "A \"Shutdown Switch\" planner for a Grocery Outlet employee who just learned their store is closing in 30\u201360 days and feels panicked/overwhelmed about income, benefits, and next steps. The emotional barrier is shutdown shock + avoidance (\u201cI don\u2019t even know where to start, and I\u2019m afraid I\u2019ll miss deadlines\u201d). Core value: a calm, step-by-step separation and transfer playbook (checklists, deadline calendar, scripts) tailored to retail closures, with local rehire/transfer paths and benefit/unemployment guidance prompts\u2014not news aggregation.",
-      "target_slug": "shutdown-switch-retail-closure",
-      "monetization": "Freemium: free closure checklist + deadline tracker; $9\u2013$15/mo or $39 one-time for state-specific unemployment/benefits flows, document templates, and 1-click export for HR meetings. Optional employer-sponsored licenses for outplacement at ~$5\u2013$10/employee.",
-      "reason": "The query suggests real-world disruption (store closures) but the trend alone doesn\u2019t prove a consistent, scalable pain signal versus a news cycle. Execution is plausible and differentiated if focused on the emotional barrier (shutdown overwhelm) and practical next steps, but competition from existing unemployment/outplacement content and general job tools is likely medium.",
-      "risk": "Demand may be spiky and location-specific, making acquisition and retention hard unless the product generalizes to \"retail location closure\" broadly.",
+      "build_idea": "A \u201ccalm switch\u201d planning assistant for a single mom in a mid-size U.S. city who just learned her closest discount grocer is shutting down and is panicking about food costs and routines. Emotional barrier: overwhelm + fear of budget blowouts and not knowing what to do this week. Core value: a 30-day transition plan that turns one closure notice into a simple weekly shopping map (best nearby low-cost substitutes by basket), meal plan tied to store options, and a checklist of immediate actions (SNAP/WIC-friendly routes, pantry stretch recipes, price-locked staples).",
+      "target_slug": "grocery-closure-transition-planner",
+      "monetization": "Freemium: free closure alert + basic transition checklist; paid ($5\u201310/mo) for personalized basket comparison, meal plans, and price history. Affiliate revenue from curbside pickup/online grocery partners and coupon/loyalty integrations; optional B2B licensing to local food banks/municipalities as a \u201cclosure response kit.\u201d",
+      "reason": "Store-closure searches often correlate with acute anxiety and disruption (people don\u2019t just want news; they want a survivable new routine). Execution is plausible but depends heavily on reliable local pricing/inventory data and on-the-ground closure coverage, which can raise competition from existing deal/price tools and local news\u2014so differentiation must be emotionally-led (transition planning) rather than pure information.",
+      "risk": "Data quality/coverage (local prices, store matching, benefit eligibility) could be too inconsistent to deliver trustworthy \u201cbudget-safe\u201d plans at launch.",
       "competition_queries": [
-        "retail store closing employee checklist app",
-        "unemployment deadline tracker app for laid off hourly workers",
-        "outplacement app for retail workers transfer rehire planning"
+        "budget grocery transition plan app store closed",
+        "SNAP meal plan planner after local grocery closure",
+        "grocery store shutdown neighborhood shopping substitute planner"
       ],
       "context_seed": {
-        "product_description": "A mobile-first closure planning tool for hourly retail employees impacted by a location shutdown. It converts a layoff/closure notice into a personalized timeline (key dates, documents, calls to make), scripts for HR conversations, and guided flows for unemployment/benefits steps, plus a rehire/transfer job-search packet.",
-        "target_user": "A Grocery Outlet cashier who just got a store-closing notice, is worried about paying rent next month, and keeps procrastinating because the process feels confusing and scary.",
-        "emotional_barrier": "Shutdown shock creates overwhelm and avoidance\u2014the user fears missing critical steps and feels embarrassed asking HR/basic questions.",
+        "product_description": "A mobile/web assistant that helps a household quickly adapt when their regular low-cost grocery store closes. The user enters their usual staples, budget, transportation limits, and benefits (optional), and the tool produces a week-by-week transition plan: best alternative stores by total basket cost, a matching meal plan, and a short checklist to reduce stress and avoid overspending.",
+        "target_user": "A single parent who relied on one discount grocery near home, has limited time and transportation, and feels a spike of anxiety when they hear the store is closing because their entire shopping routine is about to break.",
+        "emotional_barrier": "Overwhelm and fear of losing control of the food budget makes them freeze and keep postponing a new plan.",
         "routes": [
-          "/ \u2192 closure notice intake (date, state, role, hours)",
-          "/timeline \u2192 personalized deadlines + reminders",
-          "/checklists \u2192 documents to gather, calls to make, what to ask HR",
-          "/scripts \u2192 message + call scripts for HR/manager, references, schedule changes",
-          "/benefits \u2192 guided unemployment/COBRA/health coverage decision prompts (state-aware)",
-          "/rehire \u2192 transfer/reapplication tracker + resume packet builder for hourly roles",
-          "/resources \u2192 local nonprofit/food assistance links surfaced contextually (not a directory)",
-          "/export \u2192 shareable PDF for meetings + personal records"
+          "/ \u2192 closure intake + reassurance + quick-start plan",
+          "/my-basket \u2192 enter staples (scan/receipt import) + budget constraints",
+          "/alternatives \u2192 ranked nearby stores by basket cost + travel time",
+          "/meal-plan \u2192 7-day plan aligned to chosen store(s) + pantry-stretch mode",
+          "/checklist \u2192 benefits, coupons, loyalty signup, pantry inventory steps",
+          "/alerts \u2192 updates on closure timelines + best-time-to-shop reminders",
+          "/export \u2192 share plan with partner/caregiver + printable list"
         ]
       }
     }
