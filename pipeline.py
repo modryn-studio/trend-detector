@@ -344,6 +344,8 @@ def run(sources: list[str], top_n: int = 15,
                 "pain_signal":    r["pain_signal"],
                 "pain_reliable":  r.get("pain_reliable", False),
                 "keyword":        r.get("keyword", c["top_keyword"]),
+                "pain_queries":   r.get("pain_queries", []),
+                "targeted_subs":  r.get("targeted_subs", []),
                 "top_posts":      r["top_posts"][:5],
             }
         output["clusters"].append(cluster_out)

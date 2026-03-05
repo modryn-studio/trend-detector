@@ -60,17 +60,17 @@ _PAIN_TEMPLATES = [
     "{kw} \"looking for\" OR \"any good\" OR \"is there a\" OR recommendation",
 ]
 
-def _generate_pain_queries(cluster_name: str, top_keyword: str,
-                           members: list[dict]) -> list[str]:
-    """Use GPT-5 mini to generate underlying Reddit search queries.
+def _generate_reddit_strategy(cluster_name: str, top_keyword: str,
+                              members: list[dict]) -> dict:
+    """Single gpt-5-mini call: pick subreddits AND generate pain queries.
 
-    Instead of searching the coined trend term (e.g. "boy kibble"),
-    we surface the underlying human problem using language real people
-    used before the trend had a name (e.g. "easy high protein meals
-    single guy"). Falls back to _PAIN_TEMPLATES if the call fails.
+    Combining both tasks into one call saves an API round-trip and lets
+    the LLM choose subreddits that match the pain language it generates
+    (e.g. for "boy kibble" it picks r/Cooking + r/MealPrepSunday and
+    generates queries like "quick protein bowl single guy no cooking skills").
 
-    Uses the Responses API (correct API for reasoning models) with
-    reasoning effort=low — fast and cheap for this simple reframing task.
+    Returns {"subreddits": [...], "queries": [...]} or {} on failure.
+    Callers fall back to _route_subreddits() + _PAIN_TEMPLATES if empty.
     """
     try:
         from openai import OpenAI
@@ -78,12 +78,15 @@ def _generate_pain_queries(cluster_name: str, top_keyword: str,
         prompt = (
             f'Trending cluster: "{cluster_name}"\n'
             f'Top keyword: "{top_keyword}"\n'
-            f'Related: {", ".join(kws)}\n\n'
-            f'Generate 3 short Reddit search queries a real person would '
-            f'type when frustrated by this problem, before they knew this '
-            f'trend had a name. Everyday language only, no trend jargon. '
-            f'Each query 3-7 words.\n\n'
-            f'Return ONLY valid JSON: {{"queries": ["q1", "q2", "q3"]}}'
+            f'Related keywords: {", ".join(kws)}\n\n'
+            f'Task 1 — Subreddits: List 3-5 Reddit community names where real '
+            f'people would post about this frustration. Exact subreddit names, '
+            f'no "r/" prefix. Prefer specific niche subs over huge generic ones.\n\n'
+            f'Task 2 — Search queries: Generate 3 short queries a frustrated '
+            f'person would type on Reddit BEFORE this trend had a name. '
+            f'Everyday language only, no trend jargon. 3-7 words each.\n\n'
+            f'Return ONLY valid JSON:\n'
+            f'{{"subreddits": ["sub1", "sub2"], "queries": ["q1", "q2", "q3"]}}'
         )
         resp = OpenAI().responses.create(
             model="gpt-5-mini",
@@ -93,13 +96,18 @@ def _generate_pain_queries(cluster_name: str, top_keyword: str,
             max_output_tokens=1000,
         )
         data = json.loads(resp.output_text)
+        result: dict = {}
+        subs = data.get("subreddits", [])
+        if isinstance(subs, list) and len(subs) >= 2:
+            result["subreddits"] = [str(s).strip().lstrip("r/") for s in subs[:5]]
         queries = data.get("queries", [])
         if isinstance(queries, list) and len(queries) >= 2:
-            return [str(q) for q in queries[:3]]
+            result["queries"] = [str(q) for q in queries[:3]]
+        if result:
+            return result
     except Exception:
         pass
-    # Fallback: pain templates with the best search keyword
-    return [t.format(kw=top_keyword) for t in _PAIN_TEMPLATES]
+    return {}
 
 
 # Pain language patterns — checked against post titles AND selftext
@@ -181,12 +189,13 @@ def check_reddit(keyword: str, cluster: dict | None = None,
     Otherwise falls back to general subreddits.
     """
     if cluster:
-        target_subs = _route_subreddits(cluster)
-        # Generate underlying problem queries via LLM — searches the human
-        # pain that predates the trend name rather than the coined term itself.
-        queries = _generate_pain_queries(
+        # Single LLM call returns both subreddits and pain queries together.
+        # Falls back to keyword routing + pain templates independently if either part fails.
+        strategy = _generate_reddit_strategy(
             cluster["cluster_name"], keyword, cluster.get("members", [])
         )
+        target_subs = strategy.get("subreddits") or _route_subreddits(cluster)
+        queries = strategy.get("queries") or [t.format(kw=keyword) for t in _PAIN_TEMPLATES]
     else:
         target_subs = list(_GENERAL_SUBS)
         queries = [t.format(kw=keyword) for t in _PAIN_TEMPLATES]
