@@ -1,0 +1,1309 @@
+{
+  "date": "2026-03-05",
+  "sources": [
+    "trendspy",
+    "rss",
+    "email"
+  ],
+  "clusters": [
+    {
+      "cluster_name": "Daylight Savings",
+      "cluster_score": 96,
+      "member_count": 8,
+      "top_keyword": "circadian fasting",
+      "growth_signals": [
+        "sunshine protection act: breakout",
+        "circadian fasting: breakout",
+        "sunrise alarm clock: breakout",
+        "is magnesium glycinate good for anxiety: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "circadian fasting",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "sunrise alarm clock",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "is magnesium glycinate good for anxiety",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "sunshine protection act",
+          "score": 60,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 10.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to test vagus nerve",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "how to activate vagus nerve",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "why is daylight savings a thing",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "is magnesium good for sleep",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 0,
+        "subreddit_hits": {},
+        "pain_signal": false,
+        "pain_reliable": false,
+        "keyword": "sunshine protection act",
+        "top_posts": []
+      },
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 78
+      }
+    },
+    {
+      "cluster_name": "Return of Wooden Kitchens",
+      "cluster_score": 72,
+      "member_count": 9,
+      "top_keyword": "white oak cabinets",
+      "growth_signals": [
+        "white oak cabinets: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "white oak cabinets",
+          "score": 60,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 10.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "honey oak kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "white oak kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "wood kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "vintage kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "cozy kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "medium wood cabinets with white countertops",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "ashy toned cabinets",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "table lamp for kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 0,
+        "subreddit_hits": {},
+        "pain_signal": false,
+        "pain_reliable": false,
+        "keyword": "white oak cabinets",
+        "top_posts": []
+      },
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 60
+      }
+    },
+    {
+      "cluster_name": "Boy Kibble",
+      "cluster_score": 68,
+      "member_count": 6,
+      "top_keyword": "boy kibble",
+      "growth_signals": [
+        "boy kibble: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "boy kibble",
+          "score": 60,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 10.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to cook ground lamb. \u201c ground beef bowls",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "girl dinner",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "beef rice bowl",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "protein in ground beef",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "chicken rice bowls",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 0,
+        "subreddit_hits": {},
+        "pain_signal": false,
+        "pain_reliable": false,
+        "keyword": "boy kibble",
+        "top_posts": []
+      },
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 60
+      }
+    },
+    {
+      "cluster_name": "Top Trends",
+      "cluster_score": 65,
+      "member_count": 5,
+      "top_keyword": "when did zendaya and tom holland get married",
+      "growth_signals": [
+        "when did zendaya and tom holland get married: +1000%"
+      ],
+      "members": [
+        {
+          "keyword": "when did zendaya and tom holland get married",
+          "score": 66,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 66.7,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 100.0,
+            "google_volume": 0,
+            "google_growth_pct": 1000.0
+          }
+        },
+        {
+          "keyword": "sudoku packing",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "what is inside a needoh",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "where can i buy needoh",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "Zendaya wedding dress",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 66
+      }
+    },
+    {
+      "cluster_name": "stock / avgo / raytheon",
+      "cluster_score": 54,
+      "member_count": 4,
+      "top_keyword": "avgo stock",
+      "growth_signals": [
+        "avgo stock: +300%",
+        "raytheon stock: +300%"
+      ],
+      "members": [
+        {
+          "keyword": "avgo stock",
+          "score": 40,
+          "velocity": "rising",
+          "volume": "medium",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 20.0,
+            "volume_score": 40.0,
+            "buildability_score": 20.0,
+            "freshness_score": 100.0,
+            "google_volume": 20000,
+            "google_growth_pct": 300
+          }
+        },
+        {
+          "keyword": "raytheon stock",
+          "score": 33,
+          "velocity": "rising",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 20.0,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 300
+          }
+        },
+        {
+          "keyword": "ttd stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "okta stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 100
+          }
+        }
+      ],
+      "memory": {
+        "days_seen": 3,
+        "trajectory": "rising",
+        "first_seen": "2026-03-02",
+        "best_day_score": 47
+      }
+    },
+    {
+      "cluster_name": "education",
+      "cluster_score": 48,
+      "member_count": 2,
+      "top_keyword": "45tv",
+      "growth_signals": [
+        "45tv: +300%"
+      ],
+      "members": [
+        {
+          "keyword": "45tv",
+          "score": 40,
+          "velocity": "rising",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "education",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 20.0,
+            "volume_score": 20.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
+            "google_growth_pct": 300
+          }
+        },
+        {
+          "keyword": "delays and closings",
+          "score": 33,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "education",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 200,
+            "google_growth_pct": 100
+          }
+        }
+      ]
+    }
+  ],
+  "unclustered": [
+    {
+      "keyword": "morgan stanley layoffs",
+      "score": 59,
+      "velocity": "rising",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 53.3,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 20000,
+        "google_growth_pct": 800
+      }
+    },
+    {
+      "keyword": "grocery outlet closing stores",
+      "score": 50,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 40.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 1000,
+        "google_growth_pct": 600
+      }
+    },
+    {
+      "keyword": "cdc polio travel advisory",
+      "score": 48,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "health",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 33.3,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 5000,
+        "google_growth_pct": 500
+      }
+    },
+    {
+      "keyword": "new macbook",
+      "score": 45,
+      "velocity": "rising",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "technology",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 10000,
+        "google_growth_pct": 200
+      },
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 41
+      }
+    },
+    {
+      "keyword": "tax preparer",
+      "score": 39,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 5000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "iphone 17 e",
+      "score": 36,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "technology",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 5000,
+        "google_growth_pct": 100
+      },
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 39
+      }
+    },
+    {
+      "keyword": "re9 update",
+      "score": 36,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "technology",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 1000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "hong kong",
+      "score": 35,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 200,
+        "google_growth_pct": 200
+      }
+    },
+    {
+      "keyword": "abhishek sharma",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 1000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "tax refund",
+      "score": 33,
+      "velocity": "rising",
+      "volume": "medium",
+      "buildability": "low",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 20.0,
+        "volume_score": 40.0,
+        "buildability_score": 20.0,
+        "freshness_score": 65.0,
+        "google_volume": 10000,
+        "google_growth_pct": 300
+      },
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 28
+      }
+    },
+    {
+      "keyword": "ios 26.3.1",
+      "score": 32,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "technology",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 3.3,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 100,
+        "google_growth_pct": 50
+      }
+    },
+    {
+      "keyword": "oceans calling",
+      "score": 30,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 200,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "edie falco",
+      "score": 30,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 200,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "los angeles",
+      "score": 28,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 35.0,
+        "google_volume": 1000,
+        "google_growth_pct": 200
+      },
+      "memory": {
+        "days_seen": 1,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 33
+      }
+    },
+    {
+      "keyword": "cricket live",
+      "score": 28,
+      "velocity": "declining",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 35.0,
+        "google_volume": 10000,
+        "google_growth_pct": 0
+      }
+    }
+  ],
+  "competition": {
+    "sunshine protection act": {
+      "keyword": "sunshine protection act",
+      "queries_searched": [
+        "sunshine protection act tool",
+        "sunshine protection act calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "white oak cabinets": {
+      "keyword": "white oak cabinets",
+      "queries_searched": [
+        "white oak cabinets tool",
+        "white oak cabinets calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "boy kibble": {
+      "keyword": "boy kibble",
+      "queries_searched": [
+        "boy kibble tool",
+        "boy kibble calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "when did zendaya and tom holland get married": {
+      "keyword": "when did zendaya and tom holland get married",
+      "queries_searched": [
+        "when did zendaya and tom holland get married tool",
+        "when did zendaya and tom holland get married calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 1,
+      "top_competitors": [
+        {
+          "title": "When Did Zendaya & Tom Holland Get Married? The Wedding Already Happened",
+          "url": "https://www.hercampus.com/culture/when-did-zendaya-tom-holland-get-married-wedding/",
+          "domain": "www.hercampus.com"
+        }
+      ],
+      "verdict": "GREEN"
+    },
+    "avgo stock": {
+      "keyword": "avgo stock",
+      "queries_searched": [
+        "avgo stock tool",
+        "avgo stock calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 5,
+      "top_competitors": [
+        {
+          "title": "AVGO Stock Price and Chart \u2014 NASDAQ:AVGO \u2014 TradingView",
+          "url": "https://www.tradingview.com/symbols/NASDAQ-AVGO/",
+          "domain": "www.tradingview.com"
+        },
+        {
+          "title": "Broadcom Inc. (AVGO) Stock Price, Quote, News & Analysis | Seeking Alpha",
+          "url": "https://seekingalpha.com/symbol/AVGO",
+          "domain": "seekingalpha.com"
+        },
+        {
+          "title": "Broadcom Inc. (AVGO) Stock Price, News, Quote & History - Yahoo Finance",
+          "url": "https://finance.yahoo.com/quote/AVGO/",
+          "domain": "finance.yahoo.com"
+        },
+        {
+          "title": "Broadcom Stock Calculator",
+          "url": "https://finlo.io/stock-calculator/AVGO",
+          "domain": "finlo.io"
+        },
+        {
+          "title": "AVGO Stock Calculator: If I Invested in Broadcom Inc. | Stake",
+          "url": "https://hellostake.com/au/invest/wall-st/stock-calculator/avgo",
+          "domain": "hellostake.com"
+        }
+      ],
+      "verdict": "RED"
+    }
+  },
+  "decisions": {
+    "Daylight Savings": {
+      "decision": "WATCH",
+      "confidence": "LOW",
+      "build_idea": "A \"shift-worker DST reset coach\" for night-shift nurses doing 12s who dread the spring-forward week because they feel wrecked and anxious at work. Emotional barrier: fear of being unsafe/ineffective on shift (and the shame of \"I should be able to handle this\") stops them from committing to a sleep/meal plan. Core value: a 7-day, minute-by-minute light exposure + meal timing + caffeine cutoff plan that auto-adjusts for their exact shift start/end, commute, and local sunrise, with a simple \"do this now\" checklist and a one-tap fallback plan when they miss steps.",
+      "target_slug": "dst-shift-reset-coach",
+      "monetization": "Freemium: free DST plan generator + reminders; $6.99/month or $19/year for shift templates (3x12, 4x10), wearable/HealthKit imports, partner mode (household schedule), and \"missed day\" recovery plans. Optional affiliate revenue for sunrise lamps/blue-light blockers (careful: evidence-based positioning).",
+      "reason": "Competition is GREEN, but Reddit is inconclusive and the trend has only been seen 1 day, so the demand signal isn\u2019t confirmed enough to BUILD. The cluster ties DST, circadian routines, sunrise alarms, fasting timing, magnesium/sleep/anxiety\u2014suggesting a coherent behavioral problem rather than pure info-seeking, but we still lack strong pain proof in communities.",
+      "risk": "People may prefer free content (blogs/YouTube) and may not trust a paid plan without clinical credibility or workplace-specific validation.",
+      "competition_queries": [
+        "night shift nurse daylight saving time sleep plan app",
+        "spring forward shift work light exposure schedule tool",
+        "12 hour night shift circadian meal timing planner"
+      ],
+      "context_seed": {
+        "product_description": "A mobile web/app coach that generates a personalized pre- and post-DST reset plan for shift workers. Users enter shift times, commute, typical sleep window, caffeine habits, and whether they have a sunrise lamp; the product outputs time-stamped actions (light, darkness, meals, naps, caffeine) and sends reminders with an emergency recovery path if they fall off-plan.",
+        "target_user": "A night-shift ICU nurse on 3\u00d712s who\u2019s anxious about the spring-forward week because they already feel near-burnout and fear making a mistake at work due to poor sleep.",
+        "emotional_barrier": "They\u2019re afraid the plan won\u2019t work in real life (busy shifts, missed sleep) and they\u2019ll feel like a failure\u2014or worse, be unsafe\u2014so they don\u2019t start anything.",
+        "routes": [
+          "/ \u2192 landing + choose scenario (spring forward, fall back, new night shift rotation)",
+          "/onboarding \u2192 collect shift pattern, dates, commute, current sleep/meal/caffeine, tools (lamp, blackout curtains)",
+          "/plan \u2192 timeline view (next 7\u201310 days) with \"do now\" actions",
+          "/reminders \u2192 notification settings + quiet hours (for sleep)",
+          "/fallback \u2192 missed-step recovery (\"I slept late\", \"I had caffeine\", \"I was called in\")",
+          "/progress \u2192 check-ins: sleepiness, anxiety, adherence; adjust plan",
+          "/education \u2192 short, evidence-based explainers (light, meals, magnesium disclaimer)",
+          "/export \u2192 share plan with partner/household; calendar export"
+        ]
+      }
+    },
+    "Return of Wooden Kitchens": {
+      "decision": "WATCH",
+      "confidence": "LOW",
+      "build_idea": "A \u201cKitchen-Confidence Visualizer\u201d for a first-time renovator in a 1980s home trying to keep existing warm/medium wood cabinets but terrified it\u2019ll look dated. The emotional barrier is paralysis and fear of making an expensive, irreversible aesthetic mistake (\"will this read cozy or cheap/outdated?\"). Core value: take 3 quick inputs (cabinet undertone + countertop + lighting) and generate a small set of photorealistic, style-locked mockups plus a confidence score and next-step checklist (samples to order, lighting tweaks) to move them from indecision to action.",
+      "target_slug": "kitchen-confidence-visualizer",
+      "monetization": "Freemium: free 1 project + low-res renders; $19\u2013$39/project for HD render packs + \"shop my exact finishes\" links. Affiliate revenue from cabinet sample kits, countertops, lighting, and hardware via curated vendor links.",
+      "reason": "The trend signal is promising (rising, score 72) and competition appears open, but Reddit is inconclusive with no clear pain signal, and the trend has only appeared 1 of the last 7 days\u2014too early to commit to BUILD on strength alone. The execution can be sharply niche (keeping existing wood cabinets) and emotion-led (decision paralysis), but it needs validation that people will pay for confidence, not just browse inspiration for free.",
+      "risk": "Users may treat it as \u201cPinterest with renders\u201d and not pay unless accuracy and trust (undertone/lighting realism) are exceptionally good.",
+      "competition_queries": [
+        "keep existing oak cabinets mockup app",
+        "1980s kitchen cabinet undertone lighting simulator",
+        "wood cabinet countertop pairing visualizer tool"
+      ],
+      "context_seed": {
+        "product_description": "A decision-support tool for homeowners keeping existing wood cabinets: it simulates cabinet undertones, countertop pairings, wall colors, and lighting in consistent, photorealistic scenes. Users answer a short guided quiz and upload 1\u20132 photos, then receive a limited set of high-confidence combinations, mockups, and a purchase-ready action plan (samples, hardware, lighting). The outcome is confidence to commit\u2014not endless browsing.",
+        "target_user": "A homeowner who just bought a 1980s/1990s house with honey/medium oak cabinets and a tight budget, who wants a modern-cozy look but feels embarrassed that the kitchen might look \u201cdated\u201d if they choose wrong.",
+        "emotional_barrier": "They\u2019re scared of wasting thousands on the wrong countertop/paint and being stuck with a kitchen that looks cheap or out of style.",
+        "routes": [
+          "/ \u2192 quick promise + examples of before/after outcomes",
+          "/quiz \u2192 guided undertone + style + budget + constraints intake",
+          "/upload \u2192 photo upload + lighting/time-of-day prompts",
+          "/results \u2192 3\u20136 recommended pairings with confidence rationale",
+          "/mockup/:id \u2192 photorealistic render(s) + variations (hardware/backsplash/paint)",
+          "/plan \u2192 step-by-step checklist: samples to order, measurements, what to test at home",
+          "/shop \u2192 affiliate-ready list of exact materials/dupes",
+          "/project/:id \u2192 save, compare, share with partner/contractor"
+        ]
+      }
+    },
+    "Boy Kibble": {
+      "decision": "WATCH",
+      "confidence": "LOW",
+      "build_idea": "A \u201cno-shame weeknight fuel\u201d planner for a specific person: the newly single guy in his late 20s/30s who\u2019s trying to stop living on takeout but feels overwhelmed and vaguely embarrassed by cooking. It turns a few constraints (microwave-only vs stovetop, budget, protein target, grocery store) into repeatable 10-minute ground-meat-and-rice bowl rotations with an auto-generated grocery list and a \u2018default mode\u2019 when motivation is low. Emotional barrier: overwhelm + shame (\u201cI should know how to feed myself\u201d) leading to decision paralysis; value prop: remove choices, make it feel effortless, and keep protein/price on track.",
+      "target_slug": "weeknight-fuel-bowls",
+      "monetization": "Freemium: free core generator + grocery list; $5\u20138/mo for macro targets, save/favorite rotations, store-specific pricing, and \u2018pantry mode\u2019. Optional affiliate links for grocery delivery and cookware staples.",
+      "reason": "Competition is GREEN, but Reddit is inconclusive and the trend has only appeared 1 of the last 7 days, so the signal isn\u2019t confirmed enough to justify BUILD yet. The keyword cluster suggests a meme/identity-driven behavior (\u201cgirl dinner\u201d \u2192 \u201cboy kibble\u201d) that could translate into a lightweight, emotionally reassuring meal-rotation product, but we need validation that people want a tool (not just jokes/recipes).",
+      "risk": "The trend may be short-lived slang; users might just want shareable content, not a dedicated product, making retention and paid conversion weak.",
+      "competition_queries": [
+        "microwave rice bowl meal rotation app for single men",
+        "10 minute ground meat bowl macro planner for beginners",
+        "grocery list generator for weeknight protein bowls budget"
+      ],
+      "context_seed": {
+        "product_description": "A lightweight planner that generates a repeatable set of 10-minute protein bowl meals (ground beef/lamb/chicken + rice + add-ins) based on the user\u2019s cooking setup, budget, and protein target. It outputs a simple weekly rotation, minimal-step instructions, and an auto grocery list designed for low motivation nights. The experience is framed as \u2018default fuel\u2019 to reduce shame and decision fatigue.",
+        "target_user": "A newly single 31-year-old man who\u2019s back to feeding himself after years of shared meals, gets home tired, and wants to hit protein goals without learning \u2018real cooking.\u2019 He feels embarrassed asking for help and ends up defaulting to takeout or random snacks.",
+        "emotional_barrier": "He feels overwhelmed by choices and ashamed that cooking feels hard, so he procrastinates and defaults to takeout.",
+        "routes": [
+          "/ \u2192 choose vibe: \u2018default fuel\u2019, \u2018higher protein\u2019, \u2018cheapest week\u2019, \u2018microwave-only\u2019",
+          "/onboarding \u2192 select equipment, store, budget, protein goal, dislikes",
+          "/plan \u2192 view this week\u2019s 3\u20135 repeatable bowl templates + swap options",
+          "/recipe/:id \u2192 ultra-short steps, timing, and \u2018if you mess up, do this\u2019 fixes",
+          "/grocery-list \u2192 consolidated list with quantities, aisle grouping, and substitutions",
+          "/pantry \u2192 what you have \u2192 generate 2\u20133 bowls without extra shopping",
+          "/favorites \u2192 saved rotations and \u2018lazy-night\u2019 defaults",
+          "/check-in \u2192 quick adherence + mood (\u201ctoo tired/too hard\u201d) to adjust next week"
+        ]
+      }
+    },
+    "Top Trends": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A \u201cRumor Spiral Guard\u201d for entertainment-news obsessed fans who feel anxious/FOMO when TikTok and group chats claim a celebrity relationship milestone (engagement/marriage) is \u201cconfirmed,\u201d but they don\u2019t know what to believe and keep compulsively refreshing. The tool turns chaotic rumors into a calm, time-boxed update ritual: it detects claim types (married/engaged/pregnant), shows a confidence meter based on primary-source evidence (official reps, verified posts, reputable outlets), and offers a \u2018Stop the Spiral\u2019 mode that limits checking and summarizes only meaningful changes.",
+      "target_slug": "rumor-spiral-guard",
+      "monetization": "Freemium: free rumor timelines + source grading; paid ($3\u20135/mo) for alert filters, \u2018Spiral mode\u2019 check-in limits, mute keywords across feeds, and weekly digest. Optional affiliate revenue via subscriptions to reputable entertainment outlets/newsletters.",
+      "reason": "The keyword cluster suggests recurring rumor-chasing (celebrity marriage + wedding dress) and product-adjacent intent (Needoh stress toy), indicating an emotional driver: anxiety/compulsive checking and the need to self-soothe. Competition appears light, but this trend is only seen 1 of the last 7 days, so demand isn\u2019t confirmed enough to justify a full build yet.",
+      "risk": "The demand may be a short-lived spike around a single celebrity rumor cycle, making retention and repeat use uncertain without expanding to multiple fandoms/claim categories.",
+      "competition_queries": [
+        "fandom rumor verification app anxiety scrolling",
+        "celebrity claim tracker confidence meter primary sources",
+        "doomscrolling reduction tool for pop culture news alerts"
+      ],
+      "context_seed": {
+        "product_description": "A mobile/web tool that converts fast-moving celebrity claims into a single verified timeline with a confidence score and primary-source receipts. Users follow specific topics (e.g., a couple, a tour, a casting) and get alerts only when the confidence meaningfully changes. A built-in \u2018Stop the Spiral\u2019 mode helps users reduce compulsive refreshing with time-boxed check-ins and calming summaries.",
+        "target_user": "A college student in a very online fandom group chat who feels embarrassed asking \u201cis this real?\u201d yet keeps refreshing TikTok/X late at night to avoid missing updates and to feel in-the-know.",
+        "emotional_barrier": "They feel anxious and left out, so they compulsively check rumors even though it stresses them out and they don\u2019t trust what they\u2019re seeing.",
+        "routes": [
+          "/ \u2192 follow topics + choose alert strictness",
+          "/topic/:id \u2192 timeline of claims, confidence meter, primary-source receipts",
+          "/claim/:id \u2192 evidence breakdown + what would change the confidence",
+          "/spiral-mode \u2192 set check-in windows, breathing prompt, summarize changes since last check",
+          "/alerts \u2192 meaningful-change notifications only",
+          "/settings \u2192 mute keywords, source trust controls, export/share \u2018receipts\u2019 card"
+        ]
+      }
+    },
+    "stock / avgo / raytheon": {
+      "decision": "SKIP",
+      "confidence": "HIGH",
+      "reason": "RED gate: 5 existing tools, no pain"
+    },
+    "morgan stanley layoffs": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A \"next-72-hours\" stability coach for Morgan Stanley employees who just got laid off and are paralyzed by fear/overwhelm about money, health insurance, and what to tell family. It turns the first week into a calming, private checklist with timed prompts: (1) what to do today vs later, (2) scripts for tough conversations (manager, recruiter, partner), (3) severance/benefits decision reminders, and (4) a one-page \"I\u2019m handling it\" plan they can share with a spouse to reduce shame. Core value: reduce panic and decision fatigue so they actually take the first actions.",
+      "target_slug": "post-layoff-stability-coach",
+      "monetization": "Freemium: free 7-day layoff playbook + paid $29 one-time \u201cStability Pack\u201d (scripts, reminders, benefits decision calendar) or $9/mo for ongoing job-search cadence. Optional affiliate revenue for resume/recruiting services and COBRA alternatives (where compliant).",
+      "reason": "The query suggests real-world disruption, but \u201clayoffs\u201d spikes are event-driven and it\u2019s unclear if pain concentrates enough on a single unmet workflow versus people using existing spreadsheets, Reddit threads, and career coaches. A narrowly-scoped emotional-first product could work, but execution and differentiation need validation against existing layoff playbooks/coaching funnels.",
+      "risk": "Most demand may be satisfied by free checklists/coaches, and the niche could be too employer-specific to sustain outside a news cycle.",
+      "competition_queries": [
+        "72 hour layoff checklist investment banking app",
+        "severance benefits decision coach app for big bank employees",
+        "post layoff conversation scripts tool for finance professionals"
+      ],
+      "context_seed": {
+        "product_description": "A private, mobile-first \u201cfirst week after layoff\u201d coach that converts overwhelm into a timed plan: today/tomorrow/this week. It provides calming prompts, decision reminders for severance/benefits, and copy-paste scripts for high-stress conversations, plus a shareable one-page plan for a partner/family member.",
+        "target_user": "An associate at a large bank who was unexpectedly laid off this morning, is embarrassed to tell their partner, and keeps doom-scrolling instead of taking the first practical steps.",
+        "emotional_barrier": "Shame and panic create decision paralysis\u2014so they avoid actions that would make the situation feel real.",
+        "routes": [
+          "/ \u2192 reassurance + pick your situation (laid off / expecting / survivor guilt)",
+          "/triage \u2192 10-minute intake (dates, benefits window, dependents, urgency)",
+          "/plan \u2192 next 72 hours checklist with timers and \u201cdo later\u201d bucket",
+          "/scripts \u2192 conversation scripts (partner, recruiter, former manager, landlord)",
+          "/benefits \u2192 decision calendar + reminders (severance deadline, insurance, 401k)",
+          "/share \u2192 generate a one-page status plan to share with partner",
+          "/support \u2192 optional buddy check-ins + resources directory"
+        ]
+      }
+    },
+    "grocery outlet closing stores": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A \"Shutdown Switch\" planner for a Grocery Outlet employee who just learned their store is closing in 30\u201360 days and feels panicked/overwhelmed about income, benefits, and next steps. The emotional barrier is shutdown shock + avoidance (\u201cI don\u2019t even know where to start, and I\u2019m afraid I\u2019ll miss deadlines\u201d). Core value: a calm, step-by-step separation and transfer playbook (checklists, deadline calendar, scripts) tailored to retail closures, with local rehire/transfer paths and benefit/unemployment guidance prompts\u2014not news aggregation.",
+      "target_slug": "shutdown-switch-retail-closure",
+      "monetization": "Freemium: free closure checklist + deadline tracker; $9\u2013$15/mo or $39 one-time for state-specific unemployment/benefits flows, document templates, and 1-click export for HR meetings. Optional employer-sponsored licenses for outplacement at ~$5\u2013$10/employee.",
+      "reason": "The query suggests real-world disruption (store closures) but the trend alone doesn\u2019t prove a consistent, scalable pain signal versus a news cycle. Execution is plausible and differentiated if focused on the emotional barrier (shutdown overwhelm) and practical next steps, but competition from existing unemployment/outplacement content and general job tools is likely medium.",
+      "risk": "Demand may be spiky and location-specific, making acquisition and retention hard unless the product generalizes to \"retail location closure\" broadly.",
+      "competition_queries": [
+        "retail store closing employee checklist app",
+        "unemployment deadline tracker app for laid off hourly workers",
+        "outplacement app for retail workers transfer rehire planning"
+      ],
+      "context_seed": {
+        "product_description": "A mobile-first closure planning tool for hourly retail employees impacted by a location shutdown. It converts a layoff/closure notice into a personalized timeline (key dates, documents, calls to make), scripts for HR conversations, and guided flows for unemployment/benefits steps, plus a rehire/transfer job-search packet.",
+        "target_user": "A Grocery Outlet cashier who just got a store-closing notice, is worried about paying rent next month, and keeps procrastinating because the process feels confusing and scary.",
+        "emotional_barrier": "Shutdown shock creates overwhelm and avoidance\u2014the user fears missing critical steps and feels embarrassed asking HR/basic questions.",
+        "routes": [
+          "/ \u2192 closure notice intake (date, state, role, hours)",
+          "/timeline \u2192 personalized deadlines + reminders",
+          "/checklists \u2192 documents to gather, calls to make, what to ask HR",
+          "/scripts \u2192 message + call scripts for HR/manager, references, schedule changes",
+          "/benefits \u2192 guided unemployment/COBRA/health coverage decision prompts (state-aware)",
+          "/rehire \u2192 transfer/reapplication tracker + resume packet builder for hourly roles",
+          "/resources \u2192 local nonprofit/food assistance links surfaced contextually (not a directory)",
+          "/export \u2192 shareable PDF for meetings + personal records"
+        ]
+      }
+    }
+  }
+}
