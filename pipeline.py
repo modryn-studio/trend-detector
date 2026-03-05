@@ -26,7 +26,7 @@ from fetcher import fetch_trending, fetch_time_series
 from rss_fetcher import fetch_rss
 from email_ingest import fetch_email
 from scorer import is_buildable, score_trend
-from cluster import detect_clusters, get_unclustered
+from cluster import detect_clusters, get_unclustered, rescore_clusters
 from reddit_check import validate_clusters
 from competitor_check import validate_build_opportunities
 from reporter import write_briefing
@@ -294,24 +294,9 @@ def run(sources: list[str], top_n: int = 15,
                     unclustered[i] = score_trend(raw_trend, series=series)
 
         # Re-sort clusters after enrichment so top_keyword and cluster_score
-        # reflect the updated member scores
-        for c in clusters:
-            c["members"].sort(key=lambda m: m["score"], reverse=True)
-            if c["members"]:
-                top = c["members"][0]
-                c["top_keyword"] = top["keyword"]
-                avg = sum(m["score"] for m in c["members"]) / len(c["members"])
-                n = len(c["members"])
-                size_bonus = min(25, n * 3)
-                growth_bonus = min(
-                    15,
-                    sum(
-                        1 for m in c["members"]
-                        if m.get("_raw", {}).get("google_growth_pct", 0) >= 200
-                    ) * 5,
-                )
-                c["cluster_score"] = min(100, round(avg + size_bonus + growth_bonus))
-        clusters.sort(key=lambda c: c["cluster_score"], reverse=True)
+        # reflect the updated member scores. Delegates to cluster.py so the
+        # scoring formula lives in exactly one place.
+        rescore_clusters(clusters)
 
     # --- Stage 7: Write output ---
     DATA_DIR.mkdir(exist_ok=True)

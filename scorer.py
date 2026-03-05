@@ -11,6 +11,8 @@ Two scoring paths:
      Used for trends that get a time series from interest_over_time.
 """
 
+import re
+
 # --- Noise filters -------------------------------------------------------
 
 BRAND_NOISE = {
@@ -33,6 +35,12 @@ BRAND_NOISE = {
     "wall street journal", "cnn", "fox news", "nyt", "bbc",
 }
 
+# Compiled once at import. Word boundaries prevent "meta" from matching
+# "metadata", "apple" from matching "pineapple", etc.
+_BRAND_RE = re.compile(
+    r'\b(?:' + '|'.join(re.escape(b) for b in BRAND_NOISE) + r')\b'
+)
+
 # Terms too broad or unrelated to have a buildable problem behind them
 GENERIC_NOISE = {
     "artificial intelligence", "machine learning", "ai", "technology",
@@ -43,19 +51,23 @@ GENERIC_NOISE = {
 }
 
 # News/events/people noise — trending but not buildable
+# Note: "college" and "university" omitted — "college budget tracker",
+# "university course planner" etc. are buildable. "school" kept because
+# it mainly surfaces in "school delays/closings" news events.
 NEWS_NOISE_WORDS = [
     "shooting", "killed", "died", "death", "arrested", "trial",
     "crash", "fire", "earthquake", "hurricane", "flood", "tornado",
     "election", "vote", "president", "congress", "senate",
     "war", "attack", "bomb", "explosion", "hostage",
-    "university", "college", "school",
+    "school",
 ]
 
 # Sports noise — huge volume, zero build signal
+# Note: "coach" omitted — "life coach", "career coach", "sales coach" are buildable.
 SPORTS_NOISE_WORDS = [
     "vs", "score", "game", "match", "nfl", "nba", "nhl", "mlb",
     "fifa", "ufc", "boxing", "playoff", "championship", "tournament",
-    "league", "roster", "draft", "trade", "coach",
+    "league", "roster", "draft",
     "basketball", "football", "soccer", "baseball", "hockey",
     "ncaa", "uconn", "march madness",
 ]
@@ -103,8 +115,9 @@ def is_buildable(keyword: str) -> bool:
     a buildable opportunity worth scoring."""
     kw = keyword.lower()
 
-    # Brand names
-    if any(brand in kw for brand in BRAND_NOISE):
+    # Brand names — word-boundary match prevents "meta" hitting "metadata",
+    # "apple" hitting "pineapple", etc.
+    if _BRAND_RE.search(kw):
         return False
 
     # Exact generic matches

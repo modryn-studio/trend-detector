@@ -188,6 +188,26 @@ def _build_cluster(scored_trends: list[dict], indices: list[int],
     }
 
 
+def rescore_clusters(clusters: list[dict]) -> None:
+    """Re-sort members and recompute cluster_score after external score updates
+    (e.g. after time-series enrichment updates individual member scores).
+    Mutates clusters in-place, then re-sorts the list by cluster_score.
+    """
+    for c in clusters:
+        c["members"].sort(key=lambda m: m["score"], reverse=True)
+        if not c["members"]:
+            continue
+        c["top_keyword"] = c["members"][0]["keyword"]
+        # Reuse _build_cluster so the formula stays in one place
+        rebuilt = _build_cluster(c["members"], list(range(len(c["members"]))),
+                                 name=c["cluster_name"])
+        c["cluster_score"] = rebuilt["cluster_score"]
+        c["top_score"]     = rebuilt["top_score"]
+        c["avg_score"]     = rebuilt["avg_score"]
+        c["growth_signals"] = rebuilt["growth_signals"]
+    clusters.sort(key=lambda c: c["cluster_score"], reverse=True)
+
+
 def get_unclustered(scored_trends: list[dict],
                     clusters: list[dict]) -> list[dict]:
     """Return trends that didn't land in any cluster."""
