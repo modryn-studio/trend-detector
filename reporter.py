@@ -897,7 +897,9 @@ def _reddit_section(clusters: list[dict]) -> str:
         subs = list(r.get("subreddit_hits", {}).keys())[:3]
         sub_str = ", ".join(f"r/{s}" for s in subs) if subs else "none"
 
-        lines.append(f"**{c['cluster_name']}** — searched: \"{kw_searched}\"")
+        queries_used = r.get("pain_queries") or [kw_searched]
+        queries_str = " · ".join(f'"{q}"' for q in queries_used[:3])
+        lines.append(f"**{c['cluster_name']}** — searched: {queries_str}")
 
         if total == 0:
             lines.append("→ No Reddit results. Signal unconfirmed.")

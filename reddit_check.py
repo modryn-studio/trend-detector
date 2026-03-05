@@ -60,6 +60,44 @@ _PAIN_TEMPLATES = [
     "{kw} \"looking for\" OR \"any good\" OR \"is there a\" OR recommendation",
 ]
 
+def _generate_pain_queries(cluster_name: str, top_keyword: str,
+                           members: list[dict]) -> list[str]:
+    """Use GPT-5 mini to generate underlying Reddit search queries.
+
+    Instead of searching the coined trend term (e.g. "boy kibble"),
+    we surface the underlying human problem using language real people
+    used before the trend had a name (e.g. "easy high protein meals
+    single guy"). Falls back to _PAIN_TEMPLATES if the call fails.
+    """
+    try:
+        from openai import OpenAI
+        kws = [m["keyword"] for m in members[:6]]
+        prompt = (
+            f'Trending cluster: "{cluster_name}"\n'
+            f'Top keyword: "{top_keyword}"\n'
+            f'Related: {", ".join(kws)}\n\n'
+            f'Generate 3 short Reddit search queries a real person would '
+            f'type when frustrated by this problem, before they knew this '
+            f'trend had a name. Everyday language only, no trend jargon. '
+            f'Each query 3-7 words.\n\n'
+            f'Return ONLY valid JSON: {{"queries": ["q1", "q2", "q3"]}}'
+        )
+        resp = OpenAI().chat.completions.create(
+            model="gpt-5.2",
+            messages=[{"role": "user", "content": prompt}],
+            response_format={"type": "json_object"},
+            max_completion_tokens=500,
+        )
+        data = json.loads(resp.choices[0].message.content)
+        queries = data.get("queries", [])
+        if isinstance(queries, list) and len(queries) >= 2:
+            return [str(q) for q in queries[:3]]
+    except Exception:
+        pass
+    # Fallback: pain templates with the best search keyword
+    return [t.format(kw=top_keyword) for t in _PAIN_TEMPLATES]
+
+
 # Pain language patterns — checked against post titles AND selftext
 _PAIN_PHRASES = [
     "wish", "need", "looking for", "frustrated", "struggle",
@@ -140,10 +178,14 @@ def check_reddit(keyword: str, cluster: dict | None = None,
     """
     if cluster:
         target_subs = _route_subreddits(cluster)
+        # Generate underlying problem queries via LLM — searches the human
+        # pain that predates the trend name rather than the coined term itself.
+        queries = _generate_pain_queries(
+            cluster["cluster_name"], keyword, cluster.get("members", [])
+        )
     else:
         target_subs = list(_GENERAL_SUBS)
-
-    queries = [t.format(kw=keyword) for t in _PAIN_TEMPLATES]
+        queries = [t.format(kw=keyword) for t in _PAIN_TEMPLATES]
 
     all_posts: list[dict] = []
     seen_urls: set[str] = set()
@@ -199,6 +241,7 @@ def check_reddit(keyword: str, cluster: dict | None = None,
 
     return {
         "keyword":         keyword,
+        "pain_queries":    queries,
         "total_posts":     len(all_posts),
         "subreddit_hits":  dict(sub_counter.most_common(10)),
         "top_posts":       brief_posts,
