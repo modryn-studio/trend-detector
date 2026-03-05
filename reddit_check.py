@@ -68,6 +68,9 @@ def _generate_pain_queries(cluster_name: str, top_keyword: str,
     we surface the underlying human problem using language real people
     used before the trend had a name (e.g. "easy high protein meals
     single guy"). Falls back to _PAIN_TEMPLATES if the call fails.
+
+    Uses the Responses API (correct API for reasoning models) with
+    reasoning effort=low — fast and cheap for this simple reframing task.
     """
     try:
         from openai import OpenAI
@@ -82,13 +85,14 @@ def _generate_pain_queries(cluster_name: str, top_keyword: str,
             f'Each query 3-7 words.\n\n'
             f'Return ONLY valid JSON: {{"queries": ["q1", "q2", "q3"]}}'
         )
-        resp = OpenAI().chat.completions.create(
-            model="gpt-5.2",
-            messages=[{"role": "user", "content": prompt}],
-            response_format={"type": "json_object"},
-            max_completion_tokens=500,
+        resp = OpenAI().responses.create(
+            model="gpt-5-mini",
+            reasoning={"effort": "low"},
+            input=[{"role": "user", "content": prompt}],
+            text={"format": {"type": "json_object"}},
+            max_output_tokens=1000,
         )
-        data = json.loads(resp.choices[0].message.content)
+        data = json.loads(resp.output_text)
         queries = data.get("queries", [])
         if isinstance(queries, list) and len(queries) >= 2:
             return [str(q) for q in queries[:3]]

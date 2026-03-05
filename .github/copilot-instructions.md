@@ -17,7 +17,7 @@ When signal quality is proven over several months of private runs, this becomes 
 - **trendspy** — Google's internal protobuf Trends API. 1 call = 400+ trending topics. No auth, no selenium.
 - **beautifulsoup4** — Gmail newsletter HTML parsing
 - **python-dotenv** — `.env` for credentials
-- **openai** — GPT-5.2 with Structured Outputs for cluster renaming + BUILD/WATCH/SKIP decisions + context_seed
+- **openai** — two models: `gpt-5-mini` (Responses API, reasoning effort=low) for Reddit pain query generation; `gpt-5.2` (Chat Completions, Structured Outputs) for cluster renaming + BUILD/WATCH/SKIP decisions + context_seed
 - **Brave Search API** — competitor check (1,000 free queries/month; Google CSE closed to new customers Feb 2026)
 - Windows Task Scheduler (9 AM daily)
 - Flat JSON files in `/data` — no database
@@ -81,7 +81,7 @@ Gmail    ─┘
 3. **Filter** — `is_buildable()` strips brands, sports, entertainment, news events, person names, single generic words
 4. **Score** — 0–100 composite: 35% growth velocity, 25% buildability, 20% volume, 20% freshness
 5. **Cluster** — Pass 1: group by email newsletter section header (Google's own groupings). Pass 2: group by shared stemmed tokens. No hardcoded synonym maps — must work for any topic regime.
-6. **Reddit validate** — before searching, a `gpt-5.2` call generates 2–3 *underlying problem queries* from the cluster name + keywords: language real people used before the trend had a name (e.g. "boy kibble" → "easy high protein meals single guy"). This surfaces pain that predates the coined term. Falls back to `_PAIN_TEMPLATES` if the LLM call fails. Targeted subreddit routing + pain-phrase detection; **preserves selftext excerpts** (truncated to 300 chars) for briefing display. Result includes `pain_queries` field showing what was actually searched.
+6. **Reddit validate** — before searching, a `gpt-5-mini` call (Responses API, `reasoning={"effort": "low"}`) generates 2–3 *underlying problem queries* from the cluster name + keywords: language real people used before the trend had a name (e.g. "boy kibble" → "easy high protein meals single guy"). This surfaces pain that predates the coined term. Falls back to `_PAIN_TEMPLATES` if the LLM call fails. Targeted subreddit routing + pain-phrase detection; **preserves selftext excerpts** (truncated to 300 chars) for briefing display. Result includes `pain_queries` field showing what was actually searched.
 7. **Competitor check** — two-pass Brave Search:
    - Pass 1 (keyword-based): checks raw trend keyword + suffix variants for top 5 clusters; GREEN/YELLOW/RED/INCONCLUSIVE. RED + no reliable Reddit pain → emit SKIP immediately, skip LLM entirely (RED gate). Score < 50 + no confirmed pain → SKIP gate (enforced in code, not delegated to LLM).
    - Pass 2 (build-idea-based): LLM outputs 3 `competition_queries` derived from its build idea; Brave searches those to verify the specific product doesn't already exist. Only runs for BUILD/WATCH decisions. Results stored under cluster name + "(build-idea check)". Results are **informational only** — pass-2 no longer auto-downgrades BUILD → WATCH. Luke reviews competition data and decides.

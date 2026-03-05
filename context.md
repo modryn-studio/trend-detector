@@ -196,3 +196,41 @@ FUTURE PHASE 2 ROUTES (not built yet):
   /results/[query]    → Scored trend list for that niche
   /about              → The private pipeline backstory
   /pricing            → When monetization is decided
+
+---
+
+LONG-TERM AUTOMATION VISION:
+
+The end state is a pipeline that discovers a trend, validates the pain,
+decides to build, scaffolds the repo, and ships — Luke only fills in
+API keys and reviews the PR before deploy.
+
+Stages:
+  1. Signal     (done)    pipeline.py runs daily, scores + clusters trends
+  2. Validation (done)    Reddit pain queries confirm real frustration;
+                          competitor check confirms the market gap is real
+  3. Decision   (done)    GPT decides BUILD/WATCH/SKIP with confidence level
+  4. Context doc (future) for BUILD decisions, an agent writes a
+                          context.md-style file for the new product:
+                          target user, emotional barrier, core loop, routes,
+                          brand tone — becomes the Copilot prompt for build
+  5. Scaffold   (future)  agent opens a PR on modryn-studio-v2 using the
+                          Next.js boilerplate: creates routes, stubs the
+                          data layer, wires up the context_seed
+  6. Human gate           Luke reviews the scaffold PR, fills in credentials,
+                          approves deploy — only required human step
+  7. Revenue              tool goes live; if it retains, maintain it;
+                          if not, the scaffold is the record of the attempt
+
+Current bottleneck: signal confidence, not build speed.
+A scaffold is only useful when the decision can be trusted. Today's work —
+Reddit pain query generation, competitor two-pass check, trend memory —
+is what moves the system from "interesting topic" to "validated human
+problem with a real gap."
+
+Each improvement to validation makes it safer to hand more of the loop
+to agents. The daily signals history (data/signals_*.json) becomes the
+tuning dataset for raising confidence thresholds before expanding
+agent scope further.
+
+Rule: never expand agent scope before the signal layer earns it.
