@@ -1,4 +1,3 @@
-
 CONTEXT: Trend Detector
 
 WHO I AM:
