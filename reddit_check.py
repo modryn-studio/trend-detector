@@ -10,12 +10,18 @@ We check top clusters (up to 3 subreddits × 2 queries each, 3 clusters max).
 """
 
 import json
+import os
 import time
 import urllib.request
 import urllib.error
 from collections import Counter
+from pathlib import Path
+
+from dotenv import load_dotenv
 
 from cluster import _stem
+
+load_dotenv(Path(__file__).parent / ".env")
 
 # User-Agent required by Reddit
 _HEADERS = {
@@ -47,6 +53,30 @@ SUBREDDIT_MAP = {
     "career": ["careerguidance", "cscareerquestions", "jobs", "antiwork"],
     "education": ["learnprogramming", "college", "GradSchool", "studytips"],
     "housing": ["realestate", "FirstTimeHomeBuyer", "personalfinance"],
+    # Home & interior
+    "kitchen":  ["HomeImprovement", "malelivingspace", "kitchenremodel", "InteriorDesign"],
+    "cabinet":  ["HomeImprovement", "kitchenremodel", "malelivingspace"],
+    "interior": ["malelivingspace", "femalelivingspace", "InteriorDesign", "HomeImprovement"],
+    "home":     ["HomeImprovement", "malelivingspace", "DIY"],
+    "decor":    ["malelivingspace", "femalelivingspace", "InteriorDesign"],
+    "remodel":  ["HomeImprovement", "DIY", "FirstTimeHomeBuyer"],
+    # Food & meal prep
+    "protein":  ["Fitness", "bodybuilding", "MealPrepSunday", "EatCheapAndHealthy"],
+    "bowl":     ["MealPrepSunday", "EatCheapAndHealthy", "Fitness", "Cooking"],
+    "meal":     ["MealPrepSunday", "EatCheapAndHealthy", "Cooking"],
+    "recipe":   ["Cooking", "EatCheapAndHealthy", "MealPrepSunday"],
+    "diet":     ["loseit", "EatCheapAndHealthy", "Fitness"],
+    # Sleep & wellness
+    "sleep":     ["sleep", "insomnia", "selfimprovement"],
+    "circadian": ["sleep", "insomnia", "science"],
+    "dst":       ["sleep", "Parenting", "selfimprovement"],
+    "anxiety":   ["Anxiety", "selfimprovement", "mentalhealth"],
+    "mental":    ["mentalhealth", "Anxiety", "selfimprovement"],
+    # Parenting
+    "parent":  ["Parenting", "daddit", "mommit"],
+    "school":  ["Parenting", "Teachers", "education"],
+    "kid":     ["Parenting", "daddit", "mommit"],
+    "child":   ["Parenting", "daddit"],
 }
 
 # Fallback subreddits when no domain match is found
@@ -72,6 +102,10 @@ def _generate_reddit_strategy(cluster_name: str, top_keyword: str,
     Returns {"subreddits": [...], "queries": [...]} or {} on failure.
     Callers fall back to _route_subreddits() + _PAIN_TEMPLATES if empty.
     """
+    api_key = os.getenv("OPENAI_API_KEY", "")
+    if not api_key:
+        return {}
+
     try:
         from openai import OpenAI
         kws = [m["keyword"] for m in members[:6]]
@@ -105,8 +139,10 @@ def _generate_reddit_strategy(cluster_name: str, top_keyword: str,
             result["queries"] = [str(q) for q in queries[:3]]
         if result:
             return result
-    except Exception:
-        pass
+    except Exception as exc:
+        # Log so we can diagnose silent failures (wrong subreddit fallback is
+        # always caused by this call failing — see issue #21)
+        print(f"[reddit] strategy LLM failed: {exc}")
     return {}
 
 

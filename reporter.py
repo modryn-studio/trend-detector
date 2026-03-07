@@ -4,7 +4,7 @@ reporter.py — daily briefing generator
 Reads today's signals JSON and writes a plain-English markdown briefing
 to briefings/briefing_YYYY-MM-DD.md.
 
-Uses OpenAI Structured Outputs (gpt-5.2) for:
+Uses OpenAI Structured Outputs (gpt-5.4) for:
   - Cluster renaming: transforms Google's labels into human-need descriptions
   - BUILD/WATCH/SKIP decisions: structured actionable verdicts per cluster
   - context_seed: product_description, target_user, emotional_barrier, routes
@@ -40,7 +40,7 @@ BRIEFING_DIR = Path(__file__).parent / "briefings"
 # OpenAI setup — optional, briefing degrades gracefully without it
 # ---------------------------------------------------------------------------
 
-_OPENAI_MODEL = "gpt-5.2"
+_OPENAI_MODEL = "gpt-5.4"
 _openai_client = None
 
 _api_key = os.getenv("OPENAI_API_KEY", "")
@@ -459,7 +459,7 @@ def _rename_clusters(clusters: list[dict]) -> list[str]:
 
 def _llm_decision(cluster: dict, competition: dict | None,
                    reddit: dict | None) -> dict | None:
-    """Use GPT-5.2 Structured Outputs for BUILD/WATCH/SKIP verdict.
+    """Use GPT-5.4 Structured Outputs for BUILD/WATCH/SKIP verdict.
 
     Returns dict with: decision, confidence, build_idea, target_slug,
     monetization, reason, risk, context_seed. Returns None on failure.
@@ -496,6 +496,18 @@ def _llm_decision(cluster: dict, competition: dict | None,
         context_parts.append(
             f"Reddit: {total} posts, pain_signal={pain}, reliable={reliable}"
         )
+        # Inject up to 3 real post titles + excerpts so the LLM anchors its
+        # build_idea and competition_queries to actual human language, not
+        # category labels. Only include when pain was detected.
+        if pain and reddit.get("top_posts"):
+            context_parts.append("Reddit pain posts (anchor your language to these):")
+            for post in reddit["top_posts"][:3]:
+                title = post.get("title", "").strip()
+                body = (post.get("selftext") or "").strip()[:120]
+                excerpt = f'  - "{title}"'
+                if body:
+                    excerpt += f' — "{body}"'
+                context_parts.append(excerpt)
 
     mem = cluster.get("memory")
     if mem:
