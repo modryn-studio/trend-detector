@@ -26,116 +26,121 @@ boilerplate. Don't build Phase 2 infrastructure here.
 THE 3-LAYER PIPELINE (sources):
 
 Source 1: trendspy (fetcher.py)
-  - Google's internal protobuf Trends API — same data Google uses
-  - 1 call = 400+ trending topics, no auth, no selenium
-  - Key calls: trending_now(geo='US'), interest_over_time()
-  - Categories tracked: technology, finance, health, hobbies, education
+
+- Google's internal protobuf Trends API — same data Google uses
+- 1 call = 400+ trending topics, no auth, no selenium
+- Key calls: trending_now(geo='US'), interest_over_time()
+- Categories tracked: technology, finance, health, hobbies, education
 
 Source 2: Google Trends RSS (rss_fetcher.py)
-  - URL: https://trends.google.com/trending/rss?geo=US
-  - Public feed, no auth, stdlib XML parse (no new dependencies)
-  - Provides: keyword, approx_traffic, pubDate, related news articles
+
+- URL: https://trends.google.com/trending/rss?geo=US
+- Public feed, no auth, stdlib XML parse (no new dependencies)
+- Provides: keyword, approx_traffic, pubDate, related news articles
 
 Source 3: Gmail newsletter (email_ingest.py)
-  - Google Trends Daily Trending email (subscribed)
-  - IMAP + app password (credentials in .env, never committed)
-  - BeautifulSoup HTML parse
-  - Provides: editorial section headers (Google's own cluster groupings),
-    growth %, categories — context neither trendspy nor RSS offers
+
+- Google Trends Daily Trending email (subscribed)
+- IMAP + app password (credentials in .env, never committed)
+- BeautifulSoup HTML parse
+- Provides: editorial section headers (Google's own cluster groupings),
+  growth %, categories — context neither trendspy nor RSS offers
 
 PIPELINE STAGES (in order):
-  1. Collect       — fetch from all 3 sources
-  2. Cross-ref     — merge same keyword seen across sources; multi-source
-                     gets a confidence boost (+20 for 2 sources, +40 for 3)
-  3. Filter        — is_buildable() strips brands, sports, entertainment,
-                     news events, person names, single generic words
-  4. Score         — 0-100 composite (see weights below)
-  5. Cluster       — Pass 1: group by email section header (Google's own
-                     groupings). Pass 2: group by shared stemmed tokens.
-  6. Reddit        — targeted subreddit search + pain-framed queries (frustration,
-                     anxiety, solution-seeking); preserves post excerpts for briefing
-  7. Competitor    — two-pass Brave Search (see below)
-  8. Time series   — interest_over_time() enrichment; updates freshness;
-                     re-sorts clusters
-  9. Trend memory  — reads last 7 days of signals_*.json; annotates each
-                     cluster + unclustered item with days_seen, trajectory
-                     (rising/stable/fading), first_seen, best_day_score;
-                     LLM uses streak length to raise BUILD confidence
- 10. Briefing      — GPT-5.2 renames clusters by human need, generates
-                     BUILD/WATCH/SKIP decisions, writes
-                     briefings/briefing_YYYY-MM-DD.md. Order: cluster table
-                     → story → Reddit pain excerpts → decisions → competition.
-                     Build idea in collapsible block (reference only).
+
+1. Collect — fetch from all 3 sources
+2. Cross-ref — merge same keyword seen across sources; multi-source
+   gets a confidence boost (+20 for 2 sources, +40 for 3)
+3. Filter — is_buildable() strips brands, sports, entertainment,
+   news events, person names, single generic words
+4. Score — 0-100 composite (see weights below)
+5. Cluster — Pass 1: group by email section header (Google's own
+   groupings). Pass 2: group by shared stemmed tokens.
+6. Reddit — targeted subreddit search + pain-framed queries (frustration,
+   anxiety, solution-seeking); preserves post excerpts for briefing
+7. Competitor — two-pass Brave Search (see below)
+8. Time series — interest_over_time() enrichment; updates freshness;
+   re-sorts clusters
+9. Trend memory — reads last 7 days of signals\_\*.json; annotates each
+   cluster + unclustered item with days_seen, trajectory
+   (rising/stable/fading), first_seen, best_day_score;
+   LLM uses streak length to raise BUILD confidence
+10. Briefing — GPT-5.2 renames clusters by human need, generates
+    BUILD/WATCH/SKIP decisions, writes
+    briefings/briefing_YYYY-MM-DD.md. Order: cluster table
+    → story → Reddit pain excerpts → decisions → competition.
+    Build idea in collapsible block (reference only).
 
 COMPETITOR CHECK (competitor_check.py):
-  Pass 1 (keyword-based): checks trend keyword + suffix variants for top 5
-    clusters. Verdict: GREEN / YELLOW / RED / INCONCLUSIVE.
-    RED gate: RED + no confirmed Reddit pain → emit SKIP, skip LLM.
-    Score gate: score < 50 + no confirmed pain → SKIP (enforced in code).
-  Pass 2 (build-idea-based): LLM outputs 3 competition_queries for its
-    specific build idea; Brave searches those to check the product doesn't
-    already exist. Only runs for BUILD/WATCH decisions. Results are
-    informational only — no auto-downgrade. Luke reviews and decides.
+Pass 1 (keyword-based): checks trend keyword + suffix variants for top 5
+clusters. Verdict: GREEN / YELLOW / RED / INCONCLUSIVE.
+RED gate: RED + no confirmed Reddit pain → emit SKIP, skip LLM.
+Score gate: score < 50 + no confirmed pain → SKIP (enforced in code).
+Pass 2 (build-idea-based): LLM outputs 3 competition_queries for its
+specific build idea; Brave searches those to check the product doesn't
+already exist. Only runs for BUILD/WATCH decisions. Results are
+informational only — no auto-downgrade. Luke reviews and decides.
 
 SCORING WEIGHTS:
-  Growth %     35%  — trending_now growth_pct / email growth string
-  Buildability 25%  — keyword heuristic (tool, app, tracker, calculator)
-  Volume       20%  — trending_now volume (email/RSS = neutral 50, not penalized)
-  Freshness    20%  — interest_over_time peak position
+Growth % 35% — trending_now growth_pct / email growth string
+Buildability 25% — keyword heuristic (tool, app, tracker, calculator)
+Volume 20% — trending_now volume (email/RSS = neutral 50, not penalized)
+Freshness 20% — interest_over_time peak position
 
 OUTPUTS:
-  data/signals_YYYY-MM-DD.json     — full structured output (NEVER delete)
-  briefings/briefing_YYYY-MM-DD.md — morning briefing in plain English
+data/signals_YYYY-MM-DD.json — full structured output (NEVER delete)
+briefings/briefing_YYYY-MM-DD.md — morning briefing in plain English
 
 OUTPUT FORMAT (data/signals_YYYY-MM-DD.json):
-  {
-    "date": "2026-03-04",
-    "sources": ["trendspy", "rss", "email"],
-    "clusters": [
-      {
-        "cluster_name": "Making Friends",
-        "cluster_score": 82,
-        "member_count": 4,
-        "top_keyword": "friend app",
-        "growth_signals": ["breakout", "+290%"],
-        "members": [...],
-        "reddit": { "total_posts": 12, "pain_signal": true, "top_posts": [...] }
-      }
-    ],
-    "unclustered": [
-      {
-        "keyword": "bitcoin atm",
-        "score": 71,
-        "source": "trendspy",
-        "source_count": 1,
-        "category": "finance",
-        "_raw": { "google_growth_pct": 1000, "google_volume": 10000 }
-      }
-    ],
-    "competition": {
-      "friend app": { "verdict": "GREEN", "competitor_count": 1, "top_competitors": [...] }
-    },
-    "decisions": {
-      "Making Friends": {
-        "decision": "BUILD",
-        "confidence": "HIGH",
-        "build_idea": "...",
-        "target_slug": "...",
-        "context_seed": {
-          "product_description": "...",
-          "target_user": "...",
-          "emotional_barrier": "...",
-          "routes": ["/ → ..."]
-        }
-      }
-    }
-  }
+{
+"date": "2026-03-04",
+"sources": ["trendspy", "rss", "email"],
+"clusters": [
+{
+"cluster_name": "Making Friends",
+"cluster_score": 82,
+"member_count": 4,
+"top_keyword": "friend app",
+"growth_signals": ["breakout", "+290%"],
+"members": [...],
+"reddit": { "total_posts": 12, "pain_signal": true, "top_posts": [...] }
+}
+],
+"unclustered": [
+{
+"keyword": "bitcoin atm",
+"score": 71,
+"source": "trendspy",
+"source_count": 1,
+"category": "finance",
+"_raw": { "google_growth_pct": 1000, "google_volume": 10000 }
+}
+],
+"competition": {
+"friend app": { "verdict": "GREEN", "competitor_count": 1, "top_competitors": [...] }
+},
+"decisions": {
+"Making Friends": {
+"decision": "BUILD",
+"confidence": "HIGH",
+"build_idea": "...",
+"target_slug": "...",
+"context_seed": {
+"product_description": "...",
+"target_user": "...",
+"emotional_barrier": "...",
+"routes": ["/ → ..."]
+}
+}
+}
+}
 
 KEEP ALL DAILY OUTPUT FILES — the history IS the product demo.
 "I ran this privately for 3 months" is a better launch story than
 launching cold. signals_2026-02-26.json, signals_2026-03-01.json — keep them all.
 
 THE STACK:
+
 - Python 3.12+
 - trendspy (Google's internal protobuf API, no auth)
 - beautifulsoup4 (email newsletter HTML parse)
@@ -147,55 +152,56 @@ THE STACK:
 - No server — runs locally
 
 ENV (.env, gitignored):
-  OPENAI_API_KEY
-  BRAVE_SEARCH_KEY
-  GMAIL_ADDRESS
-  GMAIL_APP_PASSWORD
-  GITHUB_TOKEN              fine-grained PAT, contents:write on modryn-studio-v2 only
+OPENAI_API_KEY
+BRAVE_SEARCH_KEY
+GMAIL_ADDRESS
+GMAIL_APP_PASSWORD
+GITHUB_TOKEN fine-grained PAT, contents:write on modryn-studio-v2 only
 
 CLI FLAGS (pipeline.py):
-  (no flags)       all 3 sources — default for scheduled run
-  --trendspy       trendspy only (debugging)
-  --rss            RSS only (debugging)
-  --email          email only (debugging)
-  --no-email       skip email source (use trendspy + RSS only)
-  --no-series      skip time-series enrichment (faster)
-  --no-competitor  skip competitor check (faster)
-  --no-reddit      skip Reddit validation (faster)
+(no flags) all 3 sources — default for scheduled run
+--trendspy trendspy only (debugging)
+--rss RSS only (debugging)
+--email email only (debugging)
+--no-email skip email source (use trendspy + RSS only)
+--no-series skip time-series enrichment (faster)
+--no-competitor skip competitor check (faster)
+--no-reddit skip Reddit validation (faster)
 
 CRON SCHEDULE:
-  9:00 AM daily (Windows Task Scheduler, StartWhenAvailable)
-  Entry point: run_daily.bat → .venv/Scripts/python.exe pipeline.py
-  Output: data/signals_YYYY-MM-DD.json
-  Briefing: briefings/briefing_YYYY-MM-DD.md
-  Logs: logs/pipeline_YYYY-MM-DD.log
+9:00 AM daily (Windows Task Scheduler, StartWhenAvailable)
+Entry point: run_daily.bat → .venv/Scripts/python.exe pipeline.py
+Output: data/signals_YYYY-MM-DD.json
+Briefing: briefings/briefing_YYYY-MM-DD.md
+Logs: logs/pipeline_YYYY-MM-DD.log
 
 MORNING WORKFLOW:
-  9:00 AM     Task Scheduler runs pipeline.py
-  ~9:02 AM    briefings/briefing_YYYY-MM-DD.md written
-  Morning     open briefing, read BUILD decisions
-  Decide      "I'm building X this week"
+9:00 AM Task Scheduler runs pipeline.py
+~9:02 AM briefings/briefing_YYYY-MM-DD.md written
+Morning open briefing, read BUILD decisions
+Decide "I'm building X this week"
 
 DECISION SIGNAL:
-  BUILD  = strong demand + confirmed Reddit pain + market gap (GREEN/YELLOW)
-  WATCH  = demand present but competition saturated or signal weak
-  SKIP   = RED competitor gate, or score < 50 with no confirmed pain
+BUILD = strong demand + confirmed Reddit pain + market gap (GREEN/YELLOW)
+WATCH = demand present but competition saturated or signal weak
+SKIP = RED competitor gate, or score < 50 with no confirmed pain
 
 context_seed in BUILD decisions pre-fills context.md for the build phase:
-  product_description, target_user, emotional_barrier, routes
+product_description, target_user, emotional_barrier, routes
 
 CORE PRINCIPLES:
-  - Solve your own problem first — you are the user
-  - Keep it boring: one script, one output file, one scheduler job
-  - No premature optimization
-  - Version every output file — the history IS the product
-  - Never add complexity before Phase 2 requires it
+
+- Solve your own problem first — you are the user
+- Keep it boring: one script, one output file, one scheduler job
+- No premature optimization
+- Version every output file — the history IS the product
+- Never add complexity before Phase 2 requires it
 
 FUTURE PHASE 2 ROUTES (not built yet):
-  /                   → Hero + "enter your niche" input
-  /results/[query]    → Scored trend list for that niche
-  /about              → The private pipeline backstory
-  /pricing            → When monetization is decided
+/ → Hero + "enter your niche" input
+/results/[query] → Scored trend list for that niche
+/about → The private pipeline backstory
+/pricing → When monetization is decided
 
 ---
 
@@ -206,21 +212,22 @@ decides to build, scaffolds the repo, and ships — Luke only fills in
 API keys and reviews the PR before deploy.
 
 Stages:
-  1. Signal     (done)    pipeline.py runs daily, scores + clusters trends
-  2. Validation (done)    Reddit pain queries confirm real frustration;
-                          competitor check confirms the market gap is real
-  3. Decision   (done)    GPT decides BUILD/WATCH/SKIP with confidence level
-  4. Context doc (future) for BUILD decisions, an agent writes a
-                          context.md-style file for the new product:
-                          target user, emotional barrier, core loop, routes,
-                          brand tone — becomes the Copilot prompt for build
-  5. Scaffold   (future)  agent opens a PR on modryn-studio-v2 using the
-                          Next.js boilerplate: creates routes, stubs the
-                          data layer, wires up the context_seed
-  6. Human gate           Luke reviews the scaffold PR, fills in credentials,
-                          approves deploy — only required human step
-  7. Revenue              tool goes live; if it retains, maintain it;
-                          if not, the scaffold is the record of the attempt
+
+1. Signal (done) pipeline.py runs daily, scores + clusters trends
+2. Validation (done) Reddit pain queries confirm real frustration;
+   competitor check confirms the market gap is real
+3. Decision (done) GPT decides BUILD/WATCH/SKIP with confidence level
+4. Context doc (future) for BUILD decisions, an agent writes a
+   context.md-style file for the new product:
+   target user, emotional barrier, core loop, routes,
+   brand tone — becomes the Copilot prompt for build
+5. Scaffold (future) agent opens a PR on modryn-studio-v2 using the
+   Next.js boilerplate: creates routes, stubs the
+   data layer, wires up the context_seed
+6. Human gate Luke reviews the scaffold PR, fills in credentials,
+   approves deploy — only required human step
+7. Revenue tool goes live; if it retains, maintain it;
+   if not, the scaffold is the record of the attempt
 
 Current bottleneck: signal confidence, not build speed.
 A scaffold is only useful when the decision can be trusted. Today's work —
@@ -229,7 +236,7 @@ is what moves the system from "interesting topic" to "validated human
 problem with a real gap."
 
 Each improvement to validation makes it safer to hand more of the loop
-to agents. The daily signals history (data/signals_*.json) becomes the
+to agents. The daily signals history (data/signals\_\*.json) becomes the
 tuning dataset for raising confidence thresholds before expanding
 agent scope further.
 
