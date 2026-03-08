@@ -151,6 +151,7 @@ ENV (.env, gitignored):
   BRAVE_SEARCH_KEY
   GMAIL_ADDRESS
   GMAIL_APP_PASSWORD
+  GITHUB_TOKEN              fine-grained PAT, contents:write on modryn-studio-v2 only
 
 CLI FLAGS (pipeline.py):
   (no flags)       all 3 sources — default for scheduled run

@@ -29,7 +29,7 @@ from scorer import is_buildable, score_trend
 from cluster import detect_clusters, get_unclustered, rescore_clusters
 from reddit_check import validate_clusters
 from competitor_check import validate_build_opportunities
-from reporter import write_briefing
+from reporter import write_briefing, _push_briefing_to_v2
 from trend_memory import annotate as annotate_memory
 
 DATA_DIR = Path(__file__).parent / "data"
@@ -359,6 +359,9 @@ def run(sources: list[str], top_n: int = 15,
         # Re-write JSON with decision data (including context_seed)
         # that was attached to cluster/unclustered dicts during briefing generation
         _persist_decisions(output, out_path)
+
+        # Push to modryn-studio-v2 so Vercel rebuilds the public briefings page
+        _push_briefing_to_v2(today, briefing_path.read_text(encoding="utf-8"))
     except Exception as exc:  # noqa: BLE001
         print(f"[pipeline] Briefing generation failed (data saved): {exc}")
 
