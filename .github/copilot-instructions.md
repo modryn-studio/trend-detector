@@ -51,7 +51,7 @@ data/
 briefings/
   briefing_YYYY-MM-DD.md   ← daily morning briefing, auto-generated
 .env                 ← GMAIL_ADDRESS, GMAIL_APP_PASSWORD, OPENAI_API_KEY,
-                       BRAVE_SEARCH_KEY (gitignored)
+                       BRAVE_SEARCH_KEY, GITHUB_TOKEN (gitignored)
 ```
 
 ## Running the Pipeline
@@ -72,7 +72,7 @@ Output is always `data/signals_YYYY-MM-DD.json` regardless of which sources ran.
 ## Pipeline Stages
 ```
 trendspy ─┐
-RSS      ─┼─► cross-ref ─► filter ─► score ─► cluster ─► Reddit ─► competitor ─► time series ─► JSON ─► briefing
+RSS      ─┼─► cross-ref ─► filter ─► score ─► cluster ─► Reddit ─► competitor ─► time series ─► JSON ─► briefing ─► push
 Gmail    ─┘
 ```
 
@@ -88,7 +88,7 @@ Gmail    ─┘
    - Note: `_find_pass1_competition()` searches all member keywords for pass-1 data — survives `top_keyword` shifts from time-series enrichment.
 8. **Time series enrich** — `interest_over_time()` for top ~15 keywords; updates freshness score; re-sorts clusters after enrichment
 9. **Trend memory** — reads last 7 days of `signals_*.json`; annotates clusters and unclustered with `days_seen`, `trajectory` (rising/stable/fading), `first_seen`, `best_day_score`; LLM uses this to raise BUILD confidence for multi-day rising signals
-10. **Report** — `reporter.py`: LLM (GPT-5.2) renames clusters by human need, generates BUILD/WATCH/SKIP decisions with structured outputs, writes `briefings/briefing_YYYY-MM-DD.md`. Briefing order: cluster table → macro-theme story → **Reddit pain excerpts** → build decisions → competition. Reddit section shows up to 3 pain-matched post excerpts (title + 150-char body) per cluster so Luke reads raw voices before seeing LLM opinions. Build decisions lead with reasoning/risk; LLM build idea + context_seed are in a collapsible `<details>` block (reference only, not prescriptive — Luke decides product shape). Cluster table includes lifecycle tags (`EARLY`/`PEAKING`/`FADING`) derived from freshness scores and memory tags (`Nd ↑/→/↓`) from trend_memory.
+10. **Report** — `reporter.py`: LLM (GPT-5.2) renames clusters by human need, generates BUILD/WATCH/SKIP decisions with structured outputs, writes `briefings/briefing_YYYY-MM-DD.md`. Then `_push_briefing_to_v2()` commits the file to `modryn-studio-v2/content/briefings/` via GitHub API, triggering a Vercel rebuild so the public page at `modrynstudio.com/tools/trend-detector/briefings/YYYY-MM-DD` goes live within ~1 min. Requires `GITHUB_TOKEN` in `.env`; silently skips if not set. Briefing order: cluster table → macro-theme story → **Reddit pain excerpts** → build decisions → competition. Reddit section shows up to 3 pain-matched post excerpts (title + 150-char body) per cluster so Luke reads raw voices before seeing LLM opinions. Build decisions lead with reasoning/risk; LLM build idea + context_seed are in a collapsible `<details>` block (reference only, not prescriptive — Luke decides product shape). Cluster table includes lifecycle tags (`EARLY`/`PEAKING`/`FADING`) derived from freshness scores and memory tags (`Nd ↑/→/↓`) from trend_memory.
 
 Total API calls per run: **~15** (1 trending_now + ~3 batched interest_over_time + ~3 Reddit searches + ~7 Brave Search pass-1 + ~2 Brave refined + ~2 OpenAI)
 RED gate + score gate typically save 2-3 LLM calls/day. Trend memory is pure file-reads — zero API calls.

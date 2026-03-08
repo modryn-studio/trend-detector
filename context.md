@@ -70,6 +70,11 @@ PIPELINE STAGES (in order):
     briefings/briefing_YYYY-MM-DD.md. Order: cluster table
     → story → Reddit pain excerpts → decisions → competition.
     Build idea in collapsible block (reference only).
+    Then _push_briefing_to_v2() commits the file to
+    modryn-studio-v2/content/briefings/ via GitHub API, triggering
+    a Vercel rebuild. Public page live within ~1 min at
+    modrynstudio.com/tools/trend-detector/briefings/YYYY-MM-DD.
+    Requires GITHUB_TOKEN in .env; silently skips if not set.
 
 COMPETITOR CHECK (competitor_check.py):
 Pass 1 (keyword-based): checks trend keyword + suffix variants for top 5
@@ -90,6 +95,8 @@ Freshness 20% — interest_over_time peak position
 OUTPUTS:
 data/signals_YYYY-MM-DD.json — full structured output (NEVER delete)
 briefings/briefing_YYYY-MM-DD.md — morning briefing in plain English
+public page — modrynstudio.com/tools/trend-detector/briefings/YYYY-MM-DD
+  (auto-pushed to modryn-studio-v2 each run via GitHub API)
 
 OUTPUT FORMAT (data/signals_YYYY-MM-DD.json):
 {
