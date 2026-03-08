@@ -1074,10 +1074,65 @@ def main() -> None:
                 json.dump(signals, f, indent=2)
             print(f"[reporter] Decisions persisted ({len(decisions)} entries) -> {signals_path}")
 
+    # Push to modryn-studio-v2 so Vercel rebuilds the public briefings page.
+    # Requires GITHUB_TOKEN in .env (fine-grained PAT, Contents:write on modryn-studio-v2 only).
+    _push_briefing_to_v2(date_str, content)
+
     # Print to terminal so it appears in the daily log
     print("\n" + "=" * 60)
     print(content)
     print("=" * 60)
+
+
+def _push_briefing_to_v2(date_str: str, content: str) -> None:
+    """Commit briefing to modryn-studio-v2/content/briefings/ via GitHub API.
+
+    Triggers a Vercel rebuild so the public page goes live within ~1 minute.
+    Silently skips if GITHUB_TOKEN is not set.
+    """
+    import base64
+    import urllib.error
+    import urllib.request
+
+    token = os.getenv("GITHUB_TOKEN", "")
+    if not token:
+        return
+
+    filename = f"briefing_{date_str}.md"
+    api_url = (
+        f"https://api.github.com/repos/modryn-studio/modryn-studio-v2"
+        f"/contents/content/briefings/{filename}"
+    )
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "User-Agent": "trend-detector",
+        "Content-Type": "application/json",
+    }
+
+    # Fetch existing SHA — required by GitHub API when updating a file
+    sha = ""
+    try:
+        req = urllib.request.Request(api_url, headers=headers)
+        with urllib.request.urlopen(req) as resp:
+            sha = json.loads(resp.read()).get("sha", "")
+    except urllib.error.HTTPError:
+        pass  # File doesn't exist yet — create it
+
+    payload = json.dumps({
+        "message": f"briefing: {date_str}",
+        "content": base64.b64encode(content.encode("utf-8")).decode("ascii"),
+        "branch": "main",
+        **({"sha": sha} if sha else {}),
+    }).encode("utf-8")
+
+    try:
+        put_req = urllib.request.Request(
+            api_url, data=payload, method="PUT", headers=headers
+        )
+        with urllib.request.urlopen(put_req) as resp:
+            print(f"[reporter] Briefing pushed to modryn-studio-v2 ({resp.status})")
+    except urllib.error.HTTPError as e:
+        print(f"[reporter] GitHub push failed: {e.code} {e.reason}")
 
 
 if __name__ == "__main__":
