@@ -27,7 +27,10 @@ TOPIC_MAP: dict[int, str] = {
 
 # One client for the lifetime of the process — shares session/cookies
 # across both the discovery call and the time-series enrichment calls.
-_client = Trends(request_delay=2)
+# request_delay=5: trendspy itself warns to use 4+ after 429s; 5 gives extra
+# headroom since trending_now() already warms the session before we hit
+# interest_over_time().
+_client = Trends(request_delay=5)
 
 
 def fetch_trending(geo: str = "US") -> list[dict]:
@@ -86,6 +89,6 @@ def fetch_time_series(keywords: list[str], geo: str = "US",
         except Exception as e:
             print(f"[fetcher] interest_over_time failed for {chunk}: {e}")
 
-        time.sleep(3)
+        time.sleep(8)  # 8s between batches to avoid 429s after trending_now warms the session
 
     return series

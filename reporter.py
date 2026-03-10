@@ -262,7 +262,7 @@ def _cluster_table_section(clusters: list[dict], unclustered: list[dict]) -> str
         if mem:
             arrow = {"rising": "↑", "stable": "→", "fading": "↓"}.get(mem["trajectory"], "")
             mem_tag = f" `{mem['days_seen']}d {arrow}`"
-        name_cell = f"{name}{tag}{mem_tag} *(was: {original})*" if original else f"{name}{tag}{mem_tag}"
+        name_cell = f"{name}{tag}{mem_tag}"
         lines.append(
             f"| {i} | {name_cell} | {c['cluster_score']} "
             f"| {_hot_signals(c)} |"
@@ -909,9 +909,7 @@ def _reddit_section(clusters: list[dict]) -> str:
         subs = list(r.get("subreddit_hits", {}).keys())[:3]
         sub_str = ", ".join(f"r/{s}" for s in subs) if subs else "none"
 
-        queries_used = r.get("pain_queries") or [kw_searched]
-        queries_str = " · ".join(f'"{q}"' for q in queries_used[:3])
-        lines.append(f"**{c['cluster_name']}** — searched: {queries_str}")
+        lines.append(f"**{c['cluster_name']}**")
 
         if total == 0:
             lines.append("→ No Reddit results. Signal unconfirmed.")
