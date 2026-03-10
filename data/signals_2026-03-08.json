@@ -1,0 +1,1519 @@
+{
+  "date": "2026-03-08",
+  "sources": [
+    "trendspy",
+    "rss",
+    "email"
+  ],
+  "clusters": [
+    {
+      "cluster_name": "Daylight Savings",
+      "cluster_score": 98,
+      "member_count": 8,
+      "top_keyword": "sunshine protection act",
+      "growth_signals": [
+        "sunshine protection act: breakout",
+        "circadian fasting: breakout",
+        "sunrise alarm clock: breakout",
+        "is magnesium glycinate good for anxiety: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "sunshine protection act",
+          "score": 78,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 100.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "circadian fasting",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "sunrise alarm clock",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "is magnesium glycinate good for anxiety",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to test vagus nerve",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "how to activate vagus nerve",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "why is daylight savings a thing",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "is magnesium good for sleep",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 32,
+        "subreddit_hits": {
+          "sleep": 14,
+          "Anxiety": 13,
+          "Biohacking": 4,
+          "CircadianRhythm": 1
+        },
+        "pain_signal": true,
+        "pain_reliable": true,
+        "keyword": "sunshine protection act",
+        "pain_queries": [
+          "Why does the time change wreck sleep",
+          "How do I stop losing mornings after clocks change",
+          "Best sunrise alarm to fix sleep schedule"
+        ],
+        "targeted_subs": [
+          "DaylightSavings",
+          "circadianrhythm",
+          "sleep",
+          "anxiety",
+          "biohacking"
+        ],
+        "top_posts": [
+          {
+            "title": "stop drinking coffee within 90 minutes of waking up (data-backed)",
+            "selftext": "Drinking coffee the second you wake up is actually the least efficient way to use caffeine. Most of us are just masking a failure to let our natural Adenosine clearance finish its job.\n\nI spent the last month tracking my cortisol spikes against my intake and realized my \"perfectly timed\" 10am cup wa",
+            "subreddit": "Biohacking",
+            "score": 229,
+            "url": "https://reddit.com/r/Biohacking/comments/1rkujm4/stop_drinking_coffee_within_90_minutes_of_waking/",
+            "num_comments": 204,
+            "created_utc": 1772651536.0
+          },
+          {
+            "title": "Deep sleep almost doubled in 14 months. Breakdown of what I changed.",
+            "selftext": "42M. For most of my 30s I slept 6-7 hours a night and thought that was fine. Tired during the day, wired at night, rarely felt rested. Apple Watch consistently showing 40-50 mins  of deep sleep. assumed that was how I was built.\n\nThen i turned 40, lost my parents to diabetes and heart issues. Decide",
+            "subreddit": "sleep",
+            "score": 314,
+            "url": "https://reddit.com/r/sleep/comments/1re0zgf/deep_sleep_almost_doubled_in_14_months_breakdown/",
+            "num_comments": 59,
+            "created_utc": 1771987100.0
+          },
+          {
+            "title": "Has anyone else experienced this \"wired but exhausted\" thing where you're dead tired but your brain won't shut off?",
+            "selftext": "I don't even know how to explain this properly but I'm going to try because I'm at my wit's end and I don't know where else to turn.\n\nFor the past 3-4 years I've had this thing where I'm absolutely exhausted \u2014 like bone tired, eyes burning, body aching exhausted \u2014 but the second I lie down my brain",
+            "subreddit": "sleep",
+            "score": 182,
+            "url": "https://reddit.com/r/sleep/comments/1r09uq8/has_anyone_else_experienced_this_wired_but/",
+            "num_comments": 81,
+            "created_utc": 1770656799.0
+          },
+          {
+            "title": "How can I survive an MRI?",
+            "selftext": "TW: death, panic attack, claustrophobia.\n\n\n\nToday, I had an appointment to get an MRI done. This was an incredibly difficult day. A friend of mine passed away this morning. And I suffer from anxiety, claustrophobia, and the occasional panic attack.\n\nI lasted 2 second inside the machine. They didn't",
+            "subreddit": "Anxiety",
+            "score": 57,
+            "url": "https://reddit.com/r/Anxiety/comments/1qy0xjs/how_can_i_survive_an_mri/",
+            "num_comments": 82,
+            "created_utc": 1770429348.0
+          },
+          {
+            "title": "Most important study in sleep science",
+            "selftext": "Van Dongen et al. ran the experiment that changed how we understand chronic sleep restriction. They had subjects sleep 4h, 6h, or 8h nightly for 14 days, testing cognitive performance every 2 hours.  \n  \nThe 6h group\u2019s reaction time deficits by day 14 matched subjects who had been awake for 24 hours",
+            "subreddit": "sleep",
+            "score": 107,
+            "url": "https://reddit.com/r/sleep/comments/1qwzhnk/most_important_study_in_sleep_science/",
+            "num_comments": 7,
+            "created_utc": 1770329753.0
+          }
+        ]
+      },
+      "memory": {
+        "days_seen": 4,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 78
+      }
+    },
+    {
+      "cluster_name": "Return of Wooden Kitchens",
+      "cluster_score": 73,
+      "member_count": 9,
+      "top_keyword": "white oak cabinets",
+      "growth_signals": [
+        "white oak cabinets: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "white oak cabinets",
+          "score": 64,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 35.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "honey oak kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "white oak kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "wood kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "vintage kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "cozy kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "medium wood cabinets with white countertops",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "ashy toned cabinets",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "table lamp for kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 14,
+        "subreddit_hits": {
+          "woodworking": 6,
+          "HomeImprovement": 4,
+          "InteriorDesign": 4
+        },
+        "pain_signal": true,
+        "pain_reliable": true,
+        "keyword": "white oak cabinets",
+        "pain_queries": [
+          "Why is every kitchen oak?",
+          "Tired of white oak cabinets advice",
+          "How to update a honey oak kitchen"
+        ],
+        "targeted_subs": [
+          "KitchenRenovation",
+          "HomeImprovement",
+          "Woodworking",
+          "InteriorDesign"
+        ],
+        "top_posts": [
+          {
+            "title": "I finished my hand tool cabinet",
+            "selftext": "I\u2019ve been working on this on and off for the past 3 months. I had just started at the end of October, but we welcomed our third baby at the beginning of November so progress was a bit delayed after that. I made this cabinet out of a mix of red and white oak boards I had around the shop and some 1/2\u201d",
+            "subreddit": "woodworking",
+            "score": 4530,
+            "url": "https://reddit.com/r/woodworking/comments/1qxj6x8/i_finished_my_hand_tool_cabinet/",
+            "num_comments": 286,
+            "created_utc": 1770388388.0
+          },
+          {
+            "title": "White oak cabinet for the bathroom",
+            "selftext": "I fully embraced every knot, color streak, and \"defect\" of this white oak to make a piece that (to me) feels \"earthy\" and still close to the tree that it came from.\n\nThe bottom shelf and drawer fronts are English brown oak. \n\nBookmatched door panels and drawer fronts. drawers are on wood slides and",
+            "subreddit": "woodworking",
+            "score": 855,
+            "url": "https://reddit.com/r/woodworking/comments/1r6ayy6/white_oak_cabinet_for_the_bathroom/",
+            "num_comments": 197,
+            "created_utc": 1771251905.0
+          },
+          {
+            "title": "Remodeling 1950s Kitchen - Advice for flooring and backlash needed",
+            "selftext": "I am planning to remodel my 1950s kitchen. Here is the current space.\n\nI want to update it with green lower cupboards, white upper wall units, and bronze handles. I am unsure about the flooring choice but would like it to be vinyl for its durability, warmness, and waterproof features. I am debating",
+            "subreddit": "InteriorDesign",
+            "score": 87,
+            "url": "https://reddit.com/r/InteriorDesign/comments/1rj4ro2/remodeling_1950s_kitchen_advice_for_flooring_and/",
+            "num_comments": 94,
+            "created_utc": 1772484545.0
+          },
+          {
+            "title": "Tested: DIY CA glue accelerator alternatives",
+            "selftext": "If you're going to read anything, skip to the \"takeaways\" section near the bottom. The turbo TL;DR is to put some 70% concentration isopropyl alcohol in a spray bottle and be done with it.\n\n**Preamble**\n\nIn [this post](https://www.reddit.com/r/woodworking/comments/1rkeijb/diy_ca_glue_accelerator_bes",
+            "subreddit": "woodworking",
+            "score": 142,
+            "url": "https://reddit.com/r/woodworking/comments/1rlp8xp/tested_diy_ca_glue_accelerator_alternatives/",
+            "num_comments": 27,
+            "created_utc": 1772734998.0
+          },
+          {
+            "title": "Am I being foolish for wanting to swap my granite countertops for a different color granite or quartz?",
+            "selftext": "I bought my house about 4.5 years ago. Its relatively new, built in 2012.\n\nThe builders put nice cabinets and countertops in. Only thing is, i dont like the color combo. The cabinets are a cognac maple, like a warm brown color. The counter tops are a dark black and Grey speckled granite. It is Caled",
+            "subreddit": "HomeImprovement",
+            "score": 9,
+            "url": "https://reddit.com/r/HomeImprovement/comments/1rnqet2/am_i_being_foolish_for_wanting_to_swap_my_granite/",
+            "num_comments": 71,
+            "created_utc": 1772930335.0
+          }
+        ]
+      },
+      "memory": {
+        "days_seen": 4,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 74
+      }
+    },
+    {
+      "cluster_name": "hobbies",
+      "cluster_score": 72,
+      "member_count": 10,
+      "top_keyword": "feliz dia de la mujer 2026",
+      "growth_signals": [
+        "feliz dia de la mujer 2026: +400%",
+        "international womens day 2026: +200%"
+      ],
+      "members": [
+        {
+          "keyword": "feliz dia de la mujer 2026",
+          "score": 46,
+          "velocity": "rising",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 26.7,
+            "volume_score": 20.0,
+            "buildability_score": 50.0,
+            "freshness_score": 100.0,
+            "google_volume": 2000,
+            "google_growth_pct": 400
+          }
+        },
+        {
+          "keyword": "costa rica",
+          "score": 40,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "high",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 5.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 75
+          }
+        },
+        {
+          "keyword": "easter 2026",
+          "score": 39,
+          "velocity": "steady",
+          "volume": "medium",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 3.3,
+            "volume_score": 40.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 10000,
+            "google_growth_pct": 50
+          }
+        },
+        {
+          "keyword": "international womens day 2026",
+          "score": 38,
+          "velocity": "rising",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 13.3,
+            "volume_score": 20.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
+            "google_growth_pct": 200
+          }
+        },
+        {
+          "keyword": "oscars 2026 date",
+          "score": 36,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "victoria mackenzie childs",
+          "score": 36,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "chinese new year parade sf",
+          "score": 36,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 20.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "easter sunday 2026",
+          "score": 35,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 20.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 5000,
+            "google_growth_pct": 75
+          }
+        },
+        {
+          "keyword": "ramadan calendar 2026",
+          "score": 33,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "eid al fitr 2026",
+          "score": 32,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 100,
+            "google_growth_pct": 75
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 11,
+        "subreddit_hits": {
+          "Hobbies": 10,
+          "crafts": 1
+        },
+        "pain_signal": true,
+        "pain_reliable": true,
+        "keyword": "hobbies",
+        "pain_queries": [
+          "I need a new hobby",
+          "How do I find local hobbies",
+          "Hobbies to meet people"
+        ],
+        "targeted_subs": [
+          "hobbies",
+          "crafts",
+          "CostaRica",
+          "solotravel",
+          "EventPlanning"
+        ],
+        "top_posts": [
+          {
+            "title": "Ultimate List of Cheap, Interesting, and Accessible Hobbies",
+            "selftext": "[List of Cheap, Interesting, and Accessible Hobbies](https://docs.google.com/document/d/1JiFhpdtSRHDvtlCGifiWyBblUNMeL7dM/edit?usp=sharing&amp;ouid=115734284513090047891&amp;rtpof=true&amp;sd=true)\n\nI work in mental health and it's not uncommon for the people I talk with to not have any hobbies. The",
+            "subreddit": "Hobbies",
+            "score": 174,
+            "url": "https://reddit.com/r/Hobbies/comments/1r6lp9q/ultimate_list_of_cheap_interesting_and_accessible/",
+            "num_comments": 27,
+            "created_utc": 1771275426.0
+          },
+          {
+            "title": "in desperate need of a new hobby",
+            "selftext": "so i (21) am disabled, and spend most days confined to my house. i\u2019m constantly bored and antsy, and i love getting into new hobbies. \n\nfor context of past hobbies i\u2019ve gotten into, i started crocheting in first grade, though long since have forgotten how to do it. i used to draw a lot, though never",
+            "subreddit": "Hobbies",
+            "score": 27,
+            "url": "https://reddit.com/r/Hobbies/comments/1qzxaue/in_desperate_need_of_a_new_hobby/",
+            "num_comments": 66,
+            "created_utc": 1770619986.0
+          },
+          {
+            "title": "How to Keep My Cup Filled",
+            "selftext": "**TLDR:** I want recommendations for a hobby that takes up a decent amount of time and provides satisfaction.\n\n**Some context**: I am in a good-paying job, but I feel underutilized. Once every blue moon, work gets busy, but it's not often. I have a routine I stick to for the most part after work. On",
+            "subreddit": "Hobbies",
+            "score": 37,
+            "url": "https://reddit.com/r/Hobbies/comments/1rdwsf8/how_to_keep_my_cup_filled/",
+            "num_comments": 48,
+            "created_utc": 1771976339.0
+          },
+          {
+            "title": "What hobbies do you enjoy that helped you meet new people?",
+            "selftext": "I\u2019m a 23 year old girl and I feel like I\u2019ve never really had any group hobbies. Lately my life has been getting pretty boring, most of my time is spent studying scrolling on social media and talking to friends, and I\u2019d really like to meet new people and start a hobby where I can socialize more!\n\nI\u2019m",
+            "subreddit": "Hobbies",
+            "score": 40,
+            "url": "https://reddit.com/r/Hobbies/comments/1rntskd/what_hobbies_do_you_enjoy_that_helped_you_meet/",
+            "num_comments": 30,
+            "created_utc": 1772939906.0
+          },
+          {
+            "title": "Recovering Alcoholic Searching for Hobbies",
+            "selftext": "I don\u2019t know where to even start this, it\u2019s honestly overwhelming. I\u2019ve been up all night thinking about it, but basically I\u2019m a 28 year old male and I\u2019ve never had many hobbies, or friends, but getting sober this time around I have lost the last bit of my personality it feels like.\n\nLittle informat",
+            "subreddit": "Hobbies",
+            "score": 16,
+            "url": "https://reddit.com/r/Hobbies/comments/1r73y3s/recovering_alcoholic_searching_for_hobbies/",
+            "num_comments": 47,
+            "created_utc": 1771329084.0
+          }
+        ]
+      }
+    },
+    {
+      "cluster_name": "Boy Kibble",
+      "cluster_score": 70,
+      "member_count": 6,
+      "top_keyword": "boy kibble",
+      "growth_signals": [
+        "boy kibble: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "boy kibble",
+          "score": 78,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 100.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to cook ground lamb. \u201c ground beef bowls",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "girl dinner",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "beef rice bowl",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "protein in ground beef",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "chicken rice bowls",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "memory": {
+        "days_seen": 4,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 78
+      }
+    },
+    {
+      "cluster_name": "Top Trends",
+      "cluster_score": 65,
+      "member_count": 5,
+      "top_keyword": "when did zendaya and tom holland get married",
+      "growth_signals": [
+        "when did zendaya and tom holland get married: +1000%"
+      ],
+      "members": [
+        {
+          "keyword": "when did zendaya and tom holland get married",
+          "score": 66,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 66.7,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 100.0,
+            "google_volume": 0,
+            "google_growth_pct": 1000.0
+          }
+        },
+        {
+          "keyword": "sudoku packing",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "what is inside a needoh",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "where can i buy needoh",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "Zendaya wedding dress",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "memory": {
+        "days_seen": 4,
+        "trajectory": "rising",
+        "first_seen": "2026-03-04",
+        "best_day_score": 66
+      }
+    },
+    {
+      "cluster_name": "education",
+      "cluster_score": 42,
+      "member_count": 3,
+      "top_keyword": "mountain view college",
+      "growth_signals": [],
+      "members": [
+        {
+          "keyword": "mountain view college",
+          "score": 33,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "education",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "purdue university",
+          "score": 33,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "education",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "las vegas",
+          "score": 32,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "education",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 3.3,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 50
+          }
+        }
+      ]
+    }
+  ],
+  "unclustered": [
+    {
+      "keyword": "lloyd blankfein",
+      "score": 40,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 20.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 500,
+        "google_growth_pct": 300
+      },
+      "memory": {
+        "days_seen": 2,
+        "trajectory": "fading",
+        "first_seen": "2026-03-02",
+        "best_day_score": 36
+      }
+    },
+    {
+      "keyword": "arnold palmer",
+      "score": 40,
+      "velocity": "declining",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 10000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "finnian garbutt",
+      "score": 39,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "health",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 1000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "nascar race today",
+      "score": 36,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 5000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "mackenzie scott",
+      "score": 36,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 500,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "axar patel",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "tv app",
+      "score": 33,
+      "velocity": "rising",
+      "volume": "low",
+      "buildability": "high",
+      "category": "technology",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 20.0,
+        "volume_score": 20.0,
+        "buildability_score": 80.0,
+        "freshness_score": 10.0,
+        "google_volume": 1000,
+        "google_growth_pct": 300
+      }
+    },
+    {
+      "keyword": "jasprit bumrah",
+      "score": 30,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "donovan mitchell",
+      "score": 30,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 85.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "hailey bieber",
+      "score": 21,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "health",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 10.0,
+        "google_volume": 2000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "goldman sachs",
+      "score": 17,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 5.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 10.0,
+        "google_volume": 200,
+        "google_growth_pct": 75
+      }
+    },
+    {
+      "keyword": "arshdeep singh",
+      "score": 16,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 10.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    }
+  ],
+  "competition": {
+    "sunshine protection act": {
+      "keyword": "sunshine protection act",
+      "queries_searched": [
+        "sunshine protection act tool",
+        "sunshine protection act calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "white oak cabinets": {
+      "keyword": "white oak cabinets",
+      "queries_searched": [
+        "white oak cabinets tool",
+        "white oak cabinets calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "feliz dia de la mujer 2026": {
+      "keyword": "feliz dia de la mujer 2026",
+      "queries_searched": [
+        "feliz dia de la mujer 2026 tool",
+        "feliz dia de la mujer 2026 calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 3,
+      "top_competitors": [
+        {
+          "title": "15 im\u00e1genes para compartir por el D\u00eda de la Mujer 2026 en Whatsapp | Descubre",
+          "url": "https://www.elmundo.es/como/2026/03/08/69a97c05fdddffca7c8b4578.html",
+          "domain": "www.elmundo.es"
+        },
+        {
+          "title": "\u00a1Feliz D\u00eda de la Mujer 2026! 50 frases para conmemorar (y felicitar) por WhatsApp el 8M",
+          "url": "https://www.elconfidencial.com/espana/2026-03-08/frases-8m-dia-internacional-mujer-whatsapp-1qrt_4080892/",
+          "domain": "www.elconfidencial.com"
+        },
+        {
+          "title": "D\u00eda de la Mujer 2026: 100 frases para enviar por WhatsApp - Infobae",
+          "url": "https://www.infobae.com/tecno/2026/03/06/dia-de-la-mujer-2026-100-frases-para-enviar-por-whatsapp/",
+          "domain": "www.infobae.com"
+        }
+      ],
+      "verdict": "YELLOW"
+    },
+    "boy kibble": {
+      "keyword": "boy kibble",
+      "queries_searched": [
+        "boy kibble tool",
+        "boy kibble calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 1,
+      "top_competitors": [
+        {
+          "title": "Dog Food Calculator | Dog Food Advisor",
+          "url": "https://www.dogfoodadvisor.com/dog-feeding-tips/dog-food-calculator/",
+          "domain": "www.dogfoodadvisor.com"
+        }
+      ],
+      "verdict": "GREEN"
+    },
+    "when did zendaya and tom holland get married": {
+      "keyword": "when did zendaya and tom holland get married",
+      "queries_searched": [
+        "when did zendaya and tom holland get married tool",
+        "when did zendaya and tom holland get married calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 1,
+      "top_competitors": [
+        {
+          "title": "When Did Zendaya & Tom Holland Get Married? The Wedding Already Happened",
+          "url": "https://www.hercampus.com/culture/when-did-zendaya-tom-holland-get-married-wedding/",
+          "domain": "www.hercampus.com"
+        }
+      ],
+      "verdict": "GREEN"
+    }
+  },
+  "decisions": {
+    "Daylight Savings": {
+      "decision": "BUILD",
+      "confidence": "HIGH",
+      "build_idea": "A daylight-shift recovery coach for sleep-fragile professionals who become 'wired but exhausted' during clock changes and Monday-after-DST weeks. The emotional barrier is that they no longer trust their body cues, so they keep doom-adjusting with coffee, supplements, and random sleep hacks. The core value proposition is a 3-day personalized reset plan that tells them exactly when to use light, caffeine, meals, and wind-down timing to feel normal again without guesswork.",
+      "target_slug": "dst-reset-coach",
+      "monetization": "Freemium: free 3-day reset plan after each time change, paid subscription for ongoing circadian plans, symptom tracking, wearable integrations, and personalized recovery protocols.",
+      "reason": "Competition is GREEN and Reddit shows clear pain, especially frustration around feeling exhausted but unable to shut the brain off. Demand looks real rather than spiky because the trend has appeared 4 of the last 7 days and is rising, which supports a focused build around post-clock-change recovery rather than generic sleep content. [Note: refined competition search for 'daylight saving recovery app wired but tired professional' found 4 existing tools \u2014 review competition section before building.]",
+      "risk": "The main risk is seasonality unless the product expands from DST recovery into broader circadian disruption use cases like travel, shift changes, and late-night work recovery.",
+      "competition_queries": [
+        "daylight saving recovery app wired but tired professional",
+        "clock change sleep reset tool caffeine timing adults",
+        "circadian reset planner after time change knowledge worker"
+      ],
+      "context_seed": {
+        "product_description": "This product gives users a short, personalized recovery plan for the days surrounding clock changes, focused on reducing the 'wired but exhausted' state. It asks about wake time, caffeine habits, light exposure, and sleep symptoms, then generates a simple hourly plan for morning light, caffeine delay, meal timing, naps, and evening wind-down. The user gets a calming sense of control instead of endlessly testing sleep hacks.",
+        "target_user": "A 38-year-old knowledge worker who already struggles with inconsistent sleep and feels especially broken after daylight saving shifts. They are tired all day, mentally revved at night, and keep searching for magnesium, vagus nerve tricks, and caffeine timing because they want one plan they can trust.",
+        "emotional_barrier": "They feel overwhelmed and mistrustful of their own body, so they keep consuming conflicting advice instead of committing to one recovery plan.",
+        "routes": [
+          "/ \u2192 landing page explaining the post-clock-change recovery promise",
+          "/quiz \u2192 intake for wake time, sleep symptoms, caffeine habits, light exposure, and goals",
+          "/plan \u2192 personalized 3-day reset schedule with hour-by-hour actions",
+          "/today \u2192 simplified checklist for the current day",
+          "/symptoms \u2192 log energy, anxiety, sleep latency, and nighttime wakeups",
+          "/adjust \u2192 update plan after a bad night or missed routine",
+          "/learn \u2192 brief explanations for why each recommendation works",
+          "/settings \u2192 timezone, reminders, wearable sync, and recurring circadian goals",
+          "/upgrade \u2192 paid features for ongoing circadian coaching beyond seasonal clock changes"
+        ]
+      }
+    },
+    "Return of Wooden Kitchens": {
+      "decision": "BUILD",
+      "confidence": "HIGH",
+      "build_idea": "A renovation confidence tool for homeowners restoring a 1950s\u20131970s kitchen who are drawn to warm wood cabinetry but feel paralyzed that they'll choose the wrong wood tone, counters, backsplash, and lighting and end up with a dated or mismatched kitchen. It helps them build a 'safe cozy kitchen direction' by locking a wood-cabinet anchor, generating era-aware material pairings, and showing only cohesive combinations that preserve character without looking old-fashioned.",
+      "target_slug": "cozy-kitchen-direction",
+      "monetization": "Freemium: free mood-board and one kitchen direction, paid upgrade for multiple room concepts, save/share/export packs, remodel shopping lists, and contractor-ready finish specs; affiliate revenue from cabinetry, lighting, tile, and countertop referrals.",
+      "reason": "This is a BUILD because competition is GREEN and Reddit shows real emotional pain: people aren't just browsing inspiration, they're anxious about making irreversible remodel choices around wood tone, defects, warmth, and vintage character. The trend has appeared 4 of the last 7 days and is rising, which confirms this is sustained demand rather than a one-day aesthetic spike.",
+      "risk": "The main risk is that users may prefer Pinterest or Instagram inspiration unless the product gives stronger decision confidence and clearer 'don't mess this up' guidance than generic mood boards.",
+      "competition_queries": [
+        "1950s kitchen remodel wood tone planner",
+        "warm wood cabinet palette tool vintage kitchen",
+        "midcentury kitchen finish pairing app homeowner"
+      ],
+      "context_seed": {
+        "product_description": "A guided remodel decision tool for homeowners updating older kitchens with warm wood cabinetry. Users pick the fixed element they care about most\u2014existing floors, desired cabinet wood, countertop, or era\u2014and the product narrows them into a small set of cohesive, character-preserving kitchen directions with matching backsplash, paint, lighting, and hardware suggestions. The result is a confident, contractor-shareable plan that feels cozy and timeless instead of trendy or dated.",
+        "target_user": "A homeowner renovating a midcentury or older kitchen who loves the warmth of natural wood but keeps second-guessing every finish choice because they want the space to feel earthy, cozy, and updated without erasing its character.",
+        "emotional_barrier": "They are afraid of committing thousands of dollars to permanent materials that will clash, look too orange, or make the kitchen feel accidentally outdated.",
+        "routes": [
+          "/ \u2192 landing page explaining cozy kitchen direction planning",
+          "/start \u2192 choose renovation context: preserving vintage character vs warming up a newer kitchen",
+          "/anchor \u2192 select the non-negotiable element (existing floor, cabinet wood tone, countertop, wall color, or era)",
+          "/style-direction \u2192 generate 3-5 cohesive kitchen directions with confidence labels",
+          "/compare \u2192 side-by-side compare material combinations and see why each works",
+          "/avoid-mistakes \u2192 personalized warnings for clashes, overly orange combinations, cold pairings, or trend mismatch",
+          "/board \u2192 save a mood board with cabinets, counters, backsplash, hardware, and lighting",
+          "/shop-list \u2192 export finish/spec list and shopping links",
+          "/share \u2192 send contractor/designer-ready concept summary",
+          "/account \u2192 saved projects and upgrade options"
+        ]
+      }
+    },
+    "hobbies": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A gentle 'hobby restart coach' for house-bound disabled young adults who are bored, restless, and overwhelmed by open-ended hobby advice. The emotional barrier is not lack of ideas \u2014 it's the discouragement of starting something new alone when energy, mobility, and confidence fluctuate. Core value: turn 'I need a hobby' into a tiny, adaptive weekly plan with low-cost, accessible hobby matches, mood-based prompts, and low-pressure progress that feels satisfying instead of exhausting.",
+      "target_slug": "accessible-hobby-restart-coach",
+      "monetization": "Freemium subscription: free hobby matching and starter plans, paid adaptive coaching tracks, printable kits, and affiliate revenue from low-cost accessible hobby supplies.",
+      "reason": "There is real pain in Reddit around boredom, confinement, disability, and the emotional weight of finding a satisfying hobby, but the trend keywords themselves are noisy and not tightly aligned to this use case. Competition is only medium, yet the niche differentiation has to be emotional and accessibility-first to avoid becoming a generic hobby recommendation app.",
+      "risk": "The main risk is weak intent overlap between the current trend cluster and the niche product, making acquisition harder unless validated through direct audience interviews or creator channels.",
+      "competition_queries": [
+        "accessible hobby coach housebound adult app",
+        "disabled boredom hobby planner low energy tool",
+        "adaptive hobby starter app chronic illness homebound"
+      ],
+      "context_seed": {
+        "product_description": "This product helps house-bound people restart their sense of momentum through accessible hobbies that fit their energy, budget, and physical limits. Users answer a short check-in about mood, mobility, time, and materials on hand, then receive a tiny hobby plan with low-pressure steps, encouragement, and reflection that builds satisfaction over time.",
+        "target_user": "A 21-year-old disabled person spending most days at home, feeling bored and antsy, scrolling through huge hobby lists but unable to choose something realistic enough to begin and stick with.",
+        "emotional_barrier": "They feel overwhelmed and defeated by the gap between wanting a fulfilling hobby and not trusting their energy, body, or attention to follow through.",
+        "routes": [
+          "/ \u2192 landing page explaining adaptive hobby planning for home-bound users",
+          "/onboarding \u2192 capture energy level, mobility constraints, budget, interests, and available materials",
+          "/today-plan \u2192 generate one small hobby session for today's capacity",
+          "/hobby-matches \u2192 browse accessible hobby suggestions filtered by physical and mental load",
+          "/check-in \u2192 log mood, pain, energy, and satisfaction before or after an activity",
+          "/progress \u2192 view streaks, completed sessions, and confidence gains",
+          "/swap-plan \u2192 replace today's plan when symptoms or motivation change",
+          "/starter-kits \u2192 simple supply lists and low-cost recommendations",
+          "/journal \u2192 reflect on what felt calming, absorbing, or frustrating",
+          "/settings/accessibility \u2192 tune font, contrast, session length, reminders, and accommodations"
+        ]
+      }
+    },
+    "Boy Kibble": {
+      "decision": "BUILD",
+      "confidence": "MED",
+      "build_idea": "A meal-routine app for heterosexual women who are cooking for a boyfriend/partner with a big appetite and defaulting to repetitive 'boy dinner' meat-and-rice bowls. The emotional barrier is quiet pressure: they want to feel caring and competent without spending mental energy decoding protein, portions, and variation every night. The core value proposition is a low-effort 'feed him well' planner that turns one protein plus pantry staples into satisfying, high-protein bowl meals with portion guidance and novelty built in.",
+      "target_slug": "boy-dinner-bowl-planner",
+      "monetization": "Freemium: free weekly bowl plans and macro estimates; paid tier for personalized portions, saved partner profiles, grocery lists, and rotating recipe packs. Affiliate revenue from grocery delivery and meal-prep containers.",
+      "reason": "The cluster shows a clear behavioral pattern around simple, protein-heavy bowl meals, and the repeated emergence over 4 of the last 7 days with a rising trajectory suggests this is durable demand rather than a one-off meme. Competition is GREEN and the niche can be made specific enough to avoid generic recipe apps by focusing on the emotional job: reducing nightly pressure for someone feeding a hungry male partner with minimal effort. [Note: refined competition search for 'boyfriend meal planner high protein bowls' found 4 existing tools \u2014 review competition section before building.]",
+      "risk": "The primary risk is that the trend may be partly meme-driven language, making users prefer TikTok content over a dedicated product unless the tool delivers real weekly utility.",
+      "competition_queries": [
+        "boyfriend meal planner high protein bowls",
+        "app for cooking for hungry partner meal plan",
+        "high protein rice bowl planner for couples"
+      ],
+      "context_seed": {
+        "product_description": "This product helps someone quickly plan satisfying, high-protein dinners for a hungry boyfriend or male partner using simple bowl-based meals built from ground meat, rice, and easy add-ins. Users set their partner's appetite and goals, then get portion-aware meal suggestions, grocery lists, and easy variations so dinner feels caring but not exhausting.",
+        "target_user": "A woman in a relationship who often ends the workday tired, wants to make a filling dinner for her boyfriend, and keeps rotating the same ground beef, lamb, or chicken rice bowls because they're easy but mentally draining to plan.",
+        "emotional_barrier": "She feels low-grade pressure to be nurturing and get dinner 'right,' but is too depleted to invent another satisfying meal from scratch.",
+        "routes": [
+          "/ \u2192 landing page with sample bowl plans and value proposition",
+          "/onboarding \u2192 define partner appetite, protein preferences, budget, and cooking effort",
+          "/plan \u2192 weekly dinner plan with portion-aware bowl meals",
+          "/meal/:id \u2192 recipe card, swaps, protein estimate, and prep steps",
+          "/grocery-list \u2192 aggregated shopping list from selected meals",
+          "/pantry-swap \u2192 convert available ingredients into a bowl option",
+          "/history \u2192 previously cooked meals and repetition tracker",
+          "/profile \u2192 household settings, dietary preferences, and serving sizes",
+          "/upgrade \u2192 premium personalization and grocery integrations"
+        ]
+      }
+    },
+    "Top Trends": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A rumor-anxiety filter for celebrity-obsessed teens who feel embarrassed after sharing unverified relationship or wedding news in group chats and fan communities. The emotional barrier is social embarrassment and fear of looking gullible; the core value proposition is a fast, confidence-scored 'safe to share or still rumor' check with plain-language receipts and share-ready summaries.",
+      "target_slug": "rumor-anxiety-filter",
+      "monetization": "Freemium: free rumor checks with limited daily lookups, premium for unlimited checks, fandom watchlists, and early alerts when a rumor gets confirmed or debunked.",
+      "reason": "The trend is confirmed and rising, and competition appears weak, but the underlying need is still mostly celebrity-curiosity rather than a durable high-pain workflow. There is a plausible emotional wedge around embarrassment from spreading false gossip, but execution risk is moderate because attention may fade with the news cycle.",
+      "risk": "The main risk is that demand is tied to short-lived celebrity rumor spikes rather than an enduring user habit.",
+      "competition_queries": [
+        "celebrity rumor verification app fandom chat",
+        "safe to share gossip checker fan community",
+        "pop culture rumor confidence tracker kpop stans"
+      ],
+      "context_seed": {
+        "product_description": "This product helps fans quickly determine whether a celebrity relationship, engagement, or wedding claim is confirmed, speculative, or false before they repost it. It pulls together source credibility, timeline evidence, and a simple confidence label, then generates a concise summary users can share without spreading misinformation.",
+        "target_user": "A teen or young adult fan who is active in stan Twitter, TikTok comments, or group chats, wants to be first to know pop culture news, and hates the feeling of being wrong in public.",
+        "emotional_barrier": "They hesitate because being exposed for sharing fake celebrity news makes them feel gullible and socially embarrassed.",
+        "routes": [
+          "/ \u2192 landing page explaining rumor confidence checks",
+          "/check \u2192 paste a claim and get confirmation status with evidence",
+          "/result/:id \u2192 detailed rumor timeline, source ratings, and share summary",
+          "/watchlist \u2192 follow celebrities or fandom topics for updates",
+          "/alerts \u2192 see newly confirmed, debunked, or still-unverified claims",
+          "/share \u2192 generate a screenshot/card with 'confirmed', 'rumor', or 'false' label"
+        ]
+      }
+    },
+    "lloyd blankfein": {
+      "decision": "SKIP",
+      "confidence": "HIGH",
+      "reason": "Score gate: 40 < 50, no confirmed pain"
+    },
+    "arnold palmer": {
+      "decision": "SKIP",
+      "confidence": "HIGH",
+      "reason": "Score gate: 40 < 50, no confirmed pain"
+    }
+  }
+}

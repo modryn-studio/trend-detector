@@ -1,0 +1,1403 @@
+{
+  "date": "2026-03-10",
+  "sources": [
+    "trendspy",
+    "rss",
+    "email"
+  ],
+  "clusters": [
+    {
+      "cluster_name": "Daylight Savings",
+      "cluster_score": 98,
+      "member_count": 8,
+      "top_keyword": "sunshine protection act",
+      "growth_signals": [
+        "sunshine protection act: breakout",
+        "circadian fasting: breakout",
+        "sunrise alarm clock: breakout",
+        "is magnesium glycinate good for anxiety: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "sunshine protection act",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "circadian fasting",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "sunrise alarm clock",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "is magnesium glycinate good for anxiety",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to test vagus nerve",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "how to activate vagus nerve",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "why is daylight savings a thing",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "is magnesium good for sleep",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Daylight Savings",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 16,
+        "subreddit_hits": {
+          "insomnia": 10,
+          "intermittentfasting": 6
+        },
+        "pain_signal": true,
+        "pain_reliable": false,
+        "keyword": "sunshine protection act",
+        "pain_queries": [
+          "Why does the clock change wreck my sleep",
+          "How do I stop losing evening sunlight after time change",
+          "Best ways to reset my circadian rhythm quickly"
+        ],
+        "targeted_subs": [
+          "DaylightSavings",
+          "insomnia",
+          "Chronobiology",
+          "intermittentfasting",
+          "SleepScience"
+        ],
+        "top_posts": [
+          {
+            "title": "2.5 years, 95 lbs down, Maintained for several months",
+            "selftext": "When I got out of the Army 15 years ago, I was relatively fit. I lifted and biked regularly; exercise was a part of my daily life. Then life stacked up. I ended up with a one hour commute each way on top of twelve-hour workdays. Then came the baby. Less sleep. More stress. Then COVID hit and whateve",
+            "subreddit": "intermittentfasting",
+            "score": 2534,
+            "url": "https://reddit.com/r/intermittentfasting/comments/1rchuc2/25_years_95_lbs_down_maintained_for_several_months/",
+            "num_comments": 79,
+            "created_utc": 1771854374.0
+          },
+          {
+            "title": "What I learned from after 1 year of Intermitten Fasting and losing some 17kg of weight",
+            "selftext": "* Your body adjusts to new habits faster than you expect. I used to drink up to 3 cans of energy drink before starting my journey. For me it was just normal. After first few weeks of sugar withdrawal my body started craving less and less processed sugar. Same with the IF routine, I started doing 24",
+            "subreddit": "intermittentfasting",
+            "score": 575,
+            "url": "https://reddit.com/r/intermittentfasting/comments/1r28dg4/what_i_learned_from_after_1_year_of_intermitten/",
+            "num_comments": 31,
+            "created_utc": 1770841146.0
+          },
+          {
+            "title": "Starting over (again)",
+            "selftext": "Hi Guys!:) This is me - male, 41y, 211 lbs (96kg). It\u2019s the beginning of March, spring is around the corner, and it just feels like a good moment for a reset. I\u2019ve been trying fasting for a while \u2014 intermittent fasting, OMAD, even longer fasts (60h max). I never made it stick long term - too much wo",
+            "subreddit": "intermittentfasting",
+            "score": 178,
+            "url": "https://reddit.com/r/intermittentfasting/comments/1riuhrt/starting_over_again/",
+            "num_comments": 21,
+            "created_utc": 1772462244.0
+          },
+          {
+            "title": "It's heartbreaking to set an alarm for 6am at 3am",
+            "selftext": "I used to fall asleep on the couch watching TV.\n\nI remember that feeling. That heavy, slow fade where your eyes just stop cooperating and the next thing you know it's two hours later and you have a crick in your neck and you're annoyed at yourself for not going to bed properly.\n\nI haven't felt that",
+            "subreddit": "insomnia",
+            "score": 130,
+            "url": "https://reddit.com/r/insomnia/comments/1rfhcr9/its_heartbreaking_to_set_an_alarm_for_6am_at_3am/",
+            "num_comments": 48,
+            "created_utc": 1772128801.0
+          },
+          {
+            "title": "What worked for me after 6 months of Insomnia",
+            "selftext": "After scrolling through these threads during my insomnia hell I just wanted to share what worked for me in case it works for you\u2026\n\nContext: I am 34/F and I exercise regularly. My worst period of insomnia lasted 6 months. At my worst I was awake for 4 days with zero sleep. \n\nWhat worked:\n\n\u2705 Testing V",
+            "subreddit": "insomnia",
+            "score": 49,
+            "url": "https://reddit.com/r/insomnia/comments/1rj6ooe/what_worked_for_me_after_6_months_of_insomnia/",
+            "num_comments": 41,
+            "created_utc": 1772488839.0
+          }
+        ]
+      },
+      "memory": {
+        "days_seen": 6,
+        "trajectory": "stable",
+        "first_seen": "2026-03-04",
+        "best_day_score": 78
+      }
+    },
+    {
+      "cluster_name": "Return of Wooden Kitchens",
+      "cluster_score": 74,
+      "member_count": 9,
+      "top_keyword": "white oak cabinets",
+      "growth_signals": [
+        "white oak cabinets: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "white oak cabinets",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "honey oak kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "white oak kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "wood kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "vintage kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "cozy kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "medium wood cabinets with white countertops",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "ashy toned cabinets",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "table lamp for kitchen",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Return of Wooden Kitchens",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 21,
+        "subreddit_hits": {
+          "woodworking": 7,
+          "InteriorDesign": 6,
+          "HomeImprovement": 5,
+          "DIY": 3
+        },
+        "pain_signal": true,
+        "pain_reliable": true,
+        "keyword": "white oak cabinets",
+        "pain_queries": [
+          "Tired of honey oak cabinets",
+          "Thinking of white oak cabinets",
+          "How to update vintage wood kitchen"
+        ],
+        "targeted_subs": [
+          "HomeImprovement",
+          "DIY",
+          "Woodworking",
+          "InteriorDesign",
+          "KitchenDesign"
+        ],
+        "top_posts": [
+          {
+            "title": "My first dresser, after more than a decade of making.",
+            "selftext": "Went for a simple design with clean lines in white oak. No hardware, just integrated pulls and slides. \n\nThe drawers ride on rails in the frame. Once waxed up they glide like a dream. Might not be for everybody, with no soft close mechanism, but I like to think it gives the piece a timeless feel, li",
+            "subreddit": "woodworking",
+            "score": 5546,
+            "url": "https://reddit.com/r/woodworking/comments/1r7mqpn/my_first_dresser_after_more_than_a_decade_of/",
+            "num_comments": 183,
+            "created_utc": 1771371632.0
+          },
+          {
+            "title": "White oak cabinet for the bathroom",
+            "selftext": "I fully embraced every knot, color streak, and \"defect\" of this white oak to make a piece that (to me) feels \"earthy\" and still close to the tree that it came from.\n\nThe bottom shelf and drawer fronts are English brown oak. \n\nBookmatched door panels and drawer fronts. drawers are on wood slides and",
+            "subreddit": "woodworking",
+            "score": 854,
+            "url": "https://reddit.com/r/woodworking/comments/1r6ayy6/white_oak_cabinet_for_the_bathroom/",
+            "num_comments": 197,
+            "created_utc": 1771251905.0
+          },
+          {
+            "title": "Install of a recent office completely designed and manufactured by me",
+            "selftext": "Im paticularly proud of the office recently completed for a client. Its by far and away the most ambitious build this year due to design decisions taken that added a large degree of complexity to the build, from the mitred boxes to the discrete integrated lighting option. Ultimately it has provided",
+            "subreddit": "InteriorDesign",
+            "score": 465,
+            "url": "https://reddit.com/r/InteriorDesign/comments/1qzbly4/install_of_a_recent_office_completely_designed/",
+            "num_comments": 53,
+            "created_utc": 1770564071.0
+          },
+          {
+            "title": "How to finish butcherblock in laundry area?",
+            "selftext": "We installed a beautiful butcherblock as a working surface right above the washer and dryer. Before I could seal it with my choice of clear coat some dryer sheets \"stained\"the wood. As well as some misterious little drops (I'm guessing fabric softener or laundry detergent drips which were just wiped",
+            "subreddit": "woodworking",
+            "score": 306,
+            "url": "https://reddit.com/r/woodworking/comments/1r3u1jq/how_to_finish_butcherblock_in_laundry_area/",
+            "num_comments": 83,
+            "created_utc": 1771000720.0
+          },
+          {
+            "title": "Designed and build this cot / crib",
+            "selftext": "Built this over a few months out of QS white oak. I followed the British and US guidelines on building a cot safely - nothing protruding above the rails, slat spacing under 60mm, etc. The mattress base is adjustable so it can be lowered as the baby gets bigger. I took a lot of inspiration from u/pla",
+            "subreddit": "woodworking",
+            "score": 336,
+            "url": "https://reddit.com/r/woodworking/comments/1ribhit/designed_and_build_this_cot_crib/",
+            "num_comments": 11,
+            "created_utc": 1772404793.0
+          }
+        ]
+      },
+      "memory": {
+        "days_seen": 6,
+        "trajectory": "stable",
+        "first_seen": "2026-03-04",
+        "best_day_score": 74
+      }
+    },
+    {
+      "cluster_name": "Boy Kibble",
+      "cluster_score": 70,
+      "member_count": 6,
+      "top_keyword": "boy kibble",
+      "growth_signals": [
+        "boy kibble: breakout"
+      ],
+      "members": [
+        {
+          "keyword": "boy kibble",
+          "score": 74,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 100.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 5000.0
+          }
+        },
+        {
+          "keyword": "how to cook ground lamb. \u201c ground beef bowls",
+          "score": 47,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "high",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 80.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "girl dinner",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "beef rice bowl",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "protein in ground beef",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "chicken rice bowls",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Boy Kibble",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "reddit": {
+        "total_posts": 16,
+        "subreddit_hits": {
+          "MealPrepSunday": 9,
+          "EatCheapAndHealthy": 4,
+          "AskCulinary": 2,
+          "OnePanMeals": 1
+        },
+        "pain_signal": true,
+        "pain_reliable": false,
+        "keyword": "boy kibble",
+        "pain_queries": [
+          "how to cook ground lamb",
+          "easy ground beef rice bowl",
+          "quick chicken rice bowl"
+        ],
+        "targeted_subs": [
+          "MealPrepSunday",
+          "AskCulinary",
+          "eatcheapandhealthy",
+          "OnePanMeals",
+          "ecipes"
+        ],
+        "top_posts": [
+          {
+            "title": "Celebrating the start of my new job with some delicious meal prep!",
+            "selftext": "\ud83c\udf57 Miso-glazed chicken: Marinate chicken thighs with 2 tbsp miso paste, 2 tbsp maple syrup, 4 tsp soy sauce, 2 tsp sesame seed oil, 2 tsp rice wine vinegar, 1 tsp fresh ginger, 1 tsp onion powder, 1 tsp garlic powder + 1/2 tsp fish sauce. I marinated my chicken for about 3 hrs. Then bake at 400F for",
+            "subreddit": "MealPrepSunday",
+            "score": 756,
+            "url": "https://reddit.com/r/MealPrepSunday/comments/1r0n2fs/celebrating_the_start_of_my_new_job_with_some/",
+            "num_comments": 58,
+            "created_utc": 1770686759.0
+          },
+          {
+            "title": "Burrito bowl prep",
+            "selftext": "2 lbs ground beef\n\n3 cups white rice\n\nred beans\n\ncorn pico\n\na dollop of sour cream on each one\n\n1 bag mexicn cheese blend",
+            "subreddit": "MealPrepSunday",
+            "score": 658,
+            "url": "https://reddit.com/r/MealPrepSunday/comments/1r05v9x/burrito_bowl_prep/",
+            "num_comments": 51,
+            "created_utc": 1770647892.0
+          },
+          {
+            "title": "Putting my Vegetarian twist on a fellow meal-preppers meal",
+            "selftext": "Grabbed this meal from u/Clear-Presence-485. Meal looked amazing so I had to try it out vegetarian style. Took your meal idea and saved it in my shopping app to keep for next time. Prices incase anyone wanted to see. Total was roughly $45 because you cant modify quantities, but I got 3 sticks of Tof",
+            "subreddit": "MealPrepSunday",
+            "score": 238,
+            "url": "https://reddit.com/r/MealPrepSunday/comments/1reohr3/putting_my_vegetarian_twist_on_a_fellow/",
+            "num_comments": 31,
+            "created_utc": 1772050509.0
+          },
+          {
+            "title": "I finally unpacked my kitchen after moving three months ago. My first real meal here and I attempted to make Chimichangas.",
+            "selftext": "I made the chimichangas with pork tenderloin carnitas, homemade pinto beans in sauce (puerto rican style), Monterrey jack cheese, brown cilantro lime rice, and southwestern corn. I used whole wheat tortillas which is why they are so dark. Surprisingly, even though they were hard to roll none of them",
+            "subreddit": "MealPrepSunday",
+            "score": 218,
+            "url": "https://reddit.com/r/MealPrepSunday/comments/1rcbdab/i_finally_unpacked_my_kitchen_after_moving_three/",
+            "num_comments": 25,
+            "created_utc": 1771832978.0
+          },
+          {
+            "title": "what are your favorite NON lazy lunches?",
+            "selftext": "every time i look up lunch ideas, it\u2019s always people asking how to make the easiest and least minimal effort lunches for work. my problem isn\u2019t laziness, it\u2019s that i get bored of food really quickly.\n\ni\u2019m willing to put in the effort if it means not ordering out for lunch all the time (which i\u2019m als",
+            "subreddit": "EatCheapAndHealthy",
+            "score": 139,
+            "url": "https://reddit.com/r/EatCheapAndHealthy/comments/1rh1e00/what_are_your_favorite_non_lazy_lunches/",
+            "num_comments": 81,
+            "created_utc": 1772281621.0
+          }
+        ]
+      },
+      "memory": {
+        "days_seen": 6,
+        "trajectory": "stable",
+        "first_seen": "2026-03-04",
+        "best_day_score": 78
+      }
+    },
+    {
+      "cluster_name": "Top Trends",
+      "cluster_score": 65,
+      "member_count": 5,
+      "top_keyword": "when did zendaya and tom holland get married",
+      "growth_signals": [
+        "when did zendaya and tom holland get married: +1000%"
+      ],
+      "members": [
+        {
+          "keyword": "when did zendaya and tom holland get married",
+          "score": 63,
+          "velocity": "rising",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 66.7,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 1000.0
+          }
+        },
+        {
+          "keyword": "sudoku packing",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "what is inside a needoh",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "where can i buy needoh",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        },
+        {
+          "keyword": "Zendaya wedding dress",
+          "score": 40,
+          "velocity": "declining",
+          "volume": "unknown",
+          "buildability": "medium",
+          "category": "Top Trends",
+          "source": "email",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 0.0,
+            "volume_score": 50.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 0,
+            "google_growth_pct": 0.0
+          }
+        }
+      ],
+      "memory": {
+        "days_seen": 6,
+        "trajectory": "stable",
+        "first_seen": "2026-03-04",
+        "best_day_score": 66
+      }
+    },
+    {
+      "cluster_name": "education",
+      "cluster_score": 58,
+      "member_count": 2,
+      "top_keyword": "krisanthe vlachos",
+      "growth_signals": [
+        "krisanthe vlachos: +300%",
+        "wes moore: +300%"
+      ],
+      "members": [
+        {
+          "keyword": "krisanthe vlachos",
+          "score": 44,
+          "velocity": "rising",
+          "volume": "medium",
+          "buildability": "medium",
+          "category": "education",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 20.0,
+            "volume_score": 40.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 20000,
+            "google_growth_pct": 300
+          }
+        },
+        {
+          "keyword": "wes moore",
+          "score": 40,
+          "velocity": "rising",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "education",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 20.0,
+            "volume_score": 20.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 1000,
+            "google_growth_pct": 300
+          }
+        }
+      ]
+    },
+    {
+      "cluster_name": "hobbies",
+      "cluster_score": 54,
+      "member_count": 3,
+      "top_keyword": "dollar general $2 tote",
+      "growth_signals": [
+        "dollar general $2 tote: +700%"
+      ],
+      "members": [
+        {
+          "keyword": "dollar general $2 tote",
+          "score": 54,
+          "velocity": "rising",
+          "volume": "medium",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 46.7,
+            "volume_score": 40.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 10000,
+            "google_growth_pct": 700
+          }
+        },
+        {
+          "keyword": "famous birthdays",
+          "score": 33,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 6.7,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 200,
+            "google_growth_pct": 100
+          }
+        },
+        {
+          "keyword": "brianna johnson",
+          "score": 32,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "medium",
+          "category": "hobbies",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 5.0,
+            "buildability_score": 50.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 75
+          }
+        }
+      ]
+    },
+    {
+      "cluster_name": "stock / dow / market",
+      "cluster_score": 44,
+      "member_count": 3,
+      "top_keyword": "dow jones stock markets",
+      "growth_signals": [
+        "dow jones stock markets: +500%"
+      ],
+      "members": [
+        {
+          "keyword": "dow jones stock markets",
+          "score": 38,
+          "velocity": "rising",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 33.3,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
+            "google_growth_pct": 500
+          }
+        },
+        {
+          "keyword": "nio stock",
+          "score": 28,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 20.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 2000,
+            "google_growth_pct": 75
+          }
+        },
+        {
+          "keyword": "orcl stock",
+          "score": 25,
+          "velocity": "steady",
+          "volume": "low",
+          "buildability": "low",
+          "category": "finance",
+          "source": "trendspy",
+          "source_count": 1,
+          "_raw": {
+            "growth_score": 5.0,
+            "volume_score": 5.0,
+            "buildability_score": 20.0,
+            "freshness_score": 85.0,
+            "google_volume": 500,
+            "google_growth_pct": 75
+          }
+        }
+      ],
+      "memory": {
+        "days_seen": 2,
+        "trajectory": "stable",
+        "first_seen": "2026-03-06",
+        "best_day_score": 49
+      }
+    }
+  ],
+  "unclustered": [
+    {
+      "keyword": "mario day",
+      "score": 59,
+      "velocity": "rising",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "technology",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 53.3,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 20000,
+        "google_growth_pct": 800
+      }
+    },
+    {
+      "keyword": "jet blue",
+      "score": 45,
+      "velocity": "rising",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 13.3,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 20000,
+        "google_growth_pct": 200
+      }
+    },
+    {
+      "keyword": "geno smith",
+      "score": 40,
+      "velocity": "declining",
+      "volume": "medium",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 40.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 10000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "naomi osaka",
+      "score": 36,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 1000,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "bernard arnault",
+      "score": 35,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 3.3,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 500,
+        "google_growth_pct": 50
+      }
+    },
+    {
+      "keyword": "a'shawn robinson",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "micah mcfadden",
+      "score": 34,
+      "velocity": "declining",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "unknown",
+      "source": "rss",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 0.0,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 100.0,
+        "google_volume": 500,
+        "google_growth_pct": 0
+      }
+    },
+    {
+      "keyword": "cryptocurrency machine",
+      "score": 21,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 20.0,
+        "buildability_score": 50.0,
+        "freshness_score": 10.0,
+        "google_volume": 1000,
+        "google_growth_pct": 100
+      }
+    },
+    {
+      "keyword": "buy bitcoin",
+      "score": 18,
+      "velocity": "steady",
+      "volume": "low",
+      "buildability": "medium",
+      "category": "finance",
+      "source": "trendspy",
+      "source_count": 1,
+      "_raw": {
+        "growth_score": 6.7,
+        "volume_score": 5.0,
+        "buildability_score": 50.0,
+        "freshness_score": 10.0,
+        "google_volume": 500,
+        "google_growth_pct": 100
+      }
+    }
+  ],
+  "competition": {
+    "sunshine protection act": {
+      "keyword": "sunshine protection act",
+      "queries_searched": [
+        "sunshine protection act tool",
+        "sunshine protection act calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "white oak cabinets": {
+      "keyword": "white oak cabinets",
+      "queries_searched": [
+        "white oak cabinets tool",
+        "white oak cabinets calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "boy kibble": {
+      "keyword": "boy kibble",
+      "queries_searched": [
+        "boy kibble tool",
+        "boy kibble calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 2,
+      "top_competitors": [
+        {
+          "title": "Dog Food Calculator | Dog Food Advisor",
+          "url": "https://www.dogfoodadvisor.com/dog-feeding-tips/dog-food-calculator/",
+          "domain": "www.dogfoodadvisor.com"
+        },
+        {
+          "title": "Dog Food Calculator by Breed & Weight | JustFoodForDogs",
+          "url": "https://www.justfoodfordogs.com/dog-food-calculator/",
+          "domain": "www.justfoodfordogs.com"
+        }
+      ],
+      "verdict": "YELLOW"
+    },
+    "when did zendaya and tom holland get married": {
+      "keyword": "when did zendaya and tom holland get married",
+      "queries_searched": [
+        "when did zendaya and tom holland get married tool",
+        "when did zendaya and tom holland get married calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 0,
+      "top_competitors": [],
+      "verdict": "GREEN"
+    },
+    "krisanthe vlachos": {
+      "keyword": "krisanthe vlachos",
+      "queries_searched": [
+        "krisanthe vlachos tool",
+        "krisanthe vlachos calculator"
+      ],
+      "total_results": 20,
+      "competitor_count": 2,
+      "top_competitors": [
+        {
+          "title": "\ud83d\udea8Sources: The woman at the center of Ted Carter's \"inappropriate relationship\" \ud83d\udea8",
+          "url": "https://www.rooster.info/p/krisanthe-vlachos-ted-carter-resignation-ohio-state-university",
+          "domain": "www.rooster.info"
+        },
+        {
+          "title": "Ohio State president\u2019s \u2018inappropriate relationship\u2019 linked to Columbus podcaster, JobsOhio says | NBC4 WCMH-TV",
+          "url": "https://www.nbc4i.com/news/local-news/ohio-state-university/ohio-state-presidents-inappropriate-relationship-linked-to-columbus-podcaster-jobsohio-says/",
+          "domain": "www.nbc4i.com"
+        }
+      ],
+      "verdict": "YELLOW"
+    }
+  },
+  "decisions": {
+    "Daylight Savings": {
+      "decision": "BUILD",
+      "confidence": "MED",
+      "build_idea": "A daylight-transition routine coach for adults restarting weight loss and sleep habits every spring/fall after their schedule gets thrown off. The niche is the 35-50-year-old person who says 'I\u2019m starting over again' because time changes derail fasting windows, morning workouts, sleep, and anxiety management; the emotional barrier is discouragement and loss of self-trust after one disrupted week. The core value proposition is a 14-day 'clock-shift recovery plan' that automatically adjusts wake time, meals, light exposure, caffeine cutoff, and bedtime in tiny steps so they feel back in control instead of ashamed and overwhelmed.",
+      "target_slug": "clock-shift-recovery-coach",
+      "monetization": "Freemium: free DST recovery plan and reminders; paid subscription for personalized plans, wearable/sleep tracker integrations, symptom tracking, and seasonal reset programs.",
+      "reason": "Competition is GREEN and there is a real pain signal, especially around habit relapse, sleep disruption, and feeling forced to start over. The trend has been present 6 of the last 7 days, which suggests confirmed demand, but Reddit evidence is somewhat indirect, so confidence is moderated. [Note: refined competition search for 'daylight shift fasting routine app spring restart' found 4 existing tools \u2014 review competition section before building.]",
+      "risk": "The main risk is that interest may be news-driven around policy discussion rather than sustained willingness to pay for a behavior-change product.",
+      "competition_queries": [
+        "daylight shift fasting routine app spring restart",
+        "time change sleep workout reset coach middle age",
+        "seasonal clock change habit recovery planner weight loss"
+      ],
+      "context_seed": {
+        "product_description": "This product helps users recover from seasonal clock changes without blowing up their sleep, fasting, exercise, and anxiety-management routines. It creates a personalized 14-day adjustment plan with small daily shifts for wake time, meals, light exposure, movement, and evening wind-down, plus check-ins that focus on momentum instead of perfection.",
+        "target_user": "A 41-year-old man who has restarted his health journey multiple times, wants to keep weight loss progress going, and feels frustrated when one schedule disruption turns into a lost month.",
+        "emotional_barrier": "They no longer trust themselves to recover quickly after a disrupted routine, so one bad week feels like proof they are failing again.",
+        "routes": [
+          "/ \u2192 landing page explaining the 14-day clock-shift recovery promise",
+          "/onboarding \u2192 capture current wake time, bedtime, work hours, meal timing, exercise habits, and goals",
+          "/plan \u2192 personalized daily adjustment schedule for sleep, meals, light, and movement",
+          "/check-in \u2192 quick daily reflection on energy, hunger, mood, and adherence",
+          "/rescue-day \u2192 fallback plan for users who missed a day and feel they are slipping",
+          "/progress \u2192 streaks, recovery score, and before/after routine stability view",
+          "/seasonal-resets \u2192 library of spring forward/fall back reset programs",
+          "/settings \u2192 reminder timing, wearable integrations, and notification preferences"
+        ]
+      }
+    },
+    "Return of Wooden Kitchens": {
+      "decision": "BUILD",
+      "confidence": "HIGH",
+      "build_idea": "A cabinet-confidence planner for first-time homeowners remodeling a kitchen with natural wood cabinetry who feel paralyzed that one expensive choice will make the room look yellow, dated, or mismatched. It turns vague inspiration into a low-risk visual decision flow: compare undertones, countertop pairings, hardware moods, lighting warmth, and sample-board plans so they can commit without second-guessing every knot, streak, or finish.",
+      "target_slug": "cabinet-confidence-planner",
+      "monetization": "Freemium mood-board and finish matcher, with paid renovation decision packs, affiliate referrals for sample orders/finishes/hardware, and premium pro-reviewed kitchen plans.",
+      "reason": "Competition is GREEN, Reddit shows real emotional friction around embracing wood variation and making handcrafted wood pieces feel intentional rather than flawed, and the trend has held steady for 6 of the last 7 days. This is not just design inspiration demand; it reflects decision anxiety around expensive, highly visible kitchen choices where people fear getting the tone wrong. [Note: refined competition search for 'natural wood kitchen remodel decision app first time homeowner' found 6 existing tools \u2014 review competition section before building.]",
+      "risk": "The main risk is that users may default to Pinterest, Instagram, or interior designers unless the product clearly reduces purchase anxiety with concrete decision tools.",
+      "competition_queries": [
+        "natural wood kitchen remodel decision app first time homeowner",
+        "cabinet undertone matcher kitchen renovation sample planner",
+        "kitchen finish confidence tool wood cabinet countertop pairing"
+      ],
+      "context_seed": {
+        "product_description": "This product helps a homeowner choose natural wood kitchen finishes without spiraling into endless inspiration browsing. Users define their cabinet tone, room light, countertop direction, and desired mood, then get a guided pairing plan, sample checklist, and confidence score for a cohesive kitchen direction.",
+        "target_user": "A first-time homeowner midway through a kitchen remodel who loves warm, earthy wood but is scared that visible grain, knots, or the wrong undertone will make the kitchen feel dated, too yellow, or expensive in the wrong way.",
+        "emotional_barrier": "They are afraid of making an irreversible, costly kitchen decision that looks beautiful online but wrong in their actual home.",
+        "routes": [
+          "/ \u2192 landing page explaining the confidence-based kitchen planning flow",
+          "/quiz \u2192 guided style and undertone assessment",
+          "/lighting-check \u2192 evaluate room light warmth and its effect on wood tone",
+          "/pairings \u2192 recommended countertop, backsplash, wall color, and hardware combinations",
+          "/compare \u2192 side-by-side cabinet finish mood comparisons",
+          "/sample-plan \u2192 printable or mobile checklist for ordering and testing samples at home",
+          "/board \u2192 save a kitchen direction and assemble a shareable mood board",
+          "/confidence-score \u2192 summary of fit, risk flags, and what to verify before purchase",
+          "/pro-review \u2192 optional paid expert feedback on the chosen direction"
+        ]
+      }
+    },
+    "Boy Kibble": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A low-friction meal-prep confidence tool for young men living alone who want 'easy protein bowls' after work but feel embarrassed by not knowing how to cook beyond memeified staples. It turns 3-5 cheap ingredients they already buy\u2014ground beef, rice, chicken, lamb\u2014into repeatable 'autopilot bowls' with portioning, batch-prep steps, and a no-judgment routine that reduces decision fatigue and the shame of feeling incompetent in the kitchen.",
+      "target_slug": "autopilot-protein-bowls",
+      "monetization": "Freemium: free weekly bowl plans and grocery lists; paid subscription for personalized macros, pantry-aware swaps, bulk-prep calendars, and affiliate revenue from grocery delivery links.",
+      "reason": "Demand looks real because the trend has appeared consistently for 6 of the last 7 days, and Reddit shows recurring meal-prep behavior around simple protein-and-rice bowls. But competition is only medium-clear and the signal is messy: the keyword itself is meme-like, Reddit pain is present but not highly reliable, and established food/meal sites may absorb a generic execution quickly.",
+      "risk": "The main risk is that this is a content meme rather than a durable software behavior, making users prefer TikTok, Reddit, or recipe sites over a dedicated product.",
+      "competition_queries": [
+        "protein bowl planner for men living alone",
+        "after work meal prep app for solo renters",
+        "cheap high protein rice bowl routine app bachelor"
+      ],
+      "context_seed": {
+        "product_description": "This product helps a solo young man build a repeatable weekly routine around cheap, high-protein bowls instead of endlessly searching recipes. He picks a few proteins and carbs he actually buys, and the tool generates a simple prep plan, portions, grocery list, and remix options so he can eat reliably without overthinking cooking.",
+        "target_user": "A 24-year-old guy in his first apartment after starting a full-time job, tired after work, trying to eat more protein and save money, but secretly ashamed that he only knows how to make ground beef, rice, and chicken bowls.",
+        "emotional_barrier": "He avoids cooking because every meal decision makes him feel inexperienced, repetitive, and slightly embarrassed about not being an 'adult' who can cook properly.",
+        "routes": [
+          "/ \u2192 value prop and quick start into a 5-minute bowl routine",
+          "/onboarding \u2192 choose budget, protein goals, cooking skill, and staple ingredients",
+          "/plan \u2192 generate a 3- to 5-day bowl-based meal-prep plan",
+          "/recipe/:id \u2192 ultra-simple step-by-step prep flow with swaps and portion guidance",
+          "/grocery-list \u2192 consolidated shopping list based on selected plan",
+          "/batch-prep \u2192 timed prep workflow for cooking everything in one session",
+          "/leftovers \u2192 remix remaining ingredients into new bowls without waste",
+          "/profile \u2192 save staple foods, equipment limits, and weekly routine preferences",
+          "/upgrade \u2192 paid macros, personalization, and grocery integrations"
+        ]
+      }
+    },
+    "Top Trends": {
+      "decision": "BUILD",
+      "confidence": "MED",
+      "build_idea": "A spoiler-safe celebrity rumor anxiety filter for socially active fans who keep seeing wedding and relationship rumors about favorite stars in group chats and short-form feeds, but feel embarrassed asking \"is this real or fake?\" The emotional barrier is social uncertainty: they fear looking gullible when sharing or reacting to viral celeb news. The core value proposition is a fast, trust-scored 'before you repost' check that turns chaotic rumor spikes into a calm, private confidence check.",
+      "target_slug": "celeb-rumor-confidence-check",
+      "monetization": "Freemium: free rumor checks with limited daily lookups; paid tier for unlimited checks, alert lists for followed celebrities, and spoiler-safe digest notifications. Potential affiliate revenue from entertainment newsletters or publisher subscriptions.",
+      "reason": "The signal is confirmed by repeated appearance over 6 of the last 7 days, competition is GREEN, and the search cluster suggests recurring confusion around celebrity relationship milestones and related viral product/merch chatter. This is worth building if framed around the emotional need to avoid embarrassment and misinformation, not as a generic celebrity news site. [Note: refined competition search for 'celebrity rumor verification app for fan group chats' found 4 existing tools \u2014 review competition section before building.]",
+      "risk": "The main risk is weak retention if curiosity spikes are too event-driven and users don't return between rumor cycles.",
+      "competition_queries": [
+        "celebrity rumor verification app for fan group chats",
+        "private celeb news fact check tool for stan accounts",
+        "viral entertainment rumor confidence checker for fandoms"
+      ],
+      "context_seed": {
+        "product_description": "This product lets fans privately verify viral celebrity claims before they share, react, or buy into related hype. It aggregates source signals, labels confidence, highlights what is confirmed vs speculative, and gives users a quick social-safe summary they can use in chats or posts.",
+        "target_user": "A 19-year-old highly online fan who follows celebrity culture through TikTok, Instagram, and group chats, constantly sees relationship and wedding rumors first, and wants to stay in the loop without ever being the person who spreads fake news.",
+        "emotional_barrier": "They hesitate because being wrong in front of friends feels embarrassing and socially costly.",
+        "routes": [
+          "/ \u2192 landing page explaining rumor confidence checks",
+          "/search \u2192 look up a celebrity claim privately",
+          "/claim/:id \u2192 confidence breakdown with source timeline",
+          "/follow \u2192 follow specific celebrities or fandom topics",
+          "/alerts \u2192 receive rumor-status updates when a claim is confirmed or debunked",
+          "/digest \u2192 spoiler-safe summary of major entertainment rumors",
+          "/share \u2192 copy a concise verified summary for chats or posts",
+          "/account \u2192 manage saved claims, follows, and plan limits"
+        ]
+      }
+    },
+    "education": {
+      "decision": "WATCH",
+      "confidence": "MED",
+      "build_idea": "A crisis-to-classroom explainer tool for Ohio high school civics and journalism teachers who wake up to a suddenly trending public figure or political story and feel anxious about teaching it without spreading misinformation or losing classroom trust. The product turns a breaking name in the news into a neutral, age-appropriate lesson brief with source triangulation, timeline, discussion prompts, and 'what we know vs. what\u2019s unclear' framing so teachers can respond confidently the same day.",
+      "target_slug": "breaking-news-civics-brief",
+      "monetization": "Freemium for individual teachers with paid school/district subscriptions for shared lesson libraries, admin controls, and LMS export.",
+      "reason": "The search terms suggest spike-driven interest around public figures, which points to episodic education demand rather than a stable standalone product category. There is a plausible emotional barrier\u2014teachers\u2019 fear of getting a fast-moving story wrong in class\u2014but competition is only moderately weak and the exact user pain is still somewhat inferred, so this is better monitored than built immediately.",
+      "risk": "Demand may be too event-driven and inconsistent to support retention outside major news cycles.",
+      "competition_queries": [
+        "breaking news civics lesson tool high school teacher",
+        "current events classroom explainer app journalism teacher",
+        "political news lesson brief tool secondary teacher"
+      ],
+      "context_seed": {
+        "product_description": "This product helps secondary civics and journalism teachers convert breaking public-news topics into classroom-ready explainers within minutes. It assembles a neutral summary, verified source set, timeline, uncertainty labels, vocabulary definitions, and discussion activities tailored for teen comprehension and same-day teaching use.",
+        "target_user": "A high school civics or journalism teacher who sees students asking about a suddenly viral public figure before first period, worries about misrepresenting the facts, and wants a trustworthy way to address it without spending hours researching.",
+        "emotional_barrier": "They are afraid that if they address the topic too quickly, they\u2019ll unintentionally teach misinformation or trigger parent/admin backlash.",
+        "routes": [
+          "/ \u2192 landing page explaining same-day current-events lesson creation",
+          "/topic/:id \u2192 classroom explainer with summary, timeline, and source confidence",
+          "/topic/:id/discussion \u2192 age-appropriate discussion prompts and activities",
+          "/topic/:id/sources \u2192 triangulated source view with bias/context notes",
+          "/topic/:id/export \u2192 print, Google Docs, and LMS-ready lesson export",
+          "/library \u2192 saved lesson briefs by subject and grade band",
+          "/admin \u2192 school or district controls, shared templates, and usage settings"
+        ]
+      }
+    },
+    "mario day": {
+      "decision": "SKIP",
+      "confidence": "MED",
+      "build_idea": "A lightweight 'classroom Mario Day kit' for U.S. elementary teachers who need to run a themed school-day activity on short notice and feel anxious about disappointing students or violating school constraints. It would turn limited prep time into a compliant, printable, age-appropriate celebration plan with minute-by-minute activities and materials lists.",
+      "target_slug": "classroom-mario-day-kit",
+      "monetization": "One-time paid printable packs or teacher subscription.",
+      "reason": "This appears to be a seasonal pop-culture search spike tied to a date rather than a durable software pain point. The strongest plausible user is a teacher or parent scrambling for themed activities, but that need is brief, highly content-driven, and likely already served by Pinterest, Teachers Pay Teachers, blogs, and printable marketplaces.",
+      "risk": "Demand is likely too seasonal and shallow to support a meaningful standalone software product.",
+      "competition_queries": [
+        "elementary teacher video game theme classroom planner",
+        "school celebration printable planner teacher themed day",
+        "last minute classroom activity kit substitute teacher game theme"
+      ],
+      "context_seed": {
+        "product_description": "A planning tool for elementary teachers who need a fast, school-safe themed classroom celebration without spending hours searching blogs and printables. The product generates a short agenda, printable materials, and setup guidance based on grade level, class length, and available supplies.",
+        "target_user": "A 3rd-grade teacher who learns late that students expect a themed classroom day, feels behind and underprepared, and wants to pull off something fun without extra evening work.",
+        "emotional_barrier": "They fear letting students down while also feeling overwhelmed by the time and compliance burden of planning a themed activity day.",
+        "routes": [
+          "/ \u2192 landing page explaining fast classroom celebration planning",
+          "/quiz \u2192 collect grade level, class length, supplies, and constraints",
+          "/plan \u2192 generated celebration agenda and activity sequence",
+          "/printables \u2192 downloadable worksheets, signs, and instructions",
+          "/materials \u2192 supply checklist with substitutions",
+          "/teacher-notes \u2192 classroom management tips and setup guidance"
+        ]
+      }
+    },
+    "jet blue": {
+      "decision": "SKIP",
+      "confidence": "HIGH",
+      "reason": "Score gate: 45 < 50, no confirmed pain"
+    }
+  }
+}
