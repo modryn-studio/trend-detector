@@ -27,10 +27,9 @@ TOPIC_MAP: dict[int, str] = {
 
 # One client for the lifetime of the process — shares session/cookies
 # across both the discovery call and the time-series enrichment calls.
-# request_delay=5: trendspy itself warns to use 4+ after 429s; 5 gives extra
-# headroom since trending_now() already warms the session before we hit
-# interest_over_time().
-_client = Trends(request_delay=5)
+# request_delay=10: trendspy warns to use 10 after repeated 429s; consecutive
+# daily runs build IP heat so we need the full recommended delay.
+_client = Trends(request_delay=10)
 
 
 def fetch_trending(geo: str = "US") -> list[dict]:
@@ -79,16 +78,23 @@ def fetch_time_series(keywords: list[str], geo: str = "US",
 
     chunks = [keywords[i:i + 5] for i in range(0, len(keywords), 5)]
     for chunk in chunks:
-        try:
-            df = _client.interest_over_time(chunk, timeframe=timeframe, geo=geo)
-            if df is not None and not df.empty:
-                df = df.drop(columns=["isPartial"], errors="ignore")
-                for kw in chunk:
-                    if kw in df.columns:
-                        series[kw] = df[kw].tolist()
-        except Exception as e:
-            print(f"[fetcher] interest_over_time failed for {chunk}: {e}")
+        for attempt in range(2):  # 1 retry on 429
+            try:
+                df = _client.interest_over_time(chunk, timeframe=timeframe, geo=geo)
+                if df is not None and not df.empty:
+                    df = df.drop(columns=["isPartial"], errors="ignore")
+                    for kw in chunk:
+                        if kw in df.columns:
+                            series[kw] = df[kw].tolist()
+                break  # success — move to next chunk
+            except Exception as e:
+                if "429" in str(e) and attempt == 0:
+                    print(f"[fetcher] 429 on batch, retrying in 30s...")
+                    time.sleep(30)
+                else:
+                    print(f"[fetcher] interest_over_time failed for {chunk}: {e}")
+                    break
 
-        time.sleep(8)  # 8s between batches to avoid 429s after trending_now warms the session
+        time.sleep(15)  # 15s between batches to cool down the session
 
     return series
